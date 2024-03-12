@@ -130,7 +130,7 @@ We have a good level of agreement on inclusion and exclusion between the reviewe
 
 So far we have included 1524 articles.
 
-## Included articles
+## Included articles - Topic model
 
 ```{r}
 #| echo: false
@@ -209,7 +209,8 @@ included_top_terms %>%
   ggplot(aes(beta, term, fill = factor(topic))) +
   geom_col(show.legend = FALSE) +
   facet_wrap(~ topic, scales = "free") +
-  scale_y_reordered()
+  scale_y_reordered()+
+  theme(axis.text.y = element_text(size=6))
 
 ```
 
@@ -284,4 +285,63 @@ results$CountryCollaboration |>
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
 net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
 
+```
+
+## Top concepts (based on OpenAlex)
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Extracting top concepts for each record
+top_concepts <- lapply(paper_details$concepts, function(df) {
+  top_df <- df[order(-df$score), ][1:3, ]  # Assuming you want top 3 concepts
+  return(top_df)
+})
+
+# Count occurrences of each concept
+concept_counts <- table(unlist(lapply(top_concepts, `[[`, "display_name")))
+
+
+# Convert concept_counts to data frame
+concept_df <- data.frame(
+  concept = names(concept_counts),
+  count = as.numeric(concept_counts)
+)
+
+# Sort concepts by count
+concept_df <- concept_df[order(concept_df$count, decreasing = TRUE), ]
+
+# Plot the top concepts as a horizontal bar plot using ggplot2
+ggplot(concept_df[1:20, ], aes(x = count, y = reorder(concept, count))) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(
+    title = "Top Concepts",
+    x = "Frequency",
+    y = "Concept"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_text(size = 10),
+    axis.title = element_text(size = 12),
+    plot.title = element_text(size = 14)
+  ) 
+```
+
+## Open Access status
+
+```{r}
+o_A<-paper_details |> 
+  select(oa_status) |> 
+  group_by(oa_status) |> 
+  tally() |> 
+  mutate(pal=c("#cd7f32", "red", "gold", "green", "forestgreen")) 
+  
+o_A |> ggplot(aes(oa_status, n, fill=pal))+
+  geom_histogram(stat="identity")+
+  scale_fill_manual(values=c("#cd7f32", "forestgreen", "gold", "green", "darkred"))+
+  labs(x="Open Access status", y="Frequency")+
+  ggthemes::theme_base()+ 
+  theme(legend.position = "none")
 ```
