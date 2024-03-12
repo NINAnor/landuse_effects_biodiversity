@@ -329,6 +329,39 @@ ggplot(concept_df[1:20, ], aes(x = count, y = reorder(concept, count))) +
   ) 
 ```
 
+## Sources
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+paper_details |> 
+  select(so) |> 
+  group_by(so) |> 
+  tally() |> 
+  top_n(10) |> 
+  ggplot(aes(reorder(so,n),n))+
+ geom_bar(stat = "identity", fill = "skyblue") +
+  labs(
+    title = "Top Sources",
+    x = "Source",
+    y = "Frequency"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_text(size = 10),
+    axis.title = element_text(size = 12),
+    plot.title = element_text(size = 14)
+  ) +
+  coord_flip()
+```
+
+
+
+
+
+
+
 ## Funders
 
 ```{r}
