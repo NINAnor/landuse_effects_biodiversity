@@ -70,20 +70,18 @@ citations<-readRDS("data/citations.RDS")
 ## Search Strategy
 
 ::: {style="font-size: 50%;"}
-
-\*TS=("land use" OR "land cover" OR "space use" OR LULCC OR (planning AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR (conversion AND (land\* OR habitat\* OR area\* OR ecosystem\* OR natur\*)) OR (change\* NEAR/3 (land\* OR area\*)) OR "national park\*" OR landscape\* OR habitat\* OR Husbandry OR "land shar\*" OR "land spar\*" OR (Outdoor NEAR/3 (life OR livin\* OR recreat\*)) OR (restoration AND (nature OR ecosystem\*)) OR forestry OR (reindeer NEAR/3 (herd\* OR husbandr\*)) OR (livestock NEAR/3 graz\*) OR "holiday home\*" OR "secondary home\*"OR (recreation\* NEAR/3 (home\* OR cottage\* OR cabin\* OR propert\*)) OR tourism OR "wind power" OR "Land manag\*" OR "Nature conservation" OR ((governance OR management) AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR aquaculture OR "fish farm\*" OR hydropower OR “green energy” OR “energy development” OR herding OR agriculture OR transportation OR road\* OR “oil and gas” OR petroleum OR mining OR windpower OR traffic OR road\* OR railway\* OR “hydroelectric power” OR “solar power” OR “solar electricity” OR “power plant” OR LULC OR LULUCF OR AFOLU OR FOLU) AND TS=(sustainab\* OR biodiversity OR "Ecosystem service\*" OR (carbon NEAR/3 (stor\* OR sequest\*)) OR (ecosystem\* NEAR/3 (impact\* OR effect\* OR provision\* OR regulat\* OR support\* OR cultur\*)) OR ((loss OR shrink\* OR bisection\* OR perforation OR fragmentation) AND (habitat OR land)) OR (climate NEAR/3 adapt\*) OR ecodiversity OR "ecosystem type\*" OR "ecological process\*" OR anthropogenic OR conflict\* OR (diversity NEAR/3 (ecological OR speci\* OR population\*)) OR red-list OR "water purification" OR "soil retention" OR spiritual OR cultural OR aesthetics OR "climate mitigation") AND TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish)\* 
-
+\*TS=("land use" OR "land cover" OR "space use" OR LULCC OR (planning AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR (conversion AND (land\* OR habitat\* OR area\* OR ecosystem\* OR natur\*)) OR (change\* NEAR/3 (land\* OR area\*)) OR "national park\*" OR landscape\* OR habitat\* OR Husbandry OR "land shar\*" OR "land spar\*" OR (Outdoor NEAR/3 (life OR livin\* OR recreat\*)) OR (restoration AND (nature OR ecosystem\*)) OR forestry OR (reindeer NEAR/3 (herd\* OR husbandr\*)) OR (livestock NEAR/3 graz\*) OR "holiday home\*" OR "secondary home\*"OR (recreation\* NEAR/3 (home\* OR cottage\* OR cabin\* OR propert\*)) OR tourism OR "wind power" OR "Land manag\*" OR "Nature conservation" OR ((governance OR management) AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR aquaculture OR "fish farm\*" OR hydropower OR “green energy” OR “energy development” OR herding OR agriculture OR transportation OR road\* OR “oil and gas” OR petroleum OR mining OR windpower OR traffic OR road\* OR railway\* OR “hydroelectric power” OR “solar power” OR “solar electricity” OR “power plant” OR LULC OR LULUCF OR AFOLU OR FOLU) AND TS=(sustainab\* OR biodiversity OR "Ecosystem service\*" OR (carbon NEAR/3 (stor\* OR sequest\*)) OR (ecosystem\* NEAR/3 (impact\* OR effect\* OR provision\* OR regulat\* OR support\* OR cultur\*)) OR ((loss OR shrink\* OR bisection\* OR perforation OR fragmentation) AND (habitat OR land)) OR (climate NEAR/3 adapt\*) OR ecodiversity OR "ecosystem type\*" OR "ecological process\*" OR anthropogenic OR conflict\* OR (diversity NEAR/3 (ecological OR speci\* OR population\*)) OR red-list OR "water purification" OR "soil retention" OR spiritual OR cultural OR aesthetics OR "climate mitigation") AND TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish)\*
 :::
+
 ## 
 
 -   15285 articles were retrieved from the WoS search.
 
 -   21133 articles were retrieved from the Scopus search.
 
--   15 relevant papers expected to be returned by the search.
+-   15 Benchmark papers were used to seed citation chasing
 
--   Benchmark papers were used to seed forward and backward citation chasing
-  - This resulted in 1950 articles.
+-   This resulted in 1950 articles.
 
 ## Overlap between sources
 
@@ -221,12 +219,16 @@ included_top_terms %>%
 #| echo: false
 #| message: false
 #| warning: false
-tidy_topics |> 
-   count(word, sort = TRUE) |> 
-  wordcloud2::wordcloud2()
+# tidy_topics |> 
+#    count(word, sort = TRUE) |> 
+#   wordcloud2::wordcloud2()
+
+
 ```
 
-##
+![](Wordcloud.png)
+
+## 
 
 ```{r}
 #| echo: false
@@ -273,7 +275,7 @@ results$CountryCollaboration |>
 
 ```
 
-##
+## 
 
 ```{r}
 #| echo: false
