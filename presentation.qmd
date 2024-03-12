@@ -1,0 +1,285 @@
+---
+title: "Effects of land use and land cover changes on biodiversity, ecosystem services, and carbon storage in Norway"
+format: 
+  revealjs:
+    theme: moon
+editor: visual
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(CiteSource)
+library(tidyverse, quietly = TRUE)
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#Import citation files from a folder
+citation_files <- list.files(path = file.path("data/RIS_files_search"), pattern = "\\.ris", full.names = TRUE)
+
+file_path <- "data/RIS_files_search/"
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+metadata_tbl <- tibble::tribble(
+  ~files,            ~cite_sources,   ~cite_labels, 
+  "15 benchmarks.ris", "Benchmark",     "Benchmark",  
+  "citations-2024-01-09.ris", "CitationChaser", "Forward_BM",
+  "references-2024-01-09.ris", "CitationChaser", "Backward_BM",
+  "scopus NOR_SWE_FIN.ris",    "scopus",       "skandi",    
+  "scopus systematic.ris",    "scopus",       "systematic",    
+  "WoS Sys 1001-2000.ris",    "WoS",       "systematic",
+  "WoS Sys 2001-3000.ris",    "WoS",       "systematic",  
+  "WoS Sys 3001-4000.ris",    "WoS",       "systematic",  
+  "WoS Sys 4001-4262.ris",    "WoS",       "systematic",
+  "Wos1-1000.ris", "WoS", "skandi",
+  "WoS10001-11000.ris", "WoS", "skandi",    
+  "Wos1001-2000.ris", "WoS", "skandi",      
+  "Wos11001-12000.ris", "WoS", "skandi",    
+  "Wos12001-12023.ris", "WoS", "skandi",    
+  "Wos2001-3000.ris", "WoS", "skandi",      
+  "Wos3001-4000.ris", "WoS", "skandi",      
+  "Wos4001-5000.ris", "WoS", "skandi",
+  "Wos5001-6000.ris", "WoS", "skandi",
+  "WoS6001-7000.ris", "WoS", "skandi",
+  "Wos7001-8000.ris", "WoS", "skandi",
+  "WoS8001-9000.ris", "WoS", "skandi",
+  "Wos9001-10000.ris" , "WoS", "skandi"
+  ) |> 
+# Append the file path to each file name in the 'files' column
+dplyr::mutate(files = paste0(file_path, files))
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#citations <- read_citations(metadata = metadata_tbl)
+#saveRDS(citations, "data/citations.RDS")
+citations<-readRDS("data/citations.RDS")
+```
+
+## Search Strategy
+
+::: {style="font-size: 50%;"}
+
+\*TS=("land use" OR "land cover" OR "space use" OR LULCC OR (planning AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR (conversion AND (land\* OR habitat\* OR area\* OR ecosystem\* OR natur\*)) OR (change\* NEAR/3 (land\* OR area\*)) OR "national park\*" OR landscape\* OR habitat\* OR Husbandry OR "land shar\*" OR "land spar\*" OR (Outdoor NEAR/3 (life OR livin\* OR recreat\*)) OR (restoration AND (nature OR ecosystem\*)) OR forestry OR (reindeer NEAR/3 (herd\* OR husbandr\*)) OR (livestock NEAR/3 graz\*) OR "holiday home\*" OR "secondary home\*"OR (recreation\* NEAR/3 (home\* OR cottage\* OR cabin\* OR propert\*)) OR tourism OR "wind power" OR "Land manag\*" OR "Nature conservation" OR ((governance OR management) AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR aquaculture OR "fish farm\*" OR hydropower OR “green energy” OR “energy development” OR herding OR agriculture OR transportation OR road\* OR “oil and gas” OR petroleum OR mining OR windpower OR traffic OR road\* OR railway\* OR “hydroelectric power” OR “solar power” OR “solar electricity” OR “power plant” OR LULC OR LULUCF OR AFOLU OR FOLU) AND TS=(sustainab\* OR biodiversity OR "Ecosystem service\*" OR (carbon NEAR/3 (stor\* OR sequest\*)) OR (ecosystem\* NEAR/3 (impact\* OR effect\* OR provision\* OR regulat\* OR support\* OR cultur\*)) OR ((loss OR shrink\* OR bisection\* OR perforation OR fragmentation) AND (habitat OR land)) OR (climate NEAR/3 adapt\*) OR ecodiversity OR "ecosystem type\*" OR "ecological process\*" OR anthropogenic OR conflict\* OR (diversity NEAR/3 (ecological OR speci\* OR population\*)) OR red-list OR "water purification" OR "soil retention" OR spiritual OR cultural OR aesthetics OR "climate mitigation") AND TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish)\* 
+
+:::
+## 
+
+-   15285 articles were retrieved from the WoS search.
+
+-   21133 articles were retrieved from the Scopus search.
+
+-   15 relevant papers expected to be returned by the search.
+
+-   Benchmark papers were used to seed forward and backward citation chasing
+  - This resulted in 1950 articles.
+
+## Overlap between sources
+
+The number of distinct records after deduplication:
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+#Deduplicate citations. This yields a dataframe of all records with duplicates merged, but the originating source information maintained in a new variable called cite_source.
+#unique_citations <- dedup_citations(citations)
+#saveRDS(unique_citations, "data/unique_citations.RDS")
+unique_citations<-readRDS("data/unique_citations.RDS")
+
+#Count number of unique and non-unique citations from different sources and labels 
+n_unique <- count_unique(unique_citations)
+
+#For each unique citation, determine which sources were present
+source_comparison <- compare_sources(unique_citations, comp_type = "sources")
+
+#Initial upload/post internal deduplication table creation
+initial_counts<-record_counts(unique_citations, citations, "cite_source")
+record_counts_table(initial_counts)
+```
+
+## 
+
+There were 4606 records shared between Scopus and WoS.
+
+In total 13 of the benchmarks were recorded in WoS and Scopus. Two benchmarks were not recorded in any database search.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#For each unique citation, determine which sources were present
+source_comparison <- compare_sources(unique_citations, comp_type = "sources")
+#Generate a source comparison upset plot.
+plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
+```
+
+## Screening
+
+We have a good level of agreement on inclusion and exclusion between the reviewers - Kappa = 0.70
+
+So far we have included 1524 articles.
+
+## Included articles
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+Included<-readRDS("data/Included.RDS")
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# topic models for the included papers
+library(tidytext)
+
+text_for_topics<-Included |> 
+  select(title, abstract) |> 
+  mutate(txt=paste0(title,abstract))
+
+tidy_topics<-text_for_topics |> 
+  unnest_tokens(word,txt)
+
+data(stop_words)
+
+tidy_topics <- tidy_topics %>%
+  anti_join(stop_words)
+
+tidy_topics_dtm<-tidy_topics |> 
+  count(title, word) |> 
+  cast_dtm(title, word, n)
+
+# needs(ldatuning)
+# determine_k <- FindTopicsNumber(
+#   tidy_topics_dtm,
+#   topics = seq(from = 2, to = 30, by = 1),
+#   metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+#   method = "Gibbs",
+#   control = list(seed = 77),
+#   mc.cores = 16L,
+#   verbose = TRUE
+# )
+# 
+# FindTopicsNumber_plot(determine_k)
+
+# 13 topics supported
+
+
+library(topicmodels)
+#topics_lda <- LDA(tidy_topics_dtm, k = 13, control = list(seed = 1234))
+
+#saveRDS(topics_lda, "data/topics_lda.RDS")
+topics_lda<-readRDS("data/topics_lda.RDS")
+
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+included_topics<-tidy(topics_lda, matrix="beta")
+included_topics<-included_topics[- grep("1", included_topics$term),]
+
+included_top_terms <- included_topics %>%
+  group_by(topic) %>%
+  slice_max(beta, n = 10) %>% 
+  ungroup() %>%
+  arrange(topic, -beta)
+
+included_top_terms %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(beta, term, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  scale_y_reordered()
+
+```
+
+## 
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+tidy_topics |> 
+   count(word, sort = TRUE) |> 
+  wordcloud2::wordcloud2()
+```
+
+##
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+#dois<-as.character(Included$doi)
+
+#dois<-sub(" .*", "", dois)
+
+library(openalexR, quietly = TRUE)
+# paper_details<-oa_fetch(
+#   doi=dois,
+#   entity="works",
+#   verbose = TRUE
+# )
+
+#write_rds(paper_details, "data/paper_details.rds")
+paper_details <- readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/landuse_effects_biodiversity/data/paper_details.rds")
+# paper_details |> 
+#   show_works() |> 
+#   knitr::kable()
+
+
+papers_bib<-paper_details |> 
+   oa2bibliometrix() 
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(bibliometrix)
+results<-biblioAnalysis(papers_bib)
+results$CountryCollaboration |> 
+  filter(SCP>0) |> 
+  ggplot(aes(reorder(Country, SCP), SCP)) +
+  geom_bar(stat = "identity", fill="darkblue")+
+  coord_flip()+
+  labs(y="Number of papers", x=" ")+
+  ggthemes::theme_base()
+  
+
+
+```
+
+##
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
+net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
+
+```
