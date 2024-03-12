@@ -329,6 +329,50 @@ ggplot(concept_df[1:20, ], aes(x = count, y = reorder(concept, count))) +
   ) 
 ```
 
+## Funders
+
+```{r}
+
+
+# Extracting only the "funder_display_name" information from the list
+fund_list <- unlist(lapply(paper_details$grants, function(x) {
+  if ("funder_display_name" %in% names(x)) {
+    return(x[["funder_display_name"]])
+  } else {
+    return(NA_character_)
+  }
+}))
+
+# Removing NA values
+fund_list <- fund_list[!is.na(fund_list)]
+
+# Count occurrences of each funder
+fund_counts <- count(data.frame(funder = fund_list), funder)
+
+# Sort by count
+fund_counts <- arrange(fund_counts, desc(n))
+
+# Plot the top funders as a bar plot using ggplot2
+ggplot(head(fund_counts, 10), aes(x = funder, y = n)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(
+    title = "Top Funders",
+    x = "Funder",
+    y = "Number of Papers"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title = element_text(size = 12),
+    plot.title = element_text(size = 14)
+  ) 
+
+
+```
+
+
+
+
 ## Open Access status
 
 ```{r}
