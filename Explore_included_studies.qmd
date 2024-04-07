@@ -1,0 +1,210 @@
+---
+title: "Summary of included papers"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Function to determine final decision
+final_decision <- function(row) {
+  counts <- table(unlist(strsplit(gsub('[{}\"]', '', row), ", ")))
+  
+  # Extract just the decision statuses
+  decision_statuses <- sapply(strsplit(names(counts), "=>"), function(x) x[2])
+  
+  # Count the occurrences of each decision status
+  included_count <- sum(decision_statuses == "Included")
+  excluded_count <- sum(decision_statuses == "Excluded")
+  maybe_count <- sum(decision_statuses == "Maybe")
+  
+  max_count <- max(included_count, excluded_count, maybe_count)
+  
+  if (max_count == 0 || sum(counts) == 0) {
+    return("Tie/Conflict")
+  } else {
+    final_decision <- ifelse(included_count == max_count, "Included",
+                             ifelse(excluded_count == max_count, "Excluded",
+                                    ifelse(maybe_count == max_count, "Maybe", "Tie/Conflict")))
+    if (sum(final_decision == "Tie/Conflict") > 1) {
+      return("Tie/Conflict")
+    } else {
+      return(final_decision)
+    }
+  }
+}
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(rayyanR)
+library(synthesisr)
+library(tidyverse, quietly = TRUE)
+rayyan_biblio<-synthesisr::read_ref("data/Screening/articles.ris")
+#parse rayyan biblio
+rayyan_biblio_cleaned<-rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
+
+# remove no decision
+decisions<-rayyan_biblio_cleaned |> 
+  filter(!is.na(rayyan_decisions))
+
+###########
+
+decisions<-decisions |> 
+  drop_na(rayyan_decisions)
+
+# Apply the final_decision function
+decisions$final_decision <- sapply(decisions$rayyan_decisions, final_decision)
+
+# Included papers only
+Included<-decisions |> 
+  filter(final_decision=="Included")
+
+saveRDS(Included, "data/Included.RDS")
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+# topic models for the included papers
+library(tidytext)
+
+text_for_topics<-Included |> 
+  select(title, abstract) |> 
+  mutate(txt=paste0(title,abstract))
+
+tidy_topics<-text_for_topics |> 
+  unnest_tokens(word,txt)
+
+data(stop_words)
+
+tidy_topics <- tidy_topics %>%
+  anti_join(stop_words)
+
+tidy_topics_dtm<-tidy_topics |> 
+  count(title, word) |> 
+  cast_dtm(title, word, n)
+
+# needs(ldatuning)
+# determine_k <- FindTopicsNumber(
+#   tidy_topics_dtm,
+#   topics = seq(from = 2, to = 30, by = 1),
+#   metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+#   method = "Gibbs",
+#   control = list(seed = 77),
+#   mc.cores = 16L,
+#   verbose = TRUE
+# )
+# 
+# FindTopicsNumber_plot(determine_k)
+
+# 13 topics supported
+
+
+library(topicmodels)
+topics_lda <- LDA(tidy_topics_dtm, k = 13, control = list(seed = 1234))
+
+
+
+```
+
+```{r}
+included_topics<-tidy(topics_lda, matrix="beta")
+included_topics<-included_topics[- grep("1", included_topics$term),]
+
+included_top_terms <- included_topics %>%
+  group_by(topic) %>%
+  slice_max(beta, n = 10) %>% 
+  ungroup() %>%
+  arrange(topic, -beta)
+
+included_top_terms %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(beta, term, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  scale_y_reordered()
+
+```
+
+```{r}
+beta_wide <- included_top_terms %>%
+  mutate(topic = paste0("topic", topic)) %>%
+  pivot_wider(names_from = topic, values_from = beta) 
+
+beta_wide
+```
+
+```{r}
+tidy_topics |> 
+   count(word, sort = TRUE) |> 
+  wordcloud2::wordcloud2()
+```
+
+```{r}
+
+dois<-as.character(Included$doi)
+
+dois<-sub(" .*", "", dois)
+
+#library(openalexR)
+# paper_details<-oa_fetch(
+#   doi=dois,
+#   entity="works",
+#   verbose = TRUE
+# )
+
+#write_rds(paper_details, "data/paper_details.rds")
+paper_details <- readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/landuse_effects_biodiversity/data/paper_details.rds")
+paper_details |> 
+  show_works() |> 
+  knitr::kable()
+
+
+papers_bib<-paper_details |> 
+   oa2bibliometrix() 
+```
+
+```{r}
+library(bibliometrix)
+results<-biblioAnalysis(papers_bib)
+S<-summary(results)
+S
+```
+
+```{r}
+papers_bib$CR
+```
+
+```{r}
+#papers_bib
+
+NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
+net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
+
+```
+
+```{r}
+NetMatrix <- biblioNetwork(papers_bib, analysis = "co-citation", network = "references", sep = ";")
+
+# Plot the network
+net=networkPlot(NetMatrix, n = 30, Title = "Co-Citation Network", type = "fruchterman", size=T, remove.multiple=FALSE, labelsize=0.7,edgesize = 5)
+```
+
+```{r}
+#Conceptual Structure using keywords (method="CA")
+
+CS <- conceptualStructure(papers_bib,field="ID", method="CA", minDegree=5, clust=2, stemming=FALSE, labelsize=3, documents=500)
+```
