@@ -1,0 +1,82 @@
+---
+title: "Effects of land use and land cover changes on biodiversity, ecosystem services, and carbon storage in Norway: A systematic map and decision support tool"
+format:
+  html:
+    toc: true
+
+editor: visual
+---
+
+## 
+
+# Background
+
+## Stakeholder engagement
+
+## Objective of the map
+
+### Primary question
+
+### Secondary questions
+
+# Methods
+
+## Deviations from protocol
+
+## Search for literature
+
+### Languages
+
+### Search terms and string
+
+### Online publication databases
+
+### Internet searches
+
+### Additional searches
+
+### Testing the comprehensiveness of the search
+
+### Assembling and managing search results
+
+### Article screening
+
+### Screening process
+
+### Eligibility criteria
+
+### Study validity assessment
+
+### Data coding strategy
+
+### Data mapping method 
+
+# Review findings 
+
+## Review descriptive statistics 
+
+## Results of the search for literature
+
+### Sources and document types of included articles
+
+## Chronological distribution and document contents of included articles
+
+### Geographical distribution of included observations
+
+## Mapping the effects of land use and land cover change on biodiversity
+
+## Mapping the effects of land use and land cover change on ecosystem services
+
+## Mapping the effects of land use and land cover change on carbon storage
+
+## Mapping the effects of land use and land cover change on conflicts and governance
+
+# Limitations of the map
+
+# Limitations of the evidence base
+
+# Conclusions
+
+## Implications for Research
+
+## Implications for management/practice 
