@@ -49,11 +49,11 @@ editor: visual
 
 ### Data coding strategy
 
-### Data mapping method 
+### Data mapping method
 
-# Review findings 
+# Review findings
 
-## Review descriptive statistics 
+## Review descriptive statistics
 
 ## Results of the search for literature
 
@@ -79,4 +79,4 @@ editor: visual
 
 ## Implications for Research
 
-## Implications for management/practice 
+## Implications for management/practice
