@@ -73,15 +73,45 @@ In addition, we will investigate what characterizes the existing body of literat
 
 ## Search for literature
 
-### Languages
+### Online publication databases
+
+Systematic literature searches for academic literature were conducted in Scopus, and in the following Web of Science Core Collection databases:
+
+-   Science Citation Index Expanded (SCI-EXPANDED): 1987–present.
+
+-   Social Sciences Citation Index (SSCI): 1987–present.
+
+-   Arts and Humanities Citation Index (AHCI): 1987–present.
+
+-   Emerging Sources Citation Index (ESCI): 2015–present.
+
+Several preliminary searches with different search terms were performed in Web of Science, which led to adjustments in the search string (See [the protocol](https://osf.io/4ad3x)).
 
 ### Search terms and string
 
-### Online publication databases
+We used the PICO framework (James et al., 2016) to structure our search with the search terms and categories derived from the primary research question.
+
+The following search string was used in WoS and a similar string used in Scopus (adjusted to the interface):
+
+<!--# Add link to search strings -->
+
+*TS=("land use" OR "land cover" OR "space use" OR LULCC OR (planning AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR (conversion AND (land\* OR habitat\* OR area\* OR ecosystem\* OR natur)) OR (change NEAR/3 (land\* OR area)) OR "national park" OR landscape\* OR habitat\* OR Husbandry OR "land shar" OR "land spar" OR (Outdoor NEAR/3 (life OR livin\* OR recreat)) OR (restoration AND (nature OR ecosystem)) OR forestry OR (reindeer NEAR/3 (herd\* OR husbandr)) OR (livestock NEAR/3 graz) OR "holiday home" OR "secondary home"OR (recreation\* NEAR/3 (home\* OR cottage\* OR cabin\* OR propert)) OR tourism OR "wind power" OR "Land manag" OR "Nature conservation" OR ((governance OR management) AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR aquaculture OR "fish farm" OR hydropower OR “green energy” OR “energy development” OR herding OR agriculture OR transportation OR road OR “oil and gas” OR petroleum OR mining OR windpower OR traffic OR road\* OR railway\* OR “hydroelectric power” OR “solar power” OR “solar electricity” OR “power plant” OR LULC OR LULUCF OR AFOLU OR FOLU)*
+
+*AND*
+
+*TS=(sustainab\* OR biodiversity OR "Ecosystem service" OR (carbon NEAR/3 (stor OR sequest)) OR (ecosystem NEAR/3 (impact\* OR effect\* OR provision\* OR regulat\* OR support\* OR cultur)) OR ((loss OR shrink OR bisection\* OR perforation OR fragmentation) AND (habitat OR land)) OR (climate NEAR/3 adapt) OR ecodiversity OR "ecosystem type" OR "ecological process" OR anthropogenic OR conflict OR (diversity NEAR/3 (ecological OR speci\* OR population\*)) OR red-list OR "water purification" OR "soil retention" OR spiritual OR cultural OR aesthetics OR "climate mitigation")*
+
+We screened all systematic reviews and systematic maps from the international literature, the two categories were combined with TS=("Systematic review*" OR "systematic map*" OR "rapid review\*"). For the primary literature, the two categories were combined with TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish), and all results screened.
+
+### Languages
+
+Studies written in English, Norwegian, Swedish or Danish were included in the review. Studies in other languages were not included in the review.
 
 ### Internet searches
 
 ### Additional searches
+
+Articles cited by and that cite (forward and backward citation chasing) the 15 benchmark articles were searched for using the citationchaser Shiny App (Haddaway et al. 2022).
 
 ### Testing the comprehensiveness of the search
 
@@ -102,7 +132,6 @@ In addition, we will investigate what characterizes the existing body of literat
 # Review findings
 
 ## Review descriptive statistics
-
 
 ## Results of the search for literature
 
