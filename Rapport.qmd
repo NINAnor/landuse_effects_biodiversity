@@ -3,11 +3,15 @@ title: "Effects of land use and land cover changes on biodiversity, ecosystem se
 format:
   html:
     toc: true
-
+params:
+  version: "1.0"
+  search-results: 36418
 editor: visual
 ---
 
 ## 
+
+Version: `r params$version`
 
 # Background
 
@@ -99,7 +103,26 @@ In addition, we will investigate what characterizes the existing body of literat
 
 ## Review descriptive statistics
 
+
 ## Results of the search for literature
+
+```{r, Prisma statement}
+#| echo: false
+#| message: false
+#| warning: false
+library(PRISMAstatement)
+
+prisma(found = params$`search-results`,
+       found_other = 1965,
+       no_dupes = 20265, 
+       screened = 14808, # Needs updating
+       screen_exclusions = 12144, 
+       full_text = 2398,
+       full_text_exclusions = 0, 
+       qualitative = 0, 
+       quantitative = 0,
+       width = 800, height = 800)
+```
 
 ### Sources and document types of included articles
 
