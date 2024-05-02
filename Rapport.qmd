@@ -11,13 +11,57 @@ editor: visual
 
 # Background
 
+Land Use and Land Cover Change (LULCC) is considered the dominant driver of recent biodiversity loss both globally and in Norway, and directly affects nature’s ability to provide natural goods and services (Díaz et al., 2019; Malhi et al., 2020). LULCC also affects an ecosystem’s ability to sequester and store carbon in the soil and biological material, and therefore directly affects an ecosystem’s ability to assist in the mitigation of, and adaptation to, climate change. Quantifying, understanding, and communicating the dynamics of land change and its effects on biodiversity, ecosystem services, and carbon sequestration is therefore a premise for evidence-based land use policies. However, we currently lack systematic evidence on the topic from Norwegian ecosystems. Much of the public discourse at the national level is dominated by international global knowledge summaries, despite significant uncertainty around downscaling and transferring knowledge from global and regional syntheses to the local/national level, across ecosystems and taxonomic groups. Previous knowledge syntheses based on data from Norwegian ecosystems has either been following specific approaches (e.g. Ecosystem Assessment; (Nybø et al., 2017)), largely based on expert judgements (Artsdatabanken, 2021), or limited in scope. The lack of a comprehensive overview of research-based knowledge from Norwegian ecosystems also leads to different interest groups and sectors relying on different "facts," often leading to escalating conflicts and poor decisions. Therefore, there is a pressing need both for a summary of knowledge and the identification of real knowledge gaps.
+
+Politics and decision making related to land use and its effects on biodiversity and climate are currently among the most conflict-ridden and hotly debated political issues in Norway. The conflicts typically involve dilemmas between different societal concerns and interests supported by different sectors and actor groups (Guldbrandsen & Handberg, 2022; Skogen et al., 2021).  Knowledge controversy is also often a central trait of the conflicts, involving disagreement on the status of knowledge and conflicting knowledge claims about the environmental effects of different options of land use (Aspøy & Stokland, 2022; Rusch et al., 2022). IPBES (2019, 2022a, 2022b) and IPCC (2018) have proposed governance approaches and measures, such as those related to transformative change and transformative governance, to enable the achievement of the SDGs, the 1.5℃ limit, and the 2050 Vision for Biodiversity. Such approaches involve improved integration and interaction between societal goals, governance sectors, and multiple knowledge sources, and are thus highly relevant for Norwegian politics and decision making related to land use. However, the utilization and adaption of internationally recommended approaches and tools in a Norwegian context is currently hindered by the lack of a comprehensive understanding of national and local land use-related dilemmas and conflicts, as well as currently employed tools and approaches. Therefore, there is an urgent need for a knowledge synthesis and identification of knowledge gaps concerning these aspects of land use and its effects on biodiversity and climate.
+
+Systematic maps (also known as Evidence gap maps or Evidence maps) were designed to give an overview of the available evidence on a broad topic (Saran et al., 2020). They do not seek to answer narrow well-defined questions (as systematic reviews do) but rather to provide a means to identify and catalogue available evidence on policy-relevant questions (James et al., 2016). Systematic maps have been realised in a variety of different ways but generally provide the results in a user-friendly fashion such as graphs, maps or searchable databases (Miake-Lye et al., 2016). Increasingly interactive plotting and mapping is being used to provide a dynamic output to users (such as EviAtlas; Haddaway et al., 2019). It is important that systematic maps are not portrayed as an end in themselves. Without further evidence synthesis decision makers need to be cautious about making decisions based on the weight of evidence alone (i.e.  vote-counting, c.f (Hedges & Olkin, 1980). Systematic maps cannot replace the rigor of systematic reviews but can give decision-makers an understanding of the evidence base by highlighting gaps in, or clusters of, evidence. They can highlight where evidence synthesis can take place (i.e., there is enough available evidence for a systematic review) or where primary research is required (i.e. there is a lack of evidence). Decision models can supplement the results of a systematic evidence synthesis to place the available evidence into the decision context (Carrick et al., 2019).
+
 ## Stakeholder engagement
+
+The outline for the review was presented at a conference held by the Norwegian Environment Agency and the Norwegian Research Council October 23, 2022. A general stakeholder meeting was arranged by NINA on April 25, 2023. The focus and scope of the review was narrowed and better defined during a specific stakeholder event on #date. Details of this meeting and the modifications in scope are available on request. Stakeholders who attended this event were invited to comment on the draft protocol prior to submission for publication. Stakeholders were not engaged during the conduct of the review.
 
 ## Objective of the map
 
+The main goal of this project is to provide a comprehensive overview of available knowledge related to the effects of land use and land use changes on Norwegian nature, with a focus on biodiversity, ecosystem services, climate adaptation, carbon sequestration and storage. The map is restricted in geographical scope to Norway, Sweden and Finland (see inclusion criteria below). Moreover, the report is accompanied by a decision support tool as an extension of the systematic map to contextualize the available knowledge. The tool will be designed as a conceptual model of the field and highlight the importance of knowledge gaps in different areas.
+
 ### Primary question
 
+The main research question in our systematic map is ‘What evidence exist about the impacts of land use and land cover change on biodiversity, ecosystem services and carbon sequestration in Norway, what type of conflicts have been identified between different forms of land use, and what tools are suggested to improve governance".
+
 ### Secondary questions
+
+In addition, we will investigate what characterizes the existing body of literature on the topic, in terms of:
+
+-   What proportion of the research is based on empirical data 
+
+-   What proportion of the research is based on experimental vs observational 
+
+-   What proportion of the research is based on qualitative vs quantitative/mixed 
+
+-   How is research spread across the major ecosystem types/realms 
+
+-   How is research spread across the disciplines 
+
+-   How is research spread across level of biological organization (species, taxa, ecosystem or services) 
+
+-   What are the dominant types of land use that are investigated? 
+
+-   What regions (in Norway) are most represented 
+
+-   What proportion of the research focuses on governance, conflicts and tools?  
+
+-   What are the dominant/marginal social scientific analytical approaches of the studies? 
+
+-   What type of actors are most represented in the studies? 
+
+-   Which sectors and societal concerns are most studied? 
+
+-   Which level of societal scale do the studies represent?  
+
+-   Which land use conflicts are most researched? 
+
+-   Which tools are proposed and investigated? 
 
 # Methods
 
