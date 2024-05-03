@@ -1,0 +1,135 @@
+---
+title: "Source Analysis"
+format: pdf
+editor: visual
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(CiteSource)
+library(tidyverse, quietly = TRUE)
+
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#Import citation files from a folder
+citation_files <- list.files(path = file.path("data/RIS_files_search"), pattern = "\\.ris", full.names = TRUE)
+
+file_path <- "data/RIS_files_search/"
+
+#Print citation_files to double check the order in which R imported the files.
+#citation_files
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+metadata_tbl <- tibble::tribble(
+  ~files,            ~cite_sources,   ~cite_labels, 
+  "15 benchmarks.ris", "Benchmark",     "Benchmark",  
+  "citations-2024-01-09.ris", "CitationChaser", "Forward_BM",
+  "references-2024-01-09.ris", "CitationChaser", "Backward_BM",
+  "scopus NOR_SWE_FIN.ris",    "scopus",       "skandi",    
+  "scopus systematic.ris",    "scopus",       "systematic",    
+  "WoS Sys 1001-2000.ris",    "WoS",       "systematic",
+  "WoS Sys 2001-3000.ris",    "WoS",       "systematic",  
+  "WoS Sys 3001-4000.ris",    "WoS",       "systematic",  
+  "WoS Sys 4001-4262.ris",    "WoS",       "systematic",
+  "Wos1-1000.ris", "WoS", "skandi",
+  "WoS10001-11000.ris", "WoS", "skandi",    
+  "Wos1001-2000.ris", "WoS", "skandi",      
+  "Wos11001-12000.ris", "WoS", "skandi",    
+  "Wos12001-12023.ris", "WoS", "skandi",    
+  "Wos2001-3000.ris", "WoS", "skandi",      
+  "Wos3001-4000.ris", "WoS", "skandi",      
+  "Wos4001-5000.ris", "WoS", "skandi",
+  "Wos5001-6000.ris", "WoS", "skandi",
+  "WoS6001-7000.ris", "WoS", "skandi",
+  "Wos7001-8000.ris", "WoS", "skandi",
+  "WoS8001-9000.ris", "WoS", "skandi",
+  "Wos9001-10000.ris" , "WoS", "skandi"
+  ) |> 
+# Append the file path to each file name in the 'files' column
+dplyr::mutate(files = paste0(file_path, files))
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+citations <- read_citations(metadata = metadata_tbl)
+```
+
+## Benchmark papers
+
+In order to assess the comprehensiveness of the search the review authors, the advisory board and the broader stakeholder group suggested 15 relevant papers expected to be returned by the search.
+
+## Citation chasing from the Benchmarks
+
+Benchmark papers were used to seed forward and backward citation chasing. Articles that were cited by or that cited the benchmark papers were identified using [citationchaser](https://github.com/nealhaddaway/citationchaser). This resulted in 1950 articles.
+
+## Search Strategy
+
+Searches for academic literature were carried out in the Web of Science Core Collection (WoS) and Scopus on 29.01.2024. For WoS the search terms used were:
+
+-   *TS=("land use" OR "land cover" OR "space use" OR LULCC OR (planning AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR (conversion AND (land\* OR habitat\* OR area\* OR ecosystem\* OR natur\*)) OR (change\* NEAR/3 (land\* OR area\*)) OR "national park\*" OR landscape\* OR habitat\* OR Husbandry OR "land shar\*" OR "land spar\*" OR (Outdoor NEAR/3 (life OR livin\* OR recreat\*)) OR (restoration AND (nature OR ecosystem\*)) OR forestry OR (reindeer NEAR/3 (herd\* OR husbandr\*)) OR (livestock NEAR/3 graz\*) OR "holiday home\*" OR "secondary home\*"OR (recreation\* NEAR/3 (home\* OR cottage\* OR cabin\* OR propert\*)) OR tourism OR "wind power" OR "Land manag\*" OR "Nature conservation" OR ((governance OR management) AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR aquaculture OR "fish farm\*" OR hydropower OR “green energy” OR “energy development” OR herding OR agriculture OR transportation OR road\* OR “oil and gas” OR petroleum OR mining OR windpower OR traffic OR road\* OR railway\* OR “hydroelectric power” OR “solar power” OR “solar electricity” OR “power plant” OR LULC OR LULUCF OR AFOLU OR FOLU) AND TS=(sustainab\* OR biodiversity OR "Ecosystem service\*" OR (carbon NEAR/3 (stor\* OR sequest\*)) OR (ecosystem\* NEAR/3 (impact\* OR effect\* OR provision\* OR regulat\* OR support\* OR cultur\*)) OR ((loss OR shrink\* OR bisection\* OR perforation OR fragmentation) AND (habitat OR land)) OR (climate NEAR/3 adapt\*) OR ecodiversity OR "ecosystem type\*" OR "ecological process\*" OR anthropogenic OR conflict\* OR (diversity NEAR/3 (ecological OR speci\* OR population\*)) OR red-list OR "water purification" OR "soil retention" OR spiritual OR cultural OR aesthetics OR "climate mitigation") AND TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish)*
+
+15285 articles were retrieved from the WoS search.
+
+The search string was adjusted to the Scopus interface, and the NEAR/3 replaced with W/3.
+
+-   "land use" OR "land cover" OR "space use" OR LULCC OR (planning AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR (conversion AND (land\* OR habitat\* OR area\* OR ecosystem\* OR natur\*)) OR (change\* W/3 (land\* OR area\*)) OR "national park\*" OR landscape\* OR habitat\* OR Husbandry OR "land shar\*" OR "land spar\*" OR (Outdoor W/3 (life OR livin\* OR recreat\*)) OR (restoration AND (nature OR ecosystem\*)) OR forestry OR (reindeer W/3 (herd\* OR husbandr\*)) OR (livestock W/3 graz\*) OR "holiday home\*" OR "secondary home\*"OR  (recreation\* W/3 (home\* OR cottage\* OR cabin\* OR propert\*)) OR tourism OR "wind power" OR "Land manag\*" OR "Nature conservation" OR ((governance OR management) AND (spati\* OR region\* OR area\* OR conservation OR land\* OR urban)) OR aquaculture OR "fish farm\*" OR hydropower OR “green energy” OR “energy development” OR herding OR agriculture OR transportation OR road\* OR “oil and gas” OR petroleum OR mining OR windpower OR traffic OR road\* OR railway\* OR “hydroelectric power” OR “solar power” OR “solar electricity” OR “power plant” OR LULC OR LULUCF OR AFOLU OR FOLU
+
+    AND
+
+    sustainab\* OR biodiversity OR "Ecosystem service\*" OR (carbon W/3 (stor\* OR sequest\*)) OR (ecosystem\* W/3 (impact\* OR effect\* OR provision\* OR regulat\* OR support\* OR cultur\*)) OR ((loss OR shrink\* OR bisection\* OR perforation OR fragmentation) AND (habitat OR land)) OR (climate W/3 adapt\*) OR ecodiversity OR "ecosystem type\*" OR "ecological process\*" OR anthropogenic OR conflict\* OR (diversity W/3 (ecological OR speci\* OR population\*)) OR red-list OR "water purification" OR "soil retention" OR spiritual OR cultural OR aesthetics OR "climate mitigation"
+
+    AND
+
+    Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish
+
+21133 articles were retrieved from the Scopus search.
+
+## Overlap between sources
+
+The number of distinct records after deduplication (within the [citesource package](https://github.com/ESHackathon/CiteSource)) are shown below.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+#Deduplicate citations. This yields a dataframe of all records with duplicates merged, but the originating source information maintained in a new variable called cite_source.
+unique_citations <- dedup_citations(citations)
+
+#Count number of unique and non-unique citations from different sources and labels 
+n_unique <- count_unique(unique_citations)
+
+#For each unique citation, determine which sources were present
+source_comparison <- compare_sources(unique_citations, comp_type = "sources")
+
+#Initial upload/post internal deduplication table creation
+initial_counts<-record_counts(unique_citations, citations, "cite_source")
+record_counts_table(initial_counts)
+```
+
+There were 4606 records shared between Scopus and WoS.
+
+In total 13 of the benchmarks were recorded in WoS and Scopus. Two benchmarks were not recorded in any database search.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#For each unique citation, determine which sources were present
+source_comparison <- compare_sources(unique_citations, comp_type = "sources")
+#Generate a source comparison upset plot.
+plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
+```
