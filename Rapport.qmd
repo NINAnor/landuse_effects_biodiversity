@@ -115,6 +115,22 @@ Articles cited by and that cite (forward and backward citation chasing) the 15 b
 
 ### Testing the comprehensiveness of the search
 
+Of the 15 benchmarks, 2 were not recovered in the searches.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Overlap between the different sources of literature and the benchmark papers"
+
+library(CiteSource)
+library(tidyverse)
+unique_citations <- readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/landuse_effects_biodiversity/data/unique_citations.RDS")
+source_comparison <- compare_sources(unique_citations, comp_type = "sources")
+#Generate a source comparison upset plot.
+plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
+```
+
 ### Assembling and managing search results
 
 ### Article screening

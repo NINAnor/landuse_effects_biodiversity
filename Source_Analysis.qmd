@@ -133,3 +133,9 @@ source_comparison <- compare_sources(unique_citations, comp_type = "sources")
 #Generate a source comparison upset plot.
 plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 ```
+
+```{r}
+unique_citations %>%
+  dplyr::filter(stringr::str_detect(cite_label, "Benchmark")) %>%
+  record_level_table(return = "DT")
+```
