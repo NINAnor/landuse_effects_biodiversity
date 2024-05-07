@@ -127,7 +127,7 @@ library(CiteSource)
 library(tidyverse)
 unique_citations <- readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/landuse_effects_biodiversity/data/unique_citations.RDS")
 source_comparison <- compare_sources(unique_citations, comp_type = "sources")
-#Generate a source comparison upset plot.
+# Generate a source comparison upset plot.
 plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 ```
 
@@ -135,9 +135,35 @@ plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 
 ### Article screening
 
-### Screening process
+We used pre-defined inclusion/exclusion criteria to screen eligible studies. Included studies were de-duplicated based on DOI and title matches using the R package 'ASySD' (Hair et al. 2021). We retained the latest version of any version-controlled articles (e.g. published versions of pre-prints were retained).  
+
+After de-duplication, title and abstract screening was done using the eligibility criteria, and any studies classified as uncertain were assessed at the full-text stage. The screening was done using Rayyan, with double-screening by a primary and several secondary reviewers. After 50 include/exclude decisions we used the Rayyan-AI 5 star rating to rank the abstracts for assessment. This algorithm assesses abstracts and titles using natural language processing to identify records that have a high potential for inclusion (5 star) or those with a lower potential (1 star).
+
+Weekly monitoring was done for group disagreement rates, and the eligibility criteria were re-evaluated and readjusted when the rate exceeded 15%. Conflicting decisions were reconciled through discussions with the whole review group. Studies tagged as unsure at each stage were assessed at the next level, with those remaining tagged as unsure reviewed by the entire team.  
 
 ### Eligibility criteria
+
+We reviewed the collated studies obtained from the searches using the criteria set below. Only studies conducted in Norway, Sweden and Finland or systematic reviews (also referred to as meta-analyses) with global, European or Fennoscandian coverage were included in the review. Only records where the full-text is written in English, Norwegian, Swedish, or Danish were considered eligible.
+
+Studies will be eligible if they assess land use or land-use-change effects on the biodiversity, ecosystem services/functions or carbon sequestration and storage in Feno-Scandinavia. Only studies that focus on terrestrial, aquatic or coastal areas are include (i.e. studies focusing on marine systems are excluded).  
+
+Studies will also be eligible if they assess conflicts, tools or governance relating to land use and cover change its effects on biodiversity, ecosystem services and/or carbon sequestration and storage by ecosystems in Fenno-Scandinavia. The relation should be explicit in study for the record to be included.  
+
+Studies of all scales (national, regional, and local) will be considered eligible.  
+
+2.  **Eligible interventions**
+
+Land use and/or land cover change through one or multiple drivers (see Appendix) which are anthropogenic in origin and result in one or more of the core mechanisms (change in habitat – amount; habitat composition; habitat structure; habitat – function; indirect, e.g. changed human use in recreation etc). 
+
+3.  **Eligible outcomes**
+
+Eligible outcomes will include function, structure, diversity, abundance, behaviour, composition, or richness in any level of biological organisation (genetic, species, community, ecosystem, landscape – multiple ecosystems), as well as studies focusing on the amount of, diversity or category of ecosystem services (provisioning, regulating, supporting or cultural service and, carbon storage and sequestration).    
+
+In addition, studies within the social sciences will be included if they explicitly address conflicts, tools and governance pertaining to effects land use and land cover change on biodiversity, ecosystem services and/or carbon sequestration and storage.    
+
+4.  **Eligible types of study design**
+
+All study designs will be considered eligible, including both quantitative and qualitative studies.  
 
 ### Study validity assessment
 
@@ -147,8 +173,6 @@ plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 
 # Review findings
 
-## Review descriptive statistics
-
 ## Results of the search for literature
 
 ```{r, Prisma statement}
@@ -157,19 +181,204 @@ plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 #| warning: false
 library(PRISMAstatement)
 
-prisma(found = params$`search-results`,
-       found_other = 1965,
-       no_dupes = 20265, 
-       screened = 14808, # Needs updating
-       screen_exclusions = 12144, 
-       full_text = 2398,
-       full_text_exclusions = 0, 
-       qualitative = 0, 
-       quantitative = 0,
-       width = 800, height = 800)
+prisma(
+  found = params$`search-results`,
+  found_other = 1965,
+  no_dupes = 20265,
+  screened = 14808, # Needs updating
+  screen_exclusions = 12144,
+  full_text = 2398,
+  full_text_exclusions = 0,
+  qualitative = 0,
+  quantitative = 0,
+  width = 800, height = 800
+)
 ```
 
 ### Sources and document types of included articles
+
+## Review descriptive statistics
+
+## Norway papers
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# Extract data and plot from the extraction sheet ----
+## load libraies----
+library(tidyverse, quietly = TRUE)
+library(googlesheets4, quietly = TRUE)
+library(rayyanR)
+library(synthesisr)
+library(openalex)
+library(openalexR)
+# gs4_auth()
+## read in GoogleSheets----
+
+# form<-read_sheet("https://docs.google.com/spreadsheets/d/1lhZtZ5oSfTek7iaWWv8r40muWBEAJ76WsGzOXcb9Da0")# copy of sheet to test
+
+# form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
+# 
+# ## clean names----
+# form <- form |>
+#   janitor::clean_names()
+# ## explore----
+# names(form)
+# 
+# ### select Norwegian studies----
+# Nor_form <- form |>
+#   filter(grepl("Norway", country))
+# 
+# ### selet studies that are included in the review----
+# Nor_form_inc <- Nor_form |>
+#   filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes")
+# 
+# ### Get matched details from Rayyan----
+# 
+# # read the Rayyan results
+# 
+# rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
+# rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
+# 
+# Nor_form_inc$accession_zr<-unlist(Nor_form_inc$study_id)
+# 
+# join_Nor_form <- Nor_form_inc |>
+#   left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
+# 
+# # join_Nor_form |> view()
+# 
+# join_Nor_form |>
+#   filter(is.na(join_Nor_form$doi)) |>
+#   select(study_id, study_title)
+# 
+# #### find missing doi's by title
+# which(is.na(join_Nor_form$doi))
+# #11, 35, 47,52,60,61
+# 
+# works_search <- oa_fetch(
+#   entity = "works",
+#   title.search = c("Roads forestry wolves"),
+#   verbose = TRUE
+# )
+# works_search$doi
+# # "https://doi.org/10.1002/ecs2.3358"
+# 
+# 
+# works_search <- oa_fetch(
+#   entity = "works",
+#   title.search = c("CONFLICT AND COMPLEXITY - THE CASE OF HYDROPOWER CONSTRUCTION IN NORWAY"),
+#   verbose = TRUE
+# )
+# works_search$doi
+# # "https://doi.org/10.3233/hsm-1986-6105"
+# works_search <- oa_fetch(
+#   entity = "works",
+#   title.search = c("Influence of site and stand factors on the distribution of crustose lichens of the Caliciales in a suboceanic spruce forest area in central Norway"),
+#   verbose = TRUE
+# )
+# works_search |> view()
+# works_search$doi
+# # "https://doi.org/10.1017/s0024282996000424"
+# 
+# works_search <- oa_fetch(
+#   entity = "works",
+#   title.search = c("Lichens in spruce forest stands of different successional stages in central Norway with emphasis on diversity and old growth species"),
+#   verbose = TRUE
+# )
+# 
+# works_search$doi
+# works_search <- oa_fetch(
+#   entity = "works",
+#   title.search = c("Impacts of experimental habitat fragmentation on ground beetles"),
+#   verbose = TRUE
+# )
+# 
+# works_search
+# 
+# 
+# works_search <- oa_fetch(
+#   entity = "works",
+#   title.search = c("Cumulative impacts of tourist resorts on wild reindeer"),
+#   verbose = TRUE
+# )
+# 
+# works_search$doi
+# 
+# join_Nor_form[11, ]$doi <- "10.3233/hsm-1986-6105"
+# join_Nor_form[35, ]$doi <- "10.1002/ecs2.3358"
+# join_Nor_form[47, ]$doi <- "10.1017/s0024282996000424"
+# join_Nor_form[52, ]$doi <- "10.1127/nova.hedwigia/66/1998/283"
+# join_Nor_form[60, ]$doi <- NA
+# join_Nor_form[61, ]$doi <- "10.14430/arctic829"
+# 
+# # get openAlexR data
+# 
+# 
+# doi_list <- strsplit(join_Nor_form$doi, split = " ")
+# doi_list <- sapply(doi_list, "[[", 1)
+# 
+# # oa_fetch(
+# #   doi = c(doi_list),
+# #   entity = "works",
+# #   verbose = TRUE
+# # ) %>%
+# #   show_works() %>%
+# #   knitr::kable()
+# 
+# bib_ls <- list(
+#   doi = c(doi_list),
+#   entity = "works"
+# )
+# 
+# # oa_fetch(
+# #   # identifier = c("W2741809807", "W2755950973"),
+# #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
+# #   entity = "works",
+# #   verbose = TRUE
+# # ) %>%
+# #   show_works() %>%
+# #   knitr::kable()
+# #
+# #
+# #
+# nor_bib <- do.call(oa_fetch, bib_ls) %>%
+#   oa2bibliometrix()
+# nor_bib
+#saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
+nor_bib <- readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/landuse_effects_biodiversity/data/cache_data/nor_bib.RDS")
+```
+
+
+There were `r nrow(nor_bib)` articles included that were conducted in Norway.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "OpenAlex topics weighted by topic score"
+
+topics_aggregated <- map_df(nor_bib$topics, ~ .x %>%
+  filter(name == "topic") |> # Filter to include only topics
+  select(display_name, score)) |> # Select relevant columns
+  group_by(display_name) |> # Group by topic name
+  summarise(
+    total_score = sum(score), # Sum scores for each topic
+    .groups = "drop"
+  ) # Drop grouping
+
+# Create a bar plot of the weighted frequencies
+topics_aggregated |> 
+  top_n(10) |> 
+ggplot(aes(x = reorder(display_name, total_score), y = total_score)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Weighted Frequency of Topics by Total Score",
+       x = "Topic",
+       y = "Total Score (Weighted Frequency)") +
+coord_flip()+
+  ggthemes::theme_solarized()
+```
+
 
 ## Chronological distribution and document contents of included articles
 
