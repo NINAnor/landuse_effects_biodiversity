@@ -379,6 +379,34 @@ coord_flip()+
   ggthemes::theme_solarized()
 ```
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Cumulative sum of Norwegian publications per year"
+
+nor_bib |> 
+  mutate(year=year(publication_date)) |> 
+  group_by(year) |> 
+  tally() |> 
+  mutate(csum=cumsum(n)) |> 
+  ggplot(aes(year,csum)) +
+  geom_point(colour="blue")+
+  labs(x="Publication Year", y="Cumulative sum of publications")+
+  ggthemes::theme_solarized()
+```
+```{r}
+library(bibliometrix)
+# Create keyword co-occurrences network
+
+NetMatrix <- biblioNetwork(nor_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
+
+# Plot the network
+net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
+```
+
+
+
 
 ## Chronological distribution and document contents of included articles
 
