@@ -15,11 +15,11 @@ Version: `r params$version`
 
 # Background
 
-Land Use and Land Cover Change (LULCC) is considered the dominant driver of recent biodiversity loss both globally and in Norway, and directly affects nature’s ability to provide natural goods and services (Díaz et al., 2019; Malhi et al., 2020). LULCC also affects an ecosystem’s ability to sequester and store carbon in the soil and biological material, and therefore directly affects an ecosystem’s ability to assist in the mitigation of, and adaptation to, climate change. Quantifying, understanding, and communicating the dynamics of land change and its effects on biodiversity, ecosystem services, and carbon sequestration is therefore a premise for evidence-based land use policies. However, we currently lack systematic evidence on the topic from Norwegian ecosystems. Much of the public discourse at the national level is dominated by international global knowledge summaries, despite significant uncertainty around downscaling and transferring knowledge from global and regional syntheses to the local/national level, across ecosystems and taxonomic groups. Previous knowledge syntheses based on data from Norwegian ecosystems has either been following specific approaches (e.g. Ecosystem Assessment; (Nybø et al., 2017)), largely based on expert judgements (Artsdatabanken, 2021), or limited in scope. The lack of a comprehensive overview of research-based knowledge from Norwegian ecosystems also leads to different interest groups and sectors relying on different "facts," often leading to escalating conflicts and poor decisions. Therefore, there is a pressing need both for a summary of knowledge and the identification of real knowledge gaps.
+Endring i arealbruk og landdekke (LULCC) anses å være den dominerende driveren av nylig tap av biodiversitet både globalt og i Norge, og påvirker direkte naturens evne til å tilby naturgoder og -tjenester (Díaz et al., 2019; Malhi et al., 2020). LULCC påvirker også et økosystems evne til å lagre og binde karbon i jord og biologisk materiale, og påvirker dermed direkte et økosystems evne til å bidra til å motvirke og tilpasse seg klimaendringer. Å kvantifisere, forstå og formidle dynamikken i arealendringer og deres effekter på biodiversitet, økosystemtjenester og karbonlagring er derfor en forutsetning for evidensbaserte arealbruksstrategier. Imidlertid mangler det for øyeblikket systematisk evidens om dette temaet fra norske økosystemer. Mye av den offentlige diskursen på nasjonalt nivå domineres av internasjonale globale kunnskapssammendrag, til tross for betydelig usikkerhet rundt nedskalering og overføring av kunnskap fra globale og regionale synteser til lokalt/nasjonalt nivå, på tvers av økosystemer og taksonomiske grupper. Tidligere kunnskapssammendrag basert på data fra norske økosystemer har enten fulgt spesifikke tilnærminger (f.eks. Økosystemvurdering; (Nybø et al., 2017)), i stor grad basert på ekspertvurderinger (Artsdatabanken, 2021), eller vært begrenset i omfang. Mangelen på en omfattende oversikt over forskningsbasert kunnskap fra norske økosystemer fører også til at ulike interessegrupper og sektorer stoler på ulike "fakta," noe som ofte fører til eskalerende konflikter og dårlige beslutninger. Det er derfor et presserende behov både for en oppsummering av kunnskap og identifisering av reelle kunnskapshull.
 
-Politics and decision making related to land use and its effects on biodiversity and climate are currently among the most conflict-ridden and hotly debated political issues in Norway. The conflicts typically involve dilemmas between different societal concerns and interests supported by different sectors and actor groups (Guldbrandsen & Handberg, 2022; Skogen et al., 2021).  Knowledge controversy is also often a central trait of the conflicts, involving disagreement on the status of knowledge and conflicting knowledge claims about the environmental effects of different options of land use (Aspøy & Stokland, 2022; Rusch et al., 2022). IPBES (2019, 2022a, 2022b) and IPCC (2018) have proposed governance approaches and measures, such as those related to transformative change and transformative governance, to enable the achievement of the SDGs, the 1.5℃ limit, and the 2050 Vision for Biodiversity. Such approaches involve improved integration and interaction between societal goals, governance sectors, and multiple knowledge sources, and are thus highly relevant for Norwegian politics and decision making related to land use. However, the utilization and adaption of internationally recommended approaches and tools in a Norwegian context is currently hindered by the lack of a comprehensive understanding of national and local land use-related dilemmas and conflicts, as well as currently employed tools and approaches. Therefore, there is an urgent need for a knowledge synthesis and identification of knowledge gaps concerning these aspects of land use and its effects on biodiversity and climate.
+Politikk og beslutningstaking knyttet til arealbruk og dens effekter på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper (Guldbrandsen & Handberg, 2022; Skogen et al., 2021). Kunnskapskontrovers er også ofte en sentral egenskap ved konfliktene, og innebærer uenighet om kunnskapens status og motstridende kunnskapskrav om de miljømessige effektene av ulike alternativer for arealbruk (Aspøy & Stokland, 2022; Rusch et al., 2022). IPBES (2019, 2022a, 2022b) og IPCC (2018) har foreslått styringsmetoder og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av SDG-ene, grensen på 1,5°C og 2050-visjonen for biodiversitet. Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres utnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy i en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese og identifisering av kunnskapshull angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima.
 
-Systematic maps (also known as Evidence gap maps or Evidence maps) were designed to give an overview of the available evidence on a broad topic (Saran et al., 2020). They do not seek to answer narrow well-defined questions (as systematic reviews do) but rather to provide a means to identify and catalogue available evidence on policy-relevant questions (James et al., 2016). Systematic maps have been realised in a variety of different ways but generally provide the results in a user-friendly fashion such as graphs, maps or searchable databases (Miake-Lye et al., 2016). Increasingly interactive plotting and mapping is being used to provide a dynamic output to users (such as EviAtlas; Haddaway et al., 2019). It is important that systematic maps are not portrayed as an end in themselves. Without further evidence synthesis decision makers need to be cautious about making decisions based on the weight of evidence alone (i.e.  vote-counting, c.f (Hedges & Olkin, 1980). Systematic maps cannot replace the rigor of systematic reviews but can give decision-makers an understanding of the evidence base by highlighting gaps in, or clusters of, evidence. They can highlight where evidence synthesis can take place (i.e., there is enough available evidence for a systematic review) or where primary research is required (i.e. there is a lack of evidence). Decision models can supplement the results of a systematic evidence synthesis to place the available evidence into the decision context (Carrick et al., 2019).
+Systematiske kart (også kjent som Evidenshullkart eller Evidenskart) ble designet for å gi en oversikt over tilgjengelig evidens om et bredt tema (Saran et al., 2020). De søker ikke å svare på smale, veldefinerte spørsmål (slik systematiske oversikter gjør), men heller å gi et middel til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål (James et al., 2016). Systematiske kart har blitt realisert på en rekke ulike måter, men gir generelt resultatene på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser (Miake-Lye et al., 2016). Interaktive plott og kartlegging blir i økende grad brukt for å gi en dynamisk utgang til brukerne (slik som EviAtlas; Haddaway et al., 2019). Det er viktig at systematiske kart ikke fremstilles som et mål i seg selv. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. stemmeoptelling, jf. (Hedges & Olkin, 1980)). Systematiske kart kan ikke erstatte rigoriteten til systematiske oversikter, men kan gi beslutningstakere forståelse av evidensgrunnlaget ved å belyse hull eller klynger av evidens. De kan vise hvor evidenssyntese kan finne sted (dvs. det er tilstrekkelig med tilgjengelig evidens for en systematisk oversikt) eller hvor primærforskning er nødvendig (dvs. det er mangel på evidens). Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i beslutningskonteksten (Carrick et al., 2019).
 
 ## Stakeholder engagement
 
@@ -37,35 +37,35 @@ The main research question in our systematic map is ‘What evidence exist about
 
 In addition, we will investigate what characterizes the existing body of literature on the topic, in terms of:
 
--   What proportion of the research is based on empirical data 
+-   What proportion of the research is based on empirical data
 
--   What proportion of the research is based on experimental vs observational 
+-   What proportion of the research is based on experimental vs observational
 
--   What proportion of the research is based on qualitative vs quantitative/mixed 
+-   What proportion of the research is based on qualitative vs quantitative/mixed
 
--   How is research spread across the major ecosystem types/realms 
+-   How is research spread across the major ecosystem types/realms
 
--   How is research spread across the disciplines 
+-   How is research spread across the disciplines
 
--   How is research spread across level of biological organization (species, taxa, ecosystem or services) 
+-   How is research spread across level of biological organization (species, taxa, ecosystem or services)
 
--   What are the dominant types of land use that are investigated? 
+-   What are the dominant types of land use that are investigated?
 
--   What regions (in Norway) are most represented 
+-   What regions (in Norway) are most represented
 
--   What proportion of the research focuses on governance, conflicts and tools?  
+-   What proportion of the research focuses on governance, conflicts and tools?
 
--   What are the dominant/marginal social scientific analytical approaches of the studies? 
+-   What are the dominant/marginal social scientific analytical approaches of the studies?
 
--   What type of actors are most represented in the studies? 
+-   What type of actors are most represented in the studies?
 
--   Which sectors and societal concerns are most studied? 
+-   Which sectors and societal concerns are most studied?
 
--   Which level of societal scale do the studies represent?  
+-   Which level of societal scale do the studies represent?
 
--   Which land use conflicts are most researched? 
+-   Which land use conflicts are most researched?
 
--   Which tools are proposed and investigated? 
+-   Which tools are proposed and investigated?
 
 # Methods
 
@@ -135,35 +135,35 @@ plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 
 ### Article screening
 
-We used pre-defined inclusion/exclusion criteria to screen eligible studies. Included studies were de-duplicated based on DOI and title matches using the R package 'ASySD' (Hair et al. 2021). We retained the latest version of any version-controlled articles (e.g. published versions of pre-prints were retained).  
+We used pre-defined inclusion/exclusion criteria to screen eligible studies. Included studies were de-duplicated based on DOI and title matches using the R package 'ASySD' (Hair et al. 2021). We retained the latest version of any version-controlled articles (e.g. published versions of pre-prints were retained).
 
 After de-duplication, title and abstract screening was done using the eligibility criteria, and any studies classified as uncertain were assessed at the full-text stage. The screening was done using Rayyan, with double-screening by a primary and several secondary reviewers. After 50 include/exclude decisions we used the Rayyan-AI 5 star rating to rank the abstracts for assessment. This algorithm assesses abstracts and titles using natural language processing to identify records that have a high potential for inclusion (5 star) or those with a lower potential (1 star).
 
-Weekly monitoring was done for group disagreement rates, and the eligibility criteria were re-evaluated and readjusted when the rate exceeded 15%. Conflicting decisions were reconciled through discussions with the whole review group. Studies tagged as unsure at each stage were assessed at the next level, with those remaining tagged as unsure reviewed by the entire team.  
+Weekly monitoring was done for group disagreement rates, and the eligibility criteria were re-evaluated and readjusted when the rate exceeded 15%. Conflicting decisions were reconciled through discussions with the whole review group. Studies tagged as unsure at each stage were assessed at the next level, with those remaining tagged as unsure reviewed by the entire team. 
 
 ### Eligibility criteria
 
 We reviewed the collated studies obtained from the searches using the criteria set below. Only studies conducted in Norway, Sweden and Finland or systematic reviews (also referred to as meta-analyses) with global, European or Fennoscandian coverage were included in the review. Only records where the full-text is written in English, Norwegian, Swedish, or Danish were considered eligible.
 
-Studies will be eligible if they assess land use or land-use-change effects on the biodiversity, ecosystem services/functions or carbon sequestration and storage in Feno-Scandinavia. Only studies that focus on terrestrial, aquatic or coastal areas are include (i.e. studies focusing on marine systems are excluded).  
+Studies will be eligible if they assess land use or land-use-change effects on the biodiversity, ecosystem services/functions or carbon sequestration and storage in Feno-Scandinavia. Only studies that focus on terrestrial, aquatic or coastal areas are include (i.e. studies focusing on marine systems are excluded).
 
-Studies will also be eligible if they assess conflicts, tools or governance relating to land use and cover change its effects on biodiversity, ecosystem services and/or carbon sequestration and storage by ecosystems in Fenno-Scandinavia. The relation should be explicit in study for the record to be included.  
+Studies will also be eligible if they assess conflicts, tools or governance relating to land use and cover change its effects on biodiversity, ecosystem services and/or carbon sequestration and storage by ecosystems in Fenno-Scandinavia. The relation should be explicit in study for the record to be included.
 
-Studies of all scales (national, regional, and local) will be considered eligible.  
+Studies of all scales (national, regional, and local) will be considered eligible.
 
 2.  **Eligible interventions**
 
-Land use and/or land cover change through one or multiple drivers (see Appendix) which are anthropogenic in origin and result in one or more of the core mechanisms (change in habitat – amount; habitat composition; habitat structure; habitat – function; indirect, e.g. changed human use in recreation etc). 
+Land use and/or land cover change through one or multiple drivers (see Appendix) which are anthropogenic in origin and result in one or more of the core mechanisms (change in habitat – amount; habitat composition; habitat structure; habitat – function; indirect, e.g. changed human use in recreation etc).
 
 3.  **Eligible outcomes**
 
-Eligible outcomes will include function, structure, diversity, abundance, behaviour, composition, or richness in any level of biological organisation (genetic, species, community, ecosystem, landscape – multiple ecosystems), as well as studies focusing on the amount of, diversity or category of ecosystem services (provisioning, regulating, supporting or cultural service and, carbon storage and sequestration).    
+Eligible outcomes will include function, structure, diversity, abundance, behaviour, composition, or richness in any level of biological organisation (genetic, species, community, ecosystem, landscape – multiple ecosystems), as well as studies focusing on the amount of, diversity or category of ecosystem services (provisioning, regulating, supporting or cultural service and, carbon storage and sequestration).
 
-In addition, studies within the social sciences will be included if they explicitly address conflicts, tools and governance pertaining to effects land use and land cover change on biodiversity, ecosystem services and/or carbon sequestration and storage.    
+In addition, studies within the social sciences will be included if they explicitly address conflicts, tools and governance pertaining to effects land use and land cover change on biodiversity, ecosystem services and/or carbon sequestration and storage.
 
 4.  **Eligible types of study design**
 
-All study designs will be considered eligible, including both quantitative and qualitative studies.  
+All study designs will be considered eligible, including both quantitative and qualitative studies.
 
 ### Study validity assessment
 
@@ -216,108 +216,115 @@ library(openalexR)
 # gs4_auth()
 ## read in GoogleSheets----
 
-# form<-read_sheet("https://docs.google.com/spreadsheets/d/1lhZtZ5oSfTek7iaWWv8r40muWBEAJ76WsGzOXcb9Da0")# copy of sheet to test
+form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
 
-# form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
-# 
-# ## clean names----
-# form <- form |>
-#   janitor::clean_names()
-# ## explore----
-# names(form)
-# 
+## clean names----
+form <- form |>
+  janitor::clean_names()
+## explore----
+#names(form)
+
 # ### select Norwegian studies----
-# Nor_form <- form |>
-#   filter(grepl("Norway", country))
-# 
-# ### selet studies that are included in the review----
-# Nor_form_inc <- Nor_form |>
-#   filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes")
-# 
-# ### Get matched details from Rayyan----
-# 
-# # read the Rayyan results
-# 
-# rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
-# rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
-# 
-# Nor_form_inc$accession_zr<-unlist(Nor_form_inc$study_id)
-# 
-# join_Nor_form <- Nor_form_inc |>
-#   left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
-# 
-# # join_Nor_form |> view()
-# 
-# join_Nor_form |>
-#   filter(is.na(join_Nor_form$doi)) |>
-#   select(study_id, study_title)
-# 
-# #### find missing doi's by title
-# which(is.na(join_Nor_form$doi))
-# #11, 35, 47,52,60,61
-# 
-# works_search <- oa_fetch(
-#   entity = "works",
-#   title.search = c("Roads forestry wolves"),
-#   verbose = TRUE
-# )
-# works_search$doi
-# # "https://doi.org/10.1002/ecs2.3358"
-# 
-# 
-# works_search <- oa_fetch(
-#   entity = "works",
-#   title.search = c("CONFLICT AND COMPLEXITY - THE CASE OF HYDROPOWER CONSTRUCTION IN NORWAY"),
-#   verbose = TRUE
-# )
-# works_search$doi
-# # "https://doi.org/10.3233/hsm-1986-6105"
-# works_search <- oa_fetch(
-#   entity = "works",
-#   title.search = c("Influence of site and stand factors on the distribution of crustose lichens of the Caliciales in a suboceanic spruce forest area in central Norway"),
-#   verbose = TRUE
-# )
-# works_search |> view()
-# works_search$doi
-# # "https://doi.org/10.1017/s0024282996000424"
-# 
-# works_search <- oa_fetch(
-#   entity = "works",
-#   title.search = c("Lichens in spruce forest stands of different successional stages in central Norway with emphasis on diversity and old growth species"),
-#   verbose = TRUE
-# )
-# 
-# works_search$doi
-# works_search <- oa_fetch(
-#   entity = "works",
-#   title.search = c("Impacts of experimental habitat fragmentation on ground beetles"),
-#   verbose = TRUE
-# )
-# 
-# works_search
-# 
-# 
-# works_search <- oa_fetch(
-#   entity = "works",
-#   title.search = c("Cumulative impacts of tourist resorts on wild reindeer"),
-#   verbose = TRUE
-# )
-# 
-# works_search$doi
-# 
-# join_Nor_form[11, ]$doi <- "10.3233/hsm-1986-6105"
-# join_Nor_form[35, ]$doi <- "10.1002/ecs2.3358"
-# join_Nor_form[47, ]$doi <- "10.1017/s0024282996000424"
-# join_Nor_form[52, ]$doi <- "10.1127/nova.hedwigia/66/1998/283"
-# join_Nor_form[60, ]$doi <- NA
-# join_Nor_form[61, ]$doi <- "10.14430/arctic829"
-# 
-# # get openAlexR data
-# 
-# 
-# doi_list <- strsplit(join_Nor_form$doi, split = " ")
-# doi_list <- sapply(doi_list, "[[", 1)
-# 
+Nor_form <- form |>
+  filter(grepl("Norway", country))
+
+### selet studies that are included in the review----
+Nor_form_inc <- Nor_form |>
+  filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes")
+
+### Get matched details from Rayyan----
+
+# read the Rayyan results
+
+rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
+rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
+
+Nor_form_inc$accession_zr<-unlist(Nor_form_inc$study_id)
+
+join_Nor_form <- Nor_form_inc |>
+  left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
+
+# join_Nor_form |> view()
+
+join_Nor_form |>
+  filter(is.na(join_Nor_form$doi)) |>
+  select(study_id, study_title)
+
+#### find missing doi's by title
+which(is.na(join_Nor_form$doi))
+#11, 35, 47,52,60,61,63
+
+works_search <- oa_fetch(
+  entity = "works",
+  title.search = c("Roads forestry wolves"),
+  verbose = TRUE
+)
+works_search$doi
+# "https://doi.org/10.1002/ecs2.3358"
+
+
+works_search <- oa_fetch(
+  entity = "works",
+  title.search = c("CONFLICT AND COMPLEXITY - THE CASE OF HYDROPOWER CONSTRUCTION IN NORWAY"),
+  verbose = TRUE
+)
+works_search$doi
+# "https://doi.org/10.3233/hsm-1986-6105"
+works_search <- oa_fetch(
+  entity = "works",
+  title.search = c("Influence of site and stand factors on the distribution of crustose lichens of the Caliciales in a suboceanic spruce forest area in central Norway"),
+  verbose = TRUE
+)
+works_search |> view()
+works_search$doi
+# "https://doi.org/10.1017/s0024282996000424"
+
+works_search <- oa_fetch(
+  entity = "works",
+  title.search = c("Lichens in spruce forest stands of different successional stages in central Norway with emphasis on diversity and old growth species"),
+  verbose = TRUE
+)
+
+works_search$doi
+works_search <- oa_fetch(
+  entity = "works",
+  title.search = c("Impacts of experimental habitat fragmentation on ground beetles"),
+  verbose = TRUE
+)
+
+works_search
+
+
+works_search <- oa_fetch(
+  entity = "works",
+  title.search = c("Cumulative impacts of tourist resorts on wild reindeer"),
+  verbose = TRUE
+)
+
+works_search$doi
+
+#Home range size and choice of management strategy for lynx in Scandinavia
+
+works_search <- oa_fetch(
+  entity = "works",
+  title.search = c("Home range size and choice of management strategy for lynx in Scandinavia"),
+  verbose = TRUE
+)
+
+works_search$doi
+join_Nor_form[11, ]$doi <- "10.3233/hsm-1986-6105"
+join_Nor_form[35, ]$doi <- "10.1002/ecs2.3358"
+join_Nor_form[47, ]$doi <- "10.1017/s0024282996000424"
+join_Nor_form[52, ]$doi <- "10.1127/nova.hedwigia/66/1998/283"
+join_Nor_form[60, ]$doi <- NA
+join_Nor_form[61, ]$doi <- "10.14430/arctic829"
+join_Nor_form[61, ]$doi<-"10.1007/s002670010195"
+# get openAlexR data
+
+
+doi_list <- strsplit(join_Nor_form$doi, split = " ")
+doi_list <- sapply(doi_list, "[[", 1)
+
 # # oa_fetch(
 # #   doi = c(doi_list),
 # #   entity = "works",
@@ -325,12 +332,12 @@ library(openalexR)
 # # ) %>%
 # #   show_works() %>%
 # #   knitr::kable()
-# 
-# bib_ls <- list(
-#   doi = c(doi_list),
-#   entity = "works"
-# )
-# 
+
+bib_ls <- list(
+  doi = c(doi_list),
+  entity = "works"
+)
+
 # # oa_fetch(
 # #   # identifier = c("W2741809807", "W2755950973"),
 # #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
@@ -342,17 +349,19 @@ library(openalexR)
 # #
 # #
 # #
-# nor_bib <- do.call(oa_fetch, bib_ls) %>%
-#   oa2bibliometrix()
-# nor_bib
-#saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
+nor_bib <- do.call(oa_fetch, bib_ls) %>%
+  oa2bibliometrix()
+nor_bib
+saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
+saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
 nor_bib <- readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/landuse_effects_biodiversity/data/cache_data/nor_bib.RDS")
+join_Nor_form<-readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/landuse_effects_biodiversity/data/cache_data/join_Nor_form.RDS")
 ```
 
 
 There were `r nrow(nor_bib)` articles included that were conducted in Norway.
 
-```{r}
+```{r openAlex topics/concepts}
 #| echo: false
 #| message: false
 #| warning: false
@@ -379,7 +388,9 @@ coord_flip()+
   ggthemes::theme_solarized()
 ```
 
-```{r}
+## Chronological distribution and document contents of included articles
+
+```{r publication year}
 #| echo: false
 #| message: false
 #| warning: false
@@ -395,7 +406,114 @@ nor_bib |>
   labs(x="Publication Year", y="Cumulative sum of publications")+
   ggthemes::theme_solarized()
 ```
-```{r}
+
+### Geographical distribution of included observations
+
+
+```{r County distribution}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Norwegian counties where research was undertaken"
+my_list<-strsplit(join_Nor_form$county_name_of_norwegian_county, ",")
+
+# Function to replace specific problematic characters
+replace_problematic_chars <- function(x) {
+  # Replacing specific problematic unicode sequence if visible in the string
+  x <- gsub("\xc3\x98", "O", x, fixed = TRUE)  # Replacing 'Ø' which sometimes appears as '\xc3\x98' in UTF-8
+
+  return(x)
+}
+
+# Apply this function to each element in the list
+my_list <- lapply(my_list, function(x) {
+  if (is.character(x)) {
+    sapply(x, replace_problematic_chars, USE.NAMES = FALSE)
+  } else {
+    x
+  }
+})
+
+# Flatten the list
+flattened <- unlist(my_list)
+
+# Remove NA and clean up
+flattened <- na.omit(flattened)
+flattened <- trimws(flattened)
+
+# Create a dataframe
+df <- data.frame(Name = flattened, stringsAsFactors = FALSE)
+
+# Print the dataframe
+#print(df)
+
+df |> 
+  group_by(Name) |> 
+  tally() |> 
+  ggplot(aes(reorder(Name, n),n)) + 
+  geom_histogram(stat="identity", fill="blue")+
+  coord_flip()+
+  labs(x="", y="Antall publikasjoner")+
+  ggthemes::theme_solarized()
+
+```
+
+
+```{r topic model}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(ldatuning)
+library(topicmodels)
+library(tm)
+library(tidytext)
+
+jn_dtm<-join_Nor_form |> 
+  select(study_id, title, abstract) |> 
+  mutate(title_abs=paste0(title, abstract))
+
+
+jn_dtm$study_id<-unlist(jn_dtm$study_id)
+
+jn_dtm<-jn_dtm |> 
+  unnest_tokens(word,title_abs)
+
+data(stop_words)
+
+jn_dtm <- jn_dtm %>%
+  anti_join(stop_words)
+
+
+jn_dtm
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Mapping the effects of land use and land cover change on biodiversity, carbon and conflicts
+
+```{r keyword co-occurrence}
 library(bibliometrix)
 # Create keyword co-occurrences network
 
@@ -407,18 +525,13 @@ net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = 
 
 
 
+```{r topic modelling}
 
-## Chronological distribution and document contents of included articles
+```
 
-### Geographical distribution of included observations
 
-## Mapping the effects of land use and land cover change on biodiversity
 
-## Mapping the effects of land use and land cover change on ecosystem services
-
-## Mapping the effects of land use and land cover change on carbon storage
-
-## Mapping the effects of land use and land cover change on conflicts and governance
+#
 
 # Limitations of the map
 
