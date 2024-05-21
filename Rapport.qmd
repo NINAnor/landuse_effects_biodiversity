@@ -581,7 +581,7 @@ net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = 
 # histResults <- histNetwork(nor_bib, sep = ";")
 ```
 
-# 
+
 
 # Limitations of the map
 
