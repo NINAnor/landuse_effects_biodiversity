@@ -370,12 +370,107 @@ nor_bib |>
   ggthemes::theme_solarized()
 ```
 
-### 
+### What proportion of the research is based on experimental vs observational?
 
-```{r}
+```{r research_type}
 #| echo: false
 #| message: false
 #| warning: false
+
+join_Nor_form |> 
+  select(study_id ,study_title, research_type) |> 
+  group_by(research_type) |>
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(research_type, n),n,fill=research_type))+
+  geom_histogram(stat="identity")+
+  ggthemes::theme_solarized()+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner")
+```
+
+
+```{r study_design}
+#| echo: false
+#| message: false
+#| warning: false
+
+join_Nor_form |> 
+  filter(grepl("observational",tolower(research_type))) |> 
+  select(study_id ,study_title,study_design_observational_studies ) |> 
+  group_by(study_design_observational_studies) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(study_design_observational_studies,n),n,fill=study_design_observational_studies))+
+  geom_histogram(stat="identity")+
+  ggthemes::theme_solarized()+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner")
+```
+
+###  How is research spread across the major ecosystem types/realms
+
+```{r ecosystems }
+#| echo: false
+#| message: false
+#| warning: false
+join_Nor_form |> 
+  group_by(ecosystem_type_main) |>
+  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
+  unnest(ecosystems_main)  |> 
+  group_by(ecosystems_main) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
+  geom_histogram(stat="identity")+
+  ggthemes::theme_solarized()+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner")
+```
+
+### How is research spread across the disciplines
+
+```{r discipline}
+#| echo: false
+#| message: false
+#| warning: false
+join_Nor_form |> 
+  group_by(study_area_discipline) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(study_area_discipline, n),n,fill=study_area_discipline))+
+  geom_histogram(stat="identity")+
+  ggthemes::theme_solarized()+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner")
+
+```
+
+### What are the dominant types of land use that are investigated?
+
+```{r landuse}
+#| echo: false
+#| message: false
+#| warning: false
+
+join_Nor_form |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(land_use, n),n,fill=land_use))+
+  geom_histogram(stat="identity")+
+  ggthemes::theme_solarized()+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner")
+
 ```
 
 ### Geographical distribution of included observations
@@ -580,7 +675,6 @@ net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = 
 # results<-biblioAnalysis(nor_bib)
 # histResults <- histNetwork(nor_bib, sep = ";")
 ```
-
 
 
 # Limitations of the map
