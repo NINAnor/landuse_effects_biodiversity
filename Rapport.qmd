@@ -1,5 +1,5 @@
 ---
-title: "Effects of land use and land cover changes on biodiversity, ecosystem services, and carbon storage in Norway: A systematic map and decision support tool"
+title: "Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagrin i Norge: Et systematisk kart og beslutningsstøtteverktøy"
 format:
   html:
     toc: true
@@ -13,7 +13,7 @@ editor: visual
 
 Version: `r params$version`
 
-# Background
+# 1. Innledning
 
 Endring i arealbruk og landdekke (LULCC) anses å være den dominerende driveren av nylig tap av biodiversitet både globalt og i Norge, og påvirker direkte naturens evne til å tilby naturgoder og -tjenester (Díaz et al., 2019; Malhi et al., 2020). LULCC påvirker også et økosystems evne til å lagre og binde karbon i jord og biologisk materiale, og påvirker dermed direkte et økosystems evne til å bidra til å motvirke og tilpasse seg klimaendringer. Å kvantifisere, forstå og formidle dynamikken i arealendringer og deres effekter på biodiversitet, økosystemtjenester og karbonlagring er derfor en forutsetning for evidensbaserte arealbruksstrategier. Imidlertid mangler det for øyeblikket systematisk evidens om dette temaet fra norske økosystemer. Mye av den offentlige diskursen på nasjonalt nivå domineres av internasjonale globale kunnskapssammendrag, til tross for betydelig usikkerhet rundt nedskalering og overføring av kunnskap fra globale og regionale synteser til lokalt/nasjonalt nivå, på tvers av økosystemer og taksonomiske grupper. Tidligere kunnskapssammendrag basert på data fra norske økosystemer har enten fulgt spesifikke tilnærminger (f.eks. Økosystemvurdering; (Nybø et al., 2017)), i stor grad basert på ekspertvurderinger (Artsdatabanken, 2021), eller vært begrenset i omfang. Mangelen på en omfattende oversikt over forskningsbasert kunnskap fra norske økosystemer fører også til at ulike interessegrupper og sektorer stoler på ulike "fakta," noe som ofte fører til eskalerende konflikter og dårlige beslutninger. Det er derfor et presserende behov både for en oppsummering av kunnskap og identifisering av reelle kunnskapshull.
 
@@ -21,19 +21,23 @@ Politikk og beslutningstaking knyttet til arealbruk og dens effekter på biodive
 
 Systematiske kart (også kjent som Evidenshullkart eller Evidenskart) ble designet for å gi en oversikt over tilgjengelig evidens om et bredt tema (Saran et al., 2020). De søker ikke å svare på smale, veldefinerte spørsmål (slik systematiske oversikter gjør), men heller å gi et middel til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål (James et al., 2016). Systematiske kart har blitt realisert på en rekke ulike måter, men gir generelt resultatene på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser (Miake-Lye et al., 2016). Interaktive plott og kartlegging blir i økende grad brukt for å gi en dynamisk utgang til brukerne (slik som EviAtlas; Haddaway et al., 2019). Det er viktig at systematiske kart ikke fremstilles som et mål i seg selv. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. stemmeoptelling, jf. (Hedges & Olkin, 1980)). Systematiske kart kan ikke erstatte rigoriteten til systematiske oversikter, men kan gi beslutningstakere forståelse av evidensgrunnlaget ved å belyse hull eller klynger av evidens. De kan vise hvor evidenssyntese kan finne sted (dvs. det er tilstrekkelig med tilgjengelig evidens for en systematisk oversikt) eller hvor primærforskning er nødvendig (dvs. det er mangel på evidens). Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i beslutningskonteksten (Carrick et al., 2019).
 
-## Stakeholder engagement
+## 1.1 Arealbruk og arealbruksendringer i Norge 
+
+TROND OG/ELLER ANDERS - KAN DERE SKRIVE HER OM AREALBRUK OG AREALBRUKSENDRINGER I NORGE DEN SISTE TIDEN (LITT USIKKER PÅ TIDSPERSPEKTIV, MEN TROLIG SISTE 100-50 ÅR).
+
+## 1.2 Involvering av brukere og samfunnsaktører
 
 The outline for the review was presented at a conference held by the Norwegian Environment Agency and the Norwegian Research Council October 23, 2022. A general stakeholder meeting was arranged by NINA on April 25, 2023. The focus and scope of the review was narrowed and better defined during a specific stakeholder event on #date. Details of this meeting and the modifications in scope are available on request. Stakeholders who attended this event were invited to comment on the draft protocol prior to submission for publication. Stakeholders were not engaged during the conduct of the review.
 
-## Objective of the map
+## 1.3 Objective of the map
 
-The main goal of this project is to provide a comprehensive overview of available knowledge related to the effects of land use and land use changes on Norwegian nature, with a focus on biodiversity, ecosystem services, climate adaptation, carbon sequestration and storage. The map is restricted in geographical scope to Norway, Sweden and Finland (see inclusion criteria below). Moreover, the report is accompanied by a decision support tool as an extension of the systematic map to contextualize the available knowledge. The tool will be designed as a conceptual model of the field and highlight the importance of knowledge gaps in different areas.
+Hovedmålet med dette prosjektet er å gi en helhetlig oversikt over tilgjengelig kunnskap knyttet til effekter av arealbruk og arealbruksendringer på norsk natur, med fokus på biologisk mangfold, økosystemtjenester, klimatilpasning, karbonbinding og lagring. Kartet er begrenset i geografisk omfang til Norge, Sverige og Finland (se inklusjonskriterier nedenfor). Rapporten er dessuten ledsaget av et beslutningsstøtteverktøy som en utvidelse av det systematiske kartet for å kontekstualisere tilgjengelig kunnskap. Verktøyet er utformet som en konseptuell modell av kunnskapsfeltet og synliggjøre betydningen av kunnskapshull på ulike områder.
 
-### Primary question
+### 1.3.1 Hovedproblemstilling 
 
-The main research question in our systematic map is ‘What evidence exist about the impacts of land use and land cover change on biodiversity, ecosystem services and carbon sequestration in Norway, what type of conflicts have been identified between different forms of land use, and what tools are suggested to improve governance".
+Hovedspørsmålet i vårt systematiske kart er «Hvilke forskningsbasert kunnskap finnes knyttet til virkningene av arealbruk og endringer i arealbruk på biologisk mangfold, økosystemtjenester og karbonbinding i Norge, hvilken type konflikter er identifisert mellom ulike former for arealbruk, og hvilke verktøy foreslås for å forbedre styringen".
 
-### Secondary questions
+### 1.3.2 Underproblemstillinger 
 
 In addition, we will investigate what characterizes the existing body of literature on the topic, in terms of:
 
@@ -67,31 +71,35 @@ In addition, we will investigate what characterizes the existing body of literat
 
 -   Which tools are proposed and investigated?
 
-# Methods
+# 2 Metoder
 
-## Deviations from protocol
+Før prosjektet ble gjennomført ble det uviklet en detaljert protokoll som beskriver gjennomføringen, inkludert... \[Erlend skriver her\]
 
-## Search for literature
+## 2.1 Avvik fra protokollen
 
-### Online publication databases
+Erlend skriver her...
 
-Systematic literature searches for academic literature were conducted in Scopus, and in the following Web of Science Core Collection databases:
+## 2.2 Søk etter litteratur 
 
--   Science Citation Index Expanded (SCI-EXPANDED): 1987–present.
+### 2.2.1 Søk i online databaser
 
--   Social Sciences Citation Index (SSCI): 1987–present.
+Systematiske litteratursøk for akademisk (forskningsbasert) litteratur ble gjennomført i Scopus og i følgende Web of Science Core Collection databaser:
 
--   Arts and Humanities Citation Index (AHCI): 1987–present.
+-   Science Citation Index Expanded (SCI-EXPANDED): 1987–dd.
 
--   Emerging Sources Citation Index (ESCI): 2015–present.
+-   Social Sciences Citation Index (SSCI): 1987–dd.
 
-Several preliminary searches with different search terms were performed in Web of Science, which led to adjustments in the search string (See [the protocol](https://osf.io/4ad3x)).
+-   Arts and Humanities Citation Index (AHCI): 1987–dd.
 
-### Search terms and string
+-   Emerging Sources Citation Index (ESCI): 2015–dd.
 
-We used the PICO framework (James et al., 2016) to structure our search with the search terms and categories derived from the primary research question.
+Det ble gjennomført en rekke preliminære søk i Web of Science, og disse ble benyttet til å fintune søkestrengen (se [the protocol](https://osf.io/4ad3x)).
 
-The following search string was used in WoS and a similar string used in Scopus (adjusted to the interface):
+### 2.2.2 Søketermer og søkestreng 
+
+I vår søkestrategi benyttet vi oss av PICO-rammeverket (James et al., 2016) for å strukturere søket, og sørge for at det var dekkende for vårt primære forskningsspørsmål.
+
+Følgende søkestreng ble benyttet i WoS (tilsvarende streng ble benyttet i Scopus, men her ble søket justert for å passe systemets interface):
 
 <!--# Add link to search strings -->
 
@@ -103,19 +111,13 @@ The following search string was used in WoS and a similar string used in Scopus 
 
 We screened all systematic reviews and systematic maps from the international literature, the two categories were combined with TS=("Systematic review*" OR "systematic map*" OR "rapid review\*"). For the primary literature, the two categories were combined with TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish), and all results screened.
 
-### Languages
+### 2.2.3 Språk 
 
-Studies written in English, Norwegian, Swedish or Danish were included in the review. Studies in other languages were not included in the review.
+Artikler skrevet på engelsk, norsk, svensk eller dansk ble inkludert i litteraturgjennomgangen. Studier skrevet på andre språk ble ikke inkludert.
 
-### Internet searches
+### 2.2.4  Test av søkets omfang og dekning 
 
-### Additional searches
-
-Articles cited by and that cite (forward and backward citation chasing) the 15 benchmark articles were searched for using the citationchaser Shiny App (Haddaway et al. 2022).
-
-### Testing the comprehensiveness of the search
-
-Of the 15 benchmarks, 2 were not recovered in the searches.
+For å sørge for at søket ga en god dekning av den aktuelle litteraturen valgte vi ut 15 benchmark-artikler, og undersøkte hvor godt disse ble fanget opp av søket. Artiklene ble valgt ut gjennom en diskusjon i prosjektgruppa, med det formål å dekke både bredde og dybde i søket. I det enedelig søket ble totalt 13 av de 15 artiklene fanget opp.
 
 ```{r}
 #| echo: false
@@ -131,17 +133,25 @@ source_comparison <- compare_sources(unique_citations, comp_type = "sources")
 plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 ```
 
-### Assembling and managing search results
+### 2.2.4 Ytterligere søk etter litteratur
 
-### Article screening
+Artikler som er sitert av eller siteerer (engelsk: forward and backward citation chasing) de 15 benchmark-artiklene ble søkt ved hjelp av verktøyet citationchaser i R (Haddaway et al. 2022).
 
-We used pre-defined inclusion/exclusion criteria to screen eligible studies. Included studies were de-duplicated based on DOI and title matches using the R package 'ASySD' (Hair et al. 2021). We retained the latest version of any version-controlled articles (e.g. published versions of pre-prints were retained).
+### 
 
-After de-duplication, title and abstract screening was done using the eligibility criteria, and any studies classified as uncertain were assessed at the full-text stage. The screening was done using Rayyan, with double-screening by a primary and several secondary reviewers. After 50 include/exclude decisions we used the Rayyan-AI 5 star rating to rank the abstracts for assessment. This algorithm assesses abstracts and titles using natural language processing to identify records that have a high potential for inclusion (5 star) or those with a lower potential (1 star).
+### 2.2.5 Assembling and managing search results
 
-Weekly monitoring was done for group disagreement rates, and the eligibility criteria were re-evaluated and readjusted when the rate exceeded 15%. Conflicting decisions were reconciled through discussions with the whole review group. Studies tagged as unsure at each stage were assessed at the next level, with those remaining tagged as unsure reviewed by the entire team. 
+MATT WRITE HERE
 
-### Eligibility criteria
+### 2.2.6 Screening av artikler
+
+Vi brukte forhåndsdefinerte inklusjons-/eksklusjonskriterier for å screene kvalifiserte studier. Inkluderte studier ble de-duplisert basert på DOI og tittelmatcher ved å bruke R-pakken 'ASySD' (Hair et al. 2021). Vi beholdt den nyeste versjonen av alle versjonskontrollerte artikler (for eksempel ble publiserte versjoner av forhåndstrykk beholdt).
+
+Etter de-duplisering ble tittel og abstrakt screening utført ved å bruke kvalifikasjonskriteriene, og alle studier klassifisert som usikre ble vurdert på fulltekststadiet. Screeningen ble gjort ved hjelp av Rayyan, med dobbel screening av en primær og flere sekundære anmeldere. Etter 50 inkluderings-/ekskluderingsbeslutninger brukte vi Rayyan-AI 5-stjerners rangering for å rangere sammendragene for vurdering. Denne algoritmen vurderer sammendrag og titler ved hjelp av naturlig språkbehandling for å identifisere poster som har et høyt potensial for inkludering (5 stjerner) eller de med et lavere potensial (1 stjerne).
+
+Ukentlig overvåking ble utført for gruppeuenighetsrater, og kvalifikasjonskriteriene ble revurdert og justert når frekvensen oversteg 15 %. Motstridende beslutninger ble avstemt gjennom diskusjoner med hele gjennomgangsgruppen. Studier merket som usikre på hvert trinn ble vurdert på neste nivå, med de som var merket som usikre gjennomgått av hele teamet.
+
+### 2.3 Inkluderings- og ekskluderingskriterier 
 
 We reviewed the collated studies obtained from the searches using the criteria set below. Only studies conducted in Norway, Sweden and Finland or systematic reviews (also referred to as meta-analyses) with global, European or Fennoscandian coverage were included in the review. Only records where the full-text is written in English, Norwegian, Swedish, or Danish were considered eligible.
 
@@ -309,7 +319,6 @@ nor_bib <- readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/
 join_Nor_form<-readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/landuse_effects_biodiversity/data/cache_data/join_Nor_form.RDS")
 ```
 
-
 There were `r nrow(nor_bib)` articles included that were conducted in Norway.
 
 ```{r openAlex topics/concepts}
@@ -358,18 +367,15 @@ nor_bib |>
   ggthemes::theme_solarized()
 ```
 
-###
+### 
+
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
 ```
 
-
-
-
 ### Geographical distribution of included observations
-
 
 ```{r County distribution}
 #| echo: false
@@ -419,7 +425,6 @@ df |>
 
 ```
 
-
 ```{r topic model}
 #| echo: false
 #| message: false
@@ -462,11 +467,6 @@ jn_dtm<-
   cast_dtm(study_id, word, n)
 ```
 
-
-
-
-
-
 ```{r}
 #| echo: false
 #| message: false
@@ -488,7 +488,6 @@ FindTopicsNumber_plot(result)
 saveRDS(result, "data/cache_data/result.RDS")
 ```
 
-
 ```{r}
 #| echo: false
 #| message: false
@@ -497,8 +496,6 @@ jn_lda <- LDA(jn_dtm, k = 6, control = list(seed = 1234))
 saveRDS(jn_lda, "data/cache_data/jn_lda.RDS")
 
 ```
-
-
 
 ```{r}
 #| echo: false
@@ -522,7 +519,6 @@ ggthemes::theme_solarized()
 p1
 
 ```
-
 
 ```{r}
 #| echo: false
@@ -549,9 +545,6 @@ ggplot(lda.topics, aes(title, Share, color = Topic, fill = Topic)) + geom_bar(st
 
 ```
 
-
-
-
 ## Mapping the effects of land use and land cover change on biodiversity, carbon and conflicts
 
 ```{r keyword co-occurrence}
@@ -567,9 +560,6 @@ NetMatrix <- biblioNetwork(nor_bib, analysis = "co-occurrences", network = "keyw
 net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
 ```
 
-
-
-
 ```{r}
 #| echo: false
 #| message: false
@@ -580,8 +570,6 @@ net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = 
 # net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "auto", size.cex=TRUE, size=15, remove.multiple=FALSE, labelsize=1,edgesize = 10, edges.min=5)
 ```
 
-
-
 ```{r}
 #| echo: false
 #| message: false
@@ -590,8 +578,7 @@ net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = 
 # histResults <- histNetwork(nor_bib, sep = ";")
 ```
 
-
-#
+# 
 
 # Limitations of the map
 
