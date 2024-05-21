@@ -216,144 +216,95 @@ library(openalexR)
 # gs4_auth()
 ## read in GoogleSheets----
 
-form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
-
-## clean names----
-form <- form |>
-  janitor::clean_names()
-## explore----
-#names(form)
-
-# ### select Norwegian studies----
-Nor_form <- form |>
-  filter(grepl("Norway", country))
-
-### selet studies that are included in the review----
-Nor_form_inc <- Nor_form |>
-  filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes")
-
-### Get matched details from Rayyan----
-
-# read the Rayyan results
-
-rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
-rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
-
-Nor_form_inc$accession_zr<-unlist(Nor_form_inc$study_id)
-
-join_Nor_form <- Nor_form_inc |>
-  left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
-
-# join_Nor_form |> view()
-
-join_Nor_form |>
-  filter(is.na(join_Nor_form$doi)) |>
-  select(study_id, study_title)
-
-#### find missing doi's by title
-which(is.na(join_Nor_form$doi))
-#11, 35, 47,52,60,61,63
-
-works_search <- oa_fetch(
-  entity = "works",
-  title.search = c("Roads forestry wolves"),
-  verbose = TRUE
-)
-works_search$doi
-# "https://doi.org/10.1002/ecs2.3358"
-
-
-works_search <- oa_fetch(
-  entity = "works",
-  title.search = c("CONFLICT AND COMPLEXITY - THE CASE OF HYDROPOWER CONSTRUCTION IN NORWAY"),
-  verbose = TRUE
-)
-works_search$doi
-# "https://doi.org/10.3233/hsm-1986-6105"
-works_search <- oa_fetch(
-  entity = "works",
-  title.search = c("Influence of site and stand factors on the distribution of crustose lichens of the Caliciales in a suboceanic spruce forest area in central Norway"),
-  verbose = TRUE
-)
-works_search |> view()
-works_search$doi
-# "https://doi.org/10.1017/s0024282996000424"
-
-works_search <- oa_fetch(
-  entity = "works",
-  title.search = c("Lichens in spruce forest stands of different successional stages in central Norway with emphasis on diversity and old growth species"),
-  verbose = TRUE
-)
-
-works_search$doi
-works_search <- oa_fetch(
-  entity = "works",
-  title.search = c("Impacts of experimental habitat fragmentation on ground beetles"),
-  verbose = TRUE
-)
-
-works_search
-
-
-works_search <- oa_fetch(
-  entity = "works",
-  title.search = c("Cumulative impacts of tourist resorts on wild reindeer"),
-  verbose = TRUE
-)
-
-works_search$doi
-
-#Home range size and choice of management strategy for lynx in Scandinavia
-
-works_search <- oa_fetch(
-  entity = "works",
-  title.search = c("Home range size and choice of management strategy for lynx in Scandinavia"),
-  verbose = TRUE
-)
-
-works_search$doi
-join_Nor_form[11, ]$doi <- "10.3233/hsm-1986-6105"
-join_Nor_form[35, ]$doi <- "10.1002/ecs2.3358"
-join_Nor_form[47, ]$doi <- "10.1017/s0024282996000424"
-join_Nor_form[52, ]$doi <- "10.1127/nova.hedwigia/66/1998/283"
-join_Nor_form[60, ]$doi <- NA
-join_Nor_form[61, ]$doi <- "10.14430/arctic829"
-join_Nor_form[61, ]$doi<-"10.1007/s002670010195"
-# get openAlexR data
-
-
-doi_list <- strsplit(join_Nor_form$doi, split = " ")
-doi_list <- sapply(doi_list, "[[", 1)
-
-# # oa_fetch(
-# #   doi = c(doi_list),
-# #   entity = "works",
-# #   verbose = TRUE
-# # ) %>%
-# #   show_works() %>%
-# #   knitr::kable()
-
-bib_ls <- list(
-  doi = c(doi_list),
-  entity = "works"
-)
-
-# # oa_fetch(
-# #   # identifier = c("W2741809807", "W2755950973"),
-# #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
-# #   entity = "works",
-# #   verbose = TRUE
-# # ) %>%
-# #   show_works() %>%
-# #   knitr::kable()
-# #
-# #
-# #
-nor_bib <- do.call(oa_fetch, bib_ls) %>%
-  oa2bibliometrix()
-nor_bib
-saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
-saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
+# form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
+# 
+# ## clean names----
+# form <- form |>
+#   janitor::clean_names()
+# ## explore----
+# #names(form)
+# 
+# # ### select Norwegian studies----
+# Nor_form <- form |>
+#   filter(grepl("Norway", country))
+# 
+# ### selet studies that are included in the review----
+# Nor_form_inc <- Nor_form |>
+#   filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes")
+# 
+# ### Get matched details from Rayyan----
+# 
+# # read the Rayyan results
+# 
+# rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
+# rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
+# 
+# Nor_form_inc$accession_zr<-unlist(Nor_form_inc$study_id)
+# 
+# join_Nor_form <- Nor_form_inc |>
+#   left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
+# 
+# # join_Nor_form |> view()
+# 
+# join_Nor_form |>
+#   filter(is.na(join_Nor_form$doi)) |>
+#   select(study_id, study_title)
+# 
+# #### find missing doi's by title
+# which(is.na(join_Nor_form$doi))
+# #11, 47,52,60,61,63,74,75,125,158
+# 
+# works_search <- oa_fetch(
+#   entity = "works",
+#   title.search = c("Roads forestry wolves"),
+#   verbose = TRUE
+# )
+# works_search$doi
+# # "https://doi.org/10.1002/ecs2.3358"
+# 
+# join_Nor_form[11, ]$doi <- "10.3233/hsm-1986-6105"
+# #join_Nor_form[35, ]$doi <- "10.1002/ecs2.3358"
+# join_Nor_form[47, ]$doi <- "10.1017/s0024282996000424"
+# join_Nor_form[52, ]$doi <- "10.1127/nova.hedwigia/66/1998/283"
+# join_Nor_form[60, ]$doi <- NA
+# join_Nor_form[61, ]$doi <- "10.14430/arctic829"
+# join_Nor_form[63, ]$doi<-"10.1007/s002670010195"
+# join_Nor_form[c(74,75,125,158), ]$doi<-NA
+# 
+# # get openAlexR data
+# 
+# 
+# doi_list <- strsplit(join_Nor_form$doi, split = " ")
+# doi_list <- sapply(doi_list, "[[", 1)
+# 
+# # # oa_fetch(
+# # #   doi = c(doi_list),
+# # #   entity = "works",
+# # #   verbose = TRUE
+# # # ) %>%
+# # #   show_works() %>%
+# # #   knitr::kable()
+# 
+# bib_ls <- list(
+#   doi = c(doi_list),
+#   entity = "works"
+# )
+# 
+# # # oa_fetch(
+# # #   # identifier = c("W2741809807", "W2755950973"),
+# # #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
+# # #   entity = "works",
+# # #   verbose = TRUE
+# # # ) %>%
+# # #   show_works() %>%
+# # #   knitr::kable()
+# # #
+# # #
+# # #
+# nor_bib <- do.call(oa_fetch, bib_ls) %>%
+#   oa2bibliometrix()
+# saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
+# saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
 nor_bib <- readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/landuse_effects_biodiversity/data/cache_data/nor_bib.RDS")
 join_Nor_form<-readRDS("C:/Users/matthew.grainger/Documents/Projects_in_development/landuse_effects_biodiversity/data/cache_data/join_Nor_form.RDS")
 ```
@@ -406,6 +357,16 @@ nor_bib |>
   labs(x="Publication Year", y="Cumulative sum of publications")+
   ggthemes::theme_solarized()
 ```
+
+###
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+```
+
+
+
 
 ### Geographical distribution of included observations
 
@@ -470,23 +431,35 @@ library(tm)
 library(tidytext)
 
 jn_dtm<-join_Nor_form |> 
-  select(study_id, title, abstract) |> 
-  mutate(title_abs=paste0(title, abstract))
+  select(study_id, title, abstract, year)
 
-
-jn_dtm$study_id<-unlist(jn_dtm$study_id)
+#jn_dtm$study_id<-unlist(jn_dtm$study_id)
 
 jn_dtm<-jn_dtm |> 
-  unnest_tokens(word,title_abs)
+  mutate(title_abs=paste0(title,abstract)) |>
+  unnest_tokens(word,title_abs) |> 
+  rowid_to_column()
+jn_dtm<-jn_dtm |> 
+  mutate(word=removeNumbers(word))
 
+jn_dtm<-jn_dtm |> 
+  filter(word !="")
+
+jn_test<-jn_dtm |> 
+distinct(study_id,.keep_all=TRUE)
+
+jn_dtm<-jn_dtm|> 
+  group_by(study_id) |> 
+  count(study_id, word, sort = TRUE)
 data(stop_words)
-
-jn_dtm <- jn_dtm %>%
+jn_dtm<-jn_dtm |> 
   anti_join(stop_words)
 
 
-jn_dtm
 
+jn_dtm<-
+  jn_dtm |> 
+  cast_dtm(study_id, word, n)
 ```
 
 
@@ -494,19 +467,87 @@ jn_dtm
 
 
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# number of topics
+library(ldatuning)
+result <- FindTopicsNumber(
+  jn_dtm,
+  topics = seq(from = 2, to = 15, by = 1),
+  metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+  method = "Gibbs",
+  control = list(seed = 77),
+  mc.cores = 2L,
+  verbose = TRUE
+)
+
+FindTopicsNumber_plot(result)
+
+saveRDS(result, "data/cache_data/result.RDS")
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+jn_lda <- LDA(jn_dtm, k = 6, control = list(seed = 1234))
+saveRDS(jn_lda, "data/cache_data/jn_lda.RDS")
+
+```
 
 
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+jn_topics <- tidy(jn_lda, matrix = "beta")
+top_terms <- jn_topics %>%
+  group_by(topic) %>%
+  slice_max(beta, n = 20) %>% 
+  ungroup() %>%
+  arrange(topic, -beta)
+
+p1<-top_terms %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(beta, term, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  scale_y_reordered()+
+ggthemes::theme_solarized()
+
+p1
+
+```
 
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(stm)
+library(wordcloud2)
+
+as.data.frame(terms(jn_lda, 10))
+
+data.frame(Topic = topics(jn_lda))
+
+lda.topics<- 
+data.frame(jn_test, Topic = topics(jn_lda)) |> 
+  add_count(title, Topic) |> 
+  group_by(title) |>  
+  mutate(Share = n/sum(n)) |> 
+  ungroup() |>  
+  mutate(Topic = paste0("Topic ", sprintf("%02d", Topic)))  |>  
+  mutate(Article = as_factor(title))
+
+ggplot(lda.topics, aes(title, Share, color = Topic, fill = Topic)) + geom_bar(stat="identity") + ggtitle("LDA topics in Norwegian LULCC peer-reviewed studies") + xlab("") + ylab("Share of topics [%]") + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 
-
-
-
-
-
-
+```
 
 
 
@@ -514,6 +555,9 @@ jn_dtm
 ## Mapping the effects of land use and land cover change on biodiversity, carbon and conflicts
 
 ```{r keyword co-occurrence}
+#| echo: false
+#| message: false
+#| warning: false
 library(bibliometrix)
 # Create keyword co-occurrences network
 
@@ -525,10 +569,26 @@ net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = 
 
 
 
-```{r topic modelling}
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# nor_bib=metaTagExtraction(nor_bib,"CR_SO",sep=";")
+# 
+# NetMatrix <- biblioNetwork(M, analysis = "co-citation", network = "sources", sep = ";")
+# net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "auto", size.cex=TRUE, size=15, remove.multiple=FALSE, labelsize=1,edgesize = 10, edges.min=5)
 ```
 
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# results<-biblioAnalysis(nor_bib)
+# histResults <- histNetwork(nor_bib, sep = ";")
+```
 
 
 #
