@@ -450,6 +450,27 @@ join_Nor_form |>
 
 ```
 
+### How is research spread across level of biological organization (species, taxa, ecosystem or services)
+
+```{r taxon}
+#| echo: false
+#| message: false
+#| warning: false
+# Needs cleaning 
+join_Nor_form |> 
+  group_by(taxonomic_level) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(taxonomic_level, n),n,fill=taxonomic_level))+
+  geom_histogram(stat="identity")+
+  ggthemes::theme_solarized()+
+  coord_flip()+
+  labs(x="", y="antall publikasjoner")+
+  theme(legend.position = "Null")
+```
+
+
+
 ### What are the dominant types of land use that are investigated?
 
 ```{r landuse}
@@ -473,7 +494,7 @@ join_Nor_form |>
 
 ```
 
-### Geographical distribution of included observations
+### What regions (in Norway) are most represented
 
 ```{r County distribution}
 #| echo: false
@@ -522,6 +543,66 @@ df |>
   ggthemes::theme_solarized()
 
 ```
+
+
+### Open data, open code, preregistered, open access
+
+```{r open data}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+od<-join_Nor_form |> 
+  select(open_data) |> 
+  group_by(open_data) |> 
+  tally()
+oc<-join_Nor_form |> 
+  select(open_code) |> 
+  group_by(open_code) |> 
+  tally()
+pr<-join_Nor_form |> 
+  select(preregistration_or_published_protocol) |> 
+  group_by(preregistration_or_published_protocol) |> 
+  tally()
+
+names(od)<-c("Response", "n")
+names(oc)<-names(pr)<-names(od)
+od$question<-"open data"
+oc$question<-"open code"
+pr$question<-"Preregistration"
+
+
+all_open<-rbind(od,oc,pr)
+
+all_open |> 
+  ggplot(aes(Response, n, fill = question))+
+  geom_histogram(stat="identity", position = "dodge")+
+  labs(x="", y="Antall publikasjoner")+
+  ggthemes::theme_solarized()
+```
+
+
+```{r open access}
+#| echo: false
+#| message: false
+#| warning: false
+nor_bib |> 
+  group_by(oa_status) |> 
+  tally() |> 
+  ggplot(aes(oa_status, n, fill=oa_status))+
+  geom_histogram(stat="identity")+
+  scale_fill_manual(values=c(bronze="#CD7F32", closed="red", gold="gold", green="green", hybrid="brown"))+
+  labs(x="", y="Antall publikasjoner")+
+  ggthemes::theme_solarized()+
+  theme(legend.position = "Null")
+
+```
+
+
+
+
+
+
 
 ```{r topic model}
 #| echo: false
@@ -657,6 +738,21 @@ NetMatrix <- biblioNetwork(nor_bib, analysis = "co-occurrences", network = "keyw
 # Plot the network
 net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
 ```
+
+
+```{r co-citation}
+#| echo: false
+#| message: false
+#| warning: false
+library(bibliometrix)
+# Create keyword co-occurrences network
+
+NetMatrix <- biblioNetwork(nor_bib, analysis = "co-citation", network = "references", sep = ";")
+
+# Plot the network
+net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "fruchterman", size.cex=TRUE, size=20, remove.multiple=FALSE,label=FALSE,edgesize = 10, edges.min=1)
+```
+
 
 ```{r}
 #| echo: false
