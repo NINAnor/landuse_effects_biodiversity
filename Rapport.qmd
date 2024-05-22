@@ -142,9 +142,14 @@ Artikler som er sitert av eller siteerer (engelsk: forward and backward citation
 
 ### 
 
-### 2.2.5 Assembling and managing search results
+### 2.2.5 Sammenstilling og håndtering av søkeresultater
 
-MATT WRITE HERE
+Søkeresultater, inkludert listen over benchmarks og "citation chasing" resultater, ble lastet ned som .RIS-filer.
+Studier ble de-duplisert basert på DOI og tittelmatcher ved å bruke R-pakken ‘ASySD’ (Hair et al. 2021). Vi beholdt den nyeste versjonen av alle versjonskontrollerte artikler (for eksempel ble publiserte versjoner av forhåndstrykk beholdt).
+De-dupliserte artikler ble deretter lastet opp til RayyanAI for å lette screening.
+Artikler som besto sammendragsscreeningsstadiet ble deretter eksportert til en delt Zotero-database, og pdf-versjoner ble søkt etter ved hjelp av Zoteros pdf-søkeverktøy. Eventuelle artikler uten pdf-er ble søkt manuelt på ResearchGate eller på tidsskriftsnettsteder. Der hvor pdf-er ikke var tilgjengelige, ble de bedt om fra forfatterne. Beslutninger om eksklusjonsårsaker på fulltekststadiet ble registrert i Notes-verktøyet i Zotero.
+Koding fant sted ved bruk av et "google-form" som automatisk fylte ut et "googlesheet" som dannet databasen over inkluderte studier.
+
 
 ### 2.2.6 Screening av artikler
 
@@ -212,7 +217,7 @@ prisma(
 
 ## Review descriptive statistics
 
-## Norway papers
+# Norway papers
 
 ```{r}
 #| echo: false
@@ -771,6 +776,12 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 # results<-biblioAnalysis(nor_bib)
 # histResults <- histNetwork(nor_bib, sep = ";")
 ```
+
+
+# Systematic reviews
+
+# All included articles
+
 
 
 # Limitations of the map
