@@ -15,16 +15,13 @@ Version: `r params$version`
 
 # 1. Innledning
 
-Endring i arealbruk og landdekke (LULCC) anses å være den dominerende driveren av nylig tap av biodiversitet både globalt og i Norge, og påvirker direkte naturens evne til å tilby naturgoder og -tjenester (Díaz et al., 2019; Malhi et al., 2020).
-LULCC påvirker også et økosystems evne til å lagre og binde karbon i jord og biologisk materiale, og påvirker dermed direkte et økosystems evne til å bidra til å motvirke og tilpasse seg klimaendringer. Å kvantifisere, forstå og formidle dynamikken i arealendringer og deres effekter på biodiversitet, økosystemtjenester og karbonlagring er derfor en forutsetning for evidensbaserte arealbruksstrategier.
-Imidlertid mangler det for øyeblikket systematisk evidens om dette temaet fra norske økosystemer. Mye av den offentlige diskursen på nasjonalt nivå domineres av internasjonale globale kunnskapssammendrag, til tross for betydelig usikkerhet rundt nedskalering og overføring av kunnskap fra globale og regionale synteser til lokalt/nasjonalt nivå, på tvers av økosystemer og taksonomiske grupper. Tidligere kunnskapssammendrag basert på data fra norske økosystemer har enten fulgt spesifikke tilnærminger (f.eks. Økosystemvurdering; (Nybø et al., 2017)), i stor grad basert på ekspertvurderinger (Artsdatabanken, 2021), eller vært begrenset i omfang. Mangelen på en omfattende oversikt over forskningsbasert kunnskap fra norske økosystemer fører også til at ulike interessegrupper og sektorer stoler på ulike "fakta," noe som ofte fører til eskalerende konflikter og dårlige beslutninger. Det er derfor et presserende behov både for en oppsummering av kunnskap og identifisering av reelle kunnskapshull.
-
+Endring i arealbruk og landdekke (LULCC) anses å være den dominerende driveren av nylig tap av biodiversitet både globalt og i Norge, og påvirker direkte naturens evne til å tilby naturgoder og -tjenester (Díaz et al., 2019; Malhi et al., 2020). LULCC påvirker også et økosystems evne til å lagre og binde karbon i jord og biologisk materiale, og påvirker dermed direkte et økosystems evne til å bidra til å motvirke og tilpasse seg klimaendringer. Å kvantifisere, forstå og formidle dynamikken i arealendringer og deres effekter på biodiversitet, økosystemtjenester og karbonlagring er derfor en forutsetning for evidensbaserte arealbruksstrategier. Imidlertid mangler det for øyeblikket systematisk evidens om dette temaet fra norske økosystemer. Mye av den offentlige diskursen på nasjonalt nivå domineres av internasjonale globale kunnskapssammendrag, til tross for betydelig usikkerhet rundt nedskalering og overføring av kunnskap fra globale og regionale synteser til lokalt/nasjonalt nivå, på tvers av økosystemer og taksonomiske grupper. Tidligere kunnskapssammendrag basert på data fra norske økosystemer har enten fulgt spesifikke tilnærminger (f.eks. Økosystemvurdering; (Nybø et al., 2017)), i stor grad basert på ekspertvurderinger (Artsdatabanken, 2021), eller vært begrenset i omfang. Mangelen på en omfattende oversikt over forskningsbasert kunnskap fra norske økosystemer fører også til at ulike interessegrupper og sektorer stoler på ulike "fakta," noe som ofte fører til eskalerende konflikter og dårlige beslutninger. Det er derfor et presserende behov både for en oppsummering av kunnskap og identifisering av reelle kunnskapshull.
 
 Politikk og beslutningstaking knyttet til arealbruk og dens effekter på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper (Guldbrandsen & Handberg, 2022; Skogen et al., 2021). Kunnskapskontrovers er også ofte en sentral egenskap ved konfliktene, og innebærer uenighet om kunnskapens status og motstridende kunnskapskrav om de miljømessige effektene av ulike alternativer for arealbruk (Aspøy & Stokland, 2022; Rusch et al., 2022). IPBES (2019, 2022a, 2022b) og IPCC (2018) har foreslått styringsmetoder og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av SDG-ene, grensen på 1,5°C og 2050-visjonen for biodiversitet. Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres utnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy i en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese og identifisering av kunnskapshull angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima.
 
 Systematiske kart (også kjent som Evidenshullkart eller Evidenskart) ble designet for å gi en oversikt over tilgjengelig evidens om et bredt tema (Saran et al., 2020). De søker ikke å svare på smale, veldefinerte spørsmål (slik systematiske oversikter gjør), men heller å gi et middel til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål (James et al., 2016). Systematiske kart har blitt realisert på en rekke ulike måter, men gir generelt resultatene på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser (Miake-Lye et al., 2016). Interaktive plott og kartlegging blir i økende grad brukt for å gi en dynamisk utgang til brukerne (slik som EviAtlas; Haddaway et al., 2019). Det er viktig at systematiske kart ikke fremstilles som et mål i seg selv. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. stemmeoptelling, jf. (Hedges & Olkin, 1980)). Systematiske kart kan ikke erstatte rigoriteten til systematiske oversikter, men kan gi beslutningstakere forståelse av evidensgrunnlaget ved å belyse hull eller klynger av evidens. De kan vise hvor evidenssyntese kan finne sted (dvs. det er tilstrekkelig med tilgjengelig evidens for en systematisk oversikt) eller hvor primærforskning er nødvendig (dvs. det er mangel på evidens). Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i beslutningskonteksten (Carrick et al., 2019).
 
-## 1.1 Arealbruk og arealbruksendringer i Norge 
+## 1.1 Arealbruk og arealbruksendringer i Norge
 
 TROND OG/ELLER ANDERS - KAN DERE SKRIVE HER OM AREALBRUK OG AREALBRUKSENDRINGER I NORGE DEN SISTE TIDEN (LITT USIKKER PÅ TIDSPERSPEKTIV, MEN TROLIG SISTE 100-50 ÅR).
 
@@ -32,41 +29,46 @@ TROND OG/ELLER ANDERS - KAN DERE SKRIVE HER OM AREALBRUK OG AREALBRUKSENDRINGER 
 
 The outline for the review was presented at a conference held by the Norwegian Environment Agency and the Norwegian Research Council October 23, 2022. A general stakeholder meeting was arranged by NINA on April 25, 2023. The focus and scope of the review was narrowed and better defined during a specific stakeholder event on #date. Details of this meeting and the modifications in scope are available on request. Stakeholders who attended this event were invited to comment on the draft protocol prior to submission for publication. Stakeholders were not engaged during the conduct of the review.
 
-## 1.3 Objective of the map
+## 1.3 Formålet med kunnskapssammenstillingen
 
 Hovedmålet med dette prosjektet er å gi en helhetlig oversikt over tilgjengelig kunnskap knyttet til effekter av arealbruk og arealbruksendringer på norsk natur, med fokus på biologisk mangfold, økosystemtjenester, klimatilpasning, karbonbinding og lagring. Kartet er begrenset i geografisk omfang til Norge, Sverige og Finland (se inklusjonskriterier nedenfor). Rapporten er dessuten ledsaget av et beslutningsstøtteverktøy som en utvidelse av det systematiske kartet for å kontekstualisere tilgjengelig kunnskap. Verktøyet er utformet som en konseptuell modell av kunnskapsfeltet og synliggjøre betydningen av kunnskapshull på ulike områder.
 
-### 1.3.1 Hovedproblemstilling 
+### 1.3.1 Hovedproblemstilling
 
 Hovedspørsmålet i vårt systematiske kart er «Hvilke forskningsbasert kunnskap finnes knyttet til virkningene av arealbruk og endringer i arealbruk på biologisk mangfold, økosystemtjenester og karbonbinding i Norge, hvilken type konflikter er identifisert mellom ulike former for arealbruk, og hvilke verktøy foreslås for å forbedre styringen".
 
-### 1.3.2 Underproblemstillinger 
+### 1.3.2 Underproblemstillinger
 
-In addition, we will investigate what characterizes the existing body of literature on the topic, in terms of:
+Vi vil karakterisere den eksisterende litteraturen langs følgende akser:
 
--   What proportion of the research is based on empirical data
+-   Hvor stor andel av forskningen er basert på empiriske data?
 
--   What proportion of the research is based on experimental vs observational
+-   Hvor stor andel av forskningen er basert på eksperimenter vs observasjonelle studier?
 
--   What proportion of the research is based on qualitative vs quantitative/mixed
+-   Hvor stor andel av forskningen er basert på kvalitative metoder vs kvantitative/blandete metoder?
 
--   How is research spread across the major ecosystem types/realms
+```{=html}
+<!-- -->
+```
+-   Hvordan er forskningen fordelt over ulike økosystemer?
 
--   How is research spread across the disciplines
+-   Hvordan er forskningen fordelt over ulike disipliner?
 
--   How is research spread across level of biological organization (species, taxa, ecosystem or services)
+-   Hvordan er forskningen fordelt over ulike nivå av biologisk organisering?
+
+-   Hva er de mest studerte formene for arealbruk og arealbruksendringer?
+
+-   Hvilke regioner/fylker er mest representert i datamaterialet?
+
+-   Hvor stor andel av forskningen fokuserer på governance, konfliker og verktøy?
 
 -   What are the dominant types of land use that are investigated?
 
--   What regions (in Norway) are most represented
+-   Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?
 
--   What proportion of the research focuses on governance, conflicts and tools?
+-   Hvilke aktører er hyppigst representert i forskningen?
 
--   What are the dominant/marginal social scientific analytical approaches of the studies?
-
--   What type of actors are most represented in the studies?
-
--   Which sectors and societal concerns are most studied?
+-   Hvilke sektorer og samfunnsmessige områder er hyppigst studert?
 
 -   Which level of societal scale do the studies represent?
 
@@ -76,13 +78,29 @@ In addition, we will investigate what characterizes the existing body of literat
 
 # 2 Metoder
 
-Før prosjektet ble gjennomført ble det uviklet en detaljert protokoll som beskriver gjennomføringen, inkludert... \[Erlend skriver her\]
+Før prosjektet ble gjennomført ble det uviklet en detaljert protokoll som beskriver gjennomføringen. Denne protokollen inkluderte en detlajert beskrivelse av:
+
+-   Søkestrenger, søkeord og språk
+
+-   Eventuelle supplerende søk som f.eks. «*citation chasing*»
+
+-   Hvilke databaser vi vil søke i, og eventuelle nettsteder for søk etter grå litteratur som ikke er tilgjengelig i databasene
+
+-   Sentrale artikler (*benchmark-artikler*) som søket forventes å plukke opp
+
+-   Kriterier for screening av artikler (inkludering/ekskluderings-kriterier)
+
+-   Prosedyrer for sjekk av konsistens mellom review-personellet
+
+-   Regler for datakoding
+
+Versjon 1.0 av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes her https://osf.io/mwapc/. Den enelige versjonen av protokollen kan leses her (ref).
 
 ## 2.1 Avvik fra protokollen
 
 Erlend skriver her...
 
-## 2.2 Søk etter litteratur 
+## 2.2 Søk etter litteratur
 
 ### 2.2.1 Søk i online databaser
 
@@ -96,9 +114,9 @@ Systematiske litteratursøk for akademisk (forskningsbasert) litteratur ble gjen
 
 -   Emerging Sources Citation Index (ESCI): 2015–dd.
 
-Det ble gjennomført en rekke preliminære søk i Web of Science, og disse ble benyttet til å fintune søkestrengen (se [the protocol](https://osf.io/4ad3x)).
+Det ble gjennomført en rekke preliminære søk i Web of Science, og disse ble benyttet til å fintune søkestrengen (ref protokollen).
 
-### 2.2.2 Søketermer og søkestreng 
+### 2.2.2 Søketermer og søkestreng
 
 I vår søkestrategi benyttet vi oss av PICO-rammeverket (James et al., 2016) for å strukturere søket, og sørge for at det var dekkende for vårt primære forskningsspørsmål.
 
@@ -114,11 +132,7 @@ Følgende søkestreng ble benyttet i WoS (tilsvarende streng ble benyttet i Scop
 
 We screened all systematic reviews and systematic maps from the international literature, the two categories were combined with TS=("Systematic review*" OR "systematic map*" OR "rapid review\*"). For the primary literature, the two categories were combined with TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish), and all results screened.
 
-### 2.2.3 Språk 
-
-Artikler skrevet på engelsk, norsk, svensk eller dansk ble inkludert i litteraturgjennomgangen. Studier skrevet på andre språk ble ikke inkludert.
-
-### 2.2.4  Test av søkets omfang og dekning 
+### 2.2.3 Test av søkets omfang og dekning
 
 For å sørge for at søket ga en god dekning av den aktuelle litteraturen valgte vi ut 15 benchmark-artikler, og undersøkte hvor godt disse ble fanget opp av søket. Artiklene ble valgt ut gjennom en diskusjon i prosjektgruppa, med det formål å dekke både bredde og dybde i søket. I det enedelig søket ble totalt 13 av de 15 artiklene fanget opp.
 
@@ -136,9 +150,41 @@ source_comparison <- compare_sources(unique_citations, comp_type = "sources")
 plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 ```
 
+De 15 benchmark-artiklene var som følger:
+
+-   Aune, S., Bryn, A. & Hovstad, K.A. 2018. Loss of semi-natural grassland in a boreal landscape: impacts of agricultural intensification and abandonment. Journal of Land Use Science 13(4): 375-390. <https://doi.org/10.1080/1747423x.2018.1539779>
+
+-   Bouyer, Y., Martin, G.S., Poncin, P., Beudels-Jamar, R.C., Odden, J. & Linnell, J.D.C. 2015. Eurasian lynx habitat selection in human-modified landscape in Norway: Effects of different human habitat modifications and behavioral states. Biological Conservation 191: 291-299. <https://doi.org/10.1016/j.biocon.2015.07.007>
+
+-   Dorber, M., May, R. & Verones, F. 2018. Modeling Net Land Occupation of Hydropower Reservoirs in Norway for Use in Life Cycle Assessment. Environmental Science & Technology 52(4): 2375-2384. <https://doi.org/10.1021/acs.est.7b05125>
+
+-   Foldvik, A., Einum, S., Finstad, A.G. & Ugedal, O. 2017. Linking watershed and microhabitat characteristics: effects on production of Atlantic salmonids (Salmo salar and Salmo trutta). Ecology of Freshwater Fish 26(2): 260-270. <https://doi.org/10.1111/eff.12272>
+
+-   Gundersen, V., Vistad, O.I., Panzacchi, M., Strand, O. & van Moorter, B. 2019. Large-scale segregation of tourists and wild reindeer in three Norwegian national parks: Management implications. Tourism Management 75: 22-33. <https://doi.org/10.1016/j.tourman.2019.04.017>
+
+-   Hamre, L.N., Domaas, S.T., Austad, I. & Rydgren, K. 2007. Land-cover and structural changes in a western Norwegian cultural landscape since 1865, based on an old cadastral map and a field survey. Landscape Ecology 22(10): 1563-1574. <https://doi.org/10.1007/s10980-007-9154-y>
+
+-   Hamre, L.N., Rydgren, K., Incerti, C., Hjorth-Johansen, I. & Simonsen, K.S. 2021. Paradise lost - transformation of the gully landscape in South-East Norway. Landscape Research 46(3): 377-389. <https://doi.org/10.1080/01426397.2020.1847263>
+
+-   Jarnemo, A., Minderman, J., Bunnefeld, N., Zidar, J. & Månsson, J. 2014. Managing landscapes for multiple objectives: alternative forage can reduce the conflict between deer and forestry. Ecosphere 5(8): 14. <https://doi.org/10.1890/es14-00106.1>
+
+-   Karlsson, J., Byström, P., Ask, J., Ask, P., Persson, L. & Jansson, M. 2009. Light limitation of nutrient-poor lake ecosystems. Nature 460(7254): 506-U80. https://doi.org/10.1038/nature08179
+
+-   Korsnes, M., Loewen, B., Dale, R.F., Steen, M. & Skjolsvold, T.M. 2023. Paradoxes of Norway's energy transition: controversies and justice. Climate Policy: 23(9): 1132-1150. <https://doi.org/10.1080/14693062.2023.2169238>
+
+-   Pedersen, C. & Krogli, S.O. 2017. The effect of land type diversity and spatial heterogeneity on farmland birds in Norway. Ecological Indicators 75: 155-163. <https://doi.org/10.1016/j.ecolind.2016.12.030>
+
+-   Rolstad, J., Blanck, Y.L. & Storaunet, K.O. 2017. Fire history in a western Fennoscandian boreal forest as influenced by human land use and climate. Ecological Monographs 87(2): 219-245. <https://doi.org/10.1002/ecm.1244>
+
+-   Rusch, G.M., Bartlett, J., Kyrkjeeide, M.O., Lein, U., Norden, J., Sandvik, H. & Stokland, H. 2022. A joint climate and nature cure: A transformative change perspective. Ambio 51(6): 1459-1473. <https://doi.org/10.1007/s13280-021-01679-8>
+
+-   Skogen, K., Mauz, I. & Krange, O. 2008. Cry wolf! Narratives of wolf recovery in France and Norway. Rural Sociology 73(1): 105-133. <https://doi.org/10.1526/003601108783575916>
+
+-   Tombre, I.M., Eythórsson, E. & Madsen, J. 2013. Towards a Solution to the Goose-Agriculture Conflict in North Norway, 1988-2012: The Interplay between Policy, Stakeholder Influence and Goose Population Dynamics. Plos One 8(8): e71912. <https://doi.org/10.1371/journal.pone.0071912>
+
 ### 2.2.4 Ytterligere søk etter litteratur
 
-Artikler som er sitert av eller siteerer (engelsk: forward and backward citation chasing) de 15 benchmark-artiklene ble søkt ved hjelp av verktøyet citationchaser i R (Haddaway et al. 2022).
+Artikler som er sitert av eller siterer (engelsk: forward and backward citation chasing) de 15 benchmark-artiklene ble søkt ved hjelp av verktøyet citationchaser i R (Haddaway et al. 2022).
 
 ### 
 
@@ -154,7 +200,7 @@ Etter de-duplisering ble tittel og abstrakt screening utført ved å bruke kvali
 
 Ukentlig overvåking ble utført for gruppeuenighetsrater, og kvalifikasjonskriteriene ble revurdert og justert når frekvensen oversteg 15 %. Motstridende beslutninger ble avstemt gjennom diskusjoner med hele gjennomgangsgruppen. Studier merket som usikre på hvert trinn ble vurdert på neste nivå, med de som var merket som usikre gjennomgått av hele teamet.
 
-### 2.3 Inkluderings- og ekskluderingskriterier 
+## 2.3 Inkluderings- og ekskluderingskriterier
 
 We reviewed the collated studies obtained from the searches using the criteria set below. Only studies conducted in Norway, Sweden and Finland or systematic reviews (also referred to as meta-analyses) with global, European or Fennoscandian coverage were included in the review. Only records where the full-text is written in English, Norwegian, Swedish, or Danish were considered eligible.
 
@@ -164,27 +210,33 @@ Studies will also be eligible if they assess conflicts, tools or governance rela
 
 Studies of all scales (national, regional, and local) will be considered eligible.
 
-2.  **Eligible interventions**
+### **2.3.1 Eligible interventions**
 
 Land use and/or land cover change through one or multiple drivers (see Appendix) which are anthropogenic in origin and result in one or more of the core mechanisms (change in habitat – amount; habitat composition; habitat structure; habitat – function; indirect, e.g. changed human use in recreation etc).
 
-3.  **Eligible outcomes**
+### **2.3.2 Eligible outcomes**
 
 Eligible outcomes will include function, structure, diversity, abundance, behaviour, composition, or richness in any level of biological organisation (genetic, species, community, ecosystem, landscape – multiple ecosystems), as well as studies focusing on the amount of, diversity or category of ecosystem services (provisioning, regulating, supporting or cultural service and, carbon storage and sequestration).
 
 In addition, studies within the social sciences will be included if they explicitly address conflicts, tools and governance pertaining to effects land use and land cover change on biodiversity, ecosystem services and/or carbon sequestration and storage.
 
-4.  **Eligible types of study design**
+### **2.3.3 Eligible types of study design**
 
 All study designs will be considered eligible, including both quantitative and qualitative studies.
 
-### Study validity assessment
+## 2.4 Study validity assessment
 
-### Data coding strategy
+Matt write here
 
-### Data mapping method
+## 2.5 Data coding strategy
 
-# Review findings
+For all papers that met the eligibility criteria and were included in the review, we extracted key properties and characteristics for later data analysis. A sample of 15 papers were coded by all reviewers, to quantify disagreement in coding. Criterion for coding is provided in Appendix 3.  ‘Meta data’ included basic properties for each study, such as author names, journal/report, series, study length and years. The remaining categories included information about open science, geographical, environmental and spatial context, research type and context, taxonomic context, type of land use and land use change, outcomes and impacted measures, governance impacts and tools.
+
+## 2.6 Data mapping method
+
+Matt write here
+
+# 3 Review findings
 
 ## Results of the search for literature
 
@@ -390,7 +442,6 @@ join_Nor_form |>
   labs(x="", y="antall publikasjoner")
 ```
 
-
 ```{r study_design}
 #| echo: false
 #| message: false
@@ -410,7 +461,7 @@ join_Nor_form |>
   labs(x="", y="antall publikasjoner")
 ```
 
-###  How is research spread across the major ecosystem types/realms
+### How is research spread across the major ecosystem types/realms
 
 ```{r ecosystems }
 #| echo: false
@@ -468,8 +519,6 @@ join_Nor_form |>
   labs(x="", y="antall publikasjoner")+
   theme(legend.position = "Null")
 ```
-
-
 
 ### What are the dominant types of land use that are investigated?
 
@@ -544,7 +593,6 @@ df |>
 
 ```
 
-
 ### Open data, open code, preregistered, open access
 
 ```{r open data}
@@ -581,7 +629,6 @@ all_open |>
   ggthemes::theme_solarized()
 ```
 
-
 ```{r open access}
 #| echo: false
 #| message: false
@@ -597,12 +644,6 @@ nor_bib |>
   theme(legend.position = "Null")
 
 ```
-
-
-
-
-
-
 
 ```{r topic model}
 #| echo: false
@@ -739,7 +780,6 @@ NetMatrix <- biblioNetwork(nor_bib, analysis = "co-occurrences", network = "keyw
 net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
 ```
 
-
 ```{r co-citation}
 #| echo: false
 #| message: false
@@ -752,7 +792,6 @@ NetMatrix <- biblioNetwork(nor_bib, analysis = "co-citation", network = "referen
 # Plot the network
 net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "fruchterman", size.cex=TRUE, size=20, remove.multiple=FALSE,label=FALSE,edgesize = 10, edges.min=1)
 ```
-
 
 ```{r}
 #| echo: false
@@ -771,7 +810,6 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 # results<-biblioAnalysis(nor_bib)
 # histResults <- histNetwork(nor_bib, sep = ";")
 ```
-
 
 # Limitations of the map
 
