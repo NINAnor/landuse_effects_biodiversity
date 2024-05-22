@@ -816,16 +816,10 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 # histResults <- histNetwork(nor_bib, sep = ";")
 ```
 
-<<<<<<< HEAD
-
 # Systematic reviews
 
 # All included articles
 
-
-
-=======
->>>>>>> b57c50b9de1c7fd14f585f8c3718a2d577400698
 # Limitations of the map
 
 # Limitations of the evidence base
