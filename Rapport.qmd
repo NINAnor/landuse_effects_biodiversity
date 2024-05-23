@@ -37,7 +37,6 @@ ggplot2::theme_set(ggthemes::theme_base())
 
 ```
 
-
 ## 
 
 Version: `r params$version`
@@ -251,7 +250,7 @@ I tillegg ble studier innen samfunnsvitenskap inkludert dersom de eksplisitt tar
 
 Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative og kvalitative studier.
 
-## 2.4 Vurdering av studiene validitet
+## 2.4 Vurdering av studienes validitet
 
 Matt write here
 

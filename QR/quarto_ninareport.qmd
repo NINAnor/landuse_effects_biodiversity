@@ -84,7 +84,6 @@ abstract: Tekst inn her, et kort resymé av innholdet. \textbf{Maksimalt 4000 te
 params:
   version: "0.1"
   search-results: 36418
-
 ---
 
 ```{r}
@@ -124,6 +123,7 @@ ggplot2::theme_set(ggthemes::theme_base())
 ```
 
 # Innledning {#sec-inl}
+
 Endring i arealbruk og landdekke (LULCC) anses å være den dominerende driveren av nylig tap av biodiversitet både globalt og i Norge, og påvirker direkte naturens evne til å tilby naturgoder og -tjenester (Díaz et al., 2019; Malhi et al., 2020). LULCC påvirker også et økosystems evne til å lagre og binde karbon i jord og biologisk materiale, og påvirker dermed direkte et økosystems evne til å bidra til å motvirke og tilpasse seg klimaendringer. Å kvantifisere, forstå og formidle dynamikken i arealendringer og deres effekter på biodiversitet, økosystemtjenester og karbonlagring er derfor en forutsetning for evidensbaserte arealbruksstrategier. Imidlertid mangler det for øyeblikket systematisk evidens om dette temaet fra norske økosystemer. Mye av den offentlige diskursen på nasjonalt nivå domineres av internasjonale globale kunnskapssammendrag, til tross for betydelig usikkerhet rundt nedskalering og overføring av kunnskap fra globale og regionale synteser til lokalt/nasjonalt nivå, på tvers av økosystemer og taksonomiske grupper. Tidligere kunnskapssammendrag basert på data fra norske økosystemer har enten fulgt spesifikke tilnærminger (f.eks. Økosystemvurdering; (Nybø et al., 2017)), i stor grad basert på ekspertvurderinger (Artsdatabanken, 2021), eller vært begrenset i omfang. Mangelen på en omfattende oversikt over forskningsbasert kunnskap fra norske økosystemer fører også til at ulike interessegrupper og sektorer stoler på ulike "fakta," noe som ofte fører til eskalerende konflikter og dårlige beslutninger. Det er derfor et presserende behov både for en oppsummering av kunnskap og identifisering av reelle kunnskapshull.
 
 Politikk og beslutningstaking knyttet til arealbruk og dens effekter på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper (Guldbrandsen & Handberg, 2022; Skogen et al., 2021). Kunnskapskontrovers er også ofte en sentral egenskap ved konfliktene, og innebærer uenighet om kunnskapens status og motstridende kunnskapskrav om de miljømessige effektene av ulike alternativer for arealbruk (Aspøy & Stokland, 2022; Rusch et al., 2022). IPBES (2019, 2022a, 2022b) og IPCC (2018) har foreslått styringsmetoder og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av SDG-ene, grensen på 1,5°C og 2050-visjonen for biodiversitet. Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres utnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy i en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese og identifisering av kunnskapshull angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima.
@@ -181,7 +181,6 @@ Vi vil karakterisere den eksisterende litteraturen langs følgende akser:
 -   Which land use conflicts are most researched?
 
 -   Which tools are proposed and investigated?
-
 
 # Metoder {#sec-met}
 
@@ -296,12 +295,7 @@ Artikler som er sitert av eller siterer (engelsk: forward and backward citation 
 
 ### Sammenstilling og håndtering av søkeresultater
 
-Søkeresultater, inkludert listen over benchmarks og "citation chasing" resultater, ble lastet ned som .RIS-filer.
-Studier ble de-duplisert basert på DOI og tittelmatcher ved å bruke R-pakken ‘ASySD’ (Hair et al. 2021). Vi beholdt den nyeste versjonen av alle versjonskontrollerte artikler (for eksempel ble publiserte versjoner av forhåndstrykk beholdt).
-De-dupliserte artikler ble deretter lastet opp til RayyanAI for å lette screening.
-Artikler som besto sammendragsscreeningsstadiet ble deretter eksportert til en delt Zotero-database, og pdf-versjoner ble søkt etter ved hjelp av Zoteros pdf-søkeverktøy. Eventuelle artikler uten pdf-er ble søkt manuelt på ResearchGate eller på tidsskriftsnettsteder. Der hvor pdf-er ikke var tilgjengelige, ble de bedt om fra forfatterne. Beslutninger om eksklusjonsårsaker på fulltekststadiet ble registrert i Notes-verktøyet i Zotero.
-Koding fant sted ved bruk av et "google-form" som automatisk fylte ut et "googlesheet" som dannet databasen over inkluderte studier.
-
+Søkeresultater, inkludert listen over benchmarks og "citation chasing" resultater, ble lastet ned som .RIS-filer. Studier ble de-duplisert basert på DOI og tittelmatcher ved å bruke R-pakken ‘ASySD’ (Hair et al. 2021). Vi beholdt den nyeste versjonen av alle versjonskontrollerte artikler (for eksempel ble publiserte versjoner av forhåndstrykk beholdt). De-dupliserte artikler ble deretter lastet opp til RayyanAI for å lette screening. Artikler som besto sammendragsscreeningsstadiet ble deretter eksportert til en delt Zotero-database, og pdf-versjoner ble søkt etter ved hjelp av Zoteros pdf-søkeverktøy. Eventuelle artikler uten pdf-er ble søkt manuelt på ResearchGate eller på tidsskriftsnettsteder. Der hvor pdf-er ikke var tilgjengelige, ble de bedt om fra forfatterne. Beslutninger om eksklusjonsårsaker på fulltekststadiet ble registrert i Notes-verktøyet i Zotero. Koding fant sted ved bruk av et "google-form" som automatisk fylte ut et "googlesheet" som dannet databasen over inkluderte studier.
 
 ### Screening av artikler
 
@@ -313,44 +307,41 @@ Ukentlig overvåking ble utført for gruppeuenighetsrater, og kvalifikasjonskrit
 
 ## Inkluderings- og ekskluderingskriterier
 
-We reviewed the collated studies obtained from the searches using the criteria set below. Only studies conducted in Norway, Sweden and Finland or systematic reviews (also referred to as meta-analyses) with global, European or Fennoscandian coverage were included in the review. Only records where the full-text is written in English, Norwegian, Swedish, or Danish were considered eligible.
+Vi gikk gjennom alle studiene som ble funnet via ved, og inkluderte / ekskluderte artikler basert på kriteriene angitt nedenfor. Kun studier utført i Norge, Sverige og Finland eller systematiske oversikter (også referert til som metaanalyser) med global, europeisk eller fennoskandisk dekning ble inkludert i oversikten. Bare artikler der fullteksten er skrevet på engelsk, norsk, svensk eller dansk ble inkludert.
 
-Studies will be eligible if they assess land use or land-use-change effects on the biodiversity, ecosystem services/functions or carbon sequestration and storage in Feno-Scandinavia. Only studies that focus on terrestrial, aquatic or coastal areas are include (i.e. studies focusing on marine systems are excluded).
+Studier ble inkludert dersom de vurderte effekter av arealbruk eller arealbruksendringseffekter på biologisk mangfold, økosystemtjenester/funksjoner eller karbonbinding og lagring i Feno-Skandinavia. Bare studier som fokuserer på terrestriske, akvatiske eller kystnære områder ble inkludert (dvs. studier som fokuserer på marine systemer ble ekskludert).
 
-Studies will also be eligible if they assess conflicts, tools or governance relating to land use and cover change its effects on biodiversity, ecosystem services and/or carbon sequestration and storage by ecosystems in Fenno-Scandinavia. The relation should be explicit in study for the record to be included.
+Studier ble også inkludert dersom de vurderer konflikter, verktøy eller styring knyttet til arealbruk og dekker endringer i dets effekter på biologisk mangfold, økosystemtjenester og/eller karbonbinding og lagring av økosystemer i Fenno-Skandinavia. Forholdet måtte være eksplisitt beskrevet i studien for at posten ble inkludert.
 
-Studies of all scales (national, regional, and local) will be considered eligible.
+Studier av alle skalaer (nasjonale, regionale og lokale) ble vurdert som relevante for inkludering.
 
-### **Eligible interventions**
+### **Kvalifiserte intervensjoner**
 
-Land use and/or land cover change through one or multiple drivers (see Appendix) which are anthropogenic in origin and result in one or more of the core mechanisms (change in habitat – amount; habitat composition; habitat structure; habitat – function; indirect, e.g. changed human use in recreation etc).
+Arealbruk og/eller arealdekning endres gjennom en eller flere drivere (se vedlegg) som er av menneskeskapt opprinnelse og resulterer i en eller flere av kjernemekanismene (endring i habitat – mengde; habitatsammensetning; habitatstruktur; habitat – funksjon; indirekte , for eksempel endret menneskelig bruk i rekreasjon osv.).
 
-### **Eligible outcomes**
+### **Kvalifiserte responsvariabler (utfall)**
 
-Eligible outcomes will include function, structure, diversity, abundance, behaviour, composition, or richness in any level of biological organisation (genetic, species, community, ecosystem, landscape – multiple ecosystems), as well as studies focusing on the amount of, diversity or category of ecosystem services (provisioning, regulating, supporting or cultural service and, carbon storage and sequestration).
+Kvalifiserte utfall inkluderte funksjon, struktur, mangfold, overflod, atferd, sammensetning eller rikdom på et hvilket som helst nivå av biologisk organisasjon (genetisk, art, samfunn, økosystem, landskap – flere økosystemer), samt studier som fokuserer på mengden av mangfold eller kategori av økosystemtjenester (tilveiebringelse, regulering, støtte eller kulturell tjeneste og karbonlagring og -sekvestrering).
 
-In addition, studies within the social sciences will be included if they explicitly address conflicts, tools and governance pertaining to effects land use and land cover change on biodiversity, ecosystem services and/or carbon sequestration and storage.
+I tillegg ble studier innen samfunnsvitenskap inkludert dersom de eksplisitt tar for seg konflikter, verktøy og styring knyttet til effekter arealbruk og endring av arealdekke på biologisk mangfold, økosystemtjenester og/eller karbonbinding og lagring.
 
-### **Eligible types of study design**
+### **Kvalifiserte studiedesign**
 
-All study designs will be considered eligible, including both quantitative and qualitative studies.
+Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative og kvalitative studier.
 
-## Study validity assessment
+## Vurdering av studienes validitet
 
 Matt write here
 
-## Data coding strategy
+## Datakodestrategier
 
-For all papers that met the eligibility criteria and were included in the review, we extracted key properties and characteristics for later data analysis. A sample of 15 papers were coded by all reviewers, to quantify disagreement in coding. Criterion for coding is provided in Appendix 3.  ‘Meta data’ included basic properties for each study, such as author names, journal/report, series, study length and years. The remaining categories included information about open science, geographical, environmental and spatial context, research type and context, taxonomic context, type of land use and land use change, outcomes and impacted measures, governance impacts and tools.
+For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterium for koding er gitt i vedlegg 3.  ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy.
 
 ## Data mapping method
 
 Matt write here
 
-
 \newpage
-
-
 
 # Resultater {#res}
 
@@ -910,7 +901,6 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 
 # All included articles
 
-
 ```{r }
 #| echo: false
 #| message: false
@@ -1099,7 +1089,6 @@ paper_details |>
   coord_flip()
 ```
 
-
 ```{r funder openalex all included}
 #| echo: false
 #| message: false
@@ -1138,6 +1127,7 @@ ggplot(head(fund_counts, 10), aes(x = funder, y = n)) +
     plot.title = element_text(size = 14)
   ) 
 ```
+
 ## Open Access status
 
 ```{r open access status openalex all included}
@@ -1169,11 +1159,9 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
 
 ## Implications for management/practice
 
-
-![Nina-logoen, som eksempel på inkludering av et bilde. \label{logoen}](logo.png){width=400 height=200}
+![Nina-logoen, som eksempel på inkludering av et bilde. \label{logoen}](logo.png){width="400" height="200"}
 
 Hvis man trenger flere muligheter for definisjon av størrelse og plassering på en ferdig bilde, kan man også inkludere den med "include_graphics".
-
 
 ```{r}
 #| label: fig-logo_stor
@@ -1185,14 +1173,14 @@ Hvis man trenger flere muligheter for definisjon av størrelse og plassering på
 knitr::include_graphics("logo.png",)
 ```
 
-
-Vi kan også referere til bilder, for eksempel til @fig-logo_stor, som er inkludert i mallen.  Man kan referere til seksjoner ved å angi en referanse i headingen `{#seksjon}`. For eksempel refererer jeg nå til innledningen i @sec-inl.
-
+Vi kan også referere til bilder, for eksempel til @fig-logo_stor, som er inkludert i mallen. Man kan referere til seksjoner ved å angi en referanse i headingen `{#seksjon}`. For eksempel refererer jeg nå til innledningen i @sec-inl.
 
 \clearpage
 
 # Referanser {#references}
 
+```{=tex}
 \setlength{\parindent}{-0.2in}
 \setlength{\parskip}{8pt}
+```
 \noindent
