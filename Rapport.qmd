@@ -47,9 +47,8 @@ Vi vil karakterisere den eksisterende litteraturen langs følgende akser:
 
 -   Hvor stor andel av forskningen er basert på kvalitative metoder vs kvantitative/blandete metoder?
 
-```{=html}
 <!-- -->
-```
+
 -   Hvordan er forskningen fordelt over ulike økosystemer?
 
 -   Hvordan er forskningen fordelt over ulike disipliner?
@@ -190,12 +189,7 @@ Artikler som er sitert av eller siterer (engelsk: forward and backward citation 
 
 ### 2.2.5 Sammenstilling og håndtering av søkeresultater
 
-Søkeresultater, inkludert listen over benchmarks og "citation chasing" resultater, ble lastet ned som .RIS-filer.
-Studier ble de-duplisert basert på DOI og tittelmatcher ved å bruke R-pakken ‘ASySD’ (Hair et al. 2021). Vi beholdt den nyeste versjonen av alle versjonskontrollerte artikler (for eksempel ble publiserte versjoner av forhåndstrykk beholdt).
-De-dupliserte artikler ble deretter lastet opp til RayyanAI for å lette screening.
-Artikler som besto sammendragsscreeningsstadiet ble deretter eksportert til en delt Zotero-database, og pdf-versjoner ble søkt etter ved hjelp av Zoteros pdf-søkeverktøy. Eventuelle artikler uten pdf-er ble søkt manuelt på ResearchGate eller på tidsskriftsnettsteder. Der hvor pdf-er ikke var tilgjengelige, ble de bedt om fra forfatterne. Beslutninger om eksklusjonsårsaker på fulltekststadiet ble registrert i Notes-verktøyet i Zotero.
-Koding fant sted ved bruk av et "google-form" som automatisk fylte ut et "googlesheet" som dannet databasen over inkluderte studier.
-
+Søkeresultater, inkludert listen over benchmarks og "citation chasing" resultater, ble lastet ned som .RIS-filer. Studier ble de-duplisert basert på DOI og tittelmatcher ved å bruke R-pakken ‘ASySD’ (Hair et al. 2021). Vi beholdt den nyeste versjonen av alle versjonskontrollerte artikler (for eksempel ble publiserte versjoner av forhåndstrykk beholdt). De-dupliserte artikler ble deretter lastet opp til RayyanAI for å lette screening. Artikler som besto sammendragsscreeningsstadiet ble deretter eksportert til en delt Zotero-database, og pdf-versjoner ble søkt etter ved hjelp av Zoteros pdf-søkeverktøy. Eventuelle artikler uten pdf-er ble søkt manuelt på ResearchGate eller på tidsskriftsnettsteder. Der hvor pdf-er ikke var tilgjengelige, ble de bedt om fra forfatterne. Beslutninger om eksklusjonsårsaker på fulltekststadiet ble registrert i Notes-verktøyet i Zotero. Koding fant sted ved bruk av et "google-form" som automatisk fylte ut et "googlesheet" som dannet databasen over inkluderte studier.
 
 ### 2.2.6 Screening av artikler
 
@@ -207,33 +201,33 @@ Ukentlig overvåking ble utført for gruppeuenighetsrater, og kvalifikasjonskrit
 
 ## 2.3 Inkluderings- og ekskluderingskriterier
 
-We reviewed the collated studies obtained from the searches using the criteria set below. Only studies conducted in Norway, Sweden and Finland or systematic reviews (also referred to as meta-analyses) with global, European or Fennoscandian coverage were included in the review. Only records where the full-text is written in English, Norwegian, Swedish, or Danish were considered eligible.
+Vi gikk gjennom alle studiene som ble funnet via ved, og inkluderte / ekskluderte artikler basert på kriteriene angitt nedenfor. Kun studier utført i Norge, Sverige og Finland eller systematiske oversikter (også referert til som metaanalyser) med global, europeisk eller fennoskandisk dekning ble inkludert i oversikten. Bare artikler der fullteksten er skrevet på engelsk, norsk, svensk eller dansk ble inkludert.
 
-Studies will be eligible if they assess land use or land-use-change effects on the biodiversity, ecosystem services/functions or carbon sequestration and storage in Feno-Scandinavia. Only studies that focus on terrestrial, aquatic or coastal areas are include (i.e. studies focusing on marine systems are excluded).
+Studier ble inkludert dersom de vurderte effekter av arealbruk eller arealbruksendringseffekter på biologisk mangfold, økosystemtjenester/funksjoner eller karbonbinding og lagring i Feno-Skandinavia. Bare studier som fokuserer på terrestriske, akvatiske eller kystnære områder ble inkludert (dvs. studier som fokuserer på marine systemer ble ekskludert).
 
-Studies will also be eligible if they assess conflicts, tools or governance relating to land use and cover change its effects on biodiversity, ecosystem services and/or carbon sequestration and storage by ecosystems in Fenno-Scandinavia. The relation should be explicit in study for the record to be included.
+Studier ble også inkludert dersom de vurderer konflikter, verktøy eller styring knyttet til arealbruk og dekker endringer i dets effekter på biologisk mangfold, økosystemtjenester og/eller karbonbinding og lagring av økosystemer i Fenno-Skandinavia. Forholdet måtte være eksplisitt beskrevet i studien for at posten ble inkludert.
 
-Studies of all scales (national, regional, and local) will be considered eligible.
+Studier av alle skalaer (nasjonale, regionale og lokale) ble vurdert som relevante for inkludering.
 
-### **2.3.1 Eligible interventions**
+### **2.3.1 Kvalifiserte intervensjoner**
 
-Land use and/or land cover change through one or multiple drivers (see Appendix) which are anthropogenic in origin and result in one or more of the core mechanisms (change in habitat – amount; habitat composition; habitat structure; habitat – function; indirect, e.g. changed human use in recreation etc).
+Arealbruk og/eller arealdekning endres gjennom en eller flere drivere (se vedlegg) som er av menneskeskapt opprinnelse og resulterer i en eller flere av kjernemekanismene (endring i habitat – mengde; habitatsammensetning; habitatstruktur; habitat – funksjon; indirekte , for eksempel endret menneskelig bruk i rekreasjon osv.).
 
-### **2.3.2 Eligible outcomes**
+### **2.3.2 Kvalifiserte responsvariabler (utfall)**
 
-Eligible outcomes will include function, structure, diversity, abundance, behaviour, composition, or richness in any level of biological organisation (genetic, species, community, ecosystem, landscape – multiple ecosystems), as well as studies focusing on the amount of, diversity or category of ecosystem services (provisioning, regulating, supporting or cultural service and, carbon storage and sequestration).
+Kvalifiserte utfall inkluderte funksjon, struktur, mangfold, overflod, atferd, sammensetning eller rikdom på et hvilket som helst nivå av biologisk organisasjon (genetisk, art, samfunn, økosystem, landskap – flere økosystemer), samt studier som fokuserer på mengden av mangfold eller kategori av økosystemtjenester (tilveiebringelse, regulering, støtte eller kulturell tjeneste og karbonlagring og -sekvestrering).
 
-In addition, studies within the social sciences will be included if they explicitly address conflicts, tools and governance pertaining to effects land use and land cover change on biodiversity, ecosystem services and/or carbon sequestration and storage.
+I tillegg ble studier innen samfunnsvitenskap inkludert dersom de eksplisitt tar for seg konflikter, verktøy og styring knyttet til effekter arealbruk og endring av arealdekke på biologisk mangfold, økosystemtjenester og/eller karbonbinding og lagring.
 
-### **2.3.3 Eligible types of study design**
+### **2.3.3 Kvalifiserte studiedesign**
 
-All study designs will be considered eligible, including both quantitative and qualitative studies.
+Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative og kvalitative studier.
 
-## 2.4 Study validity assessment
+## 2.4 Vurdering av studiene validitet
 
 Matt write here
 
-## 2.5 Data coding strategy
+## 2.5 Datakodestrategier
 
 For all papers that met the eligibility criteria and were included in the review, we extracted key properties and characteristics for later data analysis. A sample of 15 papers were coded by all reviewers, to quantify disagreement in coding. Criterion for coding is provided in Appendix 3.  ‘Meta data’ included basic properties for each study, such as author names, journal/report, series, study length and years. The remaining categories included information about open science, geographical, environmental and spatial context, research type and context, taxonomic context, type of land use and land use change, outcomes and impacted measures, governance impacts and tools.
 
@@ -820,7 +814,6 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 
 # All included articles
 
-
 ```{r }
 #| echo: false
 #| message: false
@@ -1014,7 +1007,6 @@ paper_details |>
   coord_flip()
 ```
 
-
 ```{r funder openalex all included}
 #| echo: false
 #| message: false
@@ -1054,6 +1046,7 @@ ggplot(head(fund_counts, 10), aes(x = funder, y = n)) +
     plot.title = element_text(size = 14)
   ) 
 ```
+
 ## Open Access status
 
 ```{r open access status openalex all included}
