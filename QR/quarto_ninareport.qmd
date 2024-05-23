@@ -1,26 +1,41 @@
 ---
-title: Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagrin i Norge 
+title: Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge 
 subtitle: Et systematisk kart og beslutningsstøtteverktøy
 first_author:
   - name: Erlend B. Nilsen
     address: NINA Trondheim
     email: erlend.nilsen@nina.no
 second_authors:
-  - name: [Skriv in forfatter her]
-    address: [Author adress]
-    email: for.efternavn@nina.no
-  - name: [Skriv in forfatter her]
-    address: [Author adress]
-    email: for.efternavn@nina.no
+  - name: Trond Simensen
+    address: NINA Trondheim
+    email: trond.simensen@nina.no
+  - name: Frode Singsås
+    address: NINA Trondheim
+    email: frode.singsaas@nina.no
+  - name: Lasse F. Eriksen
+    address: NINA Trondheim
+    email: lasse.eriksen@nina.no
+  - name: Håkon Stokland
+    address: NINA Trondheim
+    email: hakon.stokland@nina.no
+  - name: Thomas E. Sutcliffe
+    address: NINA Trondheim
+    email: thomas.sutcliffe@nina.no
+  - name: Anders Kolstad
+    address: NINA Trondheim
+    email: anders.kolstad@nina.no
+  - name: Francesca Pilotto
+    address: NINA Lillehammer
+    email: francesca.pilotto@nina.no
 last_author:    
-  - name: [Skriv in siste forfatter her]
-    address: [Author adress]
-    email: for.efternavn@nina.no
+  - name: Matthew Grainger
+    address: NINA Trondheim
+    email: matthew.grainger@nina.no
 reportnr: 1234
 location: Trondheim
 ISBN_end: 1234-5
-self-ref: Brum, O., Robin, K. 2016. En veldig bra titel. 
-english-self-ref: the Poo, W., Robin, C. 2016. A very good title.
+self-ref: Nilsen, E.B., Grainger, M. 2024. Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge:Et systematisk kart og beslutningsstøtteverktøy  
+english-self-ref: Nilsen, E.B., Grainger, M. 2024. A very good title.
 handle-endpoint: [fås av bibliotek]
 access: Åpen
 secure_pdf:
@@ -73,8 +88,8 @@ crossref:
   sec-prefix: Kapittel
 foreword: 
     text: [Forord inn her]
-    location: [Sted, forord]
-    name: [Prosjektleder]
+    location: [Trondheim, date]
+    name: Erlend B. Nilsen
 sammendrag: |
   Tekst inn her, et kort resymé av innholdet. \textbf{Maksimalt 4000 tegn inkl. ordmellomrom. Dette er maxgrense i sammendragsfeltet i CRIStin, og dersom sammendraget er lengre kommer det ikke med her.} Teksten i sammendraget er søkbar i databaser og på nett, og er viktig for at rapporten skal fanges opp ved søk.\
   \
@@ -289,7 +304,7 @@ De 15 benchmark-artiklene var som følger:
 
 ### Ytterligere søk etter litteratur
 
-Artikler som er sitert av eller siterer (engelsk: forward and backward citation chasing) de 15 benchmark-artiklene ble søkt ved hjelp av verktøyet citationchaser i R (Haddaway et al. 2022).
+Artikler som er sitert av eller siterer (engelsk: *forward and backward citation chasing*) de 15 benchmark-artiklene ble søkt ved hjelp av verktøyet citationchaser i R (Haddaway et al. 2022).
 
 ### 
 
@@ -335,7 +350,7 @@ Matt write here
 
 ## Datakodestrategier
 
-For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterium for koding er gitt i vedlegg 3.  ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy.
+For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterier for koding er gitt i vedlegg 3.  ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy.
 
 ## Data mapping method
 
@@ -345,7 +360,7 @@ Matt write here
 
 # Resultater {#res}
 
-## Results of the search for literature
+## Resultat av litteratursøket
 
 ```{r, Prisma statement}
 #| echo: false
@@ -367,11 +382,13 @@ prisma(
 )
 ```
 
-### Sources and document types of included articles
+### Kilder og dokumenttyper for inkluderte artikler
 
-## Review descriptive statistics
+### Deskriptiv statistikk
 
-# Norway papers
+.......
+
+# Litteratur fra Norge
 
 ```{r}
 #| echo: false
@@ -476,7 +493,7 @@ nor_bib <- readRDS(here::here("data/cache_data/nor_bib.RDS"))
 join_Nor_form<-readRDS(here::here("data/cache_data/join_Nor_form.RDS"))
 ```
 
-There were `r nrow(nor_bib)` articles included that were conducted in Norway.
+Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført.
 
 ```{r openAlex topics/concepts}
 #| echo: false
@@ -504,7 +521,7 @@ ggplot(aes(x = reorder(display_name, total_score), y = total_score)) +
 coord_flip()
 ```
 
-## Chronological distribution and document contents of included articles
+## Kronologisk fordeling og innhold i inkluderte artikler fra Norge
 
 ```{r publication year}
 #| echo: false
@@ -522,7 +539,7 @@ nor_bib |>
   labs(x="Publication Year", y="Cumulative sum of publications")
 ```
 
-### What proportion of the research is based on experimental vs observational?
+## Hvor stor andel av forskningen er basert på eksperimentelle vs observasjonelle studier?
 
 ```{r research_type}
 #| echo: false
@@ -559,7 +576,7 @@ join_Nor_form |>
   labs(x="", y="antall publikasjoner")
 ```
 
-### How is research spread across the major ecosystem types/realms
+## Hvor stor andel av forskningen er gjennomført i ulike økosystemer? 
 
 ```{r ecosystems }
 #| echo: false
@@ -579,7 +596,7 @@ join_Nor_form |>
   labs(x="", y="antall publikasjoner")
 ```
 
-### How is research spread across the disciplines
+### Hvordan er forskningen fordelt på ulike disipliner?
 
 ```{r discipline}
 #| echo: false
@@ -597,7 +614,7 @@ join_Nor_form |>
 
 ```
 
-### How is research spread across level of biological organization (species, taxa, ecosystem or services)
+### Hvordan er forskningen fordelt på ulike nivåer av biologisk organisering (arter, taksonomiske nivå, økosystemtjenester osv)?
 
 ```{r taxon}
 #| echo: false
@@ -615,7 +632,7 @@ join_Nor_form |>
   theme(legend.position = "Null")
 ```
 
-### What are the dominant types of land use that are investigated?
+### Hva er de mest studerte typene av arealbruk og arealbruksendringer?
 
 ```{r landuse}
 #| echo: false
@@ -637,7 +654,7 @@ join_Nor_form |>
 
 ```
 
-### What regions (in Norway) are most represented
+### Hvilke regioner i Norge er det gjennomført mest forskning på de aktuelle tema? 
 
 ```{r County distribution}
 #| echo: false
@@ -686,7 +703,7 @@ df |>
 
 ```
 
-### Open data, open code, preregistered, open access
+### Hvor vanlig er det at studiene er basert på åpne data, åpen kildekode og preregistrering av hypoteser? 
 
 ```{r open data}
 #| echo: false
@@ -897,9 +914,9 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 # histResults <- histNetwork(nor_bib, sep = ";")
 ```
 
-# Systematic reviews
+## Systematiske litteratursammenstillinger
 
-# All included articles
+# Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
 ```{r }
 #| echo: false
@@ -1149,15 +1166,35 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
   theme(legend.position = "none")
 ```
 
-# Limitations of the map
+# Begrensninger i litteraturstudien
 
-# Limitations of the evidence base
+-   Vi har ikke funnet alle artikler (søkestreng)
 
-# Conclusions
+-   Tidsrammer og økonomiske rammer
 
-## Implications for Research
+-   
 
-## Implications for management/practice
+# Datamangler og kunnskapshull
+
+-   Savner godt designede eksperimenter, eller i det minste kvasi-eksperimenter (er nesten helt fraværende).
+
+-   Biodiversitet-effekter av arealbruk i strandsonen var lite dekket.
+
+-   Det var relativt få studier fra våtmark, i forhold til hvor stor utbredelse dette økosystemet har i Norge og Fennoscandia.
+
+-   Biodiversitet-effekter av de ulike typer installasjoner for kraftproduksjon var mindre dekket enn antatt på forhånd (spesielt vindkraft virket lite dekket sett i forhold til samfunnsfokuset og omfanget av vindkraft i naturen).
+
+-   Det var relativt få studier med bredt fokus på økosystemeffekter (og i stedet mange studier på enkeltarter).
+
+# Konklusjoner
+
+## Implikasjoner for forskning og forskningsfinansiering
+
+.....
+
+## Implikasjoner for forvaltning og politikk
+
+.....
 
 ![Nina-logoen, som eksempel på inkludering av et bilde. \label{logoen}](logo.png){width="400" height="200"}
 
