@@ -377,122 +377,798 @@ prisma(
 ```
 
 ### Sources and document types of included articles
-R-kod kan legges til på vanlig vis. Fargemønstret kan endres gjennom `highlight: xxx` Yaml-avsnittet i starten på dokumentet.
+
+## Review descriptive statistics
+
+# Norway papers
 
 ```{r}
-#| label: test-chunk1
-#Slik vises kode-kommentarer
-
-x <- 1:10 * 0.5 + rnorm(10, mean = 1, sd = 2)
-y <- 1:10
-```
-
-Quarto er så kalt "kodespråk-agnostisk" og andre programmeringspråk kan brukes. For eksempel Bash: 
-
-```{bash}
-for (( n=1; n<=5; n++ ))
-do
-echo "Rad $n"
-done
-```
-
-Eller Python, som dette skript for å finne primtal:
-
-```{python}
-lower = 1
-upper = 20
-
-for num in range(lower, upper + 1):
-   if num > 1:
-       for i in range(2, num):
-           if (num % i) == 0:
-               break
-       else:
-           print(num)
-
-
-```
-
-
-Tabeller fra R kan lages gjennom pakken `xtable`, `kable` eller `DT::datatable`, avhengig output-format. Her er et eksempel på en tabell med modellestimat fra en enkel modell. Vi quarto-variabler for å skifte mellom tabellformat, avhengig hvilken output-format vi renderer. Dette trengs ikke hvis man kun skal lage et format. Man kan også referere til en tabell, for eksempel referer jeg nå til @tbl-table1.
-
-```{r}
-#| label: tbl-table1
-#| results: asis
+#| echo: false
 #| message: false
-#| tbl-cap: Eksempeltabell
+#| warning: false
+# Extract data and plot from the extraction sheet ----
+## load libraies----
 
-mod1<-glm(y~x)
+# gs4_auth()
+## read in GoogleSheets----
 
-to_table <- round(summary(mod1)$coefficients, 3)
+# form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
+# 
+# ## clean names----
+# form <- form |>
+#   janitor::clean_names()
+# ## explore----
+# #names(form)
+# 
+# # ### select Norwegian studies----
+# Nor_form <- form |>
+#   filter(grepl("Norway", country))
+# 
+# ### selet studies that are included in the review----
+# Nor_form_inc <- Nor_form |>
+#   filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes")
+# 
+# ### Get matched details from Rayyan----
+# 
+# # read the Rayyan results
+# 
+# rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
+# rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
+# 
+# Nor_form_inc$accession_zr<-unlist(Nor_form_inc$study_id)
+# 
+# join_Nor_form <- Nor_form_inc |>
+#   left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
+# 
+# # join_Nor_form |> view()
+# 
+# join_Nor_form |>
+#   filter(is.na(join_Nor_form$doi)) |>
+#   select(study_id, study_title)
+# 
+# #### find missing doi's by title
+# which(is.na(join_Nor_form$doi))
+# #11, 47,52,60,61,63,74,75,125,158
+# 
+# works_search <- oa_fetch(
+#   entity = "works",
+#   title.search = c("Roads forestry wolves"),
+#   verbose = TRUE
+# )
+# works_search$doi
+# # "https://doi.org/10.1002/ecs2.3358"
+# 
+# join_Nor_form[11, ]$doi <- "10.3233/hsm-1986-6105"
+# #join_Nor_form[35, ]$doi <- "10.1002/ecs2.3358"
+# join_Nor_form[47, ]$doi <- "10.1017/s0024282996000424"
+# join_Nor_form[52, ]$doi <- "10.1127/nova.hedwigia/66/1998/283"
+# join_Nor_form[60, ]$doi <- NA
+# join_Nor_form[61, ]$doi <- "10.14430/arctic829"
+# join_Nor_form[63, ]$doi<-"10.1007/s002670010195"
+# join_Nor_form[c(74,75,125,158), ]$doi<-NA
+# 
+# # get openAlexR data
+# 
+# 
+# doi_list <- strsplit(join_Nor_form$doi, split = " ")
+# doi_list <- sapply(doi_list, "[[", 1)
+# 
+# # # oa_fetch(
+# # #   doi = c(doi_list),
+# # #   entity = "works",
+# # #   verbose = TRUE
+# # # ) %>%
+# # #   show_works() %>%
+# # #   knitr::kable()
+# 
+# bib_ls <- list(
+#   doi = c(doi_list),
+#   entity = "works"
+# )
+# 
+# # # oa_fetch(
+# # #   # identifier = c("W2741809807", "W2755950973"),
+# # #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
+# # #   entity = "works",
+# # #   verbose = TRUE
+# # # ) %>%
+# # #   show_works() %>%
+# # #   knitr::kable()
+# # #
+# # #
+# # #
+# nor_bib <- do.call(oa_fetch, bib_ls) %>%
+#   oa2bibliometrix()
+# saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
+# saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
+nor_bib <- readRDS(here::here("data/cache_data/nor_bib.RDS"))
+join_Nor_form<-readRDS(here::here("data/cache_data/join_Nor_form.RDS"))
+```
 
-if(names(rmarkdown::metadata$format) == "ninareport-pdf"){
-  
- xtable(to_table,
-        caption="Tabell laget med xtable.")
-  
-} else if(names(rmarkdown::metadata$format) == "ninareport-html"){
-  
-  DT::datatable(to_table, 
-                caption="Tabell laget med xtable.",
-                style = "bootstrap",
-                options = list(
-                  pageLength = 10,
-                  autoWidth = TRUE,
-                  columnDefs = list(list(width = "100px",
-                                         targets = 1))
-                )
-                )
-} else {
-  
-    knitr::kable(to_table,
-          caption="Tabell laget med xtable.")
-  
-  }
+There were `r nrow(nor_bib)` articles included that were conducted in Norway.
 
+```{r openAlex topics/concepts}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "OpenAlex topics weighted by topic score"
+
+topics_aggregated <- map_df(nor_bib$topics, ~ .x %>%
+  filter(name == "topic") |> # Filter to include only topics
+  select(display_name, score)) |> # Select relevant columns
+  group_by(display_name) |> # Group by topic name
+  summarise(
+    total_score = sum(score), # Sum scores for each topic
+    .groups = "drop"
+  ) # Drop grouping
+
+# Create a bar plot of the weighted frequencies
+topics_aggregated |> 
+  top_n(10) |> 
+ggplot(aes(x = reorder(display_name, total_score), y = total_score)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Weighted Frequency of Topics by Total Score",
+       x = "Topic",
+       y = "Total Score (Weighted Frequency)") +
+coord_flip()
+```
+
+## Chronological distribution and document contents of included articles
+
+```{r publication year}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Cumulative sum of Norwegian publications per year"
+
+nor_bib |> 
+  mutate(year=year(publication_date)) |> 
+  group_by(year) |> 
+  tally() |> 
+  mutate(csum=cumsum(n)) |> 
+  ggplot(aes(year,csum)) +
+  geom_point(colour="blue")+
+  labs(x="Publication Year", y="Cumulative sum of publications")
+```
+
+### What proportion of the research is based on experimental vs observational?
+
+```{r research_type}
+#| echo: false
+#| message: false
+#| warning: false
+
+join_Nor_form |> 
+  select(study_id ,study_title, research_type) |> 
+  group_by(research_type) |>
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(research_type, n),n,fill=research_type))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner")
+```
+
+```{r study_design}
+#| echo: false
+#| message: false
+#| warning: false
+
+join_Nor_form |> 
+  filter(grepl("observational",tolower(research_type))) |> 
+  select(study_id ,study_title,study_design_observational_studies ) |> 
+  group_by(study_design_observational_studies) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(study_design_observational_studies,n),n,fill=study_design_observational_studies))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner")
+```
+
+### How is research spread across the major ecosystem types/realms
+
+```{r ecosystems }
+#| echo: false
+#| message: false
+#| warning: false
+join_Nor_form |> 
+  group_by(ecosystem_type_main) |>
+  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
+  unnest(ecosystems_main)  |> 
+  group_by(ecosystems_main) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner")
+```
+
+### How is research spread across the disciplines
+
+```{r discipline}
+#| echo: false
+#| message: false
+#| warning: false
+join_Nor_form |> 
+  group_by(study_area_discipline) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(study_area_discipline, n),n,fill=study_area_discipline))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner")
 
 ```
 
-Figurer fungerer på vanlig vis. Figurtekst og "etikett" som man kan referere til skrives som quarto-kommentarer i kod-blokken. @fig-barplot viser et eksempel på bruk av NINAs logofarger via funksjonen `NinaR::NinaPalette`.  
+### How is research spread across level of biological organization (species, taxa, ecosystem or services)
+
+```{r taxon}
+#| echo: false
+#| message: false
+#| warning: false
+# Needs cleaning 
+join_Nor_form |> 
+  group_by(taxonomic_level) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(taxonomic_level, n),n,fill=taxonomic_level))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  labs(x="", y="antall publikasjoner")+
+  theme(legend.position = "Null")
+```
+
+### What are the dominant types of land use that are investigated?
+
+```{r landuse}
+#| echo: false
+#| message: false
+#| warning: false
+
+join_Nor_form |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(land_use, n),n,fill=land_use))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner")
+
+```
+
+### What regions (in Norway) are most represented
+
+```{r County distribution}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Norwegian counties where research was undertaken"
+my_list<-strsplit(join_Nor_form$county_name_of_norwegian_county, ",")
+
+# Function to replace specific problematic characters
+replace_problematic_chars <- function(x) {
+  # Replacing specific problematic unicode sequence if visible in the string
+  x <- gsub("\xc3\x98", "O", x, fixed = TRUE)  # Replacing 'Ø' which sometimes appears as '\xc3\x98' in UTF-8
+
+  return(x)
+}
+
+# Apply this function to each element in the list
+my_list <- lapply(my_list, function(x) {
+  if (is.character(x)) {
+    sapply(x, replace_problematic_chars, USE.NAMES = FALSE)
+  } else {
+    x
+  }
+})
+
+# Flatten the list
+flattened <- unlist(my_list)
+
+# Remove NA and clean up
+flattened <- na.omit(flattened)
+flattened <- trimws(flattened)
+
+# Create a dataframe
+df <- data.frame(Name = flattened, stringsAsFactors = FALSE)
+
+# Print the dataframe
+#print(df)
+
+df |> 
+  group_by(Name) |> 
+  tally() |> 
+  ggplot(aes(reorder(Name, n),n)) + 
+  geom_histogram(stat="identity", fill="blue")+
+  coord_flip()+
+  labs(x="", y="Antall publikasjoner")
+
+```
+
+### Open data, open code, preregistered, open access
+
+```{r open data}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+od<-join_Nor_form |> 
+  select(open_data) |> 
+  group_by(open_data) |> 
+  tally()
+oc<-join_Nor_form |> 
+  select(open_code) |> 
+  group_by(open_code) |> 
+  tally()
+pr<-join_Nor_form |> 
+  select(preregistration_or_published_protocol) |> 
+  group_by(preregistration_or_published_protocol) |> 
+  tally()
+
+names(od)<-c("Response", "n")
+names(oc)<-names(pr)<-names(od)
+od$question<-"open data"
+oc$question<-"open code"
+pr$question<-"Preregistration"
 
 
+all_open<-rbind(od,oc,pr)
+
+all_open |> 
+  ggplot(aes(Response, n, fill = question))+
+  geom_histogram(stat="identity", position = "dodge")+
+  labs(x="", y="Antall publikasjoner")
+```
+
+```{r open access}
+#| echo: false
+#| message: false
+#| warning: false
+nor_bib |> 
+  group_by(oa_status) |> 
+  tally() |> 
+  ggplot(aes(oa_status, n, fill=oa_status))+
+  geom_histogram(stat="identity")+
+  scale_fill_manual(values=c(bronze="#CD7F32", closed="red", gold="gold", green="green", hybrid="forestgreen"))+
+  labs(x="", y="Antall publikasjoner")+
+  theme(legend.position = "Null")
+
+```
+
+```{r topic model}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+
+jn_dtm<-join_Nor_form |> 
+  select(study_id, title, abstract, year)
+
+#jn_dtm$study_id<-unlist(jn_dtm$study_id)
+
+jn_dtm<-jn_dtm |> 
+  mutate(title_abs=paste0(title,abstract)) |>
+  unnest_tokens(word,title_abs) |> 
+  rowid_to_column()
+jn_dtm<-jn_dtm |> 
+  mutate(word=removeNumbers(word))
+
+jn_dtm<-jn_dtm |> 
+  filter(word !="")
+
+jn_test<-jn_dtm |> 
+distinct(study_id,.keep_all=TRUE)
+
+jn_dtm<-jn_dtm|> 
+  group_by(study_id) |> 
+  count(study_id, word, sort = TRUE)
+data(stop_words)
+jn_dtm<-jn_dtm |> 
+  anti_join(stop_words)
+
+
+
+jn_dtm<-
+  jn_dtm |> 
+  cast_dtm(study_id, word, n)
+```
 
 ```{r}
-#| label: fig-barplot
-#| fig-cap: Ett exempel med NINAs fargepalett generert fra R.
-#| fig-pos: 'h!'
+#| echo: false
+#| message: false
+#| warning: false
+# number of topics
 
-
-plot.mat <- matrix(rnorm(25, 40, sd=10), ncol=5, dimnames = list(c("Sportsfisker", "Elveeier", "Oppleid", "Fisket", "Poseidon"), c("Lakselus", "Utsetting", " Strengere restriksjoner", "Fysiske tiltak", "Flaks")))
-
-plot.mat <- tibble::tibble(Verdi = rnorm(n = 25, 
-                                 mean = 40, 
-                                 sd = 10),
-                   Prøvetyper = rep(c("Type_1",
-                                  "Type_2",
-                                  "Type_3",
-                                  "Type_4",
-                                  "Type_5"),
-                                  each = 5),
-                   Kategori = rep(c("Lengde",
-                                     "Høyde",
-                                     "Dybde",
-                                     "Vekt",
-                                     "Kvalitet"),
-                                   times = 5)
+result <- FindTopicsNumber(
+  jn_dtm,
+  topics = seq(from = 2, to = 15, by = 1),
+  metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+  method = "Gibbs",
+  control = list(seed = 77),
+  mc.cores = 2L,
+  verbose = TRUE
 )
 
-ggplot(plot.mat) +
-  geom_bar(aes(x = Verdi, y = Prøvetyper, fill = Kategori),
-           stat = "identity",
-           position = 'dodge') +
-  scale_fill_nina() 
+FindTopicsNumber_plot(result)
+
+saveRDS(result, "data/cache_data/result.RDS")
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+jn_lda <- LDA(jn_dtm, k = 6, control = list(seed = 1234))
+saveRDS(jn_lda, "data/cache_data/jn_lda.RDS")
 
 ```
 
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+jn_topics <- tidy(jn_lda, matrix = "beta")
+top_terms <- jn_topics %>%
+  group_by(topic) %>%
+  slice_max(beta, n = 20) %>% 
+  ungroup() %>%
+  arrange(topic, -beta)
+
+p1<-top_terms %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(beta, term, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  scale_y_reordered()
+
+p1
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
 
 
-Eksisterende bilder kan også legges til gjennom vanlig markdown syntax. Disse blir sentrerte. Noter at eps-filer angis uten filendelse.
+#as.data.frame(terms(jn_lda, 10))
+
+#data.frame(Topic = topics(jn_lda))
+
+lda.topics<- 
+data.frame(jn_test, Topic = topics(jn_lda)) |> 
+  add_count(title, Topic) |> 
+  group_by(title) |>  
+  mutate(Share = n/sum(n)) |> 
+  ungroup() |>  
+  mutate(Topic = paste0("Topic ", sprintf("%02d", Topic)))  |>  
+  mutate(Article = as_factor(title))
+
+# ggplot(lda.topics, aes(title, Share, color = Topic, fill = Topic)) + geom_bar(stat="identity") + ggtitle("LDA topics in Norwegian LULCC peer-reviewed studies") + xlab("") + ylab("Share of topics [%]") + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+## Mapping the effects of land use and land cover change on biodiversity, carbon and conflicts
+
+```{r keyword co-occurrence}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create keyword co-occurrences network
+
+NetMatrix <- biblioNetwork(nor_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
+
+# Plot the network
+net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
+```
+
+```{r co-citation}
+#| echo: false
+#| message: false
+#| warning: false
+
+# Create keyword co-occurrences network
+
+NetMatrix <- biblioNetwork(nor_bib, analysis = "co-citation", network = "references", sep = ";")
+
+# Plot the network
+net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "fruchterman", size.cex=TRUE, size=20, remove.multiple=FALSE,label=FALSE,edgesize = 10, edges.min=1)
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# nor_bib=metaTagExtraction(nor_bib,"CR_SO",sep=";")
+# 
+# NetMatrix <- biblioNetwork(M, analysis = "co-citation", network = "sources", sep = ";")
+# net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "auto", size.cex=TRUE, size=15, remove.multiple=FALSE, labelsize=1,edgesize = 10, edges.min=5)
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# results<-biblioAnalysis(nor_bib)
+# histResults <- histNetwork(nor_bib, sep = ";")
+```
+
+# Systematic reviews
+
+# All included articles
+
+
+```{r }
+#| echo: false
+#| message: false
+#| warning: false
+
+all_included <- synthesisr::read_ref("data/Included_at_abs/Effekter_av_arealbruk_og_arealendringer.ris")
+# head(all_included)
+# dim(all_included)
+
+## remove the excluded at full text
+
+all_included<-all_included[!grepl("excluded", tolower(all_included$note)),]
+# dim(all_included)
+
+##
+# topic models for the included papers
+
+
+text_for_topics<-all_included |> 
+  select(title, abstract) |> 
+  mutate(txt=paste0(title,abstract))
+
+tidy_topics<-text_for_topics |> 
+  unnest_tokens(word,txt)
+
+data(stop_words)
+
+tidy_topics <- tidy_topics %>%
+  anti_join(stop_words)
+
+tidy_topics_dtm<-tidy_topics |> 
+  count(title, word) |> 
+  cast_dtm(title, word, n)
+
+# needs::needs(ldatuning)
+#  determine_k <- FindTopicsNumber(
+#    tidy_topics_dtm,
+#    topics = seq(from = 2, to = 30, by = 1),
+#    metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+#    method = "Gibbs",
+#    control = list(seed = 77),
+#    mc.cores = 16L,
+#    verbose = TRUE
+#  )
+#  
+# FindTopicsNumber_plot(determine_k)
+
+# 14 topics supported
+
+
+topics_lda <- LDA(tidy_topics_dtm, k = 14, control = list(seed = 1234))
+
+
+included_topics<-tidy(topics_lda, matrix="beta")
+#included_topics<-included_topics[- grep("1", included_topics$term),]
+
+included_top_terms <- included_topics %>%
+  group_by(topic) %>%
+  slice_max(beta, n = 10) %>% 
+  ungroup() %>%
+  arrange(topic, -beta)
+
+included_top_terms %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(beta, term, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  scale_y_reordered()
+
+beta_wide <- included_top_terms %>%
+  mutate(topic = paste0("topic", topic)) %>%
+  pivot_wider(names_from = topic, values_from = beta) 
+
+#beta_wide
+
+tidy_topics |> 
+  count(word, sort = TRUE) |> 
+  wordcloud2::wordcloud2()
+
+dois<-as.character(all_included$doi)
+
+dois<-sub(" .*", "", dois)
+
+# library(openalexR)
+# paper_details<-oa_fetch(
+#   doi=dois,
+#   entity="works",
+#   verbose = TRUE
+# )
+# 
+#write_rds(paper_details, here::here("data/Included_at_abs/paper_details.rds"))
+paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
+# paper_details |> 
+#   show_works() |> 
+#   knitr::kable()
+
+
+papers_bib<-paper_details |> 
+  oa2bibliometrix() 
+
+# results<-biblioAnalysis(papers_bib)
+# S<-summary(results)
+# S
+
+
+#papers_bib$CR
+
+NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
+net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
+
+
+NetMatrix <- biblioNetwork(papers_bib, analysis = "co-citation", network = "references", sep = ";")
+
+# Plot the network
+net=networkPlot(NetMatrix, n = 30, Title = "Co-Citation Network", type = "fruchterman", size=T, remove.multiple=FALSE, labelsize=0.7,edgesize = 5)
+
+
+#Conceptual Structure using keywords (method="CA")
+
+#CS <- conceptualStructure(papers_bib,field="ID", method="CA", minDegree=5, clust=2, stemming=FALSE, labelsize=3, documents=2000)
+
+```
+
+```{r top concepts openalex all included}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+
+# Extracting top concepts for each record
+top_concepts <- lapply(paper_details$concepts, function(df) {
+  top_df <- df[order(-df$score), ][1:3, ]  # Assuming you want top 3 concepts
+  return(top_df)
+})
+
+# Count occurrences of each concept
+concept_counts <- table(unlist(lapply(top_concepts, `[[`, "display_name")))
+
+
+# Convert concept_counts to data frame
+concept_df <- data.frame(
+  concept = names(concept_counts),
+  count = as.numeric(concept_counts)
+)
+
+# Sort concepts by count
+concept_df <- concept_df[order(concept_df$count, decreasing = TRUE), ]
+
+# Plot the top concepts as a horizontal bar plot using ggplot2
+ggplot(concept_df[1:20, ], aes(x = count, y = reorder(concept, count))) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(
+    title = "Top Concepts",
+    x = "Frequency",
+    y = "Concept"
+  ) +
+  theme(
+    axis.text.y = element_text(size = 10),
+    axis.title = element_text(size = 12),
+    plot.title = element_text(size = 14)
+  ) 
+```
+
+```{r sources openalex all included}
+#| echo: false
+#| message: false
+#| warning: false
+
+paper_details |> 
+  select(so) |> 
+  group_by(so) |> 
+  tally() |> 
+  top_n(10) |> 
+  ggplot(aes(reorder(so,n),n))+
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(
+    title = "Top Sources",
+    x = "Source",
+    y = "Frequency"
+  ) +
+  theme(
+    axis.text.y = element_text(size = 10),
+    axis.title = element_text(size = 12),
+    plot.title = element_text(size = 14)
+  ) +
+  coord_flip()
+```
+
+
+```{r funder openalex all included}
+#| echo: false
+#| message: false
+#| warning: false
+
+
+# Extracting only the "funder_display_name" information from the list
+fund_list <- unlist(lapply(paper_details$grants, function(x) {
+  if ("funder_display_name" %in% names(x)) {
+    return(x[["funder_display_name"]])
+  } else {
+    return(NA_character_)
+  }
+}))
+
+# Removing NA values
+fund_list <- fund_list[!is.na(fund_list)]
+
+# Count occurrences of each funder
+fund_counts <- count(data.frame(funder = fund_list), funder)
+
+# Sort by count
+fund_counts <- arrange(fund_counts, desc(n))
+
+# Plot the top funders as a bar plot using ggplot2
+ggplot(head(fund_counts, 10), aes(x = funder, y = n)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(
+    title = "Top Funders",
+    x = "Funder",
+    y = "Number of Papers"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title = element_text(size = 12),
+    plot.title = element_text(size = 14)
+  ) 
+```
+## Open Access status
+
+```{r open access status openalex all included}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+
+o_A<-paper_details |> 
+  select(oa_status) |> 
+  group_by(oa_status) |> 
+  tally() |> 
+  mutate(pal=c("#cd7f32", "red", "gold", "green", "forestgreen")) 
+  
+o_A |> ggplot(aes(oa_status, n, fill=pal))+
+  geom_histogram(stat="identity")+
+  scale_fill_manual(values=c("#cd7f32", "forestgreen", "gold", "green", "darkred"))+
+  labs(x="Open Access status", y="Frequency")+
+  theme(legend.position = "none")
+```
+
+# Limitations of the map
+
+# Limitations of the evidence base
+
+# Conclusions
+
+## Implications for Research
+
+## Implications for management/practice
+
 
 ![Nina-logoen, som eksempel på inkludering av et bilde. \label{logoen}](logo.png){width=400 height=200}
 
