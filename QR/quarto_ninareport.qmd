@@ -31,11 +31,12 @@ last_author:
   - name: Matthew Grainger
     address: NINA Trondheim
     email: matthew.grainger@nina.no
-reportnr: 1234
+reportnr: 2472
 location: Trondheim
-ISBN_end: 1234-5
-self-ref: Nilsen, E.B., Grainger, M. 2024. Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge:Et systematisk kart og beslutningsstøtteverktøy  
-english-self-ref: Nilsen, E.B., Grainger, M. 2024. A very good title.
+ISBN_end: 978-82-426-5283-6
+self-ref: Nilsen, E.B., Simensen, T. Singsaas, F.T., Eriksen, L.F., Stokland, H., Sutcliffe, T.E., Kolstad, A., Pilotto, F., & Grainger, M. 2024. Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge. Et systematisk kart og beslutningsstøtteverktøy. NINA Rapport 2472. Norsk institutt for naturforskning
+ISBN: 978-82-426-5283-6
+english-self-ref: Nilsen, E.B., Grainger, M. 2024. Effects of land use and land cover changes on biodiversity, ecosystem services, and carbon storage in Norway: A systematic map and decision support tool. NINA Report 2472. Norwegian Institute for Nature Research
 handle-endpoint: [fås av bibliotek]
 access: Åpen
 secure_pdf:
@@ -49,8 +50,12 @@ customer: [xx]
 customer_ref: [xx]
 customer_contact: [xx]
 keywords: 
-  - ett
-  - två
+  - Systematisk kart
+  - Arealbruk
+  - Arealbruksendringer
+  - Biologisk mangfold
+  - Økosystemtjenester
+  - Arealbrukskonflikter
 englishkeywords: 
   - one
   - two
@@ -143,21 +148,27 @@ Endring i arealbruk og arealdekke (Land Use and land cover change; LULCC) anses 
 
 ## Arealbruk og arealbruksendringer i Norge
 
-Pågående areal- og landskapsendringer i Norge er til dels et resultat av globale trender og til dels et resultat av regionale endringer, lokal politikk og lokal arealbruk. Sentrale endringsprosesser er blant annet knyttet til arealendringer som følge av byggeaktivitet (bebyggelse, næringsområder, samferdsel og infrastruktur), og endret menneskelig bruk av, og påvirkning på, natur og utmark.
+Pågående areal- og landskapsendringer i Norge er et resultat av historiske prosesser, og endringer i menneskelig arealbruk som delvis skyldes globale trender og til dels et resultat av regionale endringer, lokal politikk og lokal arealbruk. Her summerer vi opp noen sentrale endringer i menneskelig arealbruk siden 1850, som bakteppe for å vurdere effekten av disse endringene på biodiversitet, økosystemtjenester og karbonlagring. 
 
-Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn verden (1%) men lavere enn gjennomsnittet i EU (4%). Det som skiller Norge fra mange andre europeiske land er at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Bebygd areal er jevnt økende; i perioden 1990-2019 ble det totalt bygget ned 1 500 km2. Det tilsvarer om lag 50 km2 årlig. Det aller meste av arealet som ble bygget ned var skog (75 pro-sent), etterfulgt av dyrket mark (14 prosent) og innmarksbeite (7 prosent). Resten (3 prosent) av arealet som er bygd ned utgjøres av kategoriene åpen og tresatt utmark, og vann og myr. Brorparten av nedbyggingen skyldtes bebyggelse (43 prosent) og veier (26 prosent). I kate-gorien bebyggelse utgjorde bygging av boliger og hytter de største andelene. I tillegg kommer kraftlinjer (10 prosent), grustak, steinbrudd o.l. (9 prosent), idrettsarenaer (6 prosent) og an-net (5 prosent; SSB tabell 09594).
+Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Norge skiller seg fra mange andre europeiske land ved at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal er ifølge SSB også i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km2, som tilsvarer litt under 50 km2 årlig. Utenom bebygd areal og jordbruksområder er Norges landareal i dag dominert av fjell, hei og vidde (45 prosent), skog (37 prosent), ferskvann, (6 prosent) og våtmark (5 prosent) og varig is og snø (1 prosent; SSB 2024). 
 
-Selv om andelen av landarealet i Norge som er direkte utbygd eller dyrket er lav, er store deler av landet klart påvirket av menneskelig arealbruk. Siden siste istid har så å si alt areal er eller har vært i bruk av mennesker – til jakt, fiske beite, skogbruk, utvinning av naturressurser, friluftsliv, og senere også til naturvern, som også er en form for arealbruk. Omfang og intensitet i den menneskelige arealbruken har endret seg mye gjennom århundrene. På terskelen til den moderne tid, omkring 1850, var naturressursene utnyttet helt til grensa for hva landområdene kunne tåle, og produksjonen var maksimert med datidens teknologi.
+Selv om andelen av landarealet i Norge som er direkte utbygd eller dyrket opp er lav (ca. 5%), er mye av landet klart påvirket av menneskelig arealbruk. Siden siste istid har så å si alt areal vært i bruk av mennesker – til jakt, fiske, beite, høsting av for, skogbruk, utvinning av naturressurser, friluftsliv og rekreasjon, og senere også til naturvern, som også er en form for arealbruk. Omfang og intensitet i den menneskelige arealbruken har imidlertid endret seg mye opp gjennom århundrene. På terskelen til den moderne tid, omkring 1850, var naturressursene utnyttet helt til grensa for hva landområdene kunne tåle, og produksjonen var maksimert med datidens teknologi. Store arealer ble påvirket av menneskelig arealbruk, men med moderat intensitet etter dagens målestokk. Ifølge Edvardsen et al. (2024) kjennetegnes perioden etter 1850 ved en polarisering av den menneskelige arealbruken, med mer intensiv bruk av de best egnede arealene til jord- og skogbruk, mens andre arealer i utmarka gradvis ble tatt ut av bruk eller tas i bruk til nye formål. Vi høster mer fra naturressursene enn før, takket være avl, teknologi, og vitenskap og innovasjon, men det foregår på en mindre del av landarealet (intensivering). Opphør av ekstensiv hevd og skjøtsel av tradisjonelle utmarksarealer fører til endringer i kulturlandskap, som beite- og slåtteenger, lyng- og fjellheier. 
 
-### Endringer 1850-1950
+Gjennom mange år har jordbruksareal er blitt bygd ned til fordel for boliger, veier, industri og andre formål, men omfattende nydyrking har kompensert for tapt jordbruksareal slik at det samlede jordbruksarealet har holdt seg nokså stabilt siden 1920-tallet (SSB 2021). Omfattende strukturendringer i jordbruket har gitt en nedgang på 45 prosent i antall gårdsbruk, fra 70 740 i 1999 til 38 633 i 2020, og omfattende endringer i både arealbruk og driftsmåter, har ført til at jordbrukslandskapet har blitt mer homogent, der tidligere mosaikkformete kulturlandskap er endret til mer sammenhengende driftsarealer. 
 
-Det som aller tydeligst kjennetegner nåtidsperiodens arealbruk er ifølge Edvardsen (2024) en polarisering av arealbruken, med mer intensiv bruk av de best egnede arealene til jord- og skogbruk, mens andre arealer i utmarka enten tas ut av bruk eller tas i bruk til nye formål. Vi høster mer fra landet enn før, takket være avl, teknologi, og vitenskap og innovasjon, men det foregår på en mindre del av landarealet. Opphør av ekstensiv hevd fører til endringer i tradisjonelle kulturlandskap.
+Det samlede arealet med fjell, hei og vidde er i tilbakegang. Redusert beite og sanking av ved til blant annet seterbruk, kombinert med akselererende klimaendringer, gjør at tre- og skoggrensene generelt stiger langsomt i Norge. Norges høyeste registrerte tregrense ligger nå 1404 meter over havet, snaut 208 meter høyere enn høyeste måling i 1918 (Jotunheimen). Arealer med varig snø og is (breer, m.m.) er i tilbakegang på grunn av varmere klima, og er nå på sitt minste etter at målinger av breer begynte tidlig på 1900-tallet (Artsdatabanken 2018, 2021).
 
-Det skyldes både redusert bruk av utmarka og varmere klima. Vi har både avskoging og «påskoging». Skoggrensa kryper sakte men sikkert oppover i fjellet. Samlet biomasse har fram til helt nylig økt, men de virkelig gamle naturskogene har vi stadig færre igjen av. Fjellheier, kystheier, beite- og slåtteenger, ofte artsrike kulturlandskap, gror igjen.
+Vi har både avskoging og «påskoging» i Norge, men det samlede arealet med skog vært relativt stabilt siden 1990-tallet. Samlet biomasse i skogene har fram til helt nylig økt, og det samlede skogvolumet er mer enn doblet de siste hundre årene, men tilveksten har flatet ut de siste årene (SSB 2021). De virkelig gamle naturskogene har vi stadig færre igjen av. Overgangen til bestandsskogbruk etter andre verdenskrig har, med større hogstflater og skogplanting i produktiv skog, har i stor grad endret skogøkosystemenes struktur. Antall kilometer nye skogsbilveier økte raskt fra 1950-tallet og fram til årtusenskiftet og øker nå svakere, med ca. 150 km pr år (Landbruksdirektoratet 2021). 
 
-Hele Norge er «i bruk» Norge gror igjen Naturen er under press Klima, natur og arealbruk henger sammen Vi eksporterer og importerer arealbruk Arealbruksdilemmaene vil øke de nærmeste tiårene
+Områder med myr og annen våtmark (dvs. myr, kilde, sumpskog og seminaturlig våteng) utgjør mellom fem og tolv prosent av landarealet i Norge. De siste 50 årene har vi hatt en betydelig reduksjon av arealer med tidligere myr og andre typer våtmark (ca. 7 000 km²) som er tapt eller forringet gjennom nedbygging, grøfting eller oppdyrking.
 
-Arealbruk i landet og i verden er tett sammenvevet. Norske eksportprodukter er basert på arealinngrep fra energiproduksjon, utvinning og høsting av naturressurser. Samtidig importerer vi produkter og tjenester som ofte gir arealendringer og naturtap andre steder i verden, et fenomen som kalles telekobling av arealbruk (#ref). Mye tyder på at arealbruksdilemmaene kommer til å øke i omfang i årene framover. Viktige kilder til kunnskap om endringer i arealbruk over tid er statistikk og overvåkingsprogram som gjennomføres i regi av blant andre Statistisk sentralbyrå (SSB) og Norsk institutt for bioøkonomi (NIBIO). SSBs arealbrukskart som har blitt produsert årlig siden 2013 (Rørholt et al. 2024), mens systematisk kartlegging og overvåkning av arealbruk gjennom landsskogtakseringen har pågått siden 1980-tallet (Breidenbach et al. 2020). Vi har i dag flere overvåkingssystem for kartlegging av areal- og vegetasjonstyper i et utvalg prøveflater (AR 18x18; Bryn et al. 2018), skogressurser (Breidenbach et al. 2020) og kartlegging av naturtyper basert på utvalgskartleggingstikk (Tingstad et al. nnnn). Disse programmene vil gi verdifull innsikt i endringer i arealbruk over tid, men i 2024 er det få av programmene som har pågått lenge nok til å gi persise estimat over arealendringer i alle naturtyper.
+Omkring en tredjedel av vannarealet i Norge er påvirket av vannkraftutbygging, tilsvarende i underkant av 6 000 km². Et areal på om lag 1 000 km² er neddemt, og 15 av Norges 20 høyeste fossefall er regulert. Rundt 64 prosent av Norges samlede vannkraftpotensial er i dag bygget ut, mens 23 prosent er vernet.
+
+De første naturfredningene av enkeltlokaliteter i Norge ble vedtatt i 1905 og Norges første Nasjonalpark, Rondane, ble opprettet i 1962. Den den største veksten i vernet areal og antall verneområder skjedde på 1980- og 2000-tallet. I dag er 17,5 prosent av landområdene i Norge vernet (Miljødirektoratet 2022). Dette arealet domineres av høyfjellsområder, og flere viktige naturtyper er i liten grad fanget opp. Dette gjelder spesielt skog, kyst- og sjøområder.
+
+Vi vet fra andre land at naturlige forstyrrelser i økosystemene i form av for eksempel skogbranner, insektangrep, vindfall, flom, ras og skred øker i takt med et endret klima. Vi har generelt lite data om omfanget og frekvensen av slike forstyrrelser over tid i Norge, men regionale prognoser for Norge tilsier færre døgn med snø, økt omfang av naturlige forstyrrelser i økosystemene i form av skogbranner, insektangrep, vindfall, flom, ras og skred.
+
+SETT INN FIGUR HER
 
 ## Involvering av brukere og samfunnsaktører
 
