@@ -277,11 +277,8 @@ For å sørge for at søket ga en god dekning av den aktuelle litteraturen valgt
 unique_citations <- readRDS(here::here("data/unique_citations.RDS"))
 source_comparison <- compare_sources(unique_citations, comp_type = "sources")
 # Generate a source comparison upset plot.
-plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
+plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE), main.bar.color="#d01c8b", matrix.color="#b8e186", point.size=5,sets.bar.color=c("#4dac26"))
 ```
-
-Matt: add colour to this figure
-
 
 De 15 benchmark-artiklene var som følger:
 
@@ -318,7 +315,6 @@ De 15 benchmark-artiklene var som følger:
 ### Ytterligere søk etter litteratur
 
 Artikler som er sitert av eller siterer (engelsk: *forward and backward citation chasing*) de 15 benchmark-artiklene ble søkt ved hjelp av verktøyet citationchaser i R (Haddaway et al. 2022).
-
 
 ### Sammenstilling og håndtering av søkeresultater
 
@@ -358,7 +354,17 @@ Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative o
 
 ## Vurdering av studienes validitet
 
-Matt write here
+We did not assess the quality of the included primary studies as we aimed to map the available evidence; however for the review papers we modified the [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/) approach to assess evidence certainty. Each review article was assessed in terms of Risk of bias, Imprecision, Inconsistency, Indirectness and Publication bias. We assessed each review against these criteria to determine how much confidence we have in the evidence presented.
+
+| GRADE domains        | Description                                                                                                                                                                                                                                                                                                                  |
+|------------|------------------------------------------------------------|
+| 1\. Risk of bias     | Bias occurs when a study's results are skewed due to design or conduct flaws. This uncertainty lowers confidence in the estimated effect, as potential biases can influence results. Assessors need to decide whether the risk of bias in individual studies significantly impacts their confidence in the treatment effect. |
+| 2\. Imprecision      | The GRADE approach evaluates imprecision by examining the 95% confidence interval around the best estimate of the absolute effect. Certainty is reduced if management decisions would differ depending on whether the true effect lies at the upper or lower end of this interval.                                           |
+| 3\. Inconsistency    | Certainty is highest when multiple studies show consistent effects. Assessors should assess the similarity of point estimates, the overlap of confidence intervals, and statistical heterogeneity to determine if inconsistency affects the certainty.                                                                       |
+| 4\. Indirectness     | Evidence is most reliable when studies directly compare the interventions and population of interest, reporting outcomes critical for decision-making.                                                                                                                                                                       |
+| 5\. Publication bias | Publication bias is challenging because it involves inferring missing evidence. Despite their limitations, statistical and visual methods can help detect publication bias, which is more common in observational data.                                                                                                      |
+
+: Modification of the GRADE approach to assessing summarised evidence
 
 ## Datakodestrategier
 
@@ -539,22 +545,34 @@ coord_flip()
 
 ### Kronologisk fordeling og innhold i inkluderte artikler fra Norge
 
-Matt - add second axis with the actual numbers
-
 ```{r publication year}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Cumulative sum of Norwegian publications per year"
+#| fig-cap: "Number of Norwegian publications per year"
 
-nor_bib |> 
+plot_years<-nor_bib |> 
   mutate(year=year(publication_date)) |> 
   group_by(year) |> 
   tally() |> 
-  mutate(csum=cumsum(n)) |> 
-  ggplot(aes(year,csum)) +
-  geom_point(colour="blue")+
-  labs(x="Publication Year", y="Cumulative sum of publications")
+  mutate(csum=cumsum(n))
+
+
+plot_years |> 
+ggplot(aes(x = year)) +
+  geom_point(aes(y = csum), color = "blue") +
+  geom_bar(aes(y = n), stat = "identity", fill = "red", alpha = 0.5) +  # Scale n to fit the secondary axis
+  scale_y_continuous(
+    name = "Cumulative Sum",
+    sec.axis = sec_axis(~., name = "Count (n)")  # Reverse the scaling for the secondary axis
+  ) +
+  theme(
+    axis.title.y = element_text(color = "blue"),
+    axis.text.y = element_text(color = "blue"),
+    axis.title.y.right = element_text(color = "red"),
+    axis.text.y.right = element_text(color = "red")
+  )
+
 ```
 
 ### Hvor stor andel av forskningen er basert på eksperimentelle vs observasjonelle studier?
@@ -638,11 +656,17 @@ join_Nor_form |>
 #| echo: false
 #| message: false
 #| warning: false
-# Needs cleaning 
+'%!in%' <- function(x,y)!('%in%'(x,y))
 join_Nor_form |> 
   group_by(taxonomic_level) |> 
   tally() |> 
-  drop_na() |> 
+  drop_na() |>
+  mutate(taxonomic_level=case_when(
+    taxonomic_level %!in% c("Class", "Family","Genus", "Kingdom", "Order", "Species")~"other",
+    TRUE~taxonomic_level
+  )) |> 
+  group_by(taxonomic_level) |> 
+  summarise(n=sum(n)) |> 
   ggplot(aes(reorder(taxonomic_level, n),n,fill=taxonomic_level))+
   geom_histogram(stat="identity")+
   coord_flip()+
@@ -652,26 +676,56 @@ join_Nor_form |>
 
 ### Hva er de mest studerte typene av arealbruk og arealbruksendringer?
 
-Matt: two figures -1) pooled classes 2) Top ten
-
-
 ```{r landuse}
 #| echo: false
 #| message: false
 #| warning: false
 
-join_Nor_form |> 
+p2<-join_Nor_form |> 
   group_by(x23) |>
   mutate(land_use = strsplit(x23, ","))  |> 
   unnest(land_use)  |> 
   group_by(land_use) |> 
   tally() |> 
   drop_na() |> 
+  top_n(10) |> 
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
   labs(x="", y="antall publikasjoner")
+
+
+p1<-join_Nor_form |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  tally() |> 
+  drop_na() |> 
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Agriculture",
+    grepl("Biological resource use", land_use)~"Biological",
+    grepl("Energy", land_use)~"Energy",
+    grepl("Resident", land_use)~"Residential",
+    grepl("Transport", land_use)~"Transportation",
+    grepl("fish", land_use)~"Biological",
+    TRUE~land_use
+  )) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  group_by(land_use) |> 
+  summarise(n=sum(n))|> 
+   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
+   geom_histogram(stat="identity")+
+   coord_flip()+
+   theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")
+
+library(patchwork)
+
+p1 / p2 +
+  plot_layout(guides = 'collect')
+
 
 ```
 
@@ -938,7 +992,6 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 Matt Add text around figures and add ecosystem services plots
 
 Matt Add social science figures
-
 
 ## Systematiske litteratursammenstillinger
 
