@@ -34,9 +34,9 @@ last_author:
 reportnr: 2472
 location: Trondheim
 ISBN_end: 978-82-426-5283-6
-self-ref: Nilsen, E.B., Simensen, T. Singsaas, F.T., Eriksen, L.F., Stokland, H., Sutcliffe, T.E., Kolstad, A., Pilotto, F., & Grainger, M. 2024. Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge. Et systematisk kart og beslutningsstøtteverktøy. NINA Rapport 2472. Norsk institutt for naturforskning
+self-ref: 'Nilsen, E.B., Simensen, T. Singsaas, F.T., Eriksen, L.F., Stokland, H., Sutcliffe, T.E., Kolstad, A., Pilotto, F., & Grainger, M. 2024. Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge. Et systematisk kart og beslutningsstøtteverktøy. NINA Rapport 2472. Norsk institutt for naturforskning'
 ISBN: 978-82-426-5283-6
-english-self-ref: Nilsen, E.B., Grainger, M. 2024. Effects of land use and land cover changes on biodiversity, ecosystem services, and carbon storage in Norway: A systematic map and decision support tool. NINA Report 2472. Norwegian Institute for Nature Research
+english-self-ref: 'Nilsen, E.B., Grainger, M. 2024. Effects of land use and land cover changes on biodiversity, ecosystem services, and carbon storage in Norway: A systematic map and decision support tool. NINA Report 2472. Norwegian Institute for Nature Research'
 handle-endpoint: [fås av bibliotek]
 access: Åpen
 secure_pdf:
