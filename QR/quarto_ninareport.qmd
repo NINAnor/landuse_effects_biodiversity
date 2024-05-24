@@ -282,7 +282,6 @@ plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 
 Matt: add colour to this figure
 
-
 De 15 benchmark-artiklene var som følger:
 
 -   Aune, S., Bryn, A. & Hovstad, K.A. 2018. Loss of semi-natural grassland in a boreal landscape: impacts of agricultural intensification and abandonment. Journal of Land Use Science 13(4): 375-390. <https://doi.org/10.1080/1747423x.2018.1539779>
@@ -318,7 +317,6 @@ De 15 benchmark-artiklene var som følger:
 ### Ytterligere søk etter litteratur
 
 Artikler som er sitert av eller siterer (engelsk: *forward and backward citation chasing*) de 15 benchmark-artiklene ble søkt ved hjelp av verktøyet citationchaser i R (Haddaway et al. 2022).
-
 
 ### Sammenstilling og håndtering av søkeresultater
 
@@ -654,7 +652,6 @@ join_Nor_form |>
 
 Matt: two figures -1) pooled classes 2) Top ten
 
-
 ```{r landuse}
 #| echo: false
 #| message: false
@@ -938,7 +935,6 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 Matt Add text around figures and add ecosystem services plots
 
 Matt Add social science figures
-
 
 ## Systematiske litteratursammenstillinger
 
