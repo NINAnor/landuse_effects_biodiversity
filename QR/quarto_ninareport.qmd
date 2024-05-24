@@ -138,40 +138,30 @@ ggplot2::theme_set(ggthemes::theme_base())
 ```
 
 # Innledning {#sec-inl}
-Endring i arealbruk og landdekke (Land Use and land cover change; LULCC) anses å være den dominerende driveren av nylig tap av biodiversitet både globalt og i Norge, og påvirker direkte naturens evne til å tilby naturgoder og -tjenester (Díaz et al., 2019; Malhi et al., 2020). LULCC påvirker også et økosystems evne til å lagre og binde karbon i jord og biologisk materiale, og påvirker dermed direkte et økosystemeness evne til å bidra til å motvirke og tilpasse seg klimaendringer direkte. Å kvantifisere, forstå og formidle dynamikken i arealendringer og deres effektener på biodiversitet, økosystemtjenester og karbonlagring er derfor en forutsetning for kunnskapsevidensbaserte arealbruksstrategier. Imidlertid mangler det for øyeblikket systematisk evidens om dette temaet fra norske økosystemer. Dette inkluderer både grunnleggende usikkerhet rundt årsak-virkningsmekanismer når det gjelder effekter av arealutnyttelse på naturmangfold og med tanke på det empirisk datagrunnlag. Mye av den offentlige diskursen på nasjonalt nivå domineres av internasjonale globale kunnskapssyntesersammendrag, til tross for betydelig usikkerhet rundt nedskalering og overføring av kunnskap fra globale og regionale synteser til nasjonalt eller lokalt/nasjonalt nivå, på tvers av økosystemer og taksonomiske grupper. Tidligere kunnskapssammenstillingerammendrag basert på data fra norske økosystemer har enten fulgt spesifikke tilnærminger med data for utvalgte indikatorer (f.eks. Vurdering av økologisk tilstand Økosystemvurdering; (Nybø et al., 2017)), i stor grad basert på ekspertvurderinger (Artsdatabanken, 2018, 2021), eller vært begrenset i omfang. Mangelen på en samlet og omfattende oversikt over forskningsbasert kunnskap fra norske økosystemer fører også til at ulike interessegrupper og sektorer stoler på ulike “fakta,” noe som ofte fører til eskalerende konflikter og dårlige beslutninger. Det er derfor et presserende behov både for en oppsummering av kunnskap og identifisering av reelle kunnskapshull.
-Politikk og beslutningstaking knyttet til arealbruk og dens effekter av arealbruk  på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper (Guldbrandsen & Handberg, 2022; Skogen et al., 2021). KunnskapskKontrovers om kunnskapsgrunnlaget er også ofte etn sentralt egenskapaspekt ved konfliktene, kjennetegnet vedog innebærer uenighet om kunnskapens status og motstridende tolkning av kunnskapenkunnskapskrav om de miljømessige effektene av ulike alternativer for arealbruk (Aspøy & Stokland, 2022; Rusch et al., 2022). IPBES (2019, 2022a, 2022b) og IPCC (2018) har foreslått styringsmetoder og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av FNs bærekraftsmål (Sustainable development goals (SDG) SDG-ene, klimaavtalens mål om å begrense global oppvarming til grensen på 1,5°C og den globale naturavtalens 2050-visjonen om å stanse og reversere fortap av biodiversitet . Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres implementeringutnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy til en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese som ogsåog identifiseringer av kunnskapshull knyttet til angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima.
-Systematiske kart (også kjent som Evidenshullkart eller Evidenshullkart) ble utvikletdesignet for å gi en oversikt over tilgjengelig evidens om et bredt tema (Saran et al., 2020). Mens systematiske kunnskapsoversikter (systematic reviews)De søker ikke å svare på smale, veldefinerte spørsmål (slik systematiske oversikter gjør), er systematiske kart først og fremst egnet men heller å gi et middel til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål (James et al., 2016). Systematiske kart har blitt realisert på en rekke ulike måter, men gir generelt resultatene på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser (Miake-Lye et al., 2016). Interaktive figurer og applikasjonerplott og som visualiserer kartleggingen blir i økende grad brukt for å gi en dynamisk sammenstilling og presentasjon forutgang til brukerne (slik som EviAtlas; Haddaway et al., 2019). Det er viktig at systematiske kart over kunnskap ikke fremstilles som et mål i seg selv. Systematiske kart forteller først og fremst hva vi har kunnskap om, mens systematiske oversikter indikerer hva vekten av evidens sier om utvalgte forskningsspørsmål. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. stemmeoptelling, jf. (Hedges & Olkin, 1980)). Systematiske kart kan ikke erstatte rigoriteten til systematiske oversikter, men kan gi beslutningstakere forståelse av evidensgrunnlaget ved å belyse hull eller klynger av evidens. De kan vise hvor evidenssyntese kan eller bør finne sted (dvs. For hvilke forskningsspørsmål det er tilstrekkelig med tilgjengelig evidens for en systematisk oversikt) eller hvor primærforskning er nødvendig (dvs. det er mangel på evidens). Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i beslutningskonteksten (Carrick et al., 2019).
+
+Endring i arealbruk og arealdekke (Land Use and land cover change; LULCC) anses å være den dominerende driveren av nylig tap av biodiversitet både globalt og i Norge, og påvirker direkte naturens evne til å tilby naturgoder og -tjenester (Díaz et al., 2019; Malhi et al., 2020). LULCC påvirker også et økosystems evne til å lagre og binde karbon i jord og biologisk materiale, og påvirker dermed direkte et økosystemeness evne til å bidra til å motvirke og tilpasse seg klimaendringer direkte. Å kvantifisere, forstå og formidle dynamikken i arealendringer og deres effektener på biodiversitet, økosystemtjenester og karbonlagring er derfor en forutsetning for kunnskapsevidensbaserte arealbruksstrategier. Imidlertid mangler det for øyeblikket systematisk evidens om dette temaet fra norske økosystemer. Dette inkluderer både grunnleggende usikkerhet rundt årsak-virkningsmekanismer når det gjelder effekter av arealutnyttelse på naturmangfold og med tanke på det empirisk datagrunnlag. Mye av den offentlige diskursen på nasjonalt nivå domineres av internasjonale globale kunnskapssyntesersammendrag, til tross for betydelig usikkerhet rundt nedskalering og overføring av kunnskap fra globale og regionale synteser til nasjonalt eller lokalt/nasjonalt nivå, på tvers av økosystemer og taksonomiske grupper. Tidligere kunnskapssammenstillingerammendrag basert på data fra norske økosystemer har enten fulgt spesifikke tilnærminger med data for utvalgte indikatorer (f.eks. Vurdering av økologisk tilstand Økosystemvurdering; (Nybø et al., 2017)), i stor grad basert på ekspertvurderinger (Artsdatabanken, 2018, 2021), eller vært begrenset i omfang. Mangelen på en samlet og omfattende oversikt over forskningsbasert kunnskap fra norske økosystemer fører også til at ulike interessegrupper og sektorer stoler på ulike “fakta,” noe som ofte fører til eskalerende konflikter og dårlige beslutninger. Det er derfor et presserende behov både for en oppsummering av kunnskap og identifisering av reelle kunnskapshull. Politikk og beslutningstaking knyttet til arealbruk og dens effekter av arealbruk på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper (Guldbrandsen & Handberg, 2022; Skogen et al., 2021). Kontrovers om kunnskapsgrunnlaget er også ofte etn sentralt egenskapaspekt ved konfliktene, kjennetegnet vedog innebærer uenighet om kunnskapens status og motstridende tolkning av kunnskapenkunnskapskrav om de miljømessige effektene av ulike alternativer for arealbruk (Aspøy & Stokland, 2022; Rusch et al., 2022). IPBES (2019, 2022a, 2022b) og IPCC (2018) har foreslått styringsmetoder og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av FNs bærekraftsmål (Sustainable development goals (SDG) SDG-ene, klimaavtalens mål om å begrense global oppvarming til grensen på 1,5°C og den globale naturavtalens 2050-visjonen om å stanse og reversere fortap av biodiversitet. Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres implementeringutnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy til en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese som ogsåog identifiseringer av kunnskapshull knyttet til angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima. Systematiske kart (også kjent som Evidenshullkart eller Evidenshullkart) ble utvikletdesignet for å gi en oversikt over tilgjengelig evidens om et bredt tema (Saran et al., 2020). Mens systematiske kunnskapsoversikter (systematic reviews). De søker ikke å svare på smale, veldefinerte spørsmål (slik systematiske oversikter gjør), er systematiske kart først og fremst egnet men heller å gi et middel til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål (James et al., 2016). Systematiske kart har blitt realisert på en rekke ulike måter, men gir generelt resultatene på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser (Miake-Lye et al., 2016). Interaktive figurer og applikasjonerplott og som visualiserer kartleggingen blir i økende grad brukt for å gi en dynamisk sammenstilling og presentasjon forutgang til brukerne (slik som EviAtlas; Haddaway et al., 2019). Det er viktig at systematiske kart over kunnskap ikke fremstilles som et mål i seg selv. Systematiske kart forteller først og fremst hva vi har kunnskap om, mens systematiske oversikter indikerer hva vekten av evidens sier om utvalgte forskningsspørsmål. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. stemmeoptelling, jf. (Hedges & Olkin, 1980)). Systematiske kart kan ikke erstatte rigoriteten til systematiske oversikter, men kan gi beslutningstakere forståelse av evidensgrunnlaget ved å belyse hull eller klynger av evidens. De kan vise hvor evidenssyntese kan eller bør finne sted (dvs. for hvilke forskningsspørsmål det er tilstrekkelig med tilgjengelig evidens for en systematisk oversikt) eller hvor primærforskning er nødvendig (dvs. det er mangel på evidens). Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i beslutningskonteksten (Carrick et al., 2019).
 
 ## Arealbruk og arealbruksendringer i Norge
 
 Pågående areal- og landskapsendringer i Norge er til dels et resultat av globale trender og til dels et resultat av regionale endringer, lokal politikk og lokal arealbruk. Sentrale endringsprosesser er blant annet knyttet til arealendringer som følge av byggeaktivitet (bebyggelse, næringsområder, samferdsel og infrastruktur), og endret menneskelig bruk av, og påvirkning på, natur og utmark.
 
-Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn verden (1%) men lavere enn gjennomsnittet i EU (4%). Det som skiller Norge fra mange andre europeiske land er at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Bebygd areal er jevnt økende; i perioden 1990-2019 ble det totalt bygget ned 1 500 km2. Det tilsvarer om lag 50 km2 årlig. Det aller meste av arealet som ble bygget ned var skog (75 pro-sent), etterfulgt av dyrket mark (14 prosent) og innmarksbeite (7 prosent). Resten (3 prosent) av arealet som er bygd ned utgjøres av kategoriene åpen og tresatt utmark, og vann og myr. Brorparten av nedbyggingen skyldtes bebyggelse (43 prosent) og veier (26 prosent). I kate-gorien bebyggelse utgjorde bygging av boliger og hytter de største andelene. I tillegg kommer kraftlinjer (10 prosent), grustak, steinbrudd o.l. (9 prosent), idrettsarenaer (6 prosent) og an-net (5 prosent; SSB tabell 09594). 
+Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn verden (1%) men lavere enn gjennomsnittet i EU (4%). Det som skiller Norge fra mange andre europeiske land er at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Bebygd areal er jevnt økende; i perioden 1990-2019 ble det totalt bygget ned 1 500 km2. Det tilsvarer om lag 50 km2 årlig. Det aller meste av arealet som ble bygget ned var skog (75 pro-sent), etterfulgt av dyrket mark (14 prosent) og innmarksbeite (7 prosent). Resten (3 prosent) av arealet som er bygd ned utgjøres av kategoriene åpen og tresatt utmark, og vann og myr. Brorparten av nedbyggingen skyldtes bebyggelse (43 prosent) og veier (26 prosent). I kate-gorien bebyggelse utgjorde bygging av boliger og hytter de største andelene. I tillegg kommer kraftlinjer (10 prosent), grustak, steinbrudd o.l. (9 prosent), idrettsarenaer (6 prosent) og an-net (5 prosent; SSB tabell 09594).
 
-Selv om andelen av landarealet i Norge som er direkte utbygd eller dyrket er lav, er store deler av landet klart påvirket av menneskelig arealbruk. Siden siste istid har så å si alt areal er eller har vært i bruk av mennesker – til jakt, fiske beite, skogbruk, utvinning av naturressurser, friluftsliv, og senere også til naturvern, som også er en form for arealbruk. Omfang og intensitet i den menneskelige arealbruken har endret seg mye gjennom århundrene. 
-På terskelen til den moderne tid, omkring 1850, var naturressursene utnyttet helt til grensa for hva landområdene kunne tåle, og produksjonen var maksimert med datidens teknologi.
+Selv om andelen av landarealet i Norge som er direkte utbygd eller dyrket er lav, er store deler av landet klart påvirket av menneskelig arealbruk. Siden siste istid har så å si alt areal er eller har vært i bruk av mennesker – til jakt, fiske beite, skogbruk, utvinning av naturressurser, friluftsliv, og senere også til naturvern, som også er en form for arealbruk. Omfang og intensitet i den menneskelige arealbruken har endret seg mye gjennom århundrene. På terskelen til den moderne tid, omkring 1850, var naturressursene utnyttet helt til grensa for hva landområdene kunne tåle, og produksjonen var maksimert med datidens teknologi.
 
 ### Endringer 1850-1950
-Det som aller tydeligst kjennetegner nåtidsperiodens arealbruk er ifølge Edvardsen (2024) en polarisering av arealbruken, med mer intensiv bruk av de best egnede arealene til jord- og skogbruk, mens andre arealer i utmarka enten tas ut av bruk eller tas i bruk til nye formål. Vi høster mer fra landet enn før, takket være avl, teknologi, og vitenskap og innovasjon, men det foregår på en mindre del av landarealet. Opphør av ekstensiv hevd fører til endringer i tradisjonelle kulturlandskap. 
 
-Det skyldes både redusert bruk av utmarka og varmere klima. Vi har både avskoging og «påskoging». Skoggrensa kryper sakte men sikkert oppover i fjellet. Samlet biomasse har fram til helt nylig økt, men de virkelig gamle naturskogene har vi stadig færre igjen av. Fjellheier, kystheier, beite- og slåtteenger, ofte artsrike kulturlandskap, gror igjen. 
+Det som aller tydeligst kjennetegner nåtidsperiodens arealbruk er ifølge Edvardsen (2024) en polarisering av arealbruken, med mer intensiv bruk av de best egnede arealene til jord- og skogbruk, mens andre arealer i utmarka enten tas ut av bruk eller tas i bruk til nye formål. Vi høster mer fra landet enn før, takket være avl, teknologi, og vitenskap og innovasjon, men det foregår på en mindre del av landarealet. Opphør av ekstensiv hevd fører til endringer i tradisjonelle kulturlandskap.
 
-Hele Norge er «i bruk»
-Norge gror igjen
-Naturen er under press
-Klima, natur og arealbruk henger sammen
-Vi eksporterer og importerer arealbruk
-Arealbruksdilemmaene vil øke de nærmeste tiårene
+Det skyldes både redusert bruk av utmarka og varmere klima. Vi har både avskoging og «påskoging». Skoggrensa kryper sakte men sikkert oppover i fjellet. Samlet biomasse har fram til helt nylig økt, men de virkelig gamle naturskogene har vi stadig færre igjen av. Fjellheier, kystheier, beite- og slåtteenger, ofte artsrike kulturlandskap, gror igjen.
 
-Arealbruk i landet og i verden er tett sammenvevet. Norske eksportprodukter er basert på arealinngrep fra energiproduksjon, utvinning og høsting av naturressurser. Samtidig importerer vi produkter og tjenester som ofte gir arealendringer og naturtap andre steder i verden, et fenomen som kalles telekobling av arealbruk (#ref). 
-Mye tyder på at arealbruksdilemmaene kommer til å øke i omfang i årene framover. 
-Viktige kilder til kunnskap om endringer i arealbruk over tid er statistikk og overvåkingsprogram som gjennomføres i regi av blant andre Statistisk sentralbyrå (SSB) og Norsk institutt for bioøkonomi (NIBIO). SSBs arealbrukskart som har blitt produsert årlig siden 2013  (Rørholt et al. 2024), mens systematisk kartlegging og overvåkning av arealbruk gjennom landsskogtakseringen har pågått siden 1980-tallet (Breidenbach et al. 2020). Vi har i dag flere overvåkingssystem for kartlegging av areal- og vegetasjonstyper i et utvalg prøveflater (AR 18x18; Bryn et al. 2018), skogressurser (Breidenbach et al. 2020) og kartlegging av naturtyper basert på utvalgskartleggingstikk (Tingstad et al. nnnn). Disse programmene vil gi verdifull innsikt i endringer i arealbruk over tid, men i 2024 er det få av programmene som har pågått lenge nok til å gi persise estimat over arealendringer i alle naturtyper.
+Hele Norge er «i bruk» Norge gror igjen Naturen er under press Klima, natur og arealbruk henger sammen Vi eksporterer og importerer arealbruk Arealbruksdilemmaene vil øke de nærmeste tiårene
 
+Arealbruk i landet og i verden er tett sammenvevet. Norske eksportprodukter er basert på arealinngrep fra energiproduksjon, utvinning og høsting av naturressurser. Samtidig importerer vi produkter og tjenester som ofte gir arealendringer og naturtap andre steder i verden, et fenomen som kalles telekobling av arealbruk (#ref). Mye tyder på at arealbruksdilemmaene kommer til å øke i omfang i årene framover. Viktige kilder til kunnskap om endringer i arealbruk over tid er statistikk og overvåkingsprogram som gjennomføres i regi av blant andre Statistisk sentralbyrå (SSB) og Norsk institutt for bioøkonomi (NIBIO). SSBs arealbrukskart som har blitt produsert årlig siden 2013 (Rørholt et al. 2024), mens systematisk kartlegging og overvåkning av arealbruk gjennom landsskogtakseringen har pågått siden 1980-tallet (Breidenbach et al. 2020). Vi har i dag flere overvåkingssystem for kartlegging av areal- og vegetasjonstyper i et utvalg prøveflater (AR 18x18; Bryn et al. 2018), skogressurser (Breidenbach et al. 2020) og kartlegging av naturtyper basert på utvalgskartleggingstikk (Tingstad et al. nnnn). Disse programmene vil gi verdifull innsikt i endringer i arealbruk over tid, men i 2024 er det få av programmene som har pågått lenge nok til å gi persise estimat over arealendringer i alle naturtyper.
 
 ## Involvering av brukere og samfunnsaktører
 
 Utkastet til vurderingen ble presentert på en konferanse holdt av Miljødirektoratet og Norges forskningsråd 23. oktober 2022. Et generelt interessentmøte ble arrangert av NINA 25. april 2023. Fokus og omfang av vurderingen ble innsnevret og bedre definert under et spesifikt interessentarrangement den #date. Detaljer om dette møtet og endringene i omfang er tilgjengelige på forespørsel. Interessenter som deltok på dette arrangementet ble invitert til å kommentere utkastet til protokollen før innsending til publisering. Interessenter var ikke involvert under gjennomføringen av vurderingen.
-
 
 ## Formålet med kunnskapssammenstillingen
 
@@ -211,11 +201,11 @@ Vi vil karakterisere den eksisterende litteraturen langs følgende akser:
 
 -   Hvilke sektorer og samfunnsmessige områder er hyppigst studert?
 
--   Which level of societal scale do the studies represent?
+-   Hvilke samfunnsmessig nivå er hyppigst studert?
 
--   Which land use conflicts are most researched?
+-   Hvilke arealbrukskonflikter er hyppigst studert?
 
--   Which tools are proposed and investigated?
+-   Hvilke verktøy er foreslått for å løse konfliktene?
 
 # Metoder {#sec-met}
 
@@ -408,7 +398,7 @@ prisma(
 
 .......
 
-# Litteratur fra Norge
+## Litteratur fra Norge
 
 ```{r}
 #| echo: false
@@ -541,7 +531,7 @@ ggplot(aes(x = reorder(display_name, total_score), y = total_score)) +
 coord_flip()
 ```
 
-## Kronologisk fordeling og innhold i inkluderte artikler fra Norge
+### Kronologisk fordeling og innhold i inkluderte artikler fra Norge
 
 ```{r publication year}
 #| echo: false
@@ -559,7 +549,7 @@ nor_bib |>
   labs(x="Publication Year", y="Cumulative sum of publications")
 ```
 
-## Hvor stor andel av forskningen er basert på eksperimentelle vs observasjonelle studier?
+### Hvor stor andel av forskningen er basert på eksperimentelle vs observasjonelle studier?
 
 ```{r research_type}
 #| echo: false
@@ -596,7 +586,7 @@ join_Nor_form |>
   labs(x="", y="antall publikasjoner")
 ```
 
-## Hvor stor andel av forskningen er gjennomført i ulike økosystemer? 
+### Hvor stor andel av forskningen er gjennomført i ulike økosystemer?
 
 ```{r ecosystems }
 #| echo: false
@@ -674,7 +664,7 @@ join_Nor_form |>
 
 ```
 
-### Hvilke regioner i Norge er det gjennomført mest forskning på de aktuelle tema? 
+### Hvilke regioner i Norge er det gjennomført mest forskning på de aktuelle tema?
 
 ```{r County distribution}
 #| echo: false
@@ -723,7 +713,7 @@ df |>
 
 ```
 
-### Hvor vanlig er det at studiene er basert på åpne data, åpen kildekode og preregistrering av hypoteser? 
+### Hvor vanlig er det at studiene er basert på åpne data, åpen kildekode og preregistrering av hypoteser?
 
 ```{r open data}
 #| echo: false
@@ -888,7 +878,7 @@ data.frame(jn_test, Topic = topics(jn_lda)) |>
 
 ```
 
-## Mapping the effects of land use and land cover change on biodiversity, carbon and conflicts
+### Mapping the effects of land use and land cover change on biodiversity, carbon and conflicts
 
 ```{r keyword co-occurrence}
 #| echo: false
@@ -936,7 +926,7 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 
 ## Systematiske litteratursammenstillinger
 
-# Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
+## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
 ```{r }
 #| echo: false
@@ -1165,7 +1155,7 @@ ggplot(head(fund_counts, 10), aes(x = funder, y = n)) +
   ) 
 ```
 
-## Open Access status
+### Open Access status
 
 ```{r open access status openalex all included}
 #| echo: false
@@ -1186,7 +1176,11 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
   theme(legend.position = "none")
 ```
 
-# Begrensninger i litteraturstudien
+# Diskusjon
+
+## Kunnskapsområder med god dekning
+
+## Begrensninger i litteraturstudien
 
 -   Vi har ikke funnet alle artikler (søkestreng)
 
@@ -1194,7 +1188,7 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
 
 -   
 
-# Datamangler og kunnskapshull
+## Datamangler og kunnskapshull
 
 -   Savner godt designede eksperimenter, eller i det minste kvasi-eksperimenter (er nesten helt fraværende).
 
