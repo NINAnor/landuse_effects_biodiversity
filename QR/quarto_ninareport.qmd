@@ -406,7 +406,6 @@ prisma(
 
 ### Deskriptiv statistikk
 
-.......
 
 ## Litteratur fra Norge
 
@@ -675,6 +674,7 @@ join_Nor_form |>
 ```
 
 ### Hva er de mest studerte typene av arealbruk og arealbruksendringer?
+
 
 ```{r landuse}
 #| echo: false
@@ -1259,15 +1259,17 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
 
 ## Datamangler og kunnskapshull
 
--   Savner godt designede eksperimenter, eller i det minste kvasi-eksperimenter (er nesten helt fraværende).
+-   Det er generelt en mangel på godt designede eksperimenter, eller i det minste kvasi-eksperimenter (er nesten helt fraværende).
 
 -   Biodiversitet-effekter av arealbruk i strandsonen var lite dekket.
 
--   Det var relativt få studier fra våtmark, i forhold til hvor stor utbredelse dette økosystemet har i Norge og Fennoscandia.
+-   Det er gjennomført relativt få studier fra våtmark .Dette står i kontrast til hvor stor utbredelse dette økosystemet har i Norge og Fennoscandia.
 
--   Biodiversitet-effekter av de ulike typer installasjoner for kraftproduksjon var mindre dekket enn antatt på forhånd (spesielt vindkraft virket lite dekket sett i forhold til samfunnsfokuset og omfanget av vindkraft i naturen).
+-   Biodiversitet-effekter av de ulike typer installasjoner for kraftproduksjon er relativt dårlig dekket. Spesielt er effekter av vindkraft lite dekket, sett i forhold til samfunnsfokuset og omfanget av vindkraft i naturen.
 
 -   Det var relativt få studier med bredt fokus på økosystemeffekter (og i stedet mange studier på enkeltarter).
+
+-   Det er gjennomført svært få studier som baserer seg på forhåndsregistrerte hypoteser
 
 # Konklusjoner
 
