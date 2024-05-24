@@ -8,6 +8,7 @@ params:
   version: "0.1"
   search-results: 36418
 editor: visual
+bibliography: bibliography.bib
 ---
 
 ```{r set up}
@@ -105,7 +106,7 @@ Vi vil karakterisere den eksisterende litteraturen langs følgende akser:
 
 # 2 Metoder
 
-Før prosjektet ble gjennomført ble det uviklet en detaljert protokoll som beskriver gjennomføringen. Denne protokollen inkluderte en detlajert beskrivelse av:
+Før prosjektet ble gjennomført ble det uviklet en detaljert protokoll som beskriver gjennomføringen. Denne protokollen inkluderte en beskrivelse av:
 
 -   Søkestrenger, søkeord og språk
 
@@ -113,15 +114,15 @@ Før prosjektet ble gjennomført ble det uviklet en detaljert protokoll som besk
 
 -   Hvilke databaser vi vil søke i, og eventuelle nettsteder for søk etter grå litteratur som ikke er tilgjengelig i databasene
 
--   Sentrale artikler (*benchmark-artikler*) som søket forventes å plukke opp
+-   Sentrale artikler (*benchmark-*artikler) som søket forventes å plukke opp
 
 -   Kriterier for screening av artikler (inkludering/ekskluderings-kriterier)
 
--   Prosedyrer for sjekk av konsistens mellom review-personellet
+-   Prosedyrer for sjekk av konsistens innad i review-personellet
 
 -   Regler for datakoding
 
-Versjon 1.0 av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes her https://osf.io/mwapc/. Den enelige versjonen av protokollen kan leses her (ref).
+Versjon 1.0 av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes på https://osf.io/mwapc/. For den endelinge versjonen (versjon 3) av protokollen, se @nilsen2024.
 
 ## 2.1 Avvik fra protokollen
 
@@ -141,13 +142,13 @@ Systematiske litteratursøk for akademisk (forskningsbasert) litteratur ble gjen
 
 -   Emerging Sources Citation Index (ESCI): 2015–dd.
 
-Det ble gjennomført en rekke preliminære søk i Web of Science, og disse ble benyttet til å fintune søkestrengen (ref protokollen).
+Det ble gjennomført en rekke preliminære søk i Web of Science, og disse ble benyttet til å justere søkestrengen [@nilsen2024 ].
 
 ### 2.2.2 Søketermer og søkestreng
 
-I vår søkestrategi benyttet vi oss av PICO-rammeverket (James et al., 2016) for å strukturere søket, og sørge for at det var dekkende for vårt primære forskningsspørsmål.
+I vår søkestrategi benyttet vi oss av PICO-rammeverket (James et al., 2016) for å strukturere søket, og sørge for at det var dekkende for vårt primære forskningsspørsmål. <!--# Missing ref to James et al -->
 
-Følgende søkestreng ble benyttet i WoS (tilsvarende streng ble benyttet i Scopus, men her ble søket justert for å passe systemets interface):
+Følgende søkestreng ble benyttet i WoS (tilsvarende streng ble benyttet i Scopus, men her ble søket justert for å passe Scopus sitt grensesnitt):
 
 <!--# Add link to search strings -->
 
@@ -1058,3 +1059,8 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
 ## Implications for Research
 
 ## Implications for management/practice
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
