@@ -280,6 +280,9 @@ source_comparison <- compare_sources(unique_citations, comp_type = "sources")
 plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 ```
 
+Matt: add colour to this figure
+
+
 De 15 benchmark-artiklene var som følger:
 
 -   Aune, S., Bryn, A. & Hovstad, K.A. 2018. Loss of semi-natural grassland in a boreal landscape: impacts of agricultural intensification and abandonment. Journal of Land Use Science 13(4): 375-390. <https://doi.org/10.1080/1747423x.2018.1539779>
@@ -316,7 +319,6 @@ De 15 benchmark-artiklene var som følger:
 
 Artikler som er sitert av eller siterer (engelsk: *forward and backward citation chasing*) de 15 benchmark-artiklene ble søkt ved hjelp av verktøyet citationchaser i R (Haddaway et al. 2022).
 
-### 
 
 ### Sammenstilling og håndtering av søkeresultater
 
@@ -372,6 +374,8 @@ Matt write here
 
 ## Resultat av litteratursøket
 
+Matt - How many papers and things like that
+
 ```{r, Prisma statement}
 #| echo: false
 #| message: false
@@ -399,6 +403,8 @@ prisma(
 .......
 
 ## Litteratur fra Norge
+
+Matt Add EBV figure
 
 ```{r}
 #| echo: false
@@ -533,6 +539,8 @@ coord_flip()
 
 ### Kronologisk fordeling og innhold i inkluderte artikler fra Norge
 
+Matt - add second axis with the actual numbers
+
 ```{r publication year}
 #| echo: false
 #| message: false
@@ -643,6 +651,9 @@ join_Nor_form |>
 ```
 
 ### Hva er de mest studerte typene av arealbruk og arealbruksendringer?
+
+Matt: two figures -1) pooled classes 2) Top ten
+
 
 ```{r landuse}
 #| echo: false
@@ -818,7 +829,7 @@ result <- FindTopicsNumber(
   verbose = TRUE
 )
 
-FindTopicsNumber_plot(result)
+#FindTopicsNumber_plot(result)
 
 saveRDS(result, "data/cache_data/result.RDS")
 ```
@@ -923,6 +934,11 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 # results<-biblioAnalysis(nor_bib)
 # histResults <- histNetwork(nor_bib, sep = ";")
 ```
+
+Matt Add text around figures and add ecosystem services plots
+
+Matt Add social science figures
+
 
 ## Systematiske litteratursammenstillinger
 

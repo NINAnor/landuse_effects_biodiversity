@@ -298,30 +298,30 @@ prisma(
 #| warning: false
 # Extract data and plot from the extraction sheet ----
 ## load libraies----
-
+# 
 # gs4_auth()
-## read in GoogleSheets----
-
+# ## read in GoogleSheets----
+# 
 # form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
 # 
 # ## clean names----
 # form <- form |>
 #   janitor::clean_names()
 # ## explore----
-# #names(form)
-# 
-# # ### select Norwegian studies----
+# names(form)
+# #
+# # # ### select Norwegian studies----
 # Nor_form <- form |>
 #   filter(grepl("Norway", country))
-# 
-# ### selet studies that are included in the review----
+# #
+# # ### selet studies that are included in the review----
 # Nor_form_inc <- Nor_form |>
 #   filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes")
-# 
-# ### Get matched details from Rayyan----
-# 
-# # read the Rayyan results
-# 
+# #
+# # ### Get matched details from Rayyan----
+# #
+# # # read the Rayyan results
+# #
 # rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
 # rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
 # 
@@ -330,16 +330,15 @@ prisma(
 # join_Nor_form <- Nor_form_inc |>
 #   left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
 # 
-# # join_Nor_form |> view()
+# #join_Nor_form |> view()
 # 
 # join_Nor_form |>
 #   filter(is.na(join_Nor_form$doi)) |>
 #   select(study_id, study_title)
 # 
-# #### find missing doi's by title
+# # #### find missing doi's by title
 # which(is.na(join_Nor_form$doi))
-# #11, 47,52,60,61,63,74,75,125,158
-# 
+# #11  47  52  60  61  63  74  75 125 158 217 248
 # works_search <- oa_fetch(
 #   entity = "works",
 #   title.search = c("Roads forestry wolves"),
@@ -355,38 +354,20 @@ prisma(
 # join_Nor_form[60, ]$doi <- NA
 # join_Nor_form[61, ]$doi <- "10.14430/arctic829"
 # join_Nor_form[63, ]$doi<-"10.1007/s002670010195"
-# join_Nor_form[c(74,75,125,158), ]$doi<-NA
-# 
+# join_Nor_form[248,]$doi<-"10.1016/j.envsci.2022.08.015"
+# join_Nor_form[c(74,75,125,158, 217), ]$doi<-NA
+# #join_Nor_form[248,]$study_title
 # # get openAlexR data
 # 
 # 
 # doi_list <- strsplit(join_Nor_form$doi, split = " ")
 # doi_list <- sapply(doi_list, "[[", 1)
 # 
-# # # oa_fetch(
-# # #   doi = c(doi_list),
-# # #   entity = "works",
-# # #   verbose = TRUE
-# # # ) %>%
-# # #   show_works() %>%
-# # #   knitr::kable()
-# 
 # bib_ls <- list(
 #   doi = c(doi_list),
 #   entity = "works"
 # )
 # 
-# # # oa_fetch(
-# # #   # identifier = c("W2741809807", "W2755950973"),
-# # #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
-# # #   entity = "works",
-# # #   verbose = TRUE
-# # # ) %>%
-# # #   show_works() %>%
-# # #   knitr::kable()
-# # #
-# # #
-# # #
 # nor_bib <- do.call(oa_fetch, bib_ls) %>%
 #   oa2bibliometrix()
 # saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
