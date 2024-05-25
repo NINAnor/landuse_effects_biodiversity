@@ -387,7 +387,7 @@ prisma(
 
 ## Litteratur fra Norge
 
-Matt Add EBV figure
+
 
 ```{r}
 #| echo: false
@@ -553,6 +553,7 @@ ggplot(aes(x = year)) +
   )
 
 ```
+
 
 ### Hvor stor andel av forskningen er basert på eksperimentelle vs observasjonelle studier?
 
@@ -758,6 +759,49 @@ df |>
 
 ```
 
+### EBV
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "EBVs"
+#| fig-width: 14
+#| fig-height: 10
+
+EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
+
+plotEBVs<-function(var){
+  join_Nor_form |> 
+    select({{var}}) |>
+    mutate(var = strsplit({{var}}, ","))  |> 
+    unnest(var)  |> 
+    mutate(var = trimws(var))  |> 
+    group_by(var) |> 
+    tally() |> 
+    drop_na() |> 
+    ggplot(aes(reorder(var, n),n,fill=var))+
+    geom_histogram(stat="identity")+
+    coord_flip()+
+    theme(legend.position = "Null")+
+    labs(x="", y="antall publikasjoner")
+}
+
+plotEBVs(genetic_composition)
+plotEBVs(species_populations)
+plotEBVs(species_traits)
+plotEBVs(community_composition)
+plotEBVs(ecosystem_functioning)
+plotEBVs(ecosystem_structure)
+plotEBVs(ecosystem_services)
+  
+
+  
+```
+
+
+
 ### Hvor vanlig er det at studiene er basert på åpne data, åpen kildekode og preregistrering av hypoteser?
 
 ```{r open data}
@@ -792,6 +836,129 @@ all_open |>
   geom_histogram(stat="identity", position = "dodge")+
   labs(x="", y="Antall publikasjoner")
 ```
+
+
+### Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?"
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  select(data_gathering_methods) |>
+  mutate(data_gathering_methods = strsplit(data_gathering_methods, ","))  |> 
+  unnest(data_gathering_methods)  |> 
+  group_by(data_gathering_methods) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(data_gathering_methods, n),n,fill=data_gathering_methods))+
+   geom_histogram(stat="identity")+
+   coord_flip()+
+   theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")
+
+```
+
+
+### Hvilke aktører er hyppigst representert i forskningen?
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Hvilke aktører er hyppigst representert i forskningen?"
+#| fig-width: 11
+#| fig-height: 10
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  select(actors) |>
+  mutate(actors = strsplit(actors, ","))  |> 
+  unnest(actors)  |> 
+  mutate(actors=trimws(actors)) |> 
+  group_by(actors) |> 
+  tally() |> 
+  drop_na() |>
+  ggplot(aes(reorder(actors, n),n,fill=actors))+
+   geom_histogram(stat="identity")+
+   coord_flip()+
+   theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")
+
+```
+
+
+### Hvilke sektorer og samfunnsmessige områder er hyppigst studert?
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Hvilke sektorer og samfunnsmessige områder er hyppigst studert?"
+#| fig-width: 11
+#| fig-height: 10
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  select(sector_societal_concern) |>
+  mutate(sector_societal_concern = strsplit(sector_societal_concern, ","))  |> 
+  unnest(sector_societal_concern)  |> 
+  mutate(sector_societal_concern=trimws(sector_societal_concern)) |> 
+  group_by(sector_societal_concern) |> 
+  tally() |> 
+  drop_na() |>
+  ggplot(aes(reorder(sector_societal_concern, n),n,fill=sector_societal_concern))+
+   geom_histogram(stat="identity")+
+   coord_flip()+
+   theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")
+
+```
+
+### Hvilke samfunnsmessig nivå er hyppigst studert?
+
+WHICH QUESTION DOES THIS RELATE TO?
+
+### Hvilke arealbrukskonflikter er hyppigst studert?
+
+WHICH QUESTION DOES THIS RELATE TO?
+
+### Hvilke verktøy er foreslått for å løse konfliktene?
+NEEDS CLEANING
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Hvilke verktøy er foreslått for å løse konfliktene?"
+#| fig-width: 11
+#| fig-height: 10
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  select(governce_tools) |>
+  # mutate(governce_tools = strsplit(governce_tools, ","))  |> 
+  # unnest(governce_tools)  |> 
+  # mutate(governce_tools=trimws(governce_tools)) |> 
+  group_by(governce_tools) |> 
+  tally() |> 
+  drop_na() |>
+  ggplot(aes(reorder(governce_tools, n),n,fill=governce_tools))+
+   geom_histogram(stat="identity")+
+   coord_flip()+
+   theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")
+
+```
+
+
+
+##
+
+
+
+
+
+
+
 
 ```{r open access}
 #| echo: false
