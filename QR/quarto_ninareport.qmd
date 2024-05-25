@@ -198,13 +198,15 @@ Vi vil karakterisere den eksisterende litteraturen langs følgende akser:
 
 -   Hvordan er forskningen fordelt over ulike nivå av biologisk organisering?
 
+-   Hvilke EBV (Essential Biodiversity Variables) er mest studert?
+
 -   Hva er de mest studerte formene for arealbruk og arealbruksendringer?
 
 -   Hvilke regioner/fylker er mest representert i datamaterialet?
 
 -   Hvor stor andel av forskningen fokuserer på governance, konfliker og verktøy?
 
--   What are the dominant types of land use that are investigated?
+-   Hvilke typer arealbruksendringer er mest studert?
 
 -   Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?
 
@@ -291,7 +293,6 @@ source_comparison <- compare_sources(unique_citations, comp_type = "sources")
 plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE), main.bar.color="#d01c8b", matrix.color="#b8e186", point.size=5,sets.bar.color=c("#4dac26"))
 ```
 
-
 ### Ytterligere søk etter litteratur
 
 Artikler som er sitert av eller siterer (engelsk: *forward and backward citation chasing*) de 15 benchmark-artiklene ble søkt opp ved hjelp av verktøyet citationchaser i R [@haddaway2022].
@@ -335,7 +336,7 @@ Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative o
 We did not assess the quality of the included primary studies as we aimed to map the available evidence; however for the review papers we modified the [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/) approach to assess evidence certainty. Each review article was assessed in terms of Risk of bias, Imprecision, Inconsistency, Indirectness and Publication bias. We assessed each review against these criteria to determine how much confidence we have in the evidence presented.
 
 | GRADE domains        | Description                                                                                                                                                                                                                                                                                                                  |
-|------------|------------------------------------------------------------|
+|----------------|--------------------------------------------------------------------------------------------------------------------------|
 | 1\. Risk of bias     | Bias occurs when a study's results are skewed due to design or conduct flaws. This uncertainty lowers confidence in the estimated effect, as potential biases can influence results. Assessors need to decide whether the risk of bias in individual studies significantly impacts their confidence in the treatment effect. |
 | 2\. Imprecision      | The GRADE approach evaluates imprecision by examining the 95% confidence interval around the best estimate of the absolute effect. Certainty is reduced if management decisions would differ depending on whether the true effect lies at the upper or lower end of this interval.                                           |
 | 3\. Inconsistency    | Certainty is highest when multiple studies show consistent effects. Assessors should assess the similarity of point estimates, the overlap of confidence intervals, and statistical heterogeneity to determine if inconsistency affects the certainty.                                                                       |
@@ -347,10 +348,6 @@ We did not assess the quality of the included primary studies as we aimed to map
 ## Datakodestrategier
 
 For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterier for koding er gitt i vedlegg 3.  ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy.
-
-## Data mapping method
-
-Matt write here
 
 \newpage
 
@@ -383,7 +380,6 @@ prisma(
 ### Kilder og dokumenttyper for inkluderte artikler
 
 ### Deskriptiv statistikk
-
 
 ## Litteratur fra Norge
 
@@ -514,7 +510,7 @@ topics_aggregated |>
   top_n(10) |> 
 ggplot(aes(x = reorder(display_name, total_score), y = total_score)) +
   geom_bar(stat = "identity", fill = "blue") +
-  labs(title = "Weighted Frequency of Topics by Total Score",
+  labs(title = "",
        x = "Topic",
        y = "Total Score (Weighted Frequency)") +
 coord_flip()
@@ -652,7 +648,6 @@ join_Nor_form |>
 ```
 
 ### Hva er de mest studerte typene av arealbruk og arealbruksendringer?
-
 
 ```{r landuse}
 #| echo: false
@@ -1225,7 +1220,9 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
 
 # Diskusjon
 
-## Kunnskapsområder med god dekning
+## Kunnskapsstatus for effekter av arealbruk og arealbruksendringer på biologisk mangfold
+
+Vår sammenstilling av litteraturen knyttet til..
 
 ## Begrensninger i litteraturstudien
 
@@ -1248,6 +1245,24 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
 -   Det var relativt få studier med bredt fokus på økosystemeffekter (og i stedet mange studier på enkeltarter).
 
 -   Det er gjennomført svært få studier som baserer seg på forhåndsregistrerte hypoteser
+
+-   Geografisk fordeling
+
+-   Fordeling på økosystemer
+
+-   EBV
+
+-   Typer arealbruk / endringer
+
+-   Disipliner
+
+-   Skala
+
+-   Open Science
+
+-   Økosystemtjenester
+
+-   Karbonlagring
 
 # Konklusjoner
 
