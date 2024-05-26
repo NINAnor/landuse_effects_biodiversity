@@ -101,6 +101,10 @@ join_Nor_form |>
   group_by(county_name_of_norwegian_county_main) |> 
   mutate(county_name_of_norwegian_county_main=trimws(county_name_of_norwegian_county_main)) |> 
   tally() |>
+  mutate(county_name_of_norwegian_county_main = fct_recode(county_name_of_norwegian_county_main, 
+                                                Innlandet = "Hedmark", Innlandet = "Oppland")) |> 
+  group_by(county_name_of_norwegian_county_main) |>
+  summarize(n = sum(n)) |> 
   drop_na() |>
   filter(county_name_of_norwegian_county_main != "Whole country" & county_name_of_norwegian_county_main != "west Norway") |>
   ggplot(aes(reorder(county_name_of_norwegian_county_main, n),n,fill=county_name_of_norwegian_county_main))+
@@ -140,8 +144,10 @@ join_Nor_form |>
   group_by(land_use) |> 
   mutate(land_use=trimws(land_use)) |> 
   tally() |> 
+  filter(land_use != "fishing collection") |>
+  mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
   drop_na() |> 
-  top_n(15) |> 
+  top_n(20) |> 
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+

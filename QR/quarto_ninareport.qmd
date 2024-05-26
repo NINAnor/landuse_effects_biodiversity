@@ -337,7 +337,7 @@ Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative o
 We did not assess the quality of the included primary studies as we aimed to map the available evidence; however for the review papers we modified the [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/) approach to assess evidence certainty. Each review article was assessed in terms of Risk of bias, Imprecision, Inconsistency, Indirectness and Publication bias. We assessed each review against these criteria to determine how much confidence we have in the evidence presented.
 
 | GRADE domains        | Description                                                                                                                                                                                                                                                                                                                  |
-|------------------|------------------------------------------------------|
+|-------------------|-----------------------------------------------------|
 | 1\. Risk of bias     | Bias occurs when a study's results are skewed due to design or conduct flaws. This uncertainty lowers confidence in the estimated effect, as potential biases can influence results. Assessors need to decide whether the risk of bias in individual studies significantly impacts their confidence in the treatment effect. |
 | 2\. Imprecision      | The GRADE approach evaluates imprecision by examining the 95% confidence interval around the best estimate of the absolute effect. Certainty is reduced if management decisions would differ depending on whether the true effect lies at the upper or lower end of this interval.                                           |
 | 3\. Inconsistency    | Certainty is highest when multiple studies show consistent effects. Assessors should assess the similarity of point estimates, the overlap of confidence intervals, and statistical heterogeneity to determine if inconsistency affects the certainty.                                                                       |
@@ -700,6 +700,8 @@ Det meste av forskningen er gjennomført på det vi har karakterisert som lokal 
 
 ### Overordnet karakterisering av forskningen fordelt på geografisk fordeling, arealbruk, arealbruksendringer og økosystemer
 
+I dette kapittelet gir vi en oversikt over hvordan forskningen vi har fanget opp i vårt systematiske litteratursøk når det gjelder hvor i landet (fylke) det er gjennomført, hvordan ulike former for arealbruk er representert i datamaterialet, og hvordan de ulike hovedøkosystemene er representert. For alle disse kategoriene kan en og samme artikkel være representert i flere kategorier (f.eks. med flere økosystemer) slik at totalsummen i figurene ikke summerer opp til antall artikler.
+
 #### Hvor stor andel av forskningen er gjennomført i ulike økosystemer?
 
 ```{r ecosystems }
@@ -724,13 +726,17 @@ join_Nor_form |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
+**Figur X** *Fordeling av forskningsartikler hvor de ulike hovedøkosystemene er representert*.
+
+De hyppigst studerte økosystemene i vårt materiale er skog (Forest) etterfulgt av fjelløkosystemer (Mountains) og semi-naturlige økosystmer (Semi-natural ecosystems) (Figur X). Den siste kategorien er dominert av studier på semi-naturlig engvegetasjon. De øvrige økosystemtypene er langt dårligere representert.
+
 #### Hvordan er forskningen fordelt på ulike fylker?
 
 ```{r County distribution}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Norwegian counties where research was undertaken"
+
 
 join_Nor_form |> 
   group_by(county_name_of_norwegian_county) |>
@@ -739,6 +745,10 @@ join_Nor_form |>
   group_by(county_name_of_norwegian_county_main) |> 
   mutate(county_name_of_norwegian_county_main=trimws(county_name_of_norwegian_county_main)) |> 
   tally() |>
+    mutate(county_name_of_norwegian_county_main = fct_recode(county_name_of_norwegian_county_main, 
+                                                Innlandet = "Hedmark", Innlandet = "Oppland")) |> 
+  group_by(county_name_of_norwegian_county_main) |>
+  summarize(n = sum(n)) |> 
   drop_na() |>
   filter(county_name_of_norwegian_county_main != "Whole country" & county_name_of_norwegian_county_main != "west Norway") |>
   ggplot(aes(reorder(county_name_of_norwegian_county_main, n),n,fill=county_name_of_norwegian_county_main))+
@@ -749,6 +759,10 @@ join_Nor_form |>
   scale_fill_viridis(discrete = TRUE, option = "D")  
 
 ```
+
+**Figur X** *Fordeling av forskningsartikler på ulike fylker i Norge*
+
+Det er en betydelig variasjon i hvor mye av forskningen som er fanget opp i vår litteraturgjennomgang som har vært lokalisert i de ulike fylkene (Figur X). Flest studier er gjennomført i fylkene Innlandet, Trøndelag, Vestland og AKershus, mens det er færrest artikler fra Vetfold, Møre og Romsdal og Troms. I tillegg er det få studier som fokuserer på arealbruk på Svalbard.
 
 #### Hvordan er forskningen fordelt med tanke på arealbruk og arealbruksendringer?
 
@@ -784,6 +798,8 @@ join_Nor_form |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
+**Figur X** *Fordeling av forskningsartikler som har studert effekter av de ulike hovedformene for arealbruk*
+
 ```{r landuse1}
 #| echo: false
 #| message: false
@@ -795,9 +811,11 @@ join_Nor_form |>
   unnest(land_use)  |> 
   group_by(land_use) |> 
   mutate(land_use=trimws(land_use)) |> 
-  tally() |> 
+  tally() |>
+  filter(land_use != "fishing collection") |>
+  mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
   drop_na() |> 
-  top_n(15) |> 
+  top_n(20) |> 
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
@@ -807,9 +825,17 @@ join_Nor_form |>
 
 ```
 
+**Figur X** *Antall forskningsartikler som har studert effekten av ulike former for arealbruk eller arealbruksenderinger*
+
+Som det framgår av figurene over (Figur X og Figur X) er det gjennomført studier av en lang rekke ulike former for arealbruk og arealbruksendringer. På et overordnet plan er det effekter av ulike former for landbruk (Agriculture) og utnyttelse av biologiske ressurser (Biological Resource use) som er hyppigst studert. Det er langt færre artikler som omhandler vern (Protection) og restaurering (Restoriation).
+
+Dersom vi bryter ned areabruk og arelabruksenderinger i finere kategorier (ref. [@nilsen2024]), ser man at særlig er effekter av skogbruk (Biological resource use: forestry) og effekter av tamme beitedyr (Agricultrue & aquaculture: outfield resources (including grazing) hyppig studert (Figur X).
+
 ## Overordnet karakterisering av hvilke responsvariabler som benyttes i forskningen på effekter av arealbruk og arealbruksendringer på biologisk mangfold og økosystemtjenester
 
-#### Hvordan er forskningen fordelt på ulike nivåer av biologisk organisering?
+I dette kapittelet vil vi beskrive hvordan forskningen fordeler seg med tanke på hvilket nivå av biologisk organisering (f.eks. arter, slekter eller høyere taksonomiske nivå). Videre vil vi beskrive hvordan ulike essensielle biodiversitetsvariabler (EBV - ref) er representert i forskningsmaterialet, samt hvordan hyppig ulike former for økosystemtjenester er studert.
+
+#### Hvordan er forskningen fordelt på ulike taksonomiske nivå?
 
 ```{r taxon}
 #| echo: false
@@ -835,6 +861,10 @@ join_Nor_form |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 
 ```
+
+**Figur X** *Fordeling av ulike taksonomiske nivå i forskningslitteraturen*
+
+Det er en klar overvekt av artikler som fokuserer på (en eller flere) arter i den litteraturen vi har gått gjennom fra Norge (Figur X). Det er også en relativt stor andel av litteraturen som fokuserer på hele riker (Kingdom). Dette er i stor grad snakk om artikler som f.eks. beskriver responsen til hele plantesamfunn på en eller flere former for arealbruk.
 
 #### Hvordan er forskningen fordelt på ulike essensielle biodiversitetsvariabler (EBV)
 
@@ -1256,7 +1286,6 @@ Matt Add text around figures and add ecosystem services plots
 
 ## Systematiske litteratursammenstillinger
 
-
 ```{r sysrevs data}
 #| echo: false
 #| message: false
@@ -1327,7 +1356,6 @@ sysRev<-readRDS("data/cache_data/sysRev.RDS")
 
 ```
 
-
 ```{r type of summerised evidence}
 #| echo: false
 #| message: false
@@ -1345,6 +1373,7 @@ coord_flip()
    # scale_fill_viridis(discrete = TRUE, option = "D") 
 
 ```
+
 
 ```{r risk of bias}
 #| echo: false
@@ -1537,8 +1566,6 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 ```
-
-
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
