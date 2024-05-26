@@ -1263,53 +1263,64 @@ Matt Add text around figures and add ecosystem services plots
 #| warning: false
 
 # form<-readRDS("data/cache_data/form.RDS")
-# sysRev<-form |> 
+# sysRev<-form |>
 # filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes") |> filter(research_type=="Summarised evidence")
 # 
 # 
 # # ### Get matched details from Rayyan----
-#  
-# # # read the Rayyan results
+# 
+# # # # read the Rayyan results
 # rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
 # rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
 # 
 # sysRev$accession_zr<-unlist(sysRev$study_id)
-#  
+# 
 # join_sysRev <- sysRev |>
 #    left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
-#  
-# # # get openAlexR data
+# 
+# # # # get openAlexR data
 # doi_list <- strsplit(join_sysRev$doi, split = " ")
 # doi_list <- sapply(doi_list, "[[", 1)
-
-# # # oa_fetch(
-# # #   doi = c(doi_list),
-# # #   entity = "works",
-# # #   verbose = TRUE
-# # # ) %>%
-# # #   show_works() %>%
-# # #   knitr::kable()
 # 
-#bib_ls <- list(
+# # # # oa_fetch(
+# # # #   doi = c(doi_list),
+# # # #   entity = "works",
+# # # #   verbose = TRUE
+# # # # ) %>%
+# # # #   show_works() %>%
+# # # #   knitr::kable()
+# #
+# bib_ls <- list(
 #   doi = c(doi_list),
 #   entity = "works"
 # )
 # 
-# # # oa_fetch(
-# # #   # identifier = c("W2741809807", "W2755950973"),
-# # #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
-# # #   entity = "works",
-# # #   verbose = TRUE
-# # # ) %>%
-# # #   show_works() %>%
-# # #   knitr::kable()
-# # #
-# # #
-# # #
-#sysRev_bib <- do.call(oa_fetch, bib_ls) %>%
+# # # # oa_fetch(
+# # # #   # identifier = c("W2741809807", "W2755950973"),
+# # # #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
+# # # #   entity = "works",
+# # # #   verbose = TRUE
+# # # # ) %>%
+# # # #   show_works() %>%
+# # # #   knitr::kable()
+# # # #
+# # # #
+# # # #
+# sysRev_bib <- do.call(oa_fetch, bib_ls) %>%
 #   oa2bibliometrix()
-#saveRDS(sysRev_bib,"data/cache_data/sysRev_bib.RDS")
-#saveRDS(sysRev, "data/cache_data/sysRev.RDS")
+
+# sysRevZotero <- synthesisr::read_ref("data/SysRev_articles.ris")
+# 
+# ## remove the excluded at full text
+# 
+# sysRevZotero<-sysRevZotero[!grepl("excluded", tolower(sysRevZotero$note)),]
+# 
+# dim(sysRev)
+# dim(sysRevZotero)
+# 
+
+# saveRDS(sysRev_bib,"data/cache_data/sysRev_bib.RDS")
+# saveRDS(sysRev, "data/cache_data/sysRev.RDS")
 
 sysRev_bib<-readRDS("data/cache_data/sysRev_bib.RDS")
 sysRev<-readRDS("data/cache_data/sysRev.RDS")
@@ -1318,6 +1329,10 @@ sysRev<-readRDS("data/cache_data/sysRev.RDS")
 
 
 ```{r type of summerised evidence}
+#| echo: false
+#| message: false
+#| warning: false
+
 sysRev |> 
 group_by(type_of_summarised_evidence) |> 
 tally() |> 
@@ -1328,6 +1343,197 @@ theme(legend.position = "Null")+
    labs(x="", y="antall publikasjoner")+
 coord_flip()
    # scale_fill_viridis(discrete = TRUE, option = "D") 
+
+```
+
+```{r risk of bias}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Risk of bias"
+
+p1<-sysRev |> 
+group_by(risk_of_bias_is_the_risk_of_bias_in_individual_studies_limitations_in_study_design_or_conduct_that_could_influence_the_reported_effect_size_and_direction_enough_to_influence_the_summarised_evidence) |> 
+tally() |> 
+drop_na() |> 
+ggplot(aes(reorder(risk_of_bias_is_the_risk_of_bias_in_individual_studies_limitations_in_study_design_or_conduct_that_could_influence_the_reported_effect_size_and_direction_enough_to_influence_the_summarised_evidence,n), n, fill=risk_of_bias_is_the_risk_of_bias_in_individual_studies_limitations_in_study_design_or_conduct_that_could_influence_the_reported_effect_size_and_direction_enough_to_influence_the_summarised_evidence))+
+geom_histogram(stat="identity") +
+theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")+
+coord_flip()+
+scale_fill_viridis(discrete = TRUE, option = "D") +
+ggtitle("Is there potential risk of bias")
+
+p2<-sysRev |> 
+group_by(risk_of_bias_does_the_summarised_evidence_undertake_any_assessment_of_the_risk_of_bias) |> 
+tally() |> 
+drop_na() |> 
+ggplot(aes(reorder(risk_of_bias_does_the_summarised_evidence_undertake_any_assessment_of_the_risk_of_bias,n), n, fill=risk_of_bias_does_the_summarised_evidence_undertake_any_assessment_of_the_risk_of_bias))+
+geom_histogram(stat="identity") +
+theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")+
+coord_flip()+
+scale_fill_viridis(discrete = TRUE, option = "D") +
+ggtitle("Does the article undertake risk of bias assessments")
+
+library(patchwork)
+p1+p2
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Imprecision"
+
+p1<-sysRev |> 
+group_by(imprecision_is_the_sample_size_sufficient_to_make_an_unbiased_estimate_of_effect) |> 
+tally() |> 
+drop_na() |> 
+ggplot(aes(reorder(imprecision_is_the_sample_size_sufficient_to_make_an_unbiased_estimate_of_effect,n), n, fill=imprecision_is_the_sample_size_sufficient_to_make_an_unbiased_estimate_of_effect))+
+geom_histogram(stat="identity") +
+theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")+
+coord_flip()+
+scale_fill_viridis(discrete = TRUE, option = "D") +
+ggtitle("Is sample size sufficient")
+
+
+p2<-sysRev |> 
+group_by(imprecision_how_varied_is_the_summarised_effect_and_has_this_variation_be_adequately_assessed) |> 
+tally() |> 
+drop_na() |> 
+ggplot(aes(reorder(imprecision_how_varied_is_the_summarised_effect_and_has_this_variation_be_adequately_assessed,n), n, fill=imprecision_how_varied_is_the_summarised_effect_and_has_this_variation_be_adequately_assessed))+
+geom_histogram(stat="identity") +
+theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")+
+coord_flip()+
+scale_fill_viridis(discrete = TRUE, option = "D") +
+ggtitle("Has imprecision been taken account of")
+
+p1+p2
+
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Inconsistency"
+
+sysRev |> 
+group_by(inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap) |> 
+tally() |> 
+drop_na() |> 
+ggplot(aes(reorder(inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap,n), n, fill=inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap))+
+geom_histogram(stat="identity") +
+theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")+
+coord_flip()+
+scale_fill_viridis(discrete = TRUE, option = "D") 
+
+
+```
+
+```{r Indirectness}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Indirectness"
+
+sysRev |> 
+group_by(indirectness_does_the_summarised_evidence_directly_assess_the_hypothesis_or_question_at_hand_or_does_it_make_use_of_proxy_outcomes) |> 
+tally() |> 
+drop_na() |> 
+ggplot(aes(reorder(indirectness_does_the_summarised_evidence_directly_assess_the_hypothesis_or_question_at_hand_or_does_it_make_use_of_proxy_outcomes,n), n, fill=indirectness_does_the_summarised_evidence_directly_assess_the_hypothesis_or_question_at_hand_or_does_it_make_use_of_proxy_outcomes))+
+geom_histogram(stat="identity") +
+theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")+
+coord_flip()+
+scale_fill_viridis(discrete = TRUE, option = "D") 
+
+
+
+
+```
+```{r publication bias}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Publication bias"
+
+sysRev |> 
+group_by(publication_bias_does_the_summarised_evidence_assess_publication_bias_through_some_formal_method) |> 
+tally() |> 
+drop_na() |> 
+ggplot(aes(reorder(publication_bias_does_the_summarised_evidence_assess_publication_bias_through_some_formal_method,n), n, fill=publication_bias_does_the_summarised_evidence_assess_publication_bias_through_some_formal_method))+
+geom_histogram(stat="identity") +
+theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")+
+coord_flip()+
+scale_fill_viridis(discrete = TRUE, option = "D") 
+
+
+
+```
+
+```{r evidence}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Evidence certainty"
+
+sysRev |> 
+group_by(evidences) |> 
+tally() |> 
+drop_na() |> 
+ggplot(aes(reorder(evidence_certainty,n), n, fill=evidence_certainty))+
+geom_histogram(stat="identity") +
+theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")+
+coord_flip()+
+scale_fill_viridis(discrete = TRUE, option = "D") 
+
+
+
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "N studies"
+
+n_studies<-unlist(sysRev$number_of_studies_assessed)
+
+n_studies<-data.frame(n_studies)
+
+n_studies$n_studies<-as.numeric(n_studies$n_studies)
+n_studies|> 
+  ggplot(aes(n_studies))+
+  geom_histogram(fill = "darkblue")
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "High quality"
+sysRev |> 
+group_by(high_quality_systematic_review) |> 
+tally() |> 
+drop_na() |> 
+ggplot(aes(reorder(high_quality_systematic_review,n), n, fill=high_quality_systematic_review))+
+geom_histogram(stat="identity") +
+theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")+
+coord_flip()+
+scale_fill_viridis(discrete = TRUE, option = "D") 
+
 
 ```
 
