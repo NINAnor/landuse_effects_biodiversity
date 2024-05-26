@@ -851,7 +851,7 @@ EBVs<-c("genetic_composition", "species_populations", "species_traits","communit
 plotEBVs<-function(var){
   join_Nor_form |> 
     select({{var}}) |>
-    mutate(var = strsplit({{var}}, ","))  |> 
+    mutate(var =str_split({{var}},",\\s(?=[A-Z])"))   |> 
     unnest(var)  |> 
     mutate(var = trimws(var))  |> 
     group_by(var) |> 
@@ -1458,6 +1458,7 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 ```
+
 ```{r publication bias}
 #| echo: false
 #| message: false
@@ -1486,7 +1487,7 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 #| fig-cap: "Evidence certainty"
 
 sysRev |> 
-group_by(evidences) |> 
+group_by(evidence_certainty) |> 
 tally() |> 
 drop_na() |> 
 ggplot(aes(reorder(evidence_certainty,n), n, fill=evidence_certainty))+
