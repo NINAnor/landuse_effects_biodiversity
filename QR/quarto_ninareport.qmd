@@ -337,7 +337,7 @@ Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative o
 We did not assess the quality of the included primary studies as we aimed to map the available evidence; however for the review papers we modified the [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/) approach to assess evidence certainty. Each review article was assessed in terms of Risk of bias, Imprecision, Inconsistency, Indirectness and Publication bias. We assessed each review against these criteria to determine how much confidence we have in the evidence presented.
 
 | GRADE domains        | Description                                                                                                                                                                                                                                                                                                                  |
-|------------|------------------------------------------------------------|
+|------------------|------------------------------------------------------|
 | 1\. Risk of bias     | Bias occurs when a study's results are skewed due to design or conduct flaws. This uncertainty lowers confidence in the estimated effect, as potential biases can influence results. Assessors need to decide whether the risk of bias in individual studies significantly impacts their confidence in the treatment effect. |
 | 2\. Imprecision      | The GRADE approach evaluates imprecision by examining the 95% confidence interval around the best estimate of the absolute effect. Certainty is reduced if management decisions would differ depending on whether the true effect lies at the upper or lower end of this interval.                                           |
 | 3\. Inconsistency    | Certainty is highest when multiple studies show consistent effects. Assessors should assess the similarity of point estimates, the overlap of confidence intervals, and statistical heterogeneity to determine if inconsistency affects the certainty.                                                                       |
@@ -487,12 +487,10 @@ nor_bib <- readRDS(here::here("data/cache_data/nor_bib.RDS"))
 join_Nor_form<-readRDS(here::here("data/cache_data/join_Nor_form.RDS"))
 ```
 
-Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført.
-
 ```{r openAlex topics/concepts}
-# #| echo: false
-# #| message: false
-# #| warning: false
+#| echo: false
+#| message: false
+#| warning: false
 # #| fig-cap: "OpenAlex topics weighted by topic score"
 # #| fig-width: 14
 # #| fig-height: 11
@@ -516,6 +514,8 @@ Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen va
 #        y = "Total Score (Weighted Frequency)") +
 # coord_flip()
 ```
+
+Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. De tidligste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Som vist i Figur X varierte antallet mellom ulike år, og selv om det har vært en genrell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 20 årene.
 
 #### Kronologisk fordeling og innhold i inkluderte artikler fra Norge
 
@@ -550,7 +550,11 @@ ggplot(aes(x = year)) +
 
 ```
 
+**Figur X** *Oversikt over kumulativ økning i antall artikler (venstre y-akse, orange sirkler) og antall artkler publisert i de ulike årene i perioden 1986 - 2024.*
+
 ### Overordnet karakterisering av studiedesign og tilnærming
+
+I dette kapittelet vil gi en overikt over hvordan forskningen som er fanget opp i vår litteraturgjennomgang fordeler seg rekke akser som tilsammen besrkiver viktige forhold i litteraturen. Disse aksene spenner både hvorvidt forskningen er basert på empiriske data eller andre tilnærminger (scenarioer, simuleringer osv), hvorvidt det er benyttet et eksperimentelt studiedesign, hvilkge fagdisipliner forskningen knyttes til, hvilken romlig skala forskningen er gjennomført på, og hvorvidt forskningen har vært basert på open science-prinsipper.
 
 #### Hvor stor andel av forskningen er basert på eksperimentelle vs observasjonelle studier?
 
@@ -573,6 +577,10 @@ join_Nor_form |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
+**Figur X** *Oversikt over forskningen basert forskningskategori.*
+
+Som det framkommer av Figur X er det en stor overvekt over observajonelle studier (Observational studies) i vårt datamateriale. Observasjonelle studier er her definert som studier som baserer seg på empiriske data fra systemet som undersøkes. også konseptuelle arbeider og scenario-modellering er relativt hyppig forkommende.
+
 #### Hvor stor andel av forskningen er basert på eksperimenter vs observasjonelle studier?
 
 ```{r study_design}
@@ -593,6 +601,10 @@ join_Nor_form |>
   labs(x="", y="antall publikasjoner") +
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
+
+**Figur X** *Forskningens fordeling mellom ulike forsøksdesign*.
+
+De klart mest benyttede forsøksdesignene er kontroll-behandling (Control-Impact)-design og etter (After)-design (Figur X). Merk at vi har inkludert forskning som f.eks. undersøker hvordan gradienter i arealbruk påvirker den aktuelle responsvariabelen under kontroll-behandling. Det er en påfallende mangel på godt designede randomisert eksperimenter (Randomised controlled trials) og studier som følger både kontrollområder og behandligsområder både før og etter (Before-after-control-impact) at en tiltak er satt i verk.
 
 #### Hvor stor andel av forskningen praktiserer Open Science prinspper?
 
@@ -633,6 +645,10 @@ all_open |>
 
 ```
 
+**Figur X** *Oversikt over hvorvidt forskningen har gjort data og kildekode åpent tilgjengelig, og hvorvidt den er basert på forhåndsdefinerte hypoteser*.
+
+I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (Figur X). En enda mindra andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden de kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden.
+
 #### Hvordan er forskningen fordelt på ulike disipliner?
 
 ```{r discipline}
@@ -654,7 +670,11 @@ join_Nor_form |>
 
 ```
 
-#### Hvordan er forskningen fordelt med hensyn til størrelse på studieområde (romig skala)
+**Figur X** *Oversikt over hvordan forskningen fordeler seg mellom ulike disipliner*.
+
+I vårt materiale er det en stor overvekt av forskning som faller inn under fagdisiplinen matematikk og naturvitenskap (Mathematics and Natural Sciences) (Figur X), men det er også en betydelig andel samfunnsvitenskapelige studier (Social Sciences).
+
+#### Hvordan er forskningen fordelt med hensyn til størrelse på studieområde (romlig skala)
 
 ```{r scale}
 #| echo: false
@@ -674,6 +694,10 @@ join_Nor_form |>
 
 ```
 
+**Figur X** *Oversikt over hvilken geografisk målestokk forskningen er gjennomført på*.
+
+Det meste av forskningen er gjennomført på det vi har karakterisert som lokal (f.eks. en del av en kommune) eller regional (f.eks. et fjellområder eller et fylke) (Figur X). En betydelig mindre andel av forskningen dekker hele landet eller er basert på multinasjonale datasett.
+
 ### Overordnet karakterisering av forskningen fordelt på geografisk fordeling, arealbruk, arealbruksendringer og økosystemer
 
 #### Hvor stor andel av forskningen er gjennomført i ulike økosystemer?
@@ -682,6 +706,7 @@ join_Nor_form |>
 #| echo: false
 #| message: false
 #| warning: false
+ 
 join_Nor_form |> 
   group_by(ecosystem_type_main) |>
   mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
@@ -699,13 +724,14 @@ join_Nor_form |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
-#### Hvordan er forskningen fordelt på ulike fylker? 
+#### Hvordan er forskningen fordelt på ulike fylker?
 
 ```{r County distribution}
 #| echo: false
 #| message: false
 #| warning: false
 #| fig-cap: "Norwegian counties where research was undertaken"
+
 join_Nor_form |> 
   group_by(county_name_of_norwegian_county) |>
   mutate(county_name_of_norwegian_county_main = strsplit(county_name_of_norwegian_county, ","))  |> 
@@ -724,9 +750,12 @@ join_Nor_form |>
 
 ```
 
-#### Hvordan er forskningen fordelt med tanke på arealbruk og arealbruksendringer? 
+#### Hvordan er forskningen fordelt med tanke på arealbruk og arealbruksendringer?
 
 ```{r landuse2}
+#| echo: false
+#| message: false
+#| warning: false
 
 join_Nor_form |> 
   group_by(x23) |>
@@ -786,6 +815,7 @@ join_Nor_form |>
 #| echo: false
 #| message: false
 #| warning: false
+
 '%!in%' <- function(x,y)!('%in%'(x,y))
 join_Nor_form |> 
   group_by(taxonomic_level) |> 
@@ -845,7 +875,7 @@ plotEBVs(ecosystem_structure)
   
 ```
 
-#### Hvordan er forskningen fordelt på ulike økosystemtjenester? 
+#### Hvordan er forskningen fordelt på ulike økosystemtjenester?
 
 ```{r Ecosystem_services}
 #| echo: false
@@ -858,7 +888,7 @@ plotEBVs(ecosystem_structure)
 plotEBVs(ecosystem_services)
 ```
 
-#### Hvordan er studier som fokuserer på arter fordelt? 
+#### Hvordan er studier som fokuserer på arter fordelt?
 
 ```{r species}
 #| echo: false
@@ -1002,6 +1032,10 @@ join_Nor_form |>
 NEEDS TIDYING UP
 
 ```{r tools_characteristic}
+#| echo: false
+#| message: false
+#| warning: false
+
 
 join_Nor_form |> 
   filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
@@ -1019,9 +1053,13 @@ group_by(tool_characteristics) |>
 
 ```
 
-#### Hvilket samfunnsmessig nivå benytter verktøyet? 
+#### Hvilket samfunnsmessig nivå benytter verktøyet?
 
 ```{r tool_level}
+#| echo: false
+#| message: false
+#| warning: false
+
 
 join_Nor_form |> 
   filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
@@ -1038,7 +1076,7 @@ group_by(governance_level_using_the_tool) |>
 
 ```
 
-## To be moved 
+## To be moved
 
 ```{r open access}
 #| echo: false
