@@ -8,11 +8,13 @@ join_Nor_form |>
   group_by(research_type) |>
   tally() |> 
   drop_na() |> 
+  top_n(5) |>
   ggplot(aes(reorder(research_type, n),n,fill=research_type))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner")
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
 ## eksperimenter vs observajoner
 
@@ -26,11 +28,13 @@ join_Nor_form |>
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner")
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
 ## Disipliner
 
 join_Nor_form |> 
+  mutate(study_area_discipline = fct_recode(study_area_discipline, Economy = "economic")) |>
   group_by(study_area_discipline) |> 
   tally() |> 
   drop_na() |> 
@@ -38,22 +42,21 @@ join_Nor_form |>
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner")
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 ## Romlig skala
 join_Nor_form |> 
   group_by(spatial_scale) |>
-  #mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
-  #unnest(ecosystems_main)  |> 
-  #group_by(ecosystems_main) |> 
   tally() |> 
   drop_na() |> 
   ggplot(aes(reorder(spatial_scale, n),n,fill=spatial_scale))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner")
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 ## Open Science
@@ -82,73 +85,72 @@ all_open<-rbind(od,oc,pr)
 all_open |> 
   ggplot(aes(Response, n, fill = question))+
   geom_histogram(stat="identity", position = "dodge")+
-  labs(x="", y="Antall publikasjoner")
+  labs(x="", y="Antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
 ################################################################################
 ################################################################################
 ## Arealbruk, arealbruksendringer og økosystemer
 
-## Hvor
+## Region
 
-my_list<-strsplit(join_Nor_form$county_name_of_norwegian_county, ",")
-
-# Function to replace specific problematic characters
-replace_problematic_chars <- function(x) {
-  # Replacing specific problematic unicode sequence if visible in the string
-  x <- gsub("\xc3\x98", "O", x, fixed = TRUE)  # Replacing 'Ø' which sometimes appears as '\xc3\x98' in UTF-8
-  
-  return(x)
-}
-
-# Apply this function to each element in the list
-my_list <- lapply(my_list, function(x) {
-  if (is.character(x)) {
-    sapply(x, replace_problematic_chars, USE.NAMES = FALSE)
-  } else {
-    x
-  }
-})
-
-# Flatten the list
-flattened <- unlist(my_list)
-
-# Remove NA and clean up
-flattened <- na.omit(flattened)
-flattened <- trimws(flattened)
-
-# Create a dataframe
-df <- data.frame(Name = flattened, stringsAsFactors = FALSE)
-
-# Print the dataframe
-#print(df)
-
-df |> 
-  group_by(Name) |> 
-  tally() |> 
-  ggplot(aes(reorder(Name, n),n)) + 
-  geom_histogram(stat="identity", fill="blue")+
+join_Nor_form |> 
+  group_by(county_name_of_norwegian_county) |>
+  mutate(county_name_of_norwegian_county_main = strsplit(county_name_of_norwegian_county, ","))  |> 
+  unnest(county_name_of_norwegian_county_main)  |> 
+  group_by(county_name_of_norwegian_county_main) |> 
+  mutate(county_name_of_norwegian_county_main=trimws(county_name_of_norwegian_county_main)) |> 
+  tally() |>
+  drop_na() |>
+  filter(county_name_of_norwegian_county_main != "Whole country" & county_name_of_norwegian_county_main != "west Norway") |>
+  ggplot(aes(reorder(county_name_of_norwegian_county_main, n),n,fill=county_name_of_norwegian_county_main))+
+  geom_histogram(stat="identity")+
   coord_flip()+
-  labs(x="", y="Antall publikasjoner")
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")  
+
+
+
+### Økosystemer
+
+join_Nor_form |> 
+  group_by(ecosystem_type_main) |>
+  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
+  unnest(ecosystems_main)  |> 
+  group_by(ecosystems_main) |> 
+  mutate(ecosystems_main=trimws(ecosystems_main)) |> 
+  tally() |> 
+  drop_na() |>
+  top_n(10) |> 
+  ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 #### Arealbruksendringer
 
-p2<-join_Nor_form |> 
+join_Nor_form |> 
   group_by(x23) |>
   mutate(land_use = strsplit(x23, ","))  |> 
   unnest(land_use)  |> 
   group_by(land_use) |> 
+  mutate(land_use=trimws(land_use)) |> 
   tally() |> 
   drop_na() |> 
-  top_n(10) |> 
+  top_n(15) |> 
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner")
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
 
-p1<-join_Nor_form |> 
+join_Nor_form |> 
   group_by(x23) |>
   mutate(land_use = strsplit(x23, ","))  |> 
   unnest(land_use)  |> 
@@ -157,11 +159,11 @@ p1<-join_Nor_form |>
   drop_na() |> 
   mutate(land_use=case_when(
     grepl("Agricul", land_use)~"Agriculture",
-    grepl("Biological resource use", land_use)~"Biological",
+    grepl("Biological resource use", land_use)~"Biological resource use",
     grepl("Energy", land_use)~"Energy",
     grepl("Resident", land_use)~"Residential",
     grepl("Transport", land_use)~"Transportation",
-    grepl("fish", land_use)~"Biological",
+    grepl("fish", land_use)~"Biological resource use",
     TRUE~land_use
   )) |> 
   mutate(land_use=trimws(land_use)) |> 
@@ -171,29 +173,163 @@ p1<-join_Nor_form |>
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner")
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
-p1
-p2
 
-### Økosystemer
+
+
+################################################################################
+################################################################################
+## Karakterisering av biologisk mangfold og økosystemtjenester
+
+## Biologisk organisering
+
+'%!in%' <- function(x,y)!('%in%'(x,y))
 
 join_Nor_form |> 
-  group_by(ecosystem_type_main) |>
-  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
-  unnest(ecosystems_main)  |> 
-  group_by(ecosystems_main) |> 
+  group_by(taxonomic_level) |> 
+  tally() |> 
+  drop_na() |>
+  mutate(taxonomic_level=case_when(
+    taxonomic_level %!in% c("Class", "Family","Genus", "Kingdom", "Order", "Species")~"Other",
+    TRUE~taxonomic_level
+  )) |> 
+  group_by(taxonomic_level) |> 
+  summarise(n=sum(n)) |> 
+  ggplot(aes(reorder(taxonomic_level, n),n,fill=taxonomic_level))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  labs(x="", y="antall publikasjoner")+
+  theme(legend.position = "Null") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+
+### Arter; 
+
+join_Nor_form |> 
+  filter(taxonomic_level == "Species") |>
+  group_by(taxonomic_name) |>
+  mutate(taxonomic_name2 = strsplit(taxonomic_name, ","))  |> 
+  unnest(taxonomic_name2)  |> 
+  group_by(taxonomic_name2) |> 
+  mutate(taxonomic_name2=trimws(taxonomic_name2)) |> 
   tally() |> 
   drop_na() |> 
-  ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
+  top_n(10) |>
+  ggplot(aes(reorder(taxonomic_name2, n),n,fill=taxonomic_name2))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner")
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
+## EBV
+
+
+EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
+
+plotEBVs<-function(var){
+  join_Nor_form |> 
+    select({{var}}) |>
+    mutate(var = strsplit({{var}}, ","))  |> 
+    unnest(var)  |> 
+    mutate(var = trimws(var))  |> 
+    group_by(var) |> 
+    tally() |> 
+    drop_na() |> 
+    ggplot(aes(reorder(var, n),n,fill=var))+
+    geom_histogram(stat="identity")+
+    coord_flip()+
+    theme(legend.position = "Null")+
+    labs(x="", y="antall publikasjoner") +
+    scale_fill_viridis(discrete = TRUE, option = "D")
+}
+
+plotEBVs(genetic_composition)
+plotEBVs(species_populations)
+plotEBVs(species_traits)
+plotEBVs(community_composition)
+plotEBVs(ecosystem_functioning)
+plotEBVs(ecosystem_structure)
+plotEBVs(ecosystem_services)
 
 ################################################################################
 ################################################################################
+## Samfunnsvitenskap
+
+### Analytiske tilnærminger
+
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  select(data_gathering_methods) |>
+  mutate(data_gathering_methods = strsplit(data_gathering_methods, ","))  |> 
+  unnest(data_gathering_methods)  |> 
+  group_by(data_gathering_methods) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(data_gathering_methods, n),n,fill=data_gathering_methods))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+### Aktører 
+
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  select(actors) |>
+  mutate(actors = strsplit(actors, ","))  |> 
+  unnest(actors)  |> 
+  mutate(actors=trimws(actors)) |> 
+  group_by(actors) |> 
+  tally() |> 
+  drop_na() |>
+  ggplot(aes(reorder(actors, n),n,fill=actors))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+### Sektor
+
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  select(sector_societal_concern) |>
+  mutate(sector_societal_concern = strsplit(sector_societal_concern, ","))  |> 
+  unnest(sector_societal_concern)  |> 
+  mutate(sector_societal_concern=trimws(sector_societal_concern)) |> 
+  group_by(sector_societal_concern) |> 
+  tally() |> 
+  drop_na() |>
+  ggplot(aes(reorder(sector_societal_concern, n),n,fill=sector_societal_concern))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+### Tools
+
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  select(governce_tools) |>
+  # mutate(governce_tools = strsplit(governce_tools, ","))  |> 
+  # unnest(governce_tools)  |> 
+  # mutate(governce_tools=trimws(governce_tools)) |> 
+  group_by(governce_tools) |> 
+  tally() |> 
+  drop_na() |>
+  ggplot(aes(reorder(governce_tools, n),n,fill=governce_tools)) +
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D") 
+
+
 
 
 
