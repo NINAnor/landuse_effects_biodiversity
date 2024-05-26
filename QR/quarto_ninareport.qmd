@@ -394,7 +394,7 @@ prisma(
 # gs4_auth()
 ## read in GoogleSheets----
 
-# form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
+#form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
 # 
 # ## clean names----
 # form <- form |>
@@ -1217,6 +1217,83 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 Matt Add text around figures and add ecosystem services plots
 
 ## Systematiske litteratursammenstillinger
+
+
+```{r sysrevs data}
+#| echo: false
+#| message: false
+#| warning: false
+
+# form<-readRDS("data/cache_data/form.RDS")
+# sysRev<-form |> 
+# filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes") |> filter(research_type=="Summarised evidence")
+# 
+# 
+# # ### Get matched details from Rayyan----
+#  
+# # # read the Rayyan results
+# rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
+# rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
+# 
+# sysRev$accession_zr<-unlist(sysRev$study_id)
+#  
+# join_sysRev <- sysRev |>
+#    left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
+#  
+# # # get openAlexR data
+# doi_list <- strsplit(join_sysRev$doi, split = " ")
+# doi_list <- sapply(doi_list, "[[", 1)
+
+# # # oa_fetch(
+# # #   doi = c(doi_list),
+# # #   entity = "works",
+# # #   verbose = TRUE
+# # # ) %>%
+# # #   show_works() %>%
+# # #   knitr::kable()
+# 
+#bib_ls <- list(
+#   doi = c(doi_list),
+#   entity = "works"
+# )
+# 
+# # # oa_fetch(
+# # #   # identifier = c("W2741809807", "W2755950973"),
+# # #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
+# # #   entity = "works",
+# # #   verbose = TRUE
+# # # ) %>%
+# # #   show_works() %>%
+# # #   knitr::kable()
+# # #
+# # #
+# # #
+#sysRev_bib <- do.call(oa_fetch, bib_ls) %>%
+#   oa2bibliometrix()
+#saveRDS(sysRev_bib,"data/cache_data/sysRev_bib.RDS")
+#saveRDS(sysRev, "data/cache_data/sysRev.RDS")
+
+sysRev_bib<-readRDS("data/cache_data/sysRev_bib.RDS")
+sysRev<-readRDS("data/cache_data/sysRev.RDS")
+
+```
+
+
+```{r type of summerised evidence}
+sysRev |> 
+group_by(type_of_summarised_evidence) |> 
+tally() |> 
+drop_na() |> 
+ggplot(aes(reorder(type_of_summarised_evidence,n),n,fill=type_of_summarised_evidence)) +
+geom_histogram(stat="identity") +
+theme(legend.position = "Null")+
+   labs(x="", y="antall publikasjoner")+
+coord_flip()
+   # scale_fill_viridis(discrete = TRUE, option = "D") 
+
+```
+
+
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
