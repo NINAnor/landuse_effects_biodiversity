@@ -138,8 +138,9 @@ library(stm)
 library(wordcloud2)
 library(bibliometrix)
 library(synthesisr)
-ggplot2::theme_set(ggthemes::theme_base())
-
+library(viridis)
+#ggplot2::theme_set(ggthemes::theme_base())
+ggplot2::theme_set(theme_gray())
 ```
 
 # Innledning {#sec-inl}
