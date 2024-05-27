@@ -691,7 +691,6 @@ I vårt materiale er det en stor overvekt av forskning som faller inn under fagd
 #| echo: false
 #| message: false
 #| warning: false
-<<<<<<< HEAD
 #| label: fig-spatialscale
 #| fig-cap: "Oversikt over hvilken geografisk målestokk forskningen er gjennomført på." 
 
