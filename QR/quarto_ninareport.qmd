@@ -340,7 +340,7 @@ We did not assess the quality of the included primary studies as we aimed to map
 
 | GRADE domains        | Description                                                                                                                                                                                                                                                                                                                  |
 |----------------------|--------------------------------------------------|
-=======
+
 |---------------------|---------------------------------------------------|
 
 | 1\. Risk of bias     | Bias occurs when a study's results are skewed due to design or conduct flaws. This uncertainty lowers confidence in the estimated effect, as potential biases can influence results. Assessors need to decide whether the risk of bias in individual studies significantly impacts their confidence in the treatment effect. |
@@ -692,9 +692,6 @@ I vårt materiale er det en stor overvekt av forskning som faller inn under fagd
 #| label: fig-spatialscale
 #| fig-cap: "Oversikt over hvilken geografisk målestokk forskningen er gjennomført på." 
 
-
-=======
->>>>>>> a288e1d1429c922a182bd209cb48f57fd2710847
 join_Nor_form |> 
   group_by(spatial_scale) |>
   tally() |> 
