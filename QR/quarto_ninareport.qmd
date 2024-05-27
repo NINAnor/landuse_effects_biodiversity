@@ -341,7 +341,7 @@ Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative o
 We did not assess the quality of the included primary studies as we aimed to map the available evidence; however for the review papers we modified the [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/) approach to assess evidence certainty. Each review article was assessed in terms of Risk of bias, Imprecision, Inconsistency, Indirectness and Publication bias. We assessed each review against these criteria to determine how much confidence we have in the evidence presented.
 
 | GRADE domains        | Description                                                                                                                                                                                                                                                                                                                  |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|--------------------------------------|----------------------------------|
 | 1\. Risk of bias     | Bias occurs when a study's results are skewed due to design or conduct flaws. This uncertainty lowers confidence in the estimated effect, as potential biases can influence results. Assessors need to decide whether the risk of bias in individual studies significantly impacts their confidence in the treatment effect. |
 | 2\. Imprecision      | The GRADE approach evaluates imprecision by examining the 95% confidence interval around the best estimate of the absolute effect. Certainty is reduced if management decisions would differ depending on whether the true effect lies at the upper or lower end of this interval.                                           |
 | 3\. Inconsistency    | Certainty is highest when multiple studies show consistent effects. Assessors should assess the similarity of point estimates, the overlap of confidence intervals, and statistical heterogeneity to determine if inconsistency affects the certainty.                                                                       |
@@ -1990,6 +1990,63 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
   labs(x="Open Access status", y="Frequency")+
   theme(legend.position = "none")
 ```
+
+## Where should research focus - decision model (Norway articles) MOVE TO CORRECT PLACE PLEASE ERLEND
+
+We can assess the conceptual development of a research field using bibliometric network analysis (@cobo2011approach). Specifically, co-word analysis assesses the relationship between between keywords in a set of documents. It helps identify key themes, their interconnections, and how they change over time, providing valuable insights for researchers and decision-makers. 
+
+Using the method outlined in @cobo2011approach we first extracted keywords from all the included articles from Norway. We then created a Co-occurrence Matrix counting how often each pair of keywords co-occurs in the documents. The Co-occurrence Matrix was then converted into a network graph where keywords are nodes connected by edges that represent their co-occurrence.
+
+Using the walktrap algorithm keywords are grouped into clusters. The Walktrap algorithm is a community detection method that uses random walks to explore the network and identify clusters of nodes that are more densely connected to each other than to the rest of the network. By simulating random walks and merging nodes based on their co-occurrence frequencies, it effectively reveals the community structure within the network. This makes it particularly useful for analyzing complex networks.
+
+Each cluster represents a thematic area within the research field (where keywords within the same cluster co-occur more often). The Centrality of each cluster indicates the importance of the cluster in the entire network. High Centrality suggests that themes are well-integrated within the research field. They act as bridges between different topics and are often considered core or mainstream themes. Themes with low centrality are more isolated and have fewer connections to other themes. These could be emerging topics or niche areas that are not yet widely integrated into the broader research field.
+
+Density measures the internal cohesion of a theme. It indicates how strongly the keywords within a particular theme are connected to each other. It reflects the extent to which a theme is self-contained or focused. Themes with high density have strong internal connections, meaning the keywords within the theme frequently co-occur with each other. These themes are well-developed and internally cohesive, often representing specialised areas of research. Themes with low density have weaker internal connections. The keywords within these themes do not co-occur as frequently, indicating that the theme might be broader, less focused, or still developing.
+
+We plotted the network in a "strategic diagram" where themes are plotted based on their centrality and density, and categorised by their position in the quadrants. 
+
+- Motor Themes (High Centrality, High Density): These are important and well-developed themes that are central to the research field. They have strong internal cohesion and are widely connected to other themes.
+
+- Basic and Transversal Themes (High Centrality, Low Density): These themes are important but less cohesive. They serve as bridges connecting various parts of the research field but may encompass a broader range of topics.
+
+- Niche Themes (Low Centrality, High Density): These themes are specialised and internally cohesive but not well-integrated into the broader research field. They represent focused areas of research.
+
+- Emerging or Declining Themes (Low Centrality, Low Density): These themes are less developed. They could be new and emerging topics or older themes that are declining in relevance.
+
+```{r themeMap}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-themeMap
+
+res <- thematicMap(nor_bib, field = "AB", n = 1000, minfreq = 2, ngrams = 2, size = 0.5, repel = TRUE, subgraphs = TRUE)
+
+
+dat<-res$clusters
+
+p<-dat |> 
+  ggplot(aes(rcentrality, rdensity, size=as.numeric(freq), colour = color))+
+  geom_point()+
+  labs(x="Relevance degree\n(Centrality)", y="Development degree\n(Density)")+
+  geom_hline(yintercept = 7.5)+
+  geom_vline(xintercept = 7.5)+
+  theme(legend.position = "None")+
+  geom_label_repel(aes(label = name_full),size=4,
+                                                  box.padding   = 0.35, 
+                                                  point.padding = 0.5,
+                                                  segment.color = 'grey50')
+
+p+
+  ggplot2::annotate("text", x = 3, y = 15, label = "Niche")+
+  ggplot2::annotate("text", x = 12, y = 15, label = "Motor")+
+  ggplot2::annotate("text", x = 12, y = 4, label = "Basic")+
+  ggplot2::annotate("text", x = 3, y = 7, label = "Emerging")
+
+```
+
+In @fig-themeMap themes are indicated with a single common keyword. We can see that well studied topics within Norway  included species richness particularly in the context of forest management and reindeer in the context of wild reindeer, power infrastructure as well as domestic reindeer herding. Studies around habitat selection included studies on lynx and roe deer. Human-wildlife conflict around Geese and agriculture is also well studied.  
+
+Topics that are emerging include hyttebygging (recreational infrastructure) and biodiversity conservation in conjunction with climate change as well as sustainable development. Future scenarios of land use change (as well as other global change) is also an emerging field. Studies around indigenous peoples within the context of landuse change are under-represented in the field. 
 
 # Diskusjon
 
