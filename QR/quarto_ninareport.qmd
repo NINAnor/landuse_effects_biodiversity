@@ -293,7 +293,6 @@ unique_citations <- readRDS(here::here("data/unique_citations.RDS"))
 source_comparison <- compare_sources(unique_citations, comp_type = "sources")
 # Generate a source comparison upset plot.
 plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE), main.bar.color="#E69F00", matrix.color="#b8e186", point.size=5,sets.bar.color=c("#4dac26"))
-```
 
 De ulike søkestrategiene (ulike databaser, forward- and backward søk osv) fanget opp et ulikt antall artikler, hvorav en viss andel overlappet @fig-search. Til sammen mener vi at de søk vi har gjennomført har gitt oss en god dekning av den aktuelle litteraturen.
 
@@ -343,7 +342,7 @@ We did not assess the quality of the included primary studies as we aimed to map
 |----------------------|--------------------------------------------------|
 =======
 |---------------------|---------------------------------------------------|
->>>>>>> a288e1d1429c922a182bd209cb48f57fd2710847
+
 | 1\. Risk of bias     | Bias occurs when a study's results are skewed due to design or conduct flaws. This uncertainty lowers confidence in the estimated effect, as potential biases can influence results. Assessors need to decide whether the risk of bias in individual studies significantly impacts their confidence in the treatment effect. |
 | 2\. Imprecision      | The GRADE approach evaluates imprecision by examining the 95% confidence interval around the best estimate of the absolute effect. Certainty is reduced if management decisions would differ depending on whether the true effect lies at the upper or lower end of this interval.                                           |
 | 3\. Inconsistency    | Certainty is highest when multiple studies show consistent effects. Assessors should assess the similarity of point estimates, the overlap of confidence intervals, and statistical heterogeneity to determine if inconsistency affects the certainty.                                                                       |
@@ -1220,7 +1219,6 @@ group_by(governance_level_using_the_tool) |>
 
 ```
 
-<<<<<<< HEAD
 =======
 ## To be moved
 
@@ -1399,6 +1397,10 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 ```
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 187cf98e6178128ffef6fb3f346088a4b15629ae
 ## Systematiske litteratursammenstillinger
 
 ```{r sysrevs data}
@@ -1747,6 +1749,7 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 
 ```
 
+<<<<<<< HEAD
 ```{r}
 #| echo: false
 #| message: false
@@ -1763,6 +1766,8 @@ n_studies|>
   geom_histogram(fill = "darkblue")
 
 ```
+=======
+>>>>>>> 187cf98e6178128ffef6fb3f346088a4b15629ae
 
 Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt datamateriale er.... (@fig-type-sum-evidence).
 
@@ -1782,6 +1787,10 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 ````
 
 
+<<<<<<< HEAD
+=======
+```
+>>>>>>> 187cf98e6178128ffef6fb3f346088a4b15629ae
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
