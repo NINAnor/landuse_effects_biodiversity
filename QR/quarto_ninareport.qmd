@@ -340,7 +340,6 @@ Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative o
 We did not assess the quality of the included primary studies as we aimed to map the available evidence; however for the review papers we modified the [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/) approach to assess evidence certainty. Each review article was assessed in terms of Risk of bias, Imprecision, Inconsistency, Indirectness and Publication bias. We assessed each review against these criteria to determine how much confidence we have in the evidence presented.
 
 | GRADE domains        | Description                                                                                                                                                                                                                                                                                                                  |
-<<<<<<< HEAD
 |----------------------|--------------------------------------------------|
 =======
 |---------------------|---------------------------------------------------|
@@ -743,7 +742,6 @@ join_Nor_form |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
-**Figur X** *Fordeling av forskningsartikler hvor de ulike hovedøkosystemene er representert*.
 
 De hyppigst studerte økosystemene i vårt materiale er skog (*Forest*) etterfulgt av fjelløkosystemer (*Mountains*) og semi-naturlige økosystmer (*Semi-natural ecosystems*) (@fig-ecosys). Den siste kategorien er dominert av studier på semi-naturlig engvegetasjon. De øvrige økosystemtypene er langt dårligere representert.
 
@@ -1400,9 +1398,7 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 # histResults <- histNetwork(nor_bib, sep = ";")
 ```
 
-Matt Add text around figures and add ecosystem services plots
 
->>>>>>> a288e1d1429c922a182bd209cb48f57fd2710847
 ## Systematiske litteratursammenstillinger
 
 ```{r sysrevs data}
@@ -1755,7 +1751,6 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 #| echo: false
 #| message: false
 #| warning: false
-<<<<<<< HEAD
 #| fig-cap: "N studies"
 
 n_studies<-unlist(sysRev$number_of_studies_assessed)
@@ -1770,7 +1765,8 @@ n_studies|>
 ```
 
 Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt datamateriale er.... (@fig-type-sum-evidence).
-=======
+
+```{r}
 #| fig-cap: "High quality"
 sysRev |> 
 group_by(high_quality_systematic_review) |> 
@@ -1783,9 +1779,9 @@ theme(legend.position = "Null")+
 coord_flip()+
 scale_fill_viridis(discrete = TRUE, option = "D") 
 
+````
 
-```
->>>>>>> a288e1d1429c922a182bd209cb48f57fd2710847
+
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
