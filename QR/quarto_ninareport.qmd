@@ -1750,21 +1750,7 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt datamateriale er.... (@fig-type-sum-evidence).
-=======
-#| fig-cap: "High quality"
-sysRev |> 
-group_by(high_quality_systematic_review) |> 
-tally() |> 
-drop_na() |> 
-ggplot(aes(reorder(high_quality_systematic_review,n), n, fill=high_quality_systematic_review))+
-geom_histogram(stat="identity") +
-theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner")+
-coord_flip()+
-scale_fill_viridis(discrete = TRUE, option = "D") 
 
-
-```
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
@@ -2075,11 +2061,9 @@ Vår sammenstilling av litteraturen knyttet til..
 
 ## Implikasjoner for forskning og forskningsfinansiering
 
-.....
 
 ## Implikasjoner for forvaltning og politikk
 
-.....
 
 \clearpage
 
