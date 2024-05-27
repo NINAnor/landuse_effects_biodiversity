@@ -335,13 +335,145 @@ join_Nor_form |>
   labs(x="", y="antall publikasjoner") +
   scale_fill_viridis(discrete = TRUE, option = "D") 
 
+### Ecosystem - social science papers; 
+
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  group_by(ecosystem_type_main) |>
+  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
+  unnest(ecosystems_main)  |> 
+  group_by(ecosystems_main) |> 
+  mutate(ecosystems_main=trimws(ecosystems_main)) |> 
+  tally() |> 
+  drop_na() |>
+  top_n(10) |> 
+  ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+
+### Aralbruk - social science
+
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  tally() |> 
+  filter(land_use != "fishing collection") |>
+  mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
+  drop_na() |> 
+  top_n(20) |> 
+  ggplot(aes(reorder(land_use, n),n,fill=land_use))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+
+join_Nor_form |> 
+  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  tally() |> 
+  drop_na() |> 
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Agriculture",
+    grepl("Biological resource use", land_use)~"Biological resource use",
+    grepl("Energy", land_use)~"Energy",
+    grepl("Resident", land_use)~"Residential",
+    grepl("Transport", land_use)~"Transportation",
+    grepl("fish", land_use)~"Biological resource use",
+    TRUE~land_use
+  )) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  group_by(land_use) |> 
+  summarise(n=sum(n))|> 
+  ggplot(aes(reorder(land_use, n),n,fill=land_use))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 
+################################################################################
+################################################################################
 
+### Sys rev ecosystem
 
+sysRev |> 
+  group_by(ecosystem_type_main) |>
+  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
+  unnest(ecosystems_main)  |> 
+  group_by(ecosystems_main) |> 
+  mutate(ecosystems_main=trimws(ecosystems_main)) |> 
+  tally() |> 
+  drop_na() |>
+  top_n(10) |> 
+  ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
+### Sys rev area use
 
+sysRev |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  tally() |> 
+  drop_na() |> 
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Agriculture",
+    grepl("Biological resource use", land_use)~"Biological resource use",
+    grepl("Energy", land_use)~"Energy",
+    grepl("Resident", land_use)~"Residential",
+    grepl("Transport", land_use)~"Transportation",
+    grepl("fish", land_use)~"Biological resource use",
+    TRUE~land_use
+  )) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  group_by(land_use) |> 
+  summarise(n=sum(n))|> 
+  ggplot(aes(reorder(land_use, n),n,fill=land_use))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+### small scale
+
+sysRev |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  tally() |> 
+  filter(land_use != "fishing collection") |>
+  mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
+  drop_na() |> 
+  top_n(15) |> 
+  ggplot(aes(reorder(land_use, n),n,fill=land_use))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="antall publikasjoner") +
+  scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 
