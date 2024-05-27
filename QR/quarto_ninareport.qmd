@@ -1219,7 +1219,6 @@ group_by(governance_level_using_the_tool) |>
 
 ```
 
-=======
 ## To be moved
 
 ```{r open access}
