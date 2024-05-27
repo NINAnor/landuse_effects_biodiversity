@@ -337,7 +337,7 @@ Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative o
 We did not assess the quality of the included primary studies as we aimed to map the available evidence; however for the review papers we modified the [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/) approach to assess evidence certainty. Each review article was assessed in terms of Risk of bias, Imprecision, Inconsistency, Indirectness and Publication bias. We assessed each review against these criteria to determine how much confidence we have in the evidence presented.
 
 | GRADE domains        | Description                                                                                                                                                                                                                                                                                                                  |
-|--------------------|----------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | 1\. Risk of bias     | Bias occurs when a study's results are skewed due to design or conduct flaws. This uncertainty lowers confidence in the estimated effect, as potential biases can influence results. Assessors need to decide whether the risk of bias in individual studies significantly impacts their confidence in the treatment effect. |
 | 2\. Imprecision      | The GRADE approach evaluates imprecision by examining the 95% confidence interval around the best estimate of the absolute effect. Certainty is reduced if management decisions would differ depending on whether the true effect lies at the upper or lower end of this interval.                                           |
 | 3\. Inconsistency    | Certainty is highest when multiple studies show consistent effects. Assessors should assess the similarity of point estimates, the overlap of confidence intervals, and statistical heterogeneity to determine if inconsistency affects the certainty.                                                                       |
@@ -680,7 +680,6 @@ I vårt materiale er det en stor overvekt av forskning som faller inn under fagd
 #| echo: false
 #| message: false
 #| warning: false
-
 join_Nor_form |> 
   group_by(spatial_scale) |>
   tally() |> 
@@ -1167,20 +1166,20 @@ jn_dtm<-
 #| message: false
 #| warning: false
 # number of topics
-
-result <- FindTopicsNumber(
-  jn_dtm,
-  topics = seq(from = 2, to = 15, by = 1),
-  metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
-  method = "Gibbs",
-  control = list(seed = 77),
-  mc.cores = 2L,
-  verbose = TRUE
-)
-
-#FindTopicsNumber_plot(result)
-
-saveRDS(result, "data/cache_data/result.RDS")
+# 
+# result <- FindTopicsNumber(
+#   jn_dtm,
+#   topics = seq(from = 2, to = 15, by = 1),
+#   metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+#   method = "Gibbs",
+#   control = list(seed = 77),
+#   mc.cores = 2L,
+#   verbose = TRUE
+# )
+# 
+# #FindTopicsNumber_plot(result)
+# 
+# saveRDS(result, "data/cache_data/result.RDS")
 ```
 
 ```{r}
@@ -1188,7 +1187,7 @@ saveRDS(result, "data/cache_data/result.RDS")
 #| message: false
 #| warning: false
 jn_lda <- LDA(jn_dtm, k = 6, control = list(seed = 1234))
-saveRDS(jn_lda, "data/cache_data/jn_lda.RDS")
+#saveRDS(jn_lda, "data/cache_data/jn_lda.RDS")
 
 ```
 
@@ -1533,23 +1532,6 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "N studies"
-
-n_studies<-unlist(sysRev$number_of_studies_assessed)
-
-n_studies<-data.frame(n_studies)
-
-n_studies$n_studies<-as.numeric(n_studies$n_studies)
-n_studies|> 
-  ggplot(aes(n_studies))+
-  geom_histogram(fill = "darkblue")
-
-```
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
 #| fig-cap: "High quality"
 sysRev |> 
 group_by(high_quality_systematic_review) |> 
@@ -1617,9 +1599,10 @@ tidy_topics_dtm<-tidy_topics |>
 # 14 topics supported
 
 
-topics_lda <- LDA(tidy_topics_dtm, k = 14, control = list(seed = 1234))
+#topics_lda <- LDA(tidy_topics_dtm, k = 14, control = list(seed = 1234))
 
-
+#saveRDS(topics_lda, "data/cache_data/topics_lda.RDS")
+topics_lda<-readRDS("data/cache_data/topics_lda.RDS")
 included_topics<-tidy(topics_lda, matrix="beta")
 #included_topics<-included_topics[- grep("1", included_topics$term),]
 
@@ -1816,6 +1799,14 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
 ```
 
 # Diskusjon
+
+<!--# Erlend can you improve this and move to correct place (or delete!).. it looks really long when pasted here! -->
+
+Forskjellige studiedesign tilbyr varierende nivåer av strenghet og pålitelighet i å informere beslutningsmodeller. Randomiserte kontrollerte studier (RCT), ansett som gullstandarden i forskningsmetodologi, gir det høyeste bevisnivået på grunn av deres randomiserte tildeling av deltakere til intervensjons- og kontrollgrupper. Ved å minimere skjevheter og forvirrende faktorer, gir RCTer robust bevis for årsakssammenhenger mellom intervensjoner og utfall. Dette gjør dem spesielt verdifulle for beslutningsmodeller som søker å nøyaktig forutsi effektene av intervensjoner på en målpopulasjon.
+
+I motsetning til dette mangler observasjonsstudier, som før-etter-kontroll-påvirkning (BACI), kontroll-påvirkning (CA), før-etter (BA) og etter (A) studier, randomiseringen som er iboende i RCTer. Selv om disse designene fortsatt kan gi verdifull innsikt i sammenhenger mellom intervensjoner og utfall, er de mer utsatt for skjevheter og forvirrende variabler. For eksempel, uten randomisering, kan det være utfordrende å tilskrive observerte endringer utelukkende til intervensjonen, noe som kan føre til potensial overestimering eller underestimering av intervensjonseffekter. Følgelig kan beslutninger basert på observasjonsstudier ha større usikkerhet og være mindre pålitelige for å informere politikk eller praksis sammenlignet med de som er basert på RCTer.
+
+Valget av studiedesign avhenger av nivået av bevis som kreves og gjennomførbarheten av å utføre randomiserte studier i den gitte konteksten. Mens RCTer tilbyr det høyeste nivået av tillit til årsaksslutning, kan observasjonsstudier fortsatt gi verdifulle innsikter, dog med større forsiktighet på grunn av deres mottakelighet for skjevheter.
 
 ## Kunnskapsstatus for effekter av arealbruk og arealbruksendringer på biologisk mangfold
 
