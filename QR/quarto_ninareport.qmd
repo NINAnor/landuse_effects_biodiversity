@@ -741,7 +741,6 @@ join_Nor_form |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
-**Figur X** *Fordeling av forskningsartikler hvor de ulike hovedøkosystemene er representert*.
 
 De hyppigst studerte økosystemene i vårt materiale er skog (*Forest*) etterfulgt av fjelløkosystemer (*Mountains*) og semi-naturlige økosystmer (*Semi-natural ecosystems*) (@fig-ecosys). Den siste kategorien er dominert av studier på semi-naturlig engvegetasjon. De øvrige økosystemtypene er langt dårligere representert.
 
@@ -1397,8 +1396,6 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 # histResults <- histNetwork(nor_bib, sep = ";")
 ```
 
-Matt Add text around figures and add ecosystem services plots
-
 
 ## Systematiske litteratursammenstillinger
 
@@ -1750,7 +1747,6 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt datamateriale er.... (@fig-type-sum-evidence).
-
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
