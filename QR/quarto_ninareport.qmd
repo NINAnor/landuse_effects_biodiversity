@@ -1773,10 +1773,14 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
   theme(legend.position = "none")
 ```
 
-## Change in frequency of keywords in all included 
+## Change in frequency of keywords in all included
 
 <!--# @Erlend is this useful? -->
 
+```{=html}
+<!--# Matt - the list of terms is a bit mixed? It is difficult to compare ecosystem with 
+e.g. systematic review etc. Should we prune the list to only include ecological concepts?-->
+```
 ```{r wordfreq}
 #| echo: false
 #| message: false
@@ -1863,9 +1867,9 @@ For de inkluderte systematiske litteratursammenstillingene gjorde vi en vurderin
 
 <!--# MATT ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
 
-Et annet gjennomgripende funn i vår gjennomgang av primærlitteraturen er at det er en relativt beskjeden andel av litterturen som har gjort data og kildekode åpent tilgjengelig etter at studiene har blitt publisert. <!--# ERLEND ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
+Et annet gjennomgripende funn i vår gjennomgang av primærlitteraturen er at det er en relativt beskjeden andel av litterturen som har gjort data og kildekode åpent tilgjengelig etter at studiene har blitt publisert. <!--# ERLEND ADD SHORT TEXT HERE ABOUT OPEN SCIENCE - 5-10 LINES -->
 
-Selv om vi innenfor naturvitenskapen søker å finne generelle og almentgyldige svar på forskningsspørsmål ser man ofte at økologien er kontektsavhengig, og at anvendt forskning derfor ofte må skje i geografisk nærhet av der den skal benyttes. Vår gjennomgang av litteraturen fra Norge har avdekket at det er stor variasjon knyttet til hvor hyppig feltstudier gjennomføres i de ulike fylkene i Norge. <!--# ERLEND ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
+Selv om vi innenfor naturvitenskapen søker å finne generelle og almentgyldige svar på forskningsspørsmål ser man ofte at økologien er kontektsavhengig, og at anvendt forskning derfor ofte må skje i geografisk nærhet av der den skal benyttes. Vår gjennomgang av litteraturen fra Norge har avdekket at det er stor variasjon knyttet til hvor hyppig feltstudier gjennomføres i de ulike fylkene i Norge. <!--# ERLEND ADD SHORT TEXT HERE ABOUT CONTEXT DEPENDENCE AND LOCATION OF THE STUDIES - 5-10 LINES -->
 
 De samfunnsvitenskapelige studiene avdekket at ... <!--# HÅKON ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
 
@@ -1875,10 +1879,19 @@ Vår sammenstilling av den naturvitenskapelige litteraturen fra Norge avdekket h
 
 Også når det gjelder ulike former for arealbruk og arealbruksendringer ser vi at det er stor variasjon i hvor mye forskning som forekommer. På et overordnet plan (@fig-landuse-coarse) er det størst volum av forskning knyttet til ulike former for landbruk (inkludert både beitebruk og andre former for landbruk) og bruk av biologiske ressurser (inkludert skogbruk og jakt og fiske). For andre hovedformer for arealbruk, inkludert ulike former for energiproduksjon og transport, og ulike former for "residential" er det vesentlig mindre forskning tilgjenglig. Dersom vi bryter opp arealbruken i finere oppdeling er det skogbruk som har klart størst volum av forskning (@fig-landuse-detailed), etterfulgt av effekter av beiting og landbruk mer generelt. Det er påfallende få naturvitenskapelige studier som omhandle effekter av vern og restaurering.
 
-=======
+Vi kartla hvilke responsvariabler de ulike studiene fokuserte på, og delte disse inn i henhold til klassifieringssystemet "Essential Biodiversity Variables" (EBD). Vår gjennomgang av litteraturen viste at det var særlig tre variabler som ble studert, henholdsvis arters utbredelse (*Species distribution*), arters antall (*Species abundance*) og taksonomisk diversitet (*Taxonomic diversity*). De to første variablene blir typisk studert for en eller et fåtall arter i samme studie, mens studier som fokuserer på diversitet typisk fokuserer på diversiteten i hele plantesamfunn eller blant leddyr i et samfunn. Det er også et ganske betydelig (dog langt mindre) volum av forskning på ulike trekk (*Traits*) som beskriver individer eller arter. Særlig gjelder dette studier av arters bevegelsesmønter (*Movement*) og habitatseleksjon under ulike former for arealbruk og menneskelige forstyrrelser. Inkludert i denne kategorien finner vi også en rekke studier av hvordan villreinens arealbruk og bevegelsesmønster påvirkes av menneskelig aktivitet og infrastruktur, og hvordan gaupenes bevegelsesmønster henger sammen med ulike former for arealbruk. Ser vi arter som er inkludert hyppigst i vår litteraturgjennomgang finner vi også at disse to artene er hyppigst forekommende. Det er også et betydelig antall studier som undersøker hvordan ulike former for arealbruk påvirker reproduksjon og overlevelse hos populasjoner. I kontrast til variablene over er det relativt få studier som fokuserer på effekter på hele økosystemer (struktur og/eller funksjon) og det er svært få studier som har undersøkt effekter av arealbruk på genetisk variasjon differensiering.
+
+Økosystemtjenester ble også...
+
+<!--# Trond - kan du skrive her -->
+
 ## Sentrale funn knyttet til den samfunnsvitenskapelige litteraturen
 
 <!--# INSERT TEXT FROM HÅKON AND THOMAS HERE -->
+
+## Sentrale funn knyttet til de systematiske litteratursammenstillingene vi har vurdert
+
+<!--# Matt - short text here? -->
 
 ## Begrensninger i litteraturstudien
 
