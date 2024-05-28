@@ -345,8 +345,7 @@ Følgende forklaring for de ulike GRADE-domenene lå til grunn for vår vurderin
 
 1.  **Risiko for bias:** Bias oppstår når en studies resultater er ikke er forventningsrette på grunn av design- eller gjennomføringsfeil. Denne usikkerheten reduserer tilliten til den estimerte effekten, ettersom potensielle skjevheter kan påvirke resultatene. Evaluatorer må avgjøre om risikoen for skjevhet i individuelle studier påvirker deres tillit til behandlingseffekten.
 
-2.  **Upresishet:** GRADE-tilnærmingenevaluerer unøyaktighet ved å undersøke 95 % konfidensintervallet rundt det beste estimatet av den absolutte effekten. Sikkerheten reduseres dersom konklusjonen
-    fra studiet varierer avhengig av om den sanne effekten ligger i øvre eller nedre ende av dette intervallet.
+2.  **Upresishet:** GRADE-tilnærmingenevaluerer unøyaktighet ved å undersøke 95 % konfidensintervallet rundt det beste estimatet av den absolutte effekten. Sikkerheten reduseres dersom konklusjonen fra studiet varierer avhengig av om den sanne effekten ligger i øvre eller nedre ende av dette intervallet.
 
 3.  **Inkonsistens:** Sikkerheten er høyest når flere studier viser konsistente effekter. Evaluatorer bør vurdere likheten mellom punktestimater, hvorvidt konfidensintervaller overlapper og statistisk heterogenitet for å avgjøre om inkonsekvens påvirker sikkerheten i konklusjonen.
 
@@ -1847,17 +1846,29 @@ Temaer som er stigende omfatter blant annet hyttebygging og bevaring av biologis
 
 # Diskusjon
 
-<!--# Erlend can you improve this and move to correct place (or delete!).. it looks really long when pasted here! -->
+Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema det finnes forskning på og hvilke tema det mangler. Basert på over 20.000 artikler som ble fanget opp av vårt søk endte vi opp med \> 2000 artikler som svarte på inkluderingskriteriene etter første runde med screening. Alle artikler fra Norge samt systematiske kunnskapssammenstillinger ble videreført til en andre runde med screening samt datakoding. Totalt omfattende denne litteraturen XX artikler. Som det framgår av resultatseksjonen er det imidlertid stor forskjell på hvor godt de ulike tema, former for arealbruk og arealbruksendringer er dekket. Det er også stor variasjon i hvor mye forskning som har blitt gjennomført i de ulike fylkene (merk - her snakker vi om hvor studiene er gjennomført, ikke hvor forskningsgruppa holder til).
 
-Forskjellige studiedesign tilbyr varierende nivåer av strenghet og pålitelighet i å informere beslutningsmodeller. Randomiserte kontrollerte studier (RCT), ansett som gullstandarden i forskningsmetodologi, gir det høyeste bevisnivået på grunn av deres randomiserte tildeling av deltakere til intervensjons- og kontrollgrupper. Ved å minimere skjevheter og forvirrende faktorer, gir RCTer robust bevis for årsakssammenhenger mellom intervensjoner og utfall. Dette gjør dem spesielt verdifulle for beslutningsmodeller som søker å nøyaktig forutsi effektene av intervensjoner på en målpopulasjon.
+Et gjennomgående trekk fra vår sammestilling av litteraturen fra Norge er at et dominerende andel av den naturvitenskapelige forskningen er basert på empiriske data samlet inn i felt eller fra moderne teknologier (fjernmåling osv). Den støreste andelen av forskningen baserer seg også på lokale eller regionale studier, noe som inneærer at de dekker for eksempel en del av en kommune eller et fylke, eller et større fjellområde. Det er relativt få studier som dekker hele landet. Dette kan være en begrensning siden mange vurderinger (f.eks. rødlisting av arter, ulike rapportering til internasjonale indekser osv) er basert på landsdekkende trender og status. Siden det i Norge er mange overvåkningsprogram som i prinsippet dekker hele landet (for eksempel TOV-e og Rovdata sin rovdyrovervåkning) er dette funnet noe overraskende.
 
-I motsetning til dette mangler observasjonsstudier, som før-etter-kontroll-påvirkning (BACI), kontroll-påvirkning (CA), før-etter (BA) og etter (A) studier, randomiseringen som er iboende i RCTer. Selv om disse designene fortsatt kan gi verdifull innsikt i sammenhenger mellom intervensjoner og utfall, er de mer utsatt for skjevheter og forvirrende variabler. For eksempel, uten randomisering, kan det være utfordrende å tilskrive observerte endringer utelukkende til intervensjonen, noe som kan føre til potensial overestimering eller underestimering av intervensjonseffekter. Følgelig kan beslutninger basert på observasjonsstudier ha større usikkerhet og være mindre pålitelige for å informere politikk eller praksis sammenlignet med de som er basert på RCTer.
+Et annet veldig tydelig funn er at en veldig stor andel av den naturvitenskapelige litteraturen baserer seg på relativt "svake" forsøkdsdesing. Når vi skriver svak mener vi her design som ikke nødvendigvis er godt egent til å avdekke årsak-virkningssamennhenger. Som det framgår av @fig-studydesign er forskningen vi har kategorisert fra Norge i veldig stor grad domiert av det vi har kategorisert som controll-påvirkning (*Control-impact*) og etter-desing (*After*), med en visst innslag av før-etter design (*Before-after*). Særlig designtypen etter mangler styrke til å si noe om årsak-virkning, siden man ikke har et kontrollområde å sammenlikne effekten av intervensjonen mot. Men også for studiedesign av typen kontroll-påvirkning og før-etter er det velkjent at slutningen kan være utsatte for bias og skjevhet. Nyere statistiske metoder basert på "causal inference" har blitt utviklet for i større grad kunne trekke slutninger om årsak-virkning også fra slike studiedesign. Vi har ikke hatt kapasitet til å undersøke hvor ofte disse har blitt benyttet i den litteraturen vi har kategorisert, men basert på vår genrelle kjennskap til forskningsfeltet er det all grunn til å anta at disse sjeldent benyttes. I motsetning til studiedesignene beskrevet over har studiedesignene randomisert-kontrollert forsøk (*Randomised controlled trials* - RCT) og tildels før-etter-kontroll-impact (*Before-after-controll-impact* - BACI) mye større styrke til å avdekke årsak-virkningsforhold og unngås skjevhet i resultatene. Særlig er RCT regnet som gullstandarden innenfor naturvitenskapelig forskning, og det er en påfallende mangel på slike studier i vår gjennomgang (med noen svært gode unntak). En utfordring RCT og BACI design på større skala er at de ofte er ressurskrevende og ofte må gjennomføres over en betydelig romlig- og tidsmessig skala for å gi sikker inferens. Dette kan være utfordrende med dagens finansiering av forskning, hvor prosjektene er av en relativt kort varighet og ofte relativt små.
 
-Valget av studiedesign avhenger av nivået av bevis som kreves og gjennomførbarheten av å utføre randomiserte studier i den gitte konteksten. Mens RCTer tilbyr det høyeste nivået av tillit til årsaksslutning, kan observasjonsstudier fortsatt gi verdifulle innsikter, dog med større forsiktighet på grunn av deres mottakelighet for skjevheter.
+For de inkluderte systematiske litteratursammenstillingene gjorde vi en vurdering basert på modifiserte GRADE-vurderinger (se Metoder). Denne vurderingen avdekket at en relativt liten andel av denne litteraturen var basert på sammenstillinger som en kritisk måte vurderte litteraturen som ble inkludert.
 
-## Kunnskapsstatus for effekter av arealbruk og arealbruksendringer på biologisk mangfold
+<!--# MATT ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
 
-Vår sammenstilling av litteraturen knyttet til..
+Et annet gjennomgripende funn i vår gjennomgang av primærlitteraturen er at det er en relativt beskjeden andel av litterturen som har gjort data og kildekode åpent tilgjengelig etter at studiene har blitt publisert. <!--# ERLEND ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
+
+Selv om vi innenfor naturvitenskapen søker å finne generelle og almentgyldige svar på forskningsspørsmål ser man ofte at økologien er kontektsavhengig, og at anvendt forskning derfor ofte må skje i geografisk nærhet av der den skal benyttes. Vår gjennomgang av litteraturen fra Norge har avdekket at det er stor variasjon knyttet til hvor hyppig feltstudier gjennomføres i de ulike fylkene i Norge. <!--# ERLEND ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
+
+De samfunnsvitenskapelige studiene avdekket at ... <!--# HÅKON ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
+
+## Generell vurdering av litteraturen som omfatter effekter av arealbruk og arealbruksendringer på biologisk mangfold og økosystemtjenester
+
+Vår sammenstilling av den naturvitenskapelige litteraturen fra Norge avdekket hvilke tema som har vært mest i fokus i forskningen som er gjennomført.
+
+## Sentrale funn knyttet til den samfunnsvitenskapelige litteraturen 
+
+<!--# INSERT TEXT FROM HÅKON AND THOMAS HERE -->
 
 ## Begrensninger i litteraturstudien
 
@@ -1899,11 +1910,9 @@ Vår sammenstilling av litteraturen knyttet til..
 
 -   Karbonlagring
 
+-   
+
 # Konklusjoner
-
-## Implikasjoner for forskning og forskningsfinansiering
-
-## Implikasjoner for forvaltning og politikk
 
 \clearpage
 
