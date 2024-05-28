@@ -352,7 +352,7 @@ We did not assess the quality of the included primary studies as we aimed to map
 
 ## Datakodestrategier
 
-For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterier for koding er gitt i vedlegg 3.  ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy.
+For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterier for koding er gitt i vedlegg 3. ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy.
 
 \newpage
 
@@ -400,19 +400,20 @@ prisma(
 
 #form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
 # 
+#saveRDS(form, "data/cache_data/form.RDS")
 # ## clean names----
-# form <- form |>
-#   janitor::clean_names()
+ # form <- form |>
+ #   janitor::clean_names()
 # ## explore----
 # #names(form)
 # 
 # # ### select Norwegian studies----
-# Nor_form <- form |>
-#   filter(grepl("Norway", country))
+ # Nor_form <- form |>
+ #   filter(grepl("Norway", country))
 # 
 # ### selet studies that are included in the review----
-# Nor_form_inc <- Nor_form |>
-#   filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes")
+ # Nor_form_inc <- Nor_form |>
+ #   filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes")
 # 
 # ### Get matched details from Rayyan----
 # 
@@ -484,11 +485,28 @@ prisma(
 # # #
 # # #
 # nor_bib <- do.call(oa_fetch, bib_ls) %>%
-#   oa2bibliometrix()
-# saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
-# saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
+#    oa2bibliometrix()
+#saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
+#saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
 nor_bib <- readRDS(here::here("data/cache_data/nor_bib.RDS"))
 join_Nor_form<-readRDS(here::here("data/cache_data/join_Nor_form.RDS"))
+
+#split social sci responses 
+
+# join_Nor_form_soc<-join_Nor_form |> 
+#   filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included=="Yes")
+# 
+# join_Nor_form_nat<-join_Nor_form |> 
+#   filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included=="No")
+# 
+# 
+# saveRDS(join_Nor_form_soc, "data/cache_data/join_Nor_form_soc.RDS")
+# saveRDS(join_Nor_form_nat, "data/cache_data/join_Nor_form_nat.RDS")
+
+join_Nor_form_soc<-readRDS("data/cache_data/join_Nor_form_soc.RDS")
+join_Nor_form_nat<-readRDS("data/cache_data/join_Nor_form_nat.RDS")
+
+
 ```
 
 ```{r openAlex topics/concepts}
@@ -568,7 +586,7 @@ I dette kapittelet vil gi en overikt over hvordan forskningen som er fanget opp 
 #| label: fig-research-approach
 #| fig-cap: "Oversikt over forskningen basert forskningskategori."
 
-join_Nor_form |> 
+join_Nor_form_nat |> 
   select(study_id ,study_title, research_type) |> 
   group_by(research_type) |>
   tally() |> 
@@ -593,7 +611,7 @@ Som det framkommer av @fig-research-approach er det en stor overvekt over observ
 #| label: fig-studydesign
 #| fig-cap: "Forskningens fordeling mellom ulike forsøksdesign."
 
-join_Nor_form |> 
+join_Nor_form_nat |> 
   filter(grepl("observational",tolower(research_type))) |> 
   select(study_id ,study_title,study_design_observational_studies ) |> 
   group_by(study_design_observational_studies) |> 
@@ -621,15 +639,15 @@ De klart mest benyttede forsøksdesignene er kontroll-behandling (*Control-Impac
 #| fig-cap: "Oversikt over hvorvidt forskningen har gjort data og kildekode åpent tilgjengelig, og hvorvidt den er basert på forhåndsdefinerte hypoteser."
 
 
-od<-join_Nor_form |> 
+od<-join_Nor_form_nat |> 
   select(open_data) |> 
   group_by(open_data) |> 
   tally()
-oc<-join_Nor_form |> 
+oc<-join_Nor_form_nat |> 
   select(open_code) |> 
   group_by(open_code) |> 
   tally()
-pr<-join_Nor_form |> 
+pr<-join_Nor_form_nat |> 
   select(preregistration_or_published_protocol) |> 
   group_by(preregistration_or_published_protocol) |> 
   tally()
@@ -665,7 +683,7 @@ I vårt datamateriale er det kun en liten andel av artiklene som har gjort data 
 #| fig-cap: "Oversikt over hvordan forskningen fordeler seg mellom ulike disipliner."
 
 
-join_Nor_form |> 
+join_Nor_form_nat |> 
   mutate(study_area_discipline = fct_recode(study_area_discipline, Economy = "economic")) |>
   group_by(study_area_discipline) |> 
   tally() |> 
@@ -691,7 +709,7 @@ I vårt materiale er det en stor overvekt av forskning som faller inn under fagd
 #| label: fig-spatialscale
 #| fig-cap: "Oversikt over hvilken geografisk målestokk forskningen er gjennomført på." 
 
-join_Nor_form |> 
+join_Nor_form_nat |> 
   group_by(spatial_scale) |>
   tally() |> 
   drop_na() |> 
@@ -720,7 +738,7 @@ I dette kapittelet gir vi en oversikt over hvordan forskningen vi har fanget opp
 #| fig-cap: "Fordeling av forskningsartikler hvor de ulike hovedøkosystemene er representert."
 
  
-join_Nor_form |> 
+join_Nor_form_nat |> 
   group_by(ecosystem_type_main) |>
   mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
   unnest(ecosystems_main)  |> 
@@ -748,7 +766,7 @@ De hyppigst studerte økosystemene i vårt materiale er skog (*Forest*) etterful
 #| label: fig-fylke
 #| fig-cap: "Fordeling av forskningsartikler på ulike fylker i Norge."
 
-join_Nor_form |> 
+join_Nor_form_nat |> 
   group_by(county_name_of_norwegian_county) |>
   mutate(county_name_of_norwegian_county_main = strsplit(county_name_of_norwegian_county, ","))  |> 
   unnest(county_name_of_norwegian_county_main)  |> 
@@ -781,7 +799,7 @@ Det er en betydelig variasjon i hvor mye av forskningen som er fanget opp i vår
 #| label: fig-landuse-coarse
 #| fig-cap: "Fordeling av forskningsartikler som har studert effekter av de ulike hovedformene for arealbruk."
 
-join_Nor_form |> 
+join_Nor_form_nat |> 
   group_by(x23) |>
   mutate(land_use = strsplit(x23, ","))  |> 
   unnest(land_use)  |> 
@@ -815,7 +833,7 @@ join_Nor_form |>
 #| label: fig-landuse-detailed
 #| fig-cap: "Antall forskningsartikler som har studert effekten av ulike former for arealbruk eller arealbruksenderinger."
 
-join_Nor_form |> 
+join_Nor_form_nat |> 
   group_by(x23) |>
   mutate(land_use = strsplit(x23, ","))  |> 
   unnest(land_use)  |> 
@@ -853,7 +871,7 @@ I dette kapittelet vil vi beskrive hvordan forskningen fordeler seg med tanke p�
 #| fig-cap: "Fordeling av ulike taksonomiske nivå i forskningslitteraturen."
 
 '%!in%' <- function(x,y)!('%in%'(x,y))
-join_Nor_form |> 
+join_Nor_form_nat |> 
   group_by(taxonomic_level) |> 
   tally() |> 
   drop_na() |>
@@ -887,7 +905,7 @@ Det er en klar overvekt av artikler som fokuserer på (en eller flere) arter (*S
 EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
 
 plotEBVs<-function(var){
-  join_Nor_form |> 
+  join_Nor_form_nat |> 
     select({{var}}) |>
     mutate(var =str_split({{var}},",\\s(?=[A-Z])"))   |> 
     unnest(var)  |> 
@@ -938,7 +956,7 @@ plotEBVs(ecosystem_services)
 #| fig-width: 14
 #| fig-height: 10
 #| 
-join_Nor_form |> 
+join_Nor_form_nat |> 
   filter(taxonomic_level == "Species") |>
   group_by(taxonomic_name) |>
   mutate(taxonomic_name2 = strsplit(taxonomic_name, ","))  |> 
@@ -971,8 +989,7 @@ Blant studier som fokuserte på en eller et fåtall arter var det studiert av re
 #| label: fig-socialscience-ecosys
 #| fig-cap: "Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike økosystemer"
 
-join_Nor_form |> 
-  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+join_Nor_form_soc |> 
   group_by(ecosystem_type_main) |>
   mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
   unnest(ecosystems_main)  |> 
@@ -998,8 +1015,7 @@ join_Nor_form |>
 #| label: fig-socialscience-areause_coarse
 #| fig-cap: "Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike typer arealbruk"
 
-join_Nor_form |> 
-  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+join_Nor_form_soc |> 
   group_by(x23) |>
   mutate(land_use = strsplit(x23, ","))  |> 
   unnest(land_use)  |> 
@@ -1028,8 +1044,7 @@ join_Nor_form |>
 #| label: fig-socialscience-areause_fine
 #| fig-cap: "Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike typer arealbruk"
 
-join_Nor_form |> 
-  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+join_Nor_form_soc |> 
   group_by(x23) |>
   mutate(land_use = strsplit(x23, ","))  |> 
   unnest(land_use)  |> 
@@ -1065,8 +1080,7 @@ join_Nor_form |>
 #| message: false
 #| warning: false
 #| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?"
-join_Nor_form |> 
-  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+join_Nor_form_soc |> 
   select(data_gathering_methods) |>
   mutate(data_gathering_methods = strsplit(data_gathering_methods, ","))  |> 
   unnest(data_gathering_methods)  |> 
@@ -1091,8 +1105,7 @@ join_Nor_form |>
 #| fig-cap: "Hvilke aktører er hyppigst representert i forskningen?"
 #| fig-width: 11
 #| fig-height: 10
-join_Nor_form |> 
-  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+join_Nor_form_soc |> 
   select(actors) |>
   mutate(actors = strsplit(actors, ","))  |> 
   unnest(actors)  |> 
@@ -1118,8 +1131,7 @@ join_Nor_form |>
 #| fig-cap: "Hvilke sektorer og samfunnsmessige områder er hyppigst studert?"
 #| fig-width: 11
 #| fig-height: 10
-join_Nor_form |> 
-  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+join_Nor_form_soc |> 
   select(sector_societal_concern) |>
   mutate(sector_societal_concern = strsplit(sector_societal_concern, ","))  |> 
   unnest(sector_societal_concern)  |> 
@@ -1147,8 +1159,7 @@ join_Nor_form |>
 #| fig-cap: "Hvilke verktøy er foreslått for å løse konfliktene?"
 #| fig-width: 11
 #| fig-height: 10
-join_Nor_form |> 
-  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+join_Nor_form_soc |> 
   select(governce_tools) |>
   # mutate(governce_tools = strsplit(governce_tools, ","))  |> 
   # unnest(governce_tools)  |> 
@@ -1175,8 +1186,7 @@ NEEDS TIDYING UP
 #| warning: false
 
 
-join_Nor_form |> 
-  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+join_Nor_form_soc |>  
 select(tool_characteristics) |>
 group_by(tool_characteristics) |> 
   tally() |> 
@@ -1199,8 +1209,7 @@ group_by(tool_characteristics) |>
 #| warning: false
 
 
-join_Nor_form |> 
-  filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included== "Yes") |> 
+join_Nor_form_soc |> 
 select(governance_level_using_the_tool) |>
 group_by(governance_level_using_the_tool) |> 
   tally() |> 
@@ -1412,7 +1421,7 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 # 
 # join_sysRev <- sysRev |>
 #    left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
-# 
+
 # # # # get openAlexR data
 # doi_list <- strsplit(join_sysRev$doi, split = " ")
 # doi_list <- sapply(doi_list, "[[", 1)
@@ -1445,10 +1454,10 @@ net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "frucht
 #   oa2bibliometrix()
 
 # sysRevZotero <- synthesisr::read_ref("data/SysRev_articles.ris")
-# 
+
 # ## remove the excluded at full text
 # 
-# sysRevZotero<-sysRevZotero[!grepl("excluded", tolower(sysRevZotero$note)),]
+#sysRevZotero<-sysRevZotero[!grepl("excluded", tolower(sysRevZotero$note)),]
 # 
 # dim(sysRev)
 # dim(sysRevZotero)
