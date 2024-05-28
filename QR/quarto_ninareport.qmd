@@ -1552,7 +1552,7 @@ Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
-```{r }
+```{r topic model wordcloud}
 #| echo: false
 #| message: false
 #| warning: false
@@ -1604,75 +1604,47 @@ tidy_topics_dtm<-tidy_topics |>
 
 #topics_lda <- LDA(tidy_topics_dtm, k = 14, control = list(seed = 1234))
 
-#saveRDS(topics_lda, "data/cache_data/topics_lda.RDS")
-topics_lda<-readRDS("data/cache_data/topics_lda.RDS")
-included_topics<-tidy(topics_lda, matrix="beta")
-#included_topics<-included_topics[- grep("1", included_topics$term),]
-
-included_top_terms <- included_topics %>%
-  group_by(topic) %>%
-  slice_max(beta, n = 10) %>% 
-  ungroup() %>%
-  arrange(topic, -beta)
-
-included_top_terms %>%
-  mutate(term = reorder_within(term, beta, topic)) %>%
-  ggplot(aes(beta, term, fill = factor(topic))) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~ topic, scales = "free") +
-  scale_y_reordered()
-
-beta_wide <- included_top_terms %>%
-  mutate(topic = paste0("topic", topic)) %>%
-  pivot_wider(names_from = topic, values_from = beta) 
+# #saveRDS(topics_lda, "data/cache_data/topics_lda.RDS")
+# topics_lda<-readRDS("data/cache_data/topics_lda.RDS")
+# included_topics<-tidy(topics_lda, matrix="beta")
+# #included_topics<-included_topics[- grep("1", included_topics$term),]
+# 
+# included_top_terms <- included_topics %>%
+#   group_by(topic) %>%
+#   slice_max(beta, n = 10) %>% 
+#   ungroup() %>%
+#   arrange(topic, -beta)
+# 
+# included_top_terms %>%
+#   mutate(term = reorder_within(term, beta, topic)) %>%
+#   ggplot(aes(beta, term, fill = factor(topic))) +
+#   geom_col(show.legend = FALSE) +
+#   facet_wrap(~ topic, scales = "free") +
+#   scale_y_reordered()
+# 
+# beta_wide <- included_top_terms %>%
+#   mutate(topic = paste0("topic", topic)) %>%
+#   pivot_wider(names_from = topic, values_from = beta) 
 
 #beta_wide
 
-tidy_topics |> 
-  count(word, sort = TRUE) |> 
-  wordcloud2::wordcloud2()
+# tidy_topics |> 
+#   count(word, sort = TRUE) |> 
+#   wordcloud2::wordcloud2()
 
-dois<-as.character(all_included$doi)
 
-dois<-sub(" .*", "", dois)
+```
 
-# library(openalexR)
-# paper_details<-oa_fetch(
-#   doi=dois,
-#   entity="works",
-#   verbose = TRUE
-# )
-# 
-#write_rds(paper_details, here::here("data/Included_at_abs/paper_details.rds"))
+```{r all_cooccur}
+#| echo: false
+#| message: false
+#| warning: false
+set.seed(007)
 paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
-# paper_details |> 
-#   show_works() |> 
-#   knitr::kable()
-
-
 papers_bib<-paper_details |> 
   oa2bibliometrix() 
-
-# results<-biblioAnalysis(papers_bib)
-# S<-summary(results)
-# S
-
-
-#papers_bib$CR
-
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
 net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
-
-
-NetMatrix <- biblioNetwork(papers_bib, analysis = "co-citation", network = "references", sep = ";")
-
-# Plot the network
-net=networkPlot(NetMatrix, n = 30, Title = "Co-Citation Network", type = "fruchterman", size=T, remove.multiple=FALSE, labelsize=0.7,edgesize = 5)
-
-
-#Conceptual Structure using keywords (method="CA")
-
-#CS <- conceptualStructure(papers_bib,field="ID", method="CA", minDegree=5, clust=2, stemming=FALSE, labelsize=3, documents=2000)
 
 ```
 
@@ -1741,6 +1713,8 @@ paper_details |>
   coord_flip()
 ```
 
+<!--# @Erlend do we need the funders? -->
+
 ```{r funder openalex all included}
 #| echo: false
 #| message: false
@@ -1797,6 +1771,25 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
   scale_fill_manual(values=c("#cd7f32", "forestgreen", "gold", "green", "darkred"))+
   labs(x="Open Access status", y="Frequency")+
   theme(legend.position = "none")
+```
+
+## Change in frequency of keywords in all included 
+
+<!--# @Erlend is this useful? -->
+
+```{r wordfreq}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
+wordfreq |> 
+  ggplot(aes(reorder(feature, chi2), y=chi2, fill=feature))+
+  geom_col()+
+  coord_flip()+
+  theme(legend.position = "none")+
+  labs(x="", y="Chi.square statistic")
+
 ```
 
 ## En beslutningsmodell basert på inkluderte artikler fra Norge
@@ -1877,7 +1870,7 @@ De samfunnsvitenskapelige studiene avdekket at ... <!--# HÅKON ADD SHORT TEXT H
 
 Vår sammenstilling av den naturvitenskapelige litteraturen fra Norge avdekket hvilke tema som har vært mest i fokus i forskningen som er gjennomført.
 
-## Sentrale funn knyttet til den samfunnsvitenskapelige litteraturen 
+## Sentrale funn knyttet til den samfunnsvitenskapelige litteraturen
 
 <!--# INSERT TEXT FROM HÅKON AND THOMAS HERE -->
 
