@@ -1422,7 +1422,7 @@ scale_fill_viridis(discrete = TRUE, option = "D") +
 ggtitle("Does the article undertake risk of bias assessments")
 
 library(patchwork)
-p1
+p1+
 p2
 
 ```
@@ -1458,7 +1458,7 @@ coord_flip()+
 scale_fill_viridis(discrete = TRUE, option = "D") +
 ggtitle("Has imprecision been taken account of")
 
-p1#+
+p1+
 p2
 
 
