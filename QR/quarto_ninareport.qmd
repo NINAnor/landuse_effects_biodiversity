@@ -139,6 +139,7 @@ library(wordcloud2)
 library(bibliometrix)
 library(synthesisr)
 library(viridis)
+library(ggrepel)
 #ggplot2::theme_set(ggthemes::theme_base())
 ggplot2::theme_set(theme_gray())
 ```
@@ -338,17 +339,20 @@ Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative o
 
 ## Vurdering av studienes validitet
 
-We did not assess the quality of the included primary studies as we aimed to map the available evidence; however for the review papers we modified the [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/) approach to assess evidence certainty. Each review article was assessed in terms of Risk of bias, Imprecision, Inconsistency, Indirectness and Publication bias. We assessed each review against these criteria to determine how much confidence we have in the evidence presented.
+Vi vurderte ikke kvaliteten på de inkluderte primærstudiene da vi kun hadde som mål å kartlegge tilgjengelig litteratur. For de systematisk litteratursammenstillingene (Systematic reviews og Systematic maps) benyttet vi en modifisert [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/)-tilnærming for å vurdere kvaliteten på studiene. Hver oversiktsartikkel ble vurdert med tanke på risiko for skjevhet i dataene, mangel på presisjon, inkonsistens, indirekte skjevehet og publiseringsskjevhet. Vi vurderte hver publikasjon opp alle disse kriteriene for å finne ut hvor stor «tillit» vi har til bevisene som ble presentert.
 
-| GRADE domains        | Description                                                                                                                                                                                                                                                                                                                  |
-|--------------------------------------|----------------------------------|
-| 1\. Risk of bias     | Bias occurs when a study's results are skewed due to design or conduct flaws. This uncertainty lowers confidence in the estimated effect, as potential biases can influence results. Assessors need to decide whether the risk of bias in individual studies significantly impacts their confidence in the treatment effect. |
-| 2\. Imprecision      | The GRADE approach evaluates imprecision by examining the 95% confidence interval around the best estimate of the absolute effect. Certainty is reduced if management decisions would differ depending on whether the true effect lies at the upper or lower end of this interval.                                           |
-| 3\. Inconsistency    | Certainty is highest when multiple studies show consistent effects. Assessors should assess the similarity of point estimates, the overlap of confidence intervals, and statistical heterogeneity to determine if inconsistency affects the certainty.                                                                       |
-| 4\. Indirectness     | Evidence is most reliable when studies directly compare the interventions and population of interest, reporting outcomes critical for decision-making.                                                                                                                                                                       |
-| 5\. Publication bias | Publication bias is challenging because it involves inferring missing evidence. Despite their limitations, statistical and visual methods can help detect publication bias, which is more common in observational data.                                                                                                      |
+Følgende forklaring for de ulike GRADE-domenene lå til grunn for vår vurdering:
 
-: Modification of the GRADE approach to assessing summarised evidence
+1.  **Risiko for bias:** Bias oppstår når en studies resultater er ikke er forventningsrette på grunn av design- eller gjennomføringsfeil. Denne usikkerheten reduserer tilliten til den estimerte effekten, ettersom potensielle skjevheter kan påvirke resultatene. Evaluatorer må avgjøre om risikoen for skjevhet i individuelle studier påvirker deres tillit til behandlingseffekten.
+
+2.  **Upresishet:** GRADE-tilnærmingenevaluerer unøyaktighet ved å undersøke 95 % konfidensintervallet rundt det beste estimatet av den absolutte effekten. Sikkerheten reduseres dersom konklusjonen
+    fra studiet varierer avhengig av om den sanne effekten ligger i øvre eller nedre ende av dette intervallet.
+
+3.  **Inkonsistens:** Sikkerheten er høyest når flere studier viser konsistente effekter. Evaluatorer bør vurdere likheten mellom punktestimater, hvorvidt konfidensintervaller overlapper og statistisk heterogenitet for å avgjøre om inkonsekvens påvirker sikkerheten i konklusjonen.
+
+4.  **Indirektehet:** Bevis er mest pålitelig når studier direkte sammenligner intervensjonene og populasjonen av interesse, og rapporterer utfall som er avgjørende for beslutningstaking.
+
+5.  **Publikasjonsbias:** Publikasjonsbias er utfordrende fordi det innebærer å utlede manglende bevis fra de tilgjengelige data. Til tross for deres begrensninger, kan statistiske og visuelle metoder bidra til å oppdage publikasjonsskjevhet, som er mer vanlig i observasjonsdata.
 
 ## Datakodestrategier
 
@@ -489,34 +493,6 @@ prisma(
 # saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
 nor_bib <- readRDS(here::here("data/cache_data/nor_bib.RDS"))
 join_Nor_form<-readRDS(here::here("data/cache_data/join_Nor_form.RDS"))
-```
-
-```{r openAlex topics/concepts}
-#| echo: false
-#| message: false
-#| warning: false
-# #| fig-cap: "OpenAlex topics weighted by topic score"
-# #| fig-width: 14
-# #| fig-height: 11
-# 
-# topics_aggregated <- map_df(nor_bib$topics, ~ .x %>%
-#   filter(name == "topic") |> # Filter to include only topics
-#   select(display_name, score)) |> # Select relevant columns
-#   group_by(display_name) |> # Group by topic name
-#   summarise(
-#     total_score = sum(score), # Sum scores for each topic
-#     .groups = "drop"
-#   ) # Drop grouping
-# 
-# # Create a bar plot of the weighted frequencies
-# topics_aggregated |> 
-#   top_n(10) |> 
-# ggplot(aes(x = reorder(display_name, total_score), y = total_score)) +
-#   geom_bar(stat = "identity", fill = "blue") +
-#   labs(title = "",
-#        x = "Topic",
-#        y = "Total Score (Weighted Frequency)") +
-# coord_flip()
 ```
 
 Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. De tidligste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Som vist i @fig-publication-year varierte antallet mellom ulike år, og selv om det har vært en genrell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 20 årene.
@@ -1214,182 +1190,6 @@ group_by(governance_level_using_the_tool) |>
 
 ```
 
-## To be moved
-
-```{r open access}
-#| echo: false
-#| message: false
-#| warning: false
-nor_bib |> 
-  group_by(oa_status) |> 
-  tally() |> 
-  ggplot(aes(oa_status, n, fill=oa_status))+
-  geom_histogram(stat="identity")+
-  scale_fill_manual(values=c(bronze="#CD7F32", closed="red", gold="gold", green="green", hybrid="forestgreen"))+
-  labs(x="", y="Antall publikasjoner")+
-  theme(legend.position = "Null")
-
-```
-
-```{r topic model}
-#| echo: false
-#| message: false
-#| warning: false
-
-
-
-jn_dtm<-join_Nor_form |> 
-  select(study_id, title, abstract, year)
-
-#jn_dtm$study_id<-unlist(jn_dtm$study_id)
-
-jn_dtm<-jn_dtm |> 
-  mutate(title_abs=paste0(title,abstract)) |>
-  unnest_tokens(word,title_abs) |> 
-  rowid_to_column()
-jn_dtm<-jn_dtm |> 
-  mutate(word=removeNumbers(word))
-
-jn_dtm<-jn_dtm |> 
-  filter(word !="")
-
-jn_test<-jn_dtm |> 
-distinct(study_id,.keep_all=TRUE)
-
-jn_dtm<-jn_dtm|> 
-  group_by(study_id) |> 
-  count(study_id, word, sort = TRUE)
-data(stop_words)
-jn_dtm<-jn_dtm |> 
-  anti_join(stop_words)
-
-
-
-jn_dtm<-
-  jn_dtm |> 
-  cast_dtm(study_id, word, n)
-```
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-# number of topics
-# 
-# result <- FindTopicsNumber(
-#   jn_dtm,
-#   topics = seq(from = 2, to = 15, by = 1),
-#   metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
-#   method = "Gibbs",
-#   control = list(seed = 77),
-#   mc.cores = 2L,
-#   verbose = TRUE
-# )
-# 
-# #FindTopicsNumber_plot(result)
-# 
-# saveRDS(result, "data/cache_data/result.RDS")
-```
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-jn_lda <- LDA(jn_dtm, k = 6, control = list(seed = 1234))
-#saveRDS(jn_lda, "data/cache_data/jn_lda.RDS")
-
-```
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-jn_topics <- tidy(jn_lda, matrix = "beta")
-top_terms <- jn_topics %>%
-  group_by(topic) %>%
-  slice_max(beta, n = 20) %>% 
-  ungroup() %>%
-  arrange(topic, -beta)
-
-p1<-top_terms %>%
-  mutate(term = reorder_within(term, beta, topic)) %>%
-  ggplot(aes(beta, term, fill = factor(topic))) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~ topic, scales = "free") +
-  scale_y_reordered()
-
-p1
-
-```
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
-
-#as.data.frame(terms(jn_lda, 10))
-
-#data.frame(Topic = topics(jn_lda))
-
-lda.topics<- 
-data.frame(jn_test, Topic = topics(jn_lda)) |> 
-  add_count(title, Topic) |> 
-  group_by(title) |>  
-  mutate(Share = n/sum(n)) |> 
-  ungroup() |>  
-  mutate(Topic = paste0("Topic ", sprintf("%02d", Topic)))  |>  
-  mutate(Article = as_factor(title))
-
-# ggplot(lda.topics, aes(title, Share, color = Topic, fill = Topic)) + geom_bar(stat="identity") + ggtitle("LDA topics in Norwegian LULCC peer-reviewed studies") + xlab("") + ylab("Share of topics [%]") + theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-
-```
-
-```{r keyword co-occurrence}
-#| echo: false
-#| message: false
-#| warning: false
-
-# Create keyword co-occurrences network
-
-NetMatrix <- biblioNetwork(nor_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
-
-# Plot the network
-net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
-```
-
-```{r co-citation}
-#| echo: false
-#| message: false
-#| warning: false
-
-# Create keyword co-occurrences network
-
-NetMatrix <- biblioNetwork(nor_bib, analysis = "co-citation", network = "references", sep = ";")
-
-# Plot the network
-net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "fruchterman", size.cex=TRUE, size=20, remove.multiple=FALSE,label=FALSE,edgesize = 10, edges.min=1)
-```
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-# nor_bib=metaTagExtraction(nor_bib,"CR_SO",sep=";")
-# 
-# NetMatrix <- biblioNetwork(M, analysis = "co-citation", network = "sources", sep = ";")
-# net=networkPlot(NetMatrix, n = 50, Title = "Co-Citation Network", type = "auto", size.cex=TRUE, size=15, remove.multiple=FALSE, labelsize=1,edgesize = 10, edges.min=5)
-```
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-# results<-biblioAnalysis(nor_bib)
-# histResults <- histNetwork(nor_bib, sep = ";")
-```
-
 ## Systematiske litteratursammenstillinger
 
 ```{r sysrevs data}
@@ -1970,8 +1770,6 @@ ggplot(head(fund_counts, 10), aes(x = funder, y = n)) +
   ) 
 ```
 
-### Open Access status
-
 ```{r open access status openalex all included}
 #| echo: false
 #| message: false
@@ -1991,33 +1789,32 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
   theme(legend.position = "none")
 ```
 
-## Where should research focus - decision model (Norway articles) MOVE TO CORRECT PLACE PLEASE ERLEND
+## En beslutningsmodell basert på inkluderte artikler fra Norge
 
-We can assess the conceptual development of a research field using bibliometric network analysis (@cobo2011approach). Specifically, co-word analysis assesses the relationship between between keywords in a set of documents. It helps identify key themes, their interconnections, and how they change over time, providing valuable insights for researchers and decision-makers. 
+Vi kan vurdere den konseptuelle utviklingen av et forskningsfelt ved hjelp av bibliometrisk nettverksanalyse (@cobo2011approach). Nærmere bestemt vurderer en slik nettverksanalyse forholdet mellom nøkkelord i et sett med dokumenter. Det hjelper med å identifisere nøkkeltemaer, deres sammenhenger og hvordan de endrer seg over tid, og gir verdifull innsikt for forskere og beslutningstakere når man skal prioritere ny forskning.
 
-Using the method outlined in @cobo2011approach we first extracted keywords from all the included articles from Norway. We then created a Co-occurrence Matrix counting how often each pair of keywords co-occurs in the documents. The Co-occurrence Matrix was then converted into a network graph where keywords are nodes connected by edges that represent their co-occurrence.
+Basert på metoden beskrevet i @cobo2011approach hentet vi først nøkkelord (*keywords*) fra alle de inkluderte artiklene fra Norge. Vi opprettet deretter en såkalt "Co-Currence Matrix" som teller hvor ofte hvert par med nøkkelord forekommer samtidig i dokumentene. Matrisen for samtidig forekomst ble deretter konvertert til en nettverksgraf, der nøkkelord er noder forbundet med kanter som representerer deres samtidige forekomst.
 
-Using the walktrap algorithm keywords are grouped into clusters. The Walktrap algorithm is a community detection method that uses random walks to explore the network and identify clusters of nodes that are more densely connected to each other than to the rest of the network. By simulating random walks and merging nodes based on their co-occurrence frequencies, it effectively reveals the community structure within the network. This makes it particularly useful for analyzing complex networks.
+Ved å bruke «walktrap-algoritmen» blir nøkkelord gruppert i klynger. Walktrap-algoritmen er en fellesskapsdeteksjonsmetode som bruker tilfeldige ruter for å utforske nettverket og identifisere klynger av noder som er tettere koblet til hverandre enn til resten av nettverket. Ved å simulere tilfeldige ruter og slå sammen noder basert på deres samtidige forekomstfrekvenser, avslører det effektivt fellesskapsstrukturen i nettverket. Dette gjør det spesielt nyttig for å analysere komplekse nettverk.
 
-Each cluster represents a thematic area within the research field (where keywords within the same cluster co-occur more often). The Centrality of each cluster indicates the importance of the cluster in the entire network. High Centrality suggests that themes are well-integrated within the research field. They act as bridges between different topics and are often considered core or mainstream themes. Themes with low centrality are more isolated and have fewer connections to other themes. These could be emerging topics or niche areas that are not yet widely integrated into the broader research field.
+Hver klynge representerer et tematisk område innenfor forskningsfeltet (hvor nøkkelord innenfor samme klynge forekommer oftere). Vi benytter to egenskaper til å beskrive de ulike tema. Sentralitet og tetthet. Sentraliteten til hver tema indikerer viktigheten av tema for hele nettverket. Høy sentralitet tilsier at temaer er godt integrert i forskningsfeltet. De fungerer som broer mellom ulike tema og regnes ofte som kjerne- eller «mainstream-temaer». Temaer med lav sentralitet er mer isolerte og har færre forbindelser til andre temaer. Dette kan være nye tema eller nisjeområder som ennå ikke er bredt integrert i det bredere forskningsfeltet. Tetthet måler den interne sammenhengen i et tema. Den indikerer hvor sterkt nøkkelordene innenfor et bestemt tema er knyttet til hverandre. Det gjenspeiler i hvilken grad et tema er selvstendig eller fokusert. Temaer med høy tetthet har sterke interne forbindelser, noe som betyr at nøkkelordene i temaet ofte forekommer sammen med hverandre. Disse temaene er godt utviklet og internt sammenhengende, og representerer ofte spesialiserte forskningsområder. Temaer med lav tetthet har svakere interne forbindelser. Nøkkelordene innenfor disse temaene forekommer ikke like ofte, noe som indikerer at temaet kan være bredere, mindre fokusert eller fortsatt i utvikling.
 
-Density measures the internal cohesion of a theme. It indicates how strongly the keywords within a particular theme are connected to each other. It reflects the extent to which a theme is self-contained or focused. Themes with high density have strong internal connections, meaning the keywords within the theme frequently co-occur with each other. These themes are well-developed and internally cohesive, often representing specialised areas of research. Themes with low density have weaker internal connections. The keywords within these themes do not co-occur as frequently, indicating that the theme might be broader, less focused, or still developing.
+I figuren under har visualisert nettverket i et strategisk diagram, hvor temaenes sentralitet og tetthet er kategorisert ved deres posisjon i kvadrantene.
 
-We plotted the network in a "strategic diagram" where themes are plotted based on their centrality and density, and categorised by their position in the quadrants. 
+-   **Motor-tema** (høy sentralitet, høy tetthet): Dette er tema som er viktige og godt utviklet, og som er sentrale for forskningsfeltet. De har høy grad av intern samhold og er bredt koblet til andre tema.
 
-- Motor Themes (High Centrality, High Density): These are important and well-developed themes that are central to the research field. They have strong internal cohesion and are widely connected to other themes.
+-   **Grunnleggende og transverse** tema (høy sentralitet, lav tetthet): Disse tema er sentrale med har mindre grad av internt samhold. De fungerer som broer mellom ulike forskingstema og kan dekke en større bredde i forskningen.
 
-- Basic and Transversal Themes (High Centrality, Low Density): These themes are important but less cohesive. They serve as bridges connecting various parts of the research field but may encompass a broader range of topics.
+-   **Nisjetema** (lav sentralitet, høy tetthet): Disse temaene er spesialisert og har høy grad av intern samhold, men er ofte ikke godt integrert i det større forskningsfeltet. De representerer fokusert forskningstema.
 
-- Niche Themes (Low Centrality, High Density): These themes are specialised and internally cohesive but not well-integrated into the broader research field. They represent focused areas of research.
-
-- Emerging or Declining Themes (Low Centrality, Low Density): These themes are less developed. They could be new and emerging topics or older themes that are declining in relevance.
+-   **Stigende eller dalende tema** (lav sentralitet, lav tetthet): Disse temaene er minder utviklet. De kan være nye tema på veg opp eller eldre tema som har fått mindre fokus.
 
 ```{r themeMap}
 #| echo: false
 #| message: false
 #| warning: false
 #| label: fig-themeMap
+#| fig-cap: "Oversikt over ulike tema og deres fordeling i matrisen"
 
 res <- thematicMap(nor_bib, field = "AB", n = 1000, minfreq = 2, ngrams = 2, size = 0.5, repel = TRUE, subgraphs = TRUE)
 
@@ -2044,9 +1841,9 @@ p+
 
 ```
 
-In @fig-themeMap themes are indicated with a single common keyword. We can see that well studied topics within Norway  included species richness particularly in the context of forest management and reindeer in the context of wild reindeer, power infrastructure as well as domestic reindeer herding. Studies around habitat selection included studies on lynx and roe deer. Human-wildlife conflict around Geese and agriculture is also well studied.  
+I @fig-themeMap er temaer indikert med et enkelt felles nøkkelord. Vi kan se at godt studerte temaer i Norge inkluderte artsrikhet (*species richness*) spesielt i sammenheng med skogforvaltning, rein (*Rangifer tarandus*) – her med fokus på villrein. Studier rundt habitatvalg (*habitat selection*) inkluderte studier på gaupe og rådyr. Konflikt mellom mennesker og dyreliv rundt gjess og jordbruk er også godt studert.
 
-Topics that are emerging include hyttebygging (recreational infrastructure) and biodiversity conservation in conjunction with climate change as well as sustainable development. Future scenarios of land use change (as well as other global change) is also an emerging field. Studies around indigenous peoples within the context of landuse change are under-represented in the field. 
+Temaer som er stigende omfatter blant annet hyttebygging og bevaring av biologisk mangfold i forbindelse med klimaendringer, samt bærekraftig utvikling. Fremtidige scenarier for arealbruksendring (så vel som andre globale endringer) er også et felt i vekst. Studier rundt urfolk i sammenheng med arealbruksendring er underrepresentert i feltet.
 
 # Diskusjon
 
