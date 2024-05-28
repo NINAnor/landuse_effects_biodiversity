@@ -1648,6 +1648,21 @@ net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = 
 
 ```
 
+
+```{r cocitation}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig_co-citation
+#| fig-cap: "Biblographic coupling (shared citations between papers) highlights conceptual groupings within the field as a whole"
+NetMatrix <- biblioNetwork(papers_bib, analysis = "co-citation", network = "references", sep = ";")
+net=networkPlot(NetMatrix, n = 500, Title = "Co-citations", type = "fruchterman", size=5,size.cex=T,remove.multiple=TRUE,label = NA)
+
+```
+
+
+
+
 ```{r top concepts openalex all included}
 #| echo: false
 #| message: false
@@ -1777,10 +1792,6 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
 
 <!--# @Erlend is this useful? -->
 
-```{=html}
-<!--# Matt - the list of terms is a bit mixed? It is difficult to compare ecosystem with 
-e.g. systematic review etc. Should we prune the list to only include ecological concepts?-->
-```
 ```{r wordfreq}
 #| echo: false
 #| message: false
