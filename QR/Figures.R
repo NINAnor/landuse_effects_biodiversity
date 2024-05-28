@@ -1,6 +1,30 @@
 
 ### Overordnet karakterisering av studiedesign, disiplin og tilnærming
 
+ join_Nor_form |> 
+  select(open_data, year) |>
+  drop_na() |>
+  mutate(od2 = if_else(open_data == "No", 0, 1)) |>
+  group_by(year) |>
+  summarize(od_score = mean(od2)) |>
+  ungroup() |> 
+  ggplot (aes(x = year, y = od_score)) +
+  geom_point(col="darkorange") + 
+  ylab("Proportion of papers with open data") +
+  ylim(0,1) 
+ 
+ join_Nor_form |> 
+   select(open_code, year) |>
+   drop_na() |>
+   mutate(od2 = if_else(open_code == "No", 0, 1)) |>
+   group_by(year) |>
+   summarize(od_score = mean(od2)) |>
+   ungroup() |> 
+   ggplot (aes(x = year, y = od_score)) +
+   geom_point(col="darkorange") + 
+   ylab("Proportion of papers with open code") +
+   ylim(0,1) 
+
 ## Empiriske data vs andre tilnærminger
 
 join_Nor_form |> 
