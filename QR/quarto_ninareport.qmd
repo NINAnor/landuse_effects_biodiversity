@@ -1784,6 +1784,9 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
 #| 
 wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
 wordfreq |> 
+  filter(!feature=="systematic",
+         !feature=="review",
+         !feature=="science") |> 
   ggplot(aes(reorder(feature, chi2), y=chi2, fill=feature))+
   geom_col()+
   coord_flip()+
