@@ -2666,7 +2666,6 @@ Til sist er det en mulig begrensning at vi måtte utelate xxx artikler uten at v
 
 ## Datamangler og kunnskapshull
 
-
 I dette kapittelet vil vi presentere det vi mener er de viktigste kunnskapshullene vi har avdekket gjennom vår litteraturgjennomgang. Vår vurdering er basert på en samlet tolkning av datamaterialet. Man må likevel være klar over at siden vi ikke har vurdert kvaliteten på de inkluderte primærstudiene kan det godt være tema som tilsynelatende er godt dekket men som består av svake studier. Dette vil ikke vår gjennomgang være i stand til å avdekke. Datamanglene og kunnskapshullene vi har avdekket er oppsummert i kulepunktene under.
 
 -   Det er generelt en mangel på godt designede eksperimenter (RCT og BACI). Slike eksperimenter er i utgangspunktet bedre egnet til å avdekke årsakssammenhenger enn de andre (svakere) studiedesignene. I mange tilfeller kan man også benytte seg av de "eksperimenter" som dannes av naturlige endringer som påvirker store arealer - såkalte kvasieksperimenter. Nyere statistiske metoder spesielt utviklet for å avdekke årsak-virkning har også et underutnyttet potensiale.
@@ -2693,8 +2692,7 @@ I dette kapittelet vil vi presentere det vi mener er de viktigste kunnskapshulle
 
 -   Biodiversitet-effekter av de ulike typer installasjoner for kraftproduksjon er relativt dårlig dekket. Spesielt er effekter av vindkraft lite dekket, sett i forhold til samfunnsfokuset og omfanget av vindkraft i naturen.
 
-
--   <!--Må se mer på funnene, men hva med indirekte virkninger (telecoupling?) Mineralnæring? Industri? Bolig og byutvikling? Skal sjekke lista over påvirkningstyper. -->
+-   <!--# Må se mer på funnene, men hva med indirekte virkninger (telecoupling?) Mineralnæring? Industri? Bolig og byutvikling? Skal sjekke lista over påvirkningstyper-->
 
 -   Det er gjennomført svært få studier som baserer seg på forhåndsregistrerte hypoteser
 
