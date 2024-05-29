@@ -345,7 +345,7 @@ Studier ble inkludert dersom de vurderte effekter av arealbruk eller arealbrukse
 
 Studier ble også inkludert dersom de vurderer konflikter, verktøy eller styring knyttet til arealbruk og dekker endringer i dets effekter på biologisk mangfold, økosystemtjenester og/eller karbonbinding og lagring av økosystemer i Fenno-Skandinavia. Forholdet måtte være eksplisitt beskrevet i studien for at posten ble inkludert.
 
-Studier av alle skalaer (nasjonale, regionale og lokale) ble vurdert som relevante for inkludering.
+Studier av alle geografiske målestokker (nasjonale, regionale og lokale) ble vurdert som relevante for inkludering.
 
 ### **Kvalifiserte intervensjoner**
 
@@ -1576,7 +1576,7 @@ Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
-```{r }
+```{r topic model wordcloud}
 #| echo: false
 #| message: false
 #| warning: false
@@ -1628,77 +1628,64 @@ tidy_topics_dtm<-tidy_topics |>
 
 #topics_lda <- LDA(tidy_topics_dtm, k = 14, control = list(seed = 1234))
 
-#saveRDS(topics_lda, "data/cache_data/topics_lda.RDS")
-topics_lda<-readRDS("data/cache_data/topics_lda.RDS")
-included_topics<-tidy(topics_lda, matrix="beta")
-#included_topics<-included_topics[- grep("1", included_topics$term),]
-
-included_top_terms <- included_topics %>%
-  group_by(topic) %>%
-  slice_max(beta, n = 10) %>% 
-  ungroup() %>%
-  arrange(topic, -beta)
-
-included_top_terms %>%
-  mutate(term = reorder_within(term, beta, topic)) %>%
-  ggplot(aes(beta, term, fill = factor(topic))) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~ topic, scales = "free") +
-  scale_y_reordered()
-
-beta_wide <- included_top_terms %>%
-  mutate(topic = paste0("topic", topic)) %>%
-  pivot_wider(names_from = topic, values_from = beta) 
+# #saveRDS(topics_lda, "data/cache_data/topics_lda.RDS")
+# topics_lda<-readRDS("data/cache_data/topics_lda.RDS")
+# included_topics<-tidy(topics_lda, matrix="beta")
+# #included_topics<-included_topics[- grep("1", included_topics$term),]
+# 
+# included_top_terms <- included_topics %>%
+#   group_by(topic) %>%
+#   slice_max(beta, n = 10) %>% 
+#   ungroup() %>%
+#   arrange(topic, -beta)
+# 
+# included_top_terms %>%
+#   mutate(term = reorder_within(term, beta, topic)) %>%
+#   ggplot(aes(beta, term, fill = factor(topic))) +
+#   geom_col(show.legend = FALSE) +
+#   facet_wrap(~ topic, scales = "free") +
+#   scale_y_reordered()
+# 
+# beta_wide <- included_top_terms %>%
+#   mutate(topic = paste0("topic", topic)) %>%
+#   pivot_wider(names_from = topic, values_from = beta) 
 
 #beta_wide
 
-tidy_topics |> 
-  count(word, sort = TRUE) |> 
-  wordcloud2::wordcloud2()
+# tidy_topics |> 
+#   count(word, sort = TRUE) |> 
+#   wordcloud2::wordcloud2()
 
-dois<-as.character(all_included$doi)
 
-dois<-sub(" .*", "", dois)
+```
 
-# library(openalexR)
-# paper_details<-oa_fetch(
-#   doi=dois,
-#   entity="works",
-#   verbose = TRUE
-# )
-# 
-#write_rds(paper_details, here::here("data/Included_at_abs/paper_details.rds"))
+```{r all_cooccur}
+#| echo: false
+#| message: false
+#| warning: false
+set.seed(007)
 paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
-# paper_details |> 
-#   show_works() |> 
-#   knitr::kable()
-
-
 papers_bib<-paper_details |> 
   oa2bibliometrix() 
-
-# results<-biblioAnalysis(papers_bib)
-# S<-summary(results)
-# S
-
-
-#papers_bib$CR
-
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
 net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
 
+```
 
+
+```{r cocitation}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig_co-citation
+#| fig-cap: "Biblographic coupling (shared citations between papers) highlights conceptual groupings within the field as a whole"
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-citation", network = "references", sep = ";")
-
-# Plot the network
-net=networkPlot(NetMatrix, n = 30, Title = "Co-Citation Network", type = "fruchterman", size=T, remove.multiple=FALSE, labelsize=0.7,edgesize = 5)
-
-
-#Conceptual Structure using keywords (method="CA")
-
-#CS <- conceptualStructure(papers_bib,field="ID", method="CA", minDegree=5, clust=2, stemming=FALSE, labelsize=3, documents=2000)
+net=networkPlot(NetMatrix, n = 500, Title = "Co-citations", type = "fruchterman", size=5,size.cex=T,remove.multiple=TRUE,label = NA)
 
 ```
+
+
+
 
 ```{r top concepts openalex all included}
 #| echo: false
@@ -1765,6 +1752,8 @@ paper_details |>
   coord_flip()
 ```
 
+<!--# @Erlend do we need the funders? -->
+
 ```{r funder openalex all included}
 #| echo: false
 #| message: false
@@ -1821,6 +1810,28 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
   scale_fill_manual(values=c("#cd7f32", "forestgreen", "gold", "green", "darkred"))+
   labs(x="Open Access status", y="Frequency")+
   theme(legend.position = "none")
+```
+
+## Change in frequency of keywords in all included
+
+<!--# @Erlend is this useful? -->
+
+```{r wordfreq}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
+wordfreq |> 
+  filter(!feature=="systematic",
+         !feature=="review",
+         !feature=="science") |> 
+  ggplot(aes(reorder(feature, chi2), y=chi2, fill=feature))+
+  geom_col()+
+  coord_flip()+
+  theme(legend.position = "none")+
+  labs(x="", y="Chi.square statistic")
+
 ```
 
 ## En beslutningsmodell basert på inkluderte artikler fra Norge
@@ -1885,25 +1896,38 @@ Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt ove
 
 Et gjennomgående trekk fra vår sammestilling av litteraturen fra Norge er at et dominerende andel av den naturvitenskapelige forskningen er basert på empiriske data samlet inn i felt eller fra moderne teknologier (fjernmåling osv). Den støreste andelen av forskningen baserer seg også på lokale eller regionale studier, noe som inneærer at de dekker for eksempel en del av en kommune eller et fylke, eller et større fjellområde. Det er relativt få studier som dekker hele landet. Dette kan være en begrensning siden mange vurderinger (f.eks. rødlisting av arter, ulike rapportering til internasjonale indekser osv) er basert på landsdekkende trender og status. Siden det i Norge er mange overvåkningsprogram som i prinsippet dekker hele landet (for eksempel TOV-e og Rovdata sin rovdyrovervåkning) er dette funnet noe overraskende.
 
-Et annet veldig tydelig funn er at en veldig stor andel av den naturvitenskapelige litteraturen baserer seg på relativt "svake" forsøkdsdesing. Når vi skriver svak mener vi her design som ikke nødvendigvis er godt egent til å avdekke årsak-virkningssamennhenger. Som det framgår av @fig-studydesign er forskningen vi har kategorisert fra Norge i veldig stor grad domiert av det vi har kategorisert som controll-påvirkning (*Control-impact*) og etter-desing (*After*), med en visst innslag av før-etter design (*Before-after*). Særlig designtypen etter mangler styrke til å si noe om årsak-virkning, siden man ikke har et kontrollområde å sammenlikne effekten av intervensjonen mot. Men også for studiedesign av typen kontroll-påvirkning og før-etter er det velkjent at slutningen kan være utsatte for bias og skjevhet. Nyere statistiske metoder basert på "causal inference" har blitt utviklet for i større grad kunne trekke slutninger om årsak-virkning også fra slike studiedesign. Vi har ikke hatt kapasitet til å undersøke hvor ofte disse har blitt benyttet i den litteraturen vi har kategorisert, men basert på vår genrelle kjennskap til forskningsfeltet er det all grunn til å anta at disse sjeldent benyttes. I motsetning til studiedesignene beskrevet over har studiedesignene randomisert-kontrollert forsøk (*Randomised controlled trials* - RCT) og tildels før-etter-kontroll-impact (*Before-after-controll-impact* - BACI) mye større styrke til å avdekke årsak-virkningsforhold og unngås skjevhet i resultatene. Særlig er RCT regnet som gullstandarden innenfor naturvitenskapelig forskning, og det er en påfallende mangel på slike studier i vår gjennomgang (med noen svært gode unntak). En utfordring RCT og BACI design på større skala er at de ofte er ressurskrevende og ofte må gjennomføres over en betydelig romlig- og tidsmessig skala for å gi sikker inferens. Dette kan være utfordrende med dagens finansiering av forskning, hvor prosjektene er av en relativt kort varighet og ofte relativt små.
+Et annet veldig tydelig funn er at en veldig stor andel av den naturvitenskapelige litteraturen baserer seg på relativt "svake" forsøkdsdesing. Når vi skriver svak mener vi her design som ikke nødvendigvis er godt egent til å avdekke årsak-virkningssamennhenger. Som det framgår av @fig-studydesign er forskningen vi har kategorisert fra Norge i veldig stor grad domiert av det vi har kategorisert som controll-påvirkning (*Control-impact*) og etter-desing (*After*), med en visst innslag av før-etter design (*Before-after*). Særlig designtypen etter mangler styrke til å si noe om årsak-virkning, siden man ikke har et kontrollområde å sammenlikne effekten av intervensjonen mot. Men også for studiedesign av typen kontroll-påvirkning og før-etter er det velkjent at slutningen kan være utsatte for bias og skjevhet. Nyere statistiske metoder basert på "causal inference" har blitt utviklet for i større grad kunne trekke slutninger om årsak-virkning også fra slike studiedesign. Vi har ikke hatt kapasitet til å undersøke hvor ofte disse har blitt benyttet i den litteraturen vi har kategorisert, men basert på vår genrelle kjennskap til forskningsfeltet er det all grunn til å anta at disse sjeldent benyttes. I motsetning til studiedesignene beskrevet over har studiedesignene randomisert-kontrollert forsøk (*Randomised controlled trials* - RCT) og tildels før-etter-kontroll-impact (*Before-after-controll-impact* - BACI) mye større styrke til å avdekke årsak-virkningsforhold og unngås skjevhet i resultatene. Særlig er RCT regnet som gullstandarden innenfor naturvitenskapelig forskning, og det er en påfallende mangel på slike studier i vår gjennomgang (med noen svært gode unntak). En utfordring med RCT og BACI-design knyttet til å forstå effekter av arealbruk på ulike biodiversitetsmål er at de ofte er ressurskrevende og ofte må gjennomføres over en betydelig romlig- og tidsmessig skala for å gi sikker inferens. Dette kan være utfordrende med dagens finansiering av forskning, hvor prosjektene er av en relativt kort varighet og ofte relativt små.
 
 For de inkluderte systematiske litteratursammenstillingene gjorde vi en vurdering basert på modifiserte GRADE-vurderinger (se Metoder). Denne vurderingen avdekket at en relativt liten andel av denne litteraturen var basert på sammenstillinger som en kritisk måte vurderte litteraturen som ble inkludert.
 
 <!--# MATT ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
 
-Et annet gjennomgripende funn i vår gjennomgang av primærlitteraturen er at det er en relativt beskjeden andel av litterturen som har gjort data og kildekode åpent tilgjengelig etter at studiene har blitt publisert. <!--# ERLEND ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
+Et annet gjennomgripende funn i vår gjennomgang av primærlitteraturen er at det er en relativt beskjeden andel av litterturen som har gjort data og kildekode åpent tilgjengelig etter at studiene har blitt publisert. <!--# ERLEND ADD SHORT TEXT HERE ABOUT OPEN SCIENCE - 5-10 LINES -->
 
-Selv om vi innenfor naturvitenskapen søker å finne generelle og almentgyldige svar på forskningsspørsmål ser man ofte at økologien er kontektsavhengig, og at anvendt forskning derfor ofte må skje i geografisk nærhet av der den skal benyttes. Vår gjennomgang av litteraturen fra Norge har avdekket at det er stor variasjon knyttet til hvor hyppig feltstudier gjennomføres i de ulike fylkene i Norge. <!--# ERLEND ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
+Selv om vi innenfor naturvitenskapen søker å finne generelle og almentgyldige svar på forskningsspørsmål ser man ofte at økologien er kontektsavhengig, og at anvendt forskning derfor ofte må skje i geografisk nærhet av der den skal benyttes. Vår gjennomgang av litteraturen fra Norge har avdekket at det er stor variasjon knyttet til hvor hyppig feltstudier gjennomføres i de ulike fylkene i Norge. <!--# ERLEND ADD SHORT TEXT HERE ABOUT CONTEXT DEPENDENCE AND LOCATION OF THE STUDIES - 5-10 LINES -->
 
 De samfunnsvitenskapelige studiene avdekket at ... <!--# HÅKON ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
 
 ## Generell vurdering av litteraturen som omfatter effekter av arealbruk og arealbruksendringer på biologisk mangfold og økosystemtjenester
 
-Vår sammenstilling av den naturvitenskapelige litteraturen fra Norge avdekket hvilke tema som har vært mest i fokus i forskningen som er gjennomført.
+Vår sammenstilling av den naturvitenskapelige litteraturen fra Norge avdekket hvilke tema som har vært gjenstand for mest forskning i perioden 1986 - 2024. I det materialet vi fanget opp i vår systematiske litteraturgjennomgang var det tre økosystemer som klart skillte seg ut når det gjelder mengde forskning (@fig-ecosys). Særlig viser vår gjennomgang at det er gjennomført mye forskning i skog, og mye av denne forskningen har naturlig nok fokusert på effekter av ulike former for skogbruk på ulike former for biodiversitetsvariabler og økosystemtjenester. Videre har en betydelig mengde forskning blitt gjennomført i semi-naturlig økosystemer, i særlig grad i semi-naturlig gressenger. Her er det flere studier som fokuserer på hvordan endret bruk og hevd påvirker disse systemene. Vårt søk fanget også opp et relatitvt høyt antall artikler som har fokusert på fjelløkosytemer. De andre hovedøkosystemer er langt dårligere dekket, og det er verdt å merke seg at selv om det har vært mye fokus på myrenes betydning både for det biologiske mangfoldet men ikke minst karbonlagring, så fanget vårt søk opp et relativt lavt volum av forskning i dette økosystemet.
+
+Også når det gjelder ulike former for arealbruk og arealbruksendringer ser vi at det er stor variasjon i hvor mye forskning som forekommer. På et overordnet plan (@fig-landuse-coarse) er det størst volum av forskning knyttet til ulike former for landbruk (inkludert både beitebruk og andre former for landbruk) og bruk av biologiske ressurser (inkludert skogbruk og jakt og fiske). For andre hovedformer for arealbruk, inkludert ulike former for energiproduksjon og transport, og ulike former for "residential" er det vesentlig mindre forskning tilgjenglig. Dersom vi bryter opp arealbruken i finere oppdeling er det skogbruk som har klart størst volum av forskning (@fig-landuse-detailed), etterfulgt av effekter av beiting og landbruk mer generelt. Det er påfallende få naturvitenskapelige studier som omhandle effekter av vern og restaurering.
+
+Vi kartla hvilke responsvariabler de ulike studiene fokuserte på, og delte disse inn i henhold til klassifieringssystemet "Essential Biodiversity Variables" (EBD). Vår gjennomgang av litteraturen viste at det var særlig tre variabler som ble studert, henholdsvis arters utbredelse (*Species distribution*), arters antall (*Species abundance*) og taksonomisk diversitet (*Taxonomic diversity*). De to første variablene blir typisk studert for en eller et fåtall arter i samme studie, mens studier som fokuserer på diversitet typisk fokuserer på diversiteten i hele plantesamfunn eller blant leddyr i et samfunn. Det er også et ganske betydelig (dog langt mindre) volum av forskning på ulike trekk (*Traits*) som beskriver individer eller arter. Særlig gjelder dette studier av arters bevegelsesmønter (*Movement*) og habitatseleksjon under ulike former for arealbruk og menneskelige forstyrrelser. Inkludert i denne kategorien finner vi også en rekke studier av hvordan villreinens arealbruk og bevegelsesmønster påvirkes av menneskelig aktivitet og infrastruktur, og hvordan gaupenes bevegelsesmønster henger sammen med ulike former for arealbruk. Ser vi arter som er inkludert hyppigst i vår litteraturgjennomgang finner vi også at disse to artene er hyppigst forekommende. Det er også et betydelig antall studier som undersøker hvordan ulike former for arealbruk påvirker reproduksjon og overlevelse hos populasjoner. I kontrast til variablene over er det relativt få studier som fokuserer på effekter på hele økosystemer (struktur og/eller funksjon) og det er svært få studier som har undersøkt effekter av arealbruk på genetisk variasjon differensiering.
+
+Økosystemtjenester ble også...
+
+<!--# Trond - kan du skrive her -->
+
 
 ## Sentrale funn knyttet til den samfunnsvitenskapelige litteraturen
 
 <!--# INSERT TEXT FROM HÅKON AND THOMAS HERE -->
+
+## Sentrale funn knyttet til de systematiske litteratursammenstillingene vi har vurdert
+
+<!--# Matt - short text here? -->
 
 ## Begrensninger i litteraturstudien
 
