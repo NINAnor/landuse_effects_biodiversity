@@ -139,22 +139,49 @@ library(wordcloud2)
 library(bibliometrix)
 library(viridis)
 library(ggrepel)
-#ggplot2::theme_set(ggthemes::theme_base())
 ggplot2::theme_set(theme_gray(base_size = 18))
 commonResponse <- "Number of records"
 nudgeDist <- 3
 nudgeExpDist <- 1.1
+library(waffle)
+library(ggpubr)
 ```
 
 # Innledning {#sec-inl}
 
-Endring i arealbruk og arealdekke (Land Use and land cover change; LULCC) anses å være den dominerende driveren av nylig tap av biodiversitet både globalt og i Norge, og påvirker direkte naturens evne til å tilby naturgoder og -tjenester (@diaz2019; @malhi_climate_2020). LULCC påvirker også et økosystems evne til å lagre og binde karbon i jord og biologisk materiale, og påvirker dermed direkte et økosystemeness evne til å bidra til å motvirke og tilpasse seg klimaendringer direkte. Å kvantifisere, forstå og formidle dynamikken i arealendringer og deres effektener på biodiversitet, økosystemtjenester og karbonlagring er derfor en forutsetning for kunnskapsevidensbaserte arealbruksstrategier. Imidlertid mangler det for øyeblikket systematisk evidens om dette temaet fra norske økosystemer. Dette inkluderer både grunnleggende usikkerhet rundt årsak-virkningsmekanismer når det gjelder effekter av arealutnyttelse på naturmangfold og med tanke på det empirisk datagrunnlag. Mye av den offentlige diskursen på nasjonalt nivå domineres av internasjonale globale kunnskapssyntesersammendrag, til tross for betydelig usikkerhet rundt nedskalering og overføring av kunnskap fra globale og regionale synteser til nasjonalt eller lokalt/nasjonalt nivå, på tvers av økosystemer og taksonomiske grupper. Tidligere kunnskapssammenstillingerammendrag basert på data fra norske økosystemer har enten fulgt spesifikke tilnærminger med data for utvalgte indikatorer (f.eks. Vurdering av økologisk tilstand Økosystemvurdering; (@nybo_fagsystem_2017)), i stor grad basert på ekspertvurderinger (Artsdatabanken, 2018, @artsdatabanken_norsk_2021), eller vært begrenset i omfang. Mangelen på en samlet og omfattende oversikt over forskningsbasert kunnskap fra norske økosystemer fører også til at ulike interessegrupper og sektorer stoler på ulike “fakta,” noe som ofte fører til eskalerende konflikter og dårlige beslutninger. Det er derfor et presserende behov både for en oppsummering av kunnskap og identifisering av reelle kunnskapshull. Politikk og beslutningstaking knyttet til arealbruk og dens effekter av arealbruk på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper (@guldbrandsen_hvem_2022; @skogen_wolf_2021). Kontrovers om kunnskapsgrunnlaget er også ofte etn sentralt egenskapaspekt ved konfliktene, kjennetegnet vedog innebærer uenighet om kunnskapens status og motstridende tolkning av kunnskapenkunnskapskrav om de miljømessige effektene av ulike alternativer for arealbruk (@aspoy_segmented_2022; @rusch2022). @ipbes_global_2019, 2022a, 2022b og @ipcc_global_2018 har foreslått styringsmetoder og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av FNs bærekraftsmål (Sustainable development goals (SDG) SDG-ene, klimaavtalens mål om å begrense global oppvarming til grensen på 1,5°C og den globale naturavtalens 2050-visjonen om å stanse og reversere fortap av biodiversitet. Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres implementeringutnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy til en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese som ogsåog identifiseringer av kunnskapshull knyttet til angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima. Systematiske kart (også kjent som Evidenshullkart eller Evidenshullkart) ble utvikletdesignet for å gi en oversikt over tilgjengelig evidens om et bredt tema (Saran et al., 2020). Mens systematiske kunnskapsoversikter (systematic reviews). De søker ikke å svare på smale, veldefinerte spørsmål (slik systematiske oversikter gjør), er systematiske kart først og fremst egnet men heller å gi et middel til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål (@james_methodology_2016). Systematiske kart har blitt realisert på en rekke ulike måter, men gir generelt resultatene på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser (Miake-Lye et al., 2016). Interaktive figurer og applikasjonerplott og som visualiserer kartleggingen blir i økende grad brukt for å gi en dynamisk sammenstilling og presentasjon forutgang til brukerne (slik som EviAtlas; @haddaway_eviatlas_2019). Det er viktig at systematiske kart over kunnskap ikke fremstilles som et mål i seg selv. Systematiske kart forteller først og fremst hva vi har kunnskap om, mens systematiske oversikter indikerer hva vekten av evidens sier om utvalgte forskningsspørsmål. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. stemmeoptelling, jf. (@hedges_vote-counting_1980)). Systematiske kart kan ikke erstatte rigoriteten til systematiske oversikter, men kan gi beslutningstakere forståelse av evidensgrunnlaget ved å belyse hull eller klynger av evidens. De kan vise hvor evidenssyntese kan eller bør finne sted (dvs. for hvilke forskningsspørsmål det er tilstrekkelig med tilgjengelig evidens for en systematisk oversikt) eller hvor primærforskning er nødvendig (dvs. det er mangel på evidens). Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i beslutningskonteksten (@carrick_is_2019).
+Endring i arealbruk og arealdekke (Land Use and land cover change; LULCC) anses å være den dominerende driveren av nylig tap av biodiversitet både globalt og i Norge, og påvirker direkte naturens evne til å tilby naturgoder og -tjenester (@diaz2019; @malhi_climate_2020). LULCC påvirker også et økosystems evne til å lagre og binde karbon i jord og biologisk materiale, og påvirker dermed direkte et økosystemeness evne til å bidra til å motvirke og tilpasse seg klimaendringer direkte. Å kvantifisere, forstå og formidle dynamikken i arealendringer og deres effektener på biodiversitet, økosystemtjenester og karbonlagring er derfor en forutsetning for kunnskapsevidensbaserte arealbruksstrategier. Imidlertid mangler det for øyeblikket systematisk evidens om dette temaet fra norske økosystemer. Dette inkluderer både grunnleggende usikkerhet rundt årsak-virkningsmekanismer når det gjelder effekter av arealutnyttelse på naturmangfold og med tanke på det empirisk datagrunnlag. Mye av den offentlige diskursen på nasjonalt nivå domineres av internasjonale globale kunnskapssynteser, til tross for betydelig usikkerhet rundt nedskalering og overføring av kunnskap fra globale og regionale synteser til nasjonalt eller lokalt/nasjonalt nivå, på tvers av økosystemer og taksonomiske grupper. Tidligere kunnskapssammenstillingerammendrag basert på data fra norske økosystemer har enten fulgt spesifikke tilnærminger med data for utvalgte indikatorer (f.eks. Vurdering av økologisk tilstand Økosystemvurdering; (@nybo_fagsystem_2017)), i stor grad basert på ekspertvurderinger (Artsdatabanken, 2018, @artsdatabanken_norsk_2021), eller vært begrenset i omfang. Mangelen på en samlet og omfattende oversikt over forskningsbasert kunnskap fra norske økosystemer fører også til at ulike interessegrupper og sektorer stoler på ulike “fakta,” noe som ofte fører til eskalerende konflikter og dårlige beslutninger. Det er derfor et presserende behov både for en oppsummering av kunnskap og identifisering av reelle kunnskapshull. Politikk og beslutningstaking knyttet til arealbruk og dens effekter av arealbruk på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper (@guldbrandsen_hvem_2022; @skogen_wolf_2021). Kontrovers om kunnskapsgrunnlaget er også ofte etn sentralt egenskapaspekt ved konfliktene, kjennetegnet vedog innebærer uenighet om kunnskapens status og motstridende tolkning av kunnskapenkunnskapskrav om de miljømessige effektene av ulike alternativer for arealbruk (@aspoy_segmented_2022; @rusch2022). @ipbes_global_2019, 2022a, 2022b og @ipcc_global_2018 har foreslått styringsmetoder og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av FNs bærekraftsmål (Sustainable development goals (SDG) SDG-ene, klimaavtalens mål om å begrense global oppvarming til grensen på 1,5°C og den globale naturavtalens 2050-visjonen om å stanse og reversere fortap av biodiversitet. Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres implementeringutnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy til en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese som ogsåog identifiseringer av kunnskapshull knyttet til angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima. Systematiske kart (også kjent som Evidenshullkart eller Evidenshullkart) ble utvikletdesignet for å gi en oversikt over tilgjengelig evidens om et bredt tema (Saran et al., 2020). Mens systematiske kunnskapsoversikter (systematic reviews). De søker ikke å svare på smale, veldefinerte spørsmål (slik systematiske oversikter gjør), er systematiske kart først og fremst egnet men heller å gi et middel til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål (@james_methodology_2016). Systematiske kart har blitt realisert på en rekke ulike måter, men gir generelt resultatene på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser (Miake-Lye et al., 2016). Interaktive figurer og applikasjonerplott og som visualiserer kartleggingen blir i økende grad brukt for å gi en dynamisk sammenstilling og presentasjon forutgang til brukerne (slik som EviAtlas; @haddaway_eviatlas_2019). Det er viktig at systematiske kart over kunnskap ikke fremstilles som et mål i seg selv. Systematiske kart forteller først og fremst hva vi har kunnskap om, mens systematiske oversikter indikerer hva vekten av evidens sier om utvalgte forskningsspørsmål. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. stemmeoptelling, jf. (@hedges_vote-counting_1980)). Systematiske kart kan ikke erstatte rigoriteten til systematiske oversikter, men kan gi beslutningstakere forståelse av evidensgrunnlaget ved å belyse hull eller klynger av evidens. De kan vise hvor evidenssyntese kan eller bør finne sted (dvs. for hvilke forskningsspørsmål det er tilstrekkelig med tilgjengelig evidens for en systematisk oversikt) eller hvor primærforskning er nødvendig (dvs. det er mangel på evidens). Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i beslutningskonteksten (@carrick_is_2019).
 
 ## Arealbruk og arealbruksendringer i Norge
 
 Pågående areal- og landskapsendringer i Norge er et resultat av historiske prosesser, og endringer i menneskelig arealbruk som delvis skyldes globale trender og til dels et resultat av regionale endringer, lokal politikk og lokal arealbruk. Her summerer vi opp noen sentrale endringer i menneskelig arealbruk siden 1850, som bakteppe for å vurdere effekten av disse endringene på biodiversitet, økosystemtjenester og karbonlagring.
 
 Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Norge skiller seg fra mange andre europeiske land ved at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal er ifølge SSB også i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km2, som tilsvarer litt under 50 km2 årlig. Utenom bebygd areal og jordbruksområder er Norges landareal i dag dominert av fjell, hei og vidde (45 prosent), skog (37 prosent), ferskvann, (6 prosent) og våtmark (5 prosent) og varig is og snø (1 prosent; SSB 2024).
+
+```{r arealtyper}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-arealtyper
+#| fig-cap: "Prosentvis fordeling av ulike arealtyper i Norge"
+Sys.setlocale(locale='no_NB.utf8') 
+options(scipen = 999)
+
+# Waffle chart
+arealtyper <- c("Bebygd 1,7%" = 2, "Jordbruk 3,5%" = 4, "Skog 37,4%" = 37, 
+       "Åpen fastmark 37,6%" = 38, "Våtmark 5,3%" = 5, "Bart fjell 7,4%" = 7, 
+       "Snø og is 0,8%" = 1, "Ferskvann 6,2" = 6, "Kilde: SSB tabell 09594" = 0)
+
+# Waffle chart
+mycols <- c("#E74C3C", "#F4D03F", "#0B5345", "#7DCEA0", 
+            "#C39BD3", "#797D7F", "#a6cee3","#2980B9", "white")
+
+
+# Waffle chart
+waffle(arealtyper, rows = 10,
+       colors = mycols, 
+       title = "Arealtyper Fastlands-Norge") 
+
+```
 
 Selv om andelen av landarealet i Norge som er direkte utbygd eller dyrket opp er lav (ca. 5%), er mye av landet klart påvirket av menneskelig arealbruk. Siden siste istid har så å si alt areal vært i bruk av mennesker – til jakt, fiske, beite, høsting av for, skogbruk, utvinning av naturressurser, friluftsliv og rekreasjon, og senere også til naturvern, som også er en form for arealbruk. Omfang og intensitet i den menneskelige arealbruken har imidlertid endret seg mye opp gjennom århundrene. På terskelen til den moderne tid, omkring 1850, var naturressursene utnyttet helt til grensa for hva landområdene kunne tåle, og produksjonen var maksimert med datidens teknologi. Store arealer ble påvirket av menneskelig arealbruk, men med moderat intensitet etter dagens målestokk. Ifølge [@Edvardsen_2024] kjennetegnes perioden etter 1850 ved en polarisering av den menneskelige arealbruken, med mer intensiv bruk av de best egnede arealene til jord- og skogbruk, mens andre arealer i utmarka gradvis ble tatt ut av bruk eller tas i bruk til nye formål. Vi høster mer fra naturressursene enn før, takket være avl, teknologi, og vitenskap og innovasjon, men det foregår på en mindre del av landarealet (intensivering). Opphør av ekstensiv hevd og skjøtsel av tradisjonelle utmarksarealer fører til endringer i kulturlandskap, som beite- og slåtteenger, lyng- og fjellheier.
 
@@ -172,7 +199,258 @@ De første naturfredningene av enkeltlokaliteter i Norge ble vedtatt i 1905 og N
 
 Vi vet fra andre land at naturlige forstyrrelser i økosystemene i form av for eksempel skogbranner, insektangrep, vindfall, flom, ras og skred øker i takt med et endret klima. Vi har generelt lite data om omfanget og frekvensen av slike forstyrrelser over tid i Norge, men regionale prognoser for Norge tilsier færre døgn med snø, økt omfang av naturlige forstyrrelser i økosystemene i form av skogbranner, insektangrep, vindfall, flom, ras og skred.
 
-SETT INN FIGUR HER
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-tettstedsareal
+#| 
+Sys.setlocale(locale='no_NB.utf8') 
+
+#Figure a
+# Create the tibble directly from the provided data
+tett3 <- tibble(
+  statistikkvariabel = rep("Areal av tettsted (km²)", 20),
+  år = c(2000, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2011, 2012, 2013, 
+         2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021),
+  value = c(1843, 1898, 1929, 1922, 1924, 1967, 1998, 2038, 2044, 2108, 2127, 
+            2127, 2147, 2158, 2172, 2191, 2205, 2206, 2218, 2233)
+)
+
+tettstedsareal <- tett3
+
+min_point_tett <- filter(tettstedsareal, år == min(tettstedsareal$år))
+min_point_tett_label <- paste0(min_point_tett$value, "")
+max_point_tett <- filter(tettstedsareal, år == max(tettstedsareal$år))
+max_point_tett_label <- paste0(max_point_tett$value, "")
+
+fig_a <- ggplot(tettstedsareal) +
+  aes(x = år, y = value) +
+  geom_line(size = 1L, colour = "#112446") +
+  geom_ribbon(aes(ymin=0, ymax=value), 
+              fill = "#d9d9d9")+
+  geom_line(size = 1L, colour = "#112446") +
+  labs(
+    x = "år",
+    y = "Kvadratkilometer",
+    title = "a) Tettstedsareal",
+    caption = "Kilde: SSB tabell 04862"
+  ) +
+  theme(plot.title = element_text(size=16, face = "plain"))+
+  theme_classic() +
+  ylim(0, 2500)+
+  geom_point(data = min_point_tett, aes(år, value)) +
+  geom_text(data = min_point_tett, label=min_point_tett_label, hjust=-0.2, vjust=-1.2) +
+  geom_point(data = max_point_tett, aes(år, value), 
+             shape = 62, size = 5) +
+  geom_text(data = max_point_tett, label=max_point_tett_label, hjust=0.9, vjust=-1.2)
+
+# Figure b
+# Create the tibble directly from the provided data
+jordbruksareal <- tibble(
+  areal = factor(c(
+    rep("- 49 dekar", 28),
+    rep("50 - 99 dekar", 28),
+    rep("100 - 199 dekar", 28),
+    rep("200 - 299 dekar", 28),
+    rep("300 - 499 dekar", 28),
+    rep("500 dekar og mer", 28)
+  )),
+  statistikkvariabel = rep("Jordbruksareal", 168),
+  år = c(
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023
+  ),
+  value = c(
+    2245350, 1512892, 930710, 416390, 381175, 332466, 280106, 227496, 190154, 161847, 145252, 141925, 144010, 134412, 134112, 131622, 139962, 135349, 135433, 135847, 132083, 128042, 127247, 123406, 125558, 124865, 128357, 128382,
+    2916550, 2287551, 1774754, 1212458, 1138235, 1076525, 984594, 898853, 829472, 750394, 713845, 660288, 642541, 623013, 604758, 593917, 578839, 562444, 550684, 544164, 530645, 504375, 486021, 478635, 471798, 461111, 452637, 447893,
+    2412994, 2963904, 3551927, 3222171, 3104059, 2981057, 2841247, 2714732, 2591351, 2452592, 2328272, 2226684, 2123705, 2031622, 1972033, 1891852, 1829091, 1759845, 1703703, 1669463, 1609391, 1558042, 1503038, 1454966, 1421795, 1369783, 1329438, 1297499,
+    931638, 1338061, 1877552, 2497287, 2545681, 2588210, 2556974, 2520003, 2511256, 2477430, 2395899, 2324720, 2242662, 2144812, 2063261, 2013075, 1940500, 1881355, 1809690, 1749696, 1704765, 1661789, 1609929, 1546574, 1501012, 1471423, 1426200, 1383623,
+    696680, 943249, 1196191, 1949961, 2076342, 2173616, 2305761, 2393294, 2474717, 2544704, 2606076, 2650466, 2647052, 2634610, 2591011, 2564917, 2530645, 2482840, 2467175, 2432091, 2409750, 2403692, 2369716, 2363310, 2312421, 2291744, 2255899, 2214937,
+    350124, 489620, 579639, 1084199, 1176306, 1315298, 1497535, 1649478, 1800338, 1967269, 2155263, 2316115, 2444913, 2574405, 2694682, 2793804, 2909597, 3049595, 3200994, 3329094, 3449974, 3595176, 3766851, 3875649, 4027034, 4126241, 4253966, 4374851
+  )
+)
+
+
+jordbruksareal_sum <- jordbruksareal %>%
+  group_by(år) %>%
+  summarise(value = sum(value))  
+
+
+min_point_jord <- filter(jordbruksareal_sum, år == min(jordbruksareal$år))
+min_point_jord_label <- paste0(min_point_jord$value, " ")
+max_point_jord <- filter(jordbruksareal_sum, år == max(jordbruksareal$år))
+max_point_jord_label <- paste0(max_point_jord$value, "")
+
+levels(jordbruksareal$areal)
+jordbruksareal$areal <- ordered(jordbruksareal$areal, 
+                                levels = c("- 49 dekar", 
+                                           "50 - 99 dekar", 
+                                           "100 - 199 dekar",
+                                           "200 - 299 dekar",
+                                           "300 - 499 dekar",
+                                           "500 dekar og mer"))
+
+
+# Define the custom color palette
+custom_palette <- c(
+  "#ffffd4",
+  "#fee391",
+  "#fec44f",
+  "#fe9929",
+  "#d95f0e",
+  "#993404"
+)
+
+fig_b <- ggplot(jordbruksareal) +
+  aes(x = år, y = value) +
+  geom_area(aes(fill = areal)) +
+  scale_fill_manual(values = custom_palette) + 
+  stat_summary(fun = sum, geom = "line", size = 1, colour = "#112446")+
+  geom_point(data = max_point_jord, aes(år, value), 
+             shape = 62, size = 5) +
+  geom_point(data = min_point_jord, aes(år, value)) +
+  geom_text(data = min_point_jord, aes(år, value), label=min_point_jord_label, hjust=-0.2, vjust=-1.2) +
+  geom_text(data = max_point_jord, aes(år, value), label=max_point_jord_label, hjust=0.9, vjust=-1.2)+
+  labs(x = "år", y = "Kvadratkilometer", title = "b) Samlet jorbruksareal", caption = "Kilde: SSB tabell 04496") +
+  theme(plot.title = element_text(size=16, face = "plain"))+
+  theme_classic()+
+  theme(legend.position="top", legend.justification='left')+
+  theme(legend.title=element_blank())+
+  guides(fill = guide_legend(reverse = TRUE))+
+  theme(legend.key.height= unit(0.20, 'cm'),
+        legend.key.width= unit(0.20, 'cm'))+
+  ylim(0, 11000000)
+
+# Figure c
+# Create the tibble directly from the data
+skogareal <- tibble(
+  Hogstklasse = rep(c("I", "II", "III", "IV", "V"), each = 26),
+  year = c(rep("1957-1964", 5), rep("1964-1976", 5), rep("1982-1984", 5), 
+           rep("1986-1992", 5), rep("1994-1998", 5), rep("1998-2002", 5), 
+           rep("1999-2003", 5), rep("2000-2004", 5), rep("2001-2005", 5), 
+           rep("2002-2006", 5), rep("2003-2007", 5), rep("2004-2008", 5), 
+           rep("2005-2009", 5), rep("2006-2010", 5), rep("2007-2011", 5), 
+           rep("2008-2012", 5), rep("2009-2013", 5), rep("2010-2014", 5), 
+           rep("2011-2015", 5), rep("2012-2016", 5), rep("2013-2017", 5), 
+           rep("2014-2018", 5), rep("2015-2019", 5), rep("2016-2020", 5), 
+           rep("2017-2021", 5), rep("2018-2022", 5)),
+  value = c(3550, 2180, 2530, 1710, 1390, 1240, 1200, 1110, 940, 940, 
+            930, 910, 950, 920, 770, 740, 690, 590, 610, 660, 700, 700, 
+            800, 840, 850, 860, 4010, 8090, 8380, 7660, 8000, 8150, 
+            8070, 8020, 8030, 8020, 7930, 7890, 7840, 7790, 7670, 
+            7620, 7450, 7400, 7250, 7110, 6870, 6850, 6730, 6660, 
+            6720, 6830, 4130, 4050, 5840, 6780, 7260, 7280, 7220, 
+            7220, 7270, 7420, 7410, 7480, 7590, 7620, 7830, 7870, 
+            7850, 7860, 7860, 7890, 7920, 7800, 7740, 7750, 7510, 
+            7510, 12100, 9500, 7600, 7070, 6570, 6670, 6720, 6630, 
+            6850, 6730, 6790, 6790, 7300, 7140, 7020, 7110, 7140, 
+            7180, 7180, 7180, 7330, 7370, 7390, 7400, 7500, 7390, 
+            6590, 7190, 8050, 9640, 10080, 10360, 10450, 10390, 
+            10530, 10560, 10720, 10840, 11510, 11660, 11800, 11740, 
+            11870, 11960, 11930, 12030, 12010, 12020, 11950, 11860, 
+            11860, 11820),
+  year1 = rep(c(1957, 1964, 1982, 1986, 1994, 1998, 1999, 2000, 2001, 
+                2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 
+                2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018), 5),
+  year2 = rep(c(1964, 1976, 1984, 1992, 1998, 2002, 2003, 2004, 2005, 
+                2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 
+                2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022), 5)
+)
+
+
+skogareal_sum <- skogareal %>%
+  group_by(year2) %>%
+  summarise(value = sum(value))  
+
+min_point_skog <- filter(skogareal_sum, year2 == min(skogareal$year2))
+min_point_skog_label <- paste0(min_point_skog$value, "")
+max_point_skog <- filter(skogareal_sum, year2 == max(skogareal$year2))
+max_point_skog_label <- paste0(max_point_skog$value, "")
+
+fig_c <- ggplot(skogareal, aes(year2, value)) +
+  geom_area(aes(fill = Hogstklasse)) +
+  scale_fill_manual(values = c(I = "#edf8e9", 
+                               II = "#bae4b3", 
+                               III = "#74c476", 
+                               IV = "#31a354", 
+                               V = "#006d2c")) +
+  stat_summary(fun = sum, geom = "line", size = 1)+
+  geom_point(data = max_point_skog, aes(year2, value), 
+             shape = 62, size = 5) +
+  geom_point(data = min_point_skog, aes(year2, value)) +
+  geom_text(data = min_point_skog, aes(year2, value), label=min_point_skog_label, hjust=-0.2, vjust=-1.2) +
+  geom_text(data = max_point_skog, aes(year2, value), label=max_point_skog_label, hjust=0.9, vjust=-1.2)+
+  labs(x = "år", y = "Kvadratkilometer", title = "c) Samlet areal med produktiv skog", caption = "Kilde: SSB tabell 06286") +
+  theme(plot.title = element_text(size=16, face = "plain"))+
+  theme_classic()+
+  theme(legend.position="top", legend.justification='left')+
+  #theme(legend.title=element_blank())+
+  guides(fill = guide_legend(reverse = TRUE))+
+  theme(legend.key.height= unit(0.20, 'cm'),
+        legend.key.width= unit(0.20, 'cm'))+
+  ylim(0, 40000)
+
+# figure d
+
+# Create the tibble directly from the data
+vern <- tibble(
+  År = c(1975, 1980, 1985, 1990, 1995, 2000, 2005, 2006, 2007, 2008, 2009, 2010, 
+         2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023),
+  Nasjonalpark = c(5087, 6228, 9650, 12558, 13788, 13868, 22193, 26778, 26778, 26774, 
+                   29582, 29960, 31046, 31265, 31281, 31280, 31285, 31295, 31349, 
+                   31587, 31524, 31614, 31614, 31618, 31673),
+  Naturreservat = c(148, 219, 895, 1427, 2210, 2796, 3805, 4159, 4266, 4726, 4774, 
+                    4958, 5645, 5623, 5788, 5992, 6255, 6445, 6795, 7118, 7401, 
+                    7554, 7645, 7756, 7932),
+  Landskapsvernområde = c(216, 638, 1795, 4229, 4659, 7798, 14163, 15077, 15075, 
+                          15217, 16291, 16288, 17322, 17281, 17274, 17273, 17246, 
+                          17234, 17272, 17228, 17262, 17247, 17247, 17246, 17246),
+  Annet_vern = c(1, 2, 52, 102, 108, 93, 127, 412, 432, 427, 427, 427, 390, 388, 
+                 388, 388, 387, 387, 388, 395, 394, 393, 393, 392, 392)
+) |> 
+  pivot_longer(!År, names_to = "Verneform")
+
+vern2 <- vern %>%
+  group_by(År) %>%
+  summarise(value = sum(value))
+
+min_point <- filter(vern2, År == min(vern2$År))
+min_point_label <- paste0(min_point$value, "")
+max_point <- filter(vern2, År == max(vern2$År))
+max_point_label <- paste0(max_point$value, "")
+
+fig_d <- ggplot(vern) +
+  aes(x = År, y = value) +
+  geom_area(aes(fill = Verneform)) +
+  scale_fill_manual(values = c(Annet.vern = "#dfc27d", 
+                               Landskapsvernområde = "#dfc27d", 
+                               Nasjonalpark = "#80cdc1", 
+                               Naturreservat = "#018571")) +
+  stat_summary(fun = sum, geom = "line", size = 1, colour = "#112446")+
+  geom_point(data = max_point, aes(År, value), 
+             shape = 62, size = 5) +
+  geom_point(data = min_point, aes(År, value)) +
+  geom_text(data = min_point, aes(År, value), label=min_point_label, hjust=-0.2, vjust=-1.2) +
+  geom_text(data = max_point, aes(År, value), label=max_point_label, hjust=0.9, vjust=-1.2)+
+  labs(x = "År", y = "Kvadratkilometer", title = "d) Vernet landareal Fastlands-Norge", caption = "Kilde: Miljødirektoratet") +
+  theme(plot.title = element_text(size=16, face = "plain"))+
+  theme_classic()+
+  theme(legend.position="top", legend.justification='left')+
+  theme(legend.title=element_blank())+
+  guides(fill = guide_legend(reverse = TRUE))+
+  theme(legend.key.height= unit(0.20, 'cm'),
+        legend.key.width= unit(0.20, 'cm'))+
+  ylim(0, 70000)
+
+# arrange
+ggarrange(fig_a, fig_b, fig_c, fig_d, ncol = 2, nrow = 2)
+
+```
 
 ## Involvering av brukere og samfunnsaktører
 
@@ -323,7 +601,7 @@ Studier ble inkludert dersom de vurderte effekter av arealbruk eller arealbrukse
 
 Studier ble også inkludert dersom de vurderer konflikter, verktøy eller styring knyttet til arealbruk og dekker endringer i dets effekter på biologisk mangfold, økosystemtjenester og/eller karbonbinding og lagring av økosystemer i Fenno-Skandinavia. Forholdet måtte være eksplisitt beskrevet i studien for at posten ble inkludert.
 
-Studier av alle skalaer (nasjonale, regionale og lokale) ble vurdert som relevante for inkludering.
+Studier av alle geografiske målestokker (nasjonale, regionale og lokale) ble vurdert som relevante for inkludering.
 
 ### **Kvalifiserte intervensjoner**
 
@@ -1674,77 +1952,64 @@ tidy_topics_dtm<-tidy_topics |>
 
 #topics_lda <- LDA(tidy_topics_dtm, k = 14, control = list(seed = 1234))
 
-#saveRDS(topics_lda, "data/cache_data/topics_lda.RDS")
-topics_lda<-readRDS("data/cache_data/topics_lda.RDS")
-included_topics<-tidy(topics_lda, matrix="beta")
-#included_topics<-included_topics[- grep("1", included_topics$term),]
-
-included_top_terms <- included_topics %>%
-  group_by(topic) %>%
-  slice_max(beta, n = 10) %>% 
-  ungroup() %>%
-  arrange(topic, -beta)
-
-included_top_terms %>%
-  mutate(term = reorder_within(term, beta, topic)) %>%
-  ggplot(aes(beta, term, fill = factor(topic))) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~ topic, scales = "free") +
-  scale_y_reordered()
-
-beta_wide <- included_top_terms %>%
-  mutate(topic = paste0("topic", topic)) %>%
-  pivot_wider(names_from = topic, values_from = beta) 
+# #saveRDS(topics_lda, "data/cache_data/topics_lda.RDS")
+# topics_lda<-readRDS("data/cache_data/topics_lda.RDS")
+# included_topics<-tidy(topics_lda, matrix="beta")
+# #included_topics<-included_topics[- grep("1", included_topics$term),]
+# 
+# included_top_terms <- included_topics %>%
+#   group_by(topic) %>%
+#   slice_max(beta, n = 10) %>% 
+#   ungroup() %>%
+#   arrange(topic, -beta)
+# 
+# included_top_terms %>%
+#   mutate(term = reorder_within(term, beta, topic)) %>%
+#   ggplot(aes(beta, term, fill = factor(topic))) +
+#   geom_col(show.legend = FALSE) +
+#   facet_wrap(~ topic, scales = "free") +
+#   scale_y_reordered()
+# 
+# beta_wide <- included_top_terms %>%
+#   mutate(topic = paste0("topic", topic)) %>%
+#   pivot_wider(names_from = topic, values_from = beta) 
 
 #beta_wide
 
-tidy_topics |> 
-  count(word, sort = TRUE) |> 
-  wordcloud2::wordcloud2()
+# tidy_topics |> 
+#   count(word, sort = TRUE) |> 
+#   wordcloud2::wordcloud2()
 
-dois<-as.character(all_included$doi)
 
-dois<-sub(" .*", "", dois)
+```
 
-# library(openalexR)
-# paper_details<-oa_fetch(
-#   doi=dois,
-#   entity="works",
-#   verbose = TRUE
-# )
-# 
-#write_rds(paper_details, here::here("data/Included_at_abs/paper_details.rds"))
+```{r all_cooccur}
+#| echo: false
+#| message: false
+#| warning: false
+set.seed(007)
 paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
-# paper_details |> 
-#   show_works() |> 
-#   knitr::kable()
-
-
 papers_bib<-paper_details |> 
   oa2bibliometrix() 
-
-# results<-biblioAnalysis(papers_bib)
-# S<-summary(results)
-# S
-
-
-#papers_bib$CR
-
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
 net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
 
+```
 
+
+```{r cocitation}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig_co-citation
+#| fig-cap: "Biblographic coupling (shared citations between papers) highlights conceptual groupings within the field as a whole"
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-citation", network = "references", sep = ";")
-
-# Plot the network
-net=networkPlot(NetMatrix, n = 30, Title = "Co-Citation Network", type = "fruchterman", size=T, remove.multiple=FALSE, labelsize=0.7,edgesize = 5)
-
-
-#Conceptual Structure using keywords (method="CA")
-
-#CS <- conceptualStructure(papers_bib,field="ID", method="CA", minDegree=5, clust=2, stemming=FALSE, labelsize=3, documents=2000)
+net=networkPlot(NetMatrix, n = 500, Title = "Co-citations", type = "fruchterman", size=5,size.cex=T,remove.multiple=TRUE,label = NA)
 
 ```
+
+
+
 
 ```{r top concepts openalex all included}
 #| echo: false
@@ -1811,6 +2076,8 @@ paper_details |>
   coord_flip()
 ```
 
+<!--# @Erlend do we need the funders? -->
+
 ```{r funder openalex all included}
 #| echo: false
 #| message: false
@@ -1867,6 +2134,28 @@ o_A |> ggplot(aes(oa_status, n, fill=pal))+
   scale_fill_manual(values=c("#cd7f32", "forestgreen", "gold", "green", "darkred"))+
   labs(x="Open Access status", y="Frequency")+
   theme(legend.position = "none")
+```
+
+## Change in frequency of keywords in all included
+
+<!--# @Erlend is this useful? -->
+
+```{r wordfreq}
+#| echo: false
+#| message: false
+#| warning: false
+#| 
+wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
+wordfreq |> 
+  filter(!feature=="systematic",
+         !feature=="review",
+         !feature=="science") |> 
+  ggplot(aes(reorder(feature, chi2), y=chi2, fill=feature))+
+  geom_col()+
+  coord_flip()+
+  theme(legend.position = "none")+
+  labs(x="", y="Chi.square statistic")
+
 ```
 
 ## En beslutningsmodell basert på inkluderte artikler fra Norge
@@ -1932,25 +2221,38 @@ Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt ove
 
 Et gjennomgående trekk fra vår sammestilling av litteraturen fra Norge er at et dominerende andel av den naturvitenskapelige forskningen er basert på empiriske data samlet inn i felt eller fra moderne teknologier (fjernmåling osv). Den støreste andelen av forskningen baserer seg også på lokale eller regionale studier, noe som inneærer at de dekker for eksempel en del av en kommune eller et fylke, eller et større fjellområde. Det er relativt få studier som dekker hele landet. Dette kan være en begrensning siden mange vurderinger (f.eks. rødlisting av arter, ulike rapportering til internasjonale indekser osv) er basert på landsdekkende trender og status. Siden det i Norge er mange overvåkningsprogram som i prinsippet dekker hele landet (for eksempel TOV-e og Rovdata sin rovdyrovervåkning) er dette funnet noe overraskende.
 
-Et annet veldig tydelig funn er at en veldig stor andel av den naturvitenskapelige litteraturen baserer seg på relativt "svake" forsøkdsdesing. Når vi skriver svak mener vi her design som ikke nødvendigvis er godt egent til å avdekke årsak-virkningssamennhenger. Som det framgår av @fig-studydesign er forskningen vi har kategorisert fra Norge i veldig stor grad domiert av det vi har kategorisert som controll-påvirkning (*Control-impact*) og etter-desing (*After*), med en visst innslag av før-etter design (*Before-after*). Særlig designtypen etter mangler styrke til å si noe om årsak-virkning, siden man ikke har et kontrollområde å sammenlikne effekten av intervensjonen mot. Men også for studiedesign av typen kontroll-påvirkning og før-etter er det velkjent at slutningen kan være utsatte for bias og skjevhet. Nyere statistiske metoder basert på "causal inference" har blitt utviklet for i større grad kunne trekke slutninger om årsak-virkning også fra slike studiedesign. Vi har ikke hatt kapasitet til å undersøke hvor ofte disse har blitt benyttet i den litteraturen vi har kategorisert, men basert på vår genrelle kjennskap til forskningsfeltet er det all grunn til å anta at disse sjeldent benyttes. I motsetning til studiedesignene beskrevet over har studiedesignene randomisert-kontrollert forsøk (*Randomised controlled trials* - RCT) og tildels før-etter-kontroll-impact (*Before-after-controll-impact* - BACI) mye større styrke til å avdekke årsak-virkningsforhold og unngås skjevhet i resultatene. Særlig er RCT regnet som gullstandarden innenfor naturvitenskapelig forskning, og det er en påfallende mangel på slike studier i vår gjennomgang (med noen svært gode unntak). En utfordring RCT og BACI design på større skala er at de ofte er ressurskrevende og ofte må gjennomføres over en betydelig romlig- og tidsmessig skala for å gi sikker inferens. Dette kan være utfordrende med dagens finansiering av forskning, hvor prosjektene er av en relativt kort varighet og ofte relativt små.
+Et annet veldig tydelig funn er at en veldig stor andel av den naturvitenskapelige litteraturen baserer seg på relativt "svake" forsøkdsdesing. Når vi skriver svak mener vi her design som ikke nødvendigvis er godt egent til å avdekke årsak-virkningssamennhenger. Som det framgår av @fig-studydesign er forskningen vi har kategorisert fra Norge i veldig stor grad domiert av det vi har kategorisert som controll-påvirkning (*Control-impact*) og etter-desing (*After*), med en visst innslag av før-etter design (*Before-after*). Særlig designtypen etter mangler styrke til å si noe om årsak-virkning, siden man ikke har et kontrollområde å sammenlikne effekten av intervensjonen mot. Men også for studiedesign av typen kontroll-påvirkning og før-etter er det velkjent at slutningen kan være utsatte for bias og skjevhet. Nyere statistiske metoder basert på "causal inference" har blitt utviklet for i større grad kunne trekke slutninger om årsak-virkning også fra slike studiedesign. Vi har ikke hatt kapasitet til å undersøke hvor ofte disse har blitt benyttet i den litteraturen vi har kategorisert, men basert på vår genrelle kjennskap til forskningsfeltet er det all grunn til å anta at disse sjeldent benyttes. I motsetning til studiedesignene beskrevet over har studiedesignene randomisert-kontrollert forsøk (*Randomised controlled trials* - RCT) og tildels før-etter-kontroll-impact (*Before-after-controll-impact* - BACI) mye større styrke til å avdekke årsak-virkningsforhold og unngås skjevhet i resultatene. Særlig er RCT regnet som gullstandarden innenfor naturvitenskapelig forskning, og det er en påfallende mangel på slike studier i vår gjennomgang (med noen svært gode unntak). En utfordring med RCT og BACI-design knyttet til å forstå effekter av arealbruk på ulike biodiversitetsmål er at de ofte er ressurskrevende og ofte må gjennomføres over en betydelig romlig- og tidsmessig skala for å gi sikker inferens. Dette kan være utfordrende med dagens finansiering av forskning, hvor prosjektene er av en relativt kort varighet og ofte relativt små.
 
 For de inkluderte systematiske litteratursammenstillingene gjorde vi en vurdering basert på modifiserte GRADE-vurderinger (se Metoder). Denne vurderingen avdekket at en relativt liten andel av denne litteraturen var basert på sammenstillinger som en kritisk måte vurderte litteraturen som ble inkludert.
 
 <!--# MATT ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
 
-Et annet gjennomgripende funn i vår gjennomgang av primærlitteraturen er at det er en relativt beskjeden andel av litterturen som har gjort data og kildekode åpent tilgjengelig etter at studiene har blitt publisert. <!--# ERLEND ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
+Et annet gjennomgripende funn i vår gjennomgang av primærlitteraturen er at det er en relativt beskjeden andel av litterturen som har gjort data og kildekode åpent tilgjengelig etter at studiene har blitt publisert. <!--# ERLEND ADD SHORT TEXT HERE ABOUT OPEN SCIENCE - 5-10 LINES -->
 
-Selv om vi innenfor naturvitenskapen søker å finne generelle og almentgyldige svar på forskningsspørsmål ser man ofte at økologien er kontektsavhengig, og at anvendt forskning derfor ofte må skje i geografisk nærhet av der den skal benyttes. Vår gjennomgang av litteraturen fra Norge har avdekket at det er stor variasjon knyttet til hvor hyppig feltstudier gjennomføres i de ulike fylkene i Norge. <!--# ERLEND ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
+Selv om vi innenfor naturvitenskapen søker å finne generelle og almentgyldige svar på forskningsspørsmål ser man ofte at økologien er kontektsavhengig, og at anvendt forskning derfor ofte må skje i geografisk nærhet av der den skal benyttes. Vår gjennomgang av litteraturen fra Norge har avdekket at det er stor variasjon knyttet til hvor hyppig feltstudier gjennomføres i de ulike fylkene i Norge. <!--# ERLEND ADD SHORT TEXT HERE ABOUT CONTEXT DEPENDENCE AND LOCATION OF THE STUDIES - 5-10 LINES -->
 
 De samfunnsvitenskapelige studiene avdekket at ... <!--# HÅKON ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
 
 ## Generell vurdering av litteraturen som omfatter effekter av arealbruk og arealbruksendringer på biologisk mangfold og økosystemtjenester
 
-Vår sammenstilling av den naturvitenskapelige litteraturen fra Norge avdekket hvilke tema som har vært mest i fokus i forskningen som er gjennomført.
+Vår sammenstilling av den naturvitenskapelige litteraturen fra Norge avdekket hvilke tema som har vært gjenstand for mest forskning i perioden 1986 - 2024. I det materialet vi fanget opp i vår systematiske litteraturgjennomgang var det tre økosystemer som klart skillte seg ut når det gjelder mengde forskning (@fig-ecosys). Særlig viser vår gjennomgang at det er gjennomført mye forskning i skog, og mye av denne forskningen har naturlig nok fokusert på effekter av ulike former for skogbruk på ulike former for biodiversitetsvariabler og økosystemtjenester. Videre har en betydelig mengde forskning blitt gjennomført i semi-naturlig økosystemer, i særlig grad i semi-naturlig gressenger. Her er det flere studier som fokuserer på hvordan endret bruk og hevd påvirker disse systemene. Vårt søk fanget også opp et relatitvt høyt antall artikler som har fokusert på fjelløkosytemer. De andre hovedøkosystemer er langt dårligere dekket, og det er verdt å merke seg at selv om det har vært mye fokus på myrenes betydning både for det biologiske mangfoldet men ikke minst karbonlagring, så fanget vårt søk opp et relativt lavt volum av forskning i dette økosystemet.
 
-## Sentrale funn knyttet til den samfunnsvitenskapelige litteraturen 
+Også når det gjelder ulike former for arealbruk og arealbruksendringer ser vi at det er stor variasjon i hvor mye forskning som forekommer. På et overordnet plan (@fig-landuse-coarse) er det størst volum av forskning knyttet til ulike former for landbruk (inkludert både beitebruk og andre former for landbruk) og bruk av biologiske ressurser (inkludert skogbruk og jakt og fiske). For andre hovedformer for arealbruk, inkludert ulike former for energiproduksjon og transport, og ulike former for "residential" er det vesentlig mindre forskning tilgjenglig. Dersom vi bryter opp arealbruken i finere oppdeling er det skogbruk som har klart størst volum av forskning (@fig-landuse-detailed), etterfulgt av effekter av beiting og landbruk mer generelt. Det er påfallende få naturvitenskapelige studier som omhandle effekter av vern og restaurering.
+
+Vi kartla hvilke responsvariabler de ulike studiene fokuserte på, og delte disse inn i henhold til klassifieringssystemet "Essential Biodiversity Variables" (EBD). Vår gjennomgang av litteraturen viste at det var særlig tre variabler som ble studert, henholdsvis arters utbredelse (*Species distribution*), arters antall (*Species abundance*) og taksonomisk diversitet (*Taxonomic diversity*). De to første variablene blir typisk studert for en eller et fåtall arter i samme studie, mens studier som fokuserer på diversitet typisk fokuserer på diversiteten i hele plantesamfunn eller blant leddyr i et samfunn. Det er også et ganske betydelig (dog langt mindre) volum av forskning på ulike trekk (*Traits*) som beskriver individer eller arter. Særlig gjelder dette studier av arters bevegelsesmønter (*Movement*) og habitatseleksjon under ulike former for arealbruk og menneskelige forstyrrelser. Inkludert i denne kategorien finner vi også en rekke studier av hvordan villreinens arealbruk og bevegelsesmønster påvirkes av menneskelig aktivitet og infrastruktur, og hvordan gaupenes bevegelsesmønster henger sammen med ulike former for arealbruk. Ser vi arter som er inkludert hyppigst i vår litteraturgjennomgang finner vi også at disse to artene er hyppigst forekommende. Det er også et betydelig antall studier som undersøker hvordan ulike former for arealbruk påvirker reproduksjon og overlevelse hos populasjoner. I kontrast til variablene over er det relativt få studier som fokuserer på effekter på hele økosystemer (struktur og/eller funksjon) og det er svært få studier som har undersøkt effekter av arealbruk på genetisk variasjon differensiering.
+
+Økosystemtjenester ble også...
+
+<!--# Trond - kan du skrive her -->
+
+
+## Sentrale funn knyttet til den samfunnsvitenskapelige litteraturen
 
 <!--# INSERT TEXT FROM HÅKON AND THOMAS HERE -->
+
+## Sentrale funn knyttet til de systematiske litteratursammenstillingene vi har vurdert
+
+<!--# Matt - short text here? -->
 
 ## Begrensninger i litteraturstudien
 
