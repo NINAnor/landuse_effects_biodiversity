@@ -142,7 +142,6 @@ library(ggrepel)
 ggplot2::theme_set(theme_gray(base_size = 18))
 commonResponse <- "Number of records"
 nudgeDist <- 3
-nudgeExpDist <- 1.1
 library(waffle)
 library(ggpubr)
 ```
@@ -153,7 +152,7 @@ Endringer i menneskelig arealbruk vurderes vurderes som den viktigste årsaken t
 
 Å kvantifisere, forstå og formidle dynamikken i arealendringer og effektene av endringene for naturmangfoldet, er dermed en grunnleggende forutsetning for kunnskapbasert arealplanlegging og -forvaltning. Imidlertid mangler aktørene i arealforvaltningen i dag oppdaterte norske kunnskapssynteser om de direkte og indirekte sammenhengene mellom arealbruk, klimaendringer og naturmangfold, der den samlede vekten av evidens fra forskningen er vurdert, og der usikkerheten omkring kunnskapen er synliggjort. Dette gjelder både grunnleggende usikkerhet om årsak-virkningsmekanismer om effekter av arealbruk på naturmangfold og usikkerhet om det empiriske datagrunnlaget for slike vurderinger (@jaureguiberry_direct_2022). I samfunnsdebatten om arealbruk og natur vises det derfor ofte til internasjonale globale kunnskapssynteser, til tross for betydelig usikkerhet rundt hvorvidt kunnskapen fra slike globale kunnskapssynteser lar seg overføre til nasjonalt, regionalt og lokalt nivå i Norge.
 
-### Pågående areal- og landskapsendringer i Norge
+## Pågående areal- og landskapsendringer i Norge
 
 Pågående areal- og landskapsendringer i Norge er et resultat av historiske prosesser, og endringer i menneskelig arealbruk som delvis skyldes globale trender og til dels et resultat av regionale endringer, lokal politikk og lokal arealbruk. Her summerer vi opp noen sentrale endringer i menneskelig arealbruk siden 1850, som bakteppe for å vurdere effekten av disse endringene på biodiversitet, økosystemtjenester og karbonlagring.
 
@@ -459,19 +458,17 @@ ggarrange(fig_a, fig_b, fig_c, fig_d, ncol = 2, nrow = 2)
 
 ```
 
-### Kunnskap om effekter av arealbruk og arealendringer på naturmangfold og naturgoder
+## Kunnskap om effekter av arealbruk og arealendringer på naturmangfold og naturgoder
 
 Et sentralt kunnskapsgrunnlag i arbeidet med vurderinger av påvirkningsfaktorer på naturmangfoldet i Norge er rødlister for arter og naturtyper som vurderer risiko for at arter dør ut i Norge eller at naturtyper går tapt (#artsdatabanken_norsk_2018, #artsdatabanken_norsk_2021). Rødlistevurderingene følger internasjonale metoder og utføres av eksperter med høy kompetanse på artsgruppene som vurderes (ekspertvurderinger), men vurderingene av *påvirkningsfaktorer*, inkludert arealbruk og arealendringer, foregår likevel på et relativt overordnet nivå, der kausale sammenhenger mellom arealendringer og effekter på utbredelse og bestandssituasjon for arter og naturtyper sjelden kvantifiseres.
 
 Flere fagsystemer og sentrale overvåkningsprogram er etablert med sikte på å gi en samlet oversikt over tilstand og utvikling i økosystemer eller for ulike artsgrupper (f.eks. Landsskogstaksteringen, Breidenbach#; fagsystemet for økologisk tilstand , @nybo_fagsystem_2017; Nasjonal insektovervåkning (#ref) og overvåkningsprogram for hjortevilt #ref), men slike fagsystemer og overvåkningsprogram gir ikke alltid grunnlag for å avdekke årsak-virkningforhold mellom de konkrete endringene i arealbruk og effekten på studieobjektene (arter, økosystemer og naturgoder).
 
-## Involvering av brukere og samfunnsaktører
-
 Mangelen på en samlet og omfattende oversikt over forskningsbasert kunnskap om effekter av arealbruk og arealendringer på norske arter, økosystemer og naturgoder fører også til at ulike interessegrupper og sektorer stoler på ulike “fakta,” noe som ofte fører til eskalerende konfliktnivå og dårlige beslutninger. Det er derfor et klart behov både for en oppsummering av kunnskap om temaet og en systematisk kartlegging av kunnskapshull. Politikk og beslutningstaking knyttet til arealbruk og dens effekter av arealbruk på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper (@guldbrandsen_hvem_2022; @skogen_wolf_2021). Kontrovers om kunnskapsgrunnlaget er også ofte et sentralt apaspekt ved konfliktene, kjennetegnet ved uenighet om kunnskapens status og motstridende tolkning av kunnskapen om effektene for naturen av ulike alternativer for arealbruk (@aspoy_segmented_2022; @rusch2022).
 
 @ipbes_global_2019, 2022a, 2022b og @ipcc_global_2018 har foreslått forvaltningsstrategier og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av FNs bærekraftsmål (#UNFCC 2015), klimaavtalens mål om å begrense global oppvarming til grensen på 1,5°C og den globale naturavtalens 2050-visjon om å stanse og reversere fortap av biodiversitet (CBD 2022). Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres implementeringutnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy til en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese som også identifiseringer av kunnskapshull knyttet til angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima.
 
-### Systematiske kart over kunnskap og kunnskapshull
+## Systematiske kart over kunnskap og kunnskapshull
 
 Systematiske kart, også kjent som Evidenskart eller Evidenshullkart, ble utviklet for å gi en oversikt over tilgjengelig evidens om et bredt tema (Saran et al., 2020). Mens systematiske kunnskapsoversikter (systematic reviews) søker å svare på smale, veldefinerte spørsmål , er systematiske kart først og fremst egnet  til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål (@james_methodology_2016). Systematiske kart søker å sammenstille resultatene fra kunnskapsgjennomganger på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser (Miake-Lye et al., 2016). Interaktive figurer og applikasjoner og som visualiserer kartleggingen blir i økende grad brukt for å gi en dynamisk presentasjon av resultatene for brukerne (slik som EviAtlas; @haddaway_eviatlas_2019). Det er viktig at systematiske kart over kunnskap ikke fremstilles som et mål i seg selv. Systematiske kart forteller først og fremst *hva* vi har kunnskap om, mens systematiske oversikter indikerer hva vekten av evidens sier om utvalgte forskningsspørsmål. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. ved stemmeoptelling, jf. (@hedges_vote-counting_1980)). Systematiske kart kan ikke erstatte stringensen ved systematiske oversikter, men kan gi beslutningstakere en oversikt over kunnskapsgrunnlaget ved å belyse hull eller klynger av evidens. De kan vise hvor evidenssyntese kan eller bør finne sted, der vi kan gå fra å å hvite hva vi har av kunnskap til å trekke slutninger om hva kunnskapen forteller oss. Hvilke forskningsspørsmål har vi tilstrekkelig med tilgjengelig evidens til å svare på gjennom en systematisk oversikt? På hvilke områder er videre primærforskning er nødvendig? Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i beslutningskonteksten (@carrick_ik og arealbruksendringer i Norge
 
@@ -539,7 +536,7 @@ Før prosjektet ble gjennomført ble det utviklet en detaljert protokoll som bes
 
 -   Regler for datakoding
 
-Versjon 1.0 av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes her https://osf.io/mwapc/. Den endelige versjonen av protokollen kan leses her (ref).
+Versjon 1.0 av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes her https://osf.io/mwapc/. Den endelige versjonen av protokollen kan leses her [@nilsen2024].
 
 ## Involvering av brukere og samfunnsaktører
 
@@ -579,7 +576,7 @@ Følgende søkestreng ble benyttet i WoS (tilsvarende streng ble benyttet i Scop
 
 *TS=(sustainab\* OR biodiversity OR "Ecosystem service" OR (carbon NEAR/3 (stor OR sequest)) OR (ecosystem NEAR/3 (impact\* OR effect\* OR provision\* OR regulat\* OR support\* OR cultur)) OR ((loss OR shrink OR bisection\* OR perforation OR fragmentation) AND (habitat OR land)) OR (climate NEAR/3 adapt) OR ecodiversity OR "ecosystem type" OR "ecological process" OR anthropogenic OR conflict OR (diversity NEAR/3 (ecological OR speci\* OR population\*)) OR red-list OR "water purification" OR "soil retention" OR spiritual OR cultural OR aesthetics OR "climate mitigation")*
 
-Vi Screenet alle systematiske litteratursammenstillinger og systematiske kart fra den internasjonale litteraturen, og de to kategoriene ble konminert ved TS=("Systematic review*" OR "systematic map*" OR "rapid review\*"). For den primære forskningslitteraturen ble de to kategoriene kombinert ved TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish), og alle resultatene ble screenet.
+Vi screenet alle systematiske litteratursammenstillinger og systematiske kart fra den internasjonale litteraturen, og de to kategoriene ble konminert ved TS=("Systematic review*" OR "systematic map*" OR "rapid review\*"). For den primære forskningslitteraturen ble de to kategoriene kombinert ved TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish), og alle resultatene ble screenet.
 
 ### Test av søkets omfang og dekning
 
@@ -1264,8 +1261,7 @@ join_Nor_form_nat |>
 #| warning: false
 #| label: fig-ES
 #| fig-cap: "Omfang av artikler som studerte ulike former for økosystemtjenester i datamaterialet fra Norge."
-#| fig-width: 14
-#| fig-height: 10
+#| fig-width: 12
 
 join_Nor_form_nat |> 
   select(ecosystem_services) |>
@@ -1295,8 +1291,7 @@ Blant studier som fokuserte på en eller et fåtall arter var det studiert av re
 #| message: false
 #| warning: false
 #| fig-cap: "Omfang av artikler som fokuserer på effekten av arealbruk på arter i norsk natur fordelt på de enkelte artene. Kun de 15 vanligste taxa er vist i figuren."
-#| fig-width: 14
-#| fig-height: 10
+
 
 join_Nor_form_nat |> 
   filter(taxonomic_level == "Species") |>
@@ -1321,71 +1316,476 @@ join_Nor_form_nat |>
 
 ```
 
-## Samfunnsvitenskapelige litteratur fra Norge
+## Samfunnsrelatert litteratur fra Norge
 
-#### Fordeling av samfunnsvitenskapelige studier mellom ulike økosystemer og former for arealbruk {.unnumbered}
+Her følger resultatene fra vår gjennomgang av de studiene som har analysert en eller annen form for konflikt, et forvaltningsverktøy eller styring (*governance*). Dette tilsvarer `r nrow(join_Nor_form_soc)` artikler av total `r nrow(join_Nor_form)`, dvs. `r round(nrow(join_Nor_form_soc)/nrow(join_Nor_form)*100)`%. Av disse igjen er det kun `r nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences"))` artikler som bruker samfunsvitenskeplige metoder.
 
-```{r social science ecosystems}
+#### Hvilke samfunnsfaglige tema har blitt forsket på? (Konflikter, styring og forvaltningsverktøy) {.unnumbered}
+
+```{r fig-ssEmpiricalFocus}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-socialscience-ecosys
-#| fig-cap: "Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike økosystemer"
+#| fig-cap: "Omfang av samfunnsrelatert litteratur som fokuserer på ulike samfunsfaglige tema. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
-join_Nor_form_soc |> 
-  group_by(ecosystem_type_main) |>
-  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
-  unnest(ecosystems_main)  |> 
-  group_by(ecosystems_main) |> 
-  mutate(ecosystems_main=trimws(ecosystems_main)) |> 
-  tally() |> 
+join_Nor_form_soc |>
+  select(
+    empirical_focus_of_study,
+    study_area_discipline
+  ) |>
+  mutate(
+    empirical_focus_of_study = strsplit(empirical_focus_of_study, ","),
+    study_area_discipline = case_match(study_area_discipline,
+      "Social Sciences" ~ "Social_Sciences",
+      .default = "Other"
+    )
+  ) |>
+  unnest(empirical_focus_of_study) |>
+  mutate(empirical_focus_of_study = trimws(empirical_focus_of_study)) |>
+  group_by(empirical_focus_of_study, study_area_discipline) |>
+  tally() |>
+  mutate(empirical_focus_of_study = case_when(
+    is.na(empirical_focus_of_study) ~ "Unknown",
+    .default = empirical_focus_of_study
+  )) |>
   drop_na() |>
-  top_n(10) |> 
-  ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
-  geom_histogram(stat="identity")+
-  coord_flip()+
-  theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = empirical_focus_of_study) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total,
+      label = total),
+    nudge_y = nudgeDist - 2
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences,
+      fill = myVar
+    ),
+    stat = "identity"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences,
+      label = Social_Sciences),
+    nudge_y = nudgeDist - 2
+  ) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 ```
 
-```{r social science area use coarse}
+#### Hvilke metoder er brukt i de samfunnrelaterte studiene? {.unnumbered}
+
+Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (@fig-analytisk). Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. Mange studier har også brukt intervjuer, samt blandede metoder. Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
+
+```{r fig-analytisk}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-socialscience-areause_coarse
-#| fig-cap: "Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike typer arealbruk"
+#| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsrelaterte studier? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
 join_Nor_form_soc |> 
-  group_by(x23) |>
-  mutate(land_use = strsplit(x23, ","))  |> 
-  unnest(land_use)  |> 
-  group_by(land_use) |> 
-  mutate(land_use=trimws(land_use)) |> 
+  select(data_gathering_methods,
+         study_area_discipline) |>
+  mutate(data_gathering_methods = strsplit(data_gathering_methods, ","),
+         study_area_discipline = case_match(study_area_discipline,
+      "Social Sciences" ~ "Social_Sciences",
+      .default = "Other"
+    ))  |> 
+  unnest(data_gathering_methods)  |> 
+  mutate(data_gathering_methods = trimws(data_gathering_methods),
+         data_gathering_methods = case_when(
+           is.na(data_gathering_methods) ~ "Unknown",
+           .default = data_gathering_methods),
+         data_gathering_methods = case_match(
+           data_gathering_methods,
+           "Ethmography" ~ "Ethnography",
+           .default = data_gathering_methods
+         )
+         ) |>
+group_by(data_gathering_methods, study_area_discipline) |> 
+  tally() |> 
+  drop_na() |> 
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = data_gathering_methods) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total,
+      label = total),
+    nudge_y = nudgeDist
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences,
+      fill = myVar
+    ),
+    stat = "identity"
+  ) +
+  #geom_text(
+  #  aes(
+  #    x = fct_reorder(myVar, total),
+  #    y = Social_Sciences,
+  #    label = Social_Sciences),
+  #  nudge_y = nudgeDist - 2
+  #) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+```
+
+Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered} <!-- Her skal det inn en figur basrt på analytical_approach_of_study, men den er litt tricky -->
+
+#### Hvilke økosystemer har vært tema for samfunnsrelaterte studier? {.unnumbered}
+
+Av den samfunnsrelaterte og den samfunnsvitenskapelige forskningen vi har undersøkt er flest studier relatert til skogøkosystemer, etterfulgt av fjelløkosystemer og semi-naturlige økosystemer. Disse er igjen etterfulgt av studier relatert til elve- og innsjøøkosystemer, kystøkosystemer, naturlige åpne områder under tregrensen, polare økosystemer og arktisk tundra, våtmarks- og myrøkosystemer, urbane økosystemer samt økosystemer knyttet til jordbruk.
+
+```{r fig-socialscience-ecosys}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på ulike økosystemer. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+
+join_Nor_form_soc |> 
+  group_by(ecosystem_type_main,
+           study_area_discipline) |>
+  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","),
+         study_area_discipline = case_match(study_area_discipline,
+      "Social Sciences" ~ "Social_Sciences",
+      .default = "Other")
+      )|> 
+  unnest(ecosystems_main)  |> 
+  group_by(ecosystems_main,
+           study_area_discipline) |> 
+  mutate(ecosystems_main=trimws(ecosystems_main),
+         ecosystems_main = case_when(
+           is.na(ecosystems_main) ~ "Unknown",
+           .default = ecosystems_main),
+         ecosystems_main = case_match(
+           ecosystems_main,
+           "semi-natural heathlands" ~"Semi-natural ecosystems",
+           "Polar ecosystems / arctic tundra" ~ "Arctic or alpine",
+           "Sub-arctic" ~ "Arctic or alpine",
+           "Sub-alpine zone" ~ "Arctic or alpine",
+           "Apline/sub-alpine" ~ "Arctic or alpine",
+           "farmland" ~ "Agricultural",
+           .default = ecosystems_main
+         )) |> 
+  tally() |> 
+  drop_na() |>
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = ecosystems_main) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total,
+      label = total),
+    nudge_y = nudgeDist
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences,
+      fill = myVar
+    ),
+    stat = "identity"
+  ) +
+  #geom_text(
+  #  aes(
+  #    x = fct_reorder(myVar, total),
+  #    y = Social_Sciences,
+  #    label = Social_Sciences),
+  #  nudge_y = nudgeDist - 2
+  #) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+
+```
+
+#### Hvilke typer arealbruk fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
+
+```{r fig-socialscience-areause-coarse}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på ulike typer arealbruk. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+#| fig-width: 12
+
+join_Nor_form_soc |> 
+  group_by(x23,
+           study_area_discipline) |>
+  mutate(land_use = strsplit(x23, ","),
+         study_area_discipline = case_match(study_area_discipline,
+      "Social Sciences" ~ "Social_Sciences",
+      .default = "Other"))  |> 
+  unnest(land_use)|> 
+  group_by(land_use,
+           study_area_discipline) |> 
+  mutate(land_use=trimws(land_use),
+         land_use = case_when(
+           is.na(land_use) ~ "Unknown",
+           .default = land_use)) |> 
   tally() |> 
   filter(land_use != "fishing collection") |>
   mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
-  drop_na() |> 
-  top_n(20) |> 
-  ggplot(aes(reorder(land_use, n),n,fill=land_use))+
-  geom_histogram(stat="identity")+
-  coord_flip()+
-  theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = land_use) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total,
+      label = total),
+    nudge_y = nudgeDist
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences,
+      fill = myVar
+    ),
+    stat = "identity"
+  ) +
+  #geom_text(
+  #  aes(
+  #    x = fct_reorder(myVar, total),
+  #    y = Social_Sciences,
+  #    label = Social_Sciences),
+  #  nudge_y = nudgeDist - 2
+  #) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
-
 
 
 ```
 
-```{r social science area use coarse}
+#### Hvilke styringsnivå fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
+
+De fleste samfunsrelaterte artiklene fokuserte på det lokale styringsnivået, typisk kommunenivå (@fig-toolLevel).
+
+```{r fig-toolLevel}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-socialscience-areause_fine
+#| fig-cap: "Omfang samfunnsrelaterte artikler som fokuserer på ulike styringsnivå. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+
+
+join_Nor_form_soc |> 
+  select(governance_level_using_the_tool,
+         study_area_discipline) |>
+  mutate(governance_level_using_the_tool = 
+           strsplit(governance_level_using_the_tool, ","),
+    study_area_discipline = case_match(
+      study_area_discipline,
+      "Social Sciences" ~ "Social_Sciences",
+      .default = "Other")
+      ) |>
+  unnest(governance_level_using_the_tool) |>
+  mutate(governance_level_using_the_tool = case_when(
+    is.na(governance_level_using_the_tool) ~ "Unknown",
+    .default = governance_level_using_the_tool
+  ),
+  governance_level_using_the_tool = trimws(governance_level_using_the_tool)) |>
+group_by(governance_level_using_the_tool,
+         study_area_discipline) |> 
+  tally() |> 
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = governance_level_using_the_tool) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total,
+      label = total),
+    nudge_y = nudgeDist
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences,
+      fill = myVar
+    ),
+    stat = "identity"
+  ) +
+  #geom_text(
+  #  aes(
+  #    x = fct_reorder(myVar, total),
+  #    y = Social_Sciences,
+  #    label = Social_Sciences),
+  #  nudge_y = nudgeDist - 2
+  #) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+```
+
+#### Hvilke sektorer fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
+
+<!-- Denne figuren skal oppdateres etter litt ny koding fra Håkon og Thomas -->
+
+Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk samt sektor for klima- og miljøpolitikk (@fig-sectors). Et fåtall studier var relevant for olje- og energipolitikk, nærings- og fiskeripolitikk samt handel.
+
+```{r fig-sectors}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Hvilke sektorer og samfunnsmessige områder er hyppigst studert blan de samfunnsrelaterte artiklene? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+
+
+join_Nor_form_soc |> 
+  select(sector_societal_concern,
+         study_area_discipline) |>
+  mutate(sector_societal_concern = strsplit(sector_societal_concern, ","),
+          study_area_discipline = case_match(
+      study_area_discipline,
+      "Social Sciences" ~ "Social_Sciences",
+      .default = "Other")
+      )|> 
+  unnest(sector_societal_concern)  |> 
+  mutate(sector_societal_concern=trimws(sector_societal_concern),
+         sector_societal_concern = case_when(
+           is.na(sector_societal_concern) ~ "Unknown",
+           .default = sector_societal_concern
+         )) |> 
+  group_by(sector_societal_concern,
+           study_area_discipline) |> 
+  tally() |> 
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = sector_societal_concern) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total,
+      label = total),
+    nudge_y = nudgeDist
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences,
+      fill = myVar
+    ),
+    stat = "identity"
+  ) +
+  #geom_text(
+  #  aes(
+  #    x = fct_reorder(myVar, total),
+  #    y = Social_Sciences,
+  #    label = Social_Sciences),
+  #  nudge_y = nudgeDist - 2
+  #) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+```
+
+```{r fig-socialscience-areause_fine}
+#| echo: false
+#| message: false
+#| warning: false
 #| fig-cap: "Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike typer arealbruk"
+#| eval: false
+#| include: false
 
 join_Nor_form_soc |> 
   group_by(x23) |>
@@ -1416,30 +1816,7 @@ join_Nor_form_soc |>
 
 ```
 
-#### Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?
-
-```{r analytisk}
-#| echo: false
-#| message: false
-#| warning: false
-#| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?"
-join_Nor_form_soc |> 
-  select(data_gathering_methods) |>
-  mutate(data_gathering_methods = strsplit(data_gathering_methods, ","))  |> 
-  unnest(data_gathering_methods)  |> 
-  group_by(data_gathering_methods) |> 
-  tally() |> 
-  drop_na() |> 
-  ggplot(aes(reorder(data_gathering_methods, n),n,fill=data_gathering_methods))+
-   geom_histogram(stat="identity")+
-   coord_flip()+
-   theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner") +
-    scale_fill_viridis(discrete = TRUE, option = "D")
-
-```
-
-#### Hvilke aktører er hyppigst representert i forskningen?
+<!-- #### Hvilke aktører er hyppigst representert i forskningen? {.unnumbered} -->
 
 ```{r actors}
 #| echo: false
@@ -1448,6 +1825,8 @@ join_Nor_form_soc |>
 #| fig-cap: "Hvilke aktører er hyppigst representert i forskningen?"
 #| fig-width: 11
 #| fig-height: 10
+#| eval: false
+#| include: false
 join_Nor_form_soc |> 
   select(actors) |>
   mutate(actors = strsplit(actors, ","))  |> 
@@ -1465,40 +1844,16 @@ join_Nor_form_soc |>
 
 ```
 
-#### Hvilke sektorer og samfunnsmessige områder er hyppigst studert?
+<!-- #### Hvilke verktøy er foreslått for å løse konfliktene? -->
 
-```{r sectors}
-#| echo: false
-#| message: false
-#| warning: false
-#| fig-cap: "Hvilke sektorer og samfunnsmessige områder er hyppigst studert?"
-#| fig-width: 11
-#| fig-height: 10
-join_Nor_form_soc |> 
-  select(sector_societal_concern) |>
-  mutate(sector_societal_concern = strsplit(sector_societal_concern, ","))  |> 
-  unnest(sector_societal_concern)  |> 
-  mutate(sector_societal_concern=trimws(sector_societal_concern)) |> 
-  group_by(sector_societal_concern) |> 
-  tally() |> 
-  drop_na() |>
-  ggplot(aes(reorder(sector_societal_concern, n),n,fill=sector_societal_concern))+
-   geom_histogram(stat="identity")+
-   coord_flip()+
-   theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner") +
-    scale_fill_viridis(discrete = TRUE, option = "D")
-
-```
-
-#### Hvilke verktøy er foreslått for å løse konfliktene?
-
-#### NEEDS CLEANING
+<!-- #### NEEDS CLEANING -->
 
 ```{r tools}
 #| echo: false
 #| message: false
 #| warning: false
+#| eval: false
+#| include: false
 #| fig-cap: "Hvilke verktøy er foreslått for å løse konfliktene?"
 #| fig-width: 11
 #| fig-height: 10
@@ -1519,14 +1874,16 @@ join_Nor_form_soc |>
 
 ```
 
-#### Karakterisering av foreslåtte verktøy
+<!-- #### Karakterisering av foreslåtte verktøy -->
 
-NEEDS TIDYING UP
+<!-- NEEDS TIDYING UP -->
 
 ```{r tools_characteristic}
 #| echo: false
 #| message: false
 #| warning: false
+#| include: false
+#| eval: false
 
 
 join_Nor_form_soc |>  
@@ -1541,28 +1898,6 @@ group_by(tool_characteristics) |>
    labs(x="", y="antall publikasjoner") +
     scale_fill_viridis(discrete = TRUE, option = "D") 
 
-
-```
-
-#### Hvilket samfunnsmessig nivå benytter verktøyet?
-
-```{r tool_level}
-#| echo: false
-#| message: false
-#| warning: false
-
-
-join_Nor_form_soc |> 
-select(governance_level_using_the_tool) |>
-group_by(governance_level_using_the_tool) |> 
-  tally() |> 
-  drop_na() |>
-  ggplot(aes(reorder(governance_level_using_the_tool, n),n,fill=governance_level_using_the_tool))+
-   geom_histogram(stat="identity")+
-   coord_flip()+
-   theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner") +
-    scale_fill_viridis(discrete = TRUE, option = "D") 
 
 ```
 
@@ -1672,7 +2007,6 @@ sysRev |>
 ```
 
 ```{r sys rev areause}
-
 #| echo: false
 #| message: false
 #| warning: false
@@ -1920,13 +2254,87 @@ Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
-I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra Norge, Sverige og Finland.
+I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra Norge, Sverige og Finland. Siden disse artiklene kun har gått gjennom første screening men ikke er kodet er det mer begrenset hva vi kan lese ut av disse artiklene. Vi har her benyttet oss av endel biobliometriske analysemetoder og informasjon fra åpne kilder (for eksempel OpenAlex, som er en database med data og metadata som omhandler den vitenskapelige litteraturen).
+
+```{r openalex source}
+#| echo: false 
+#| message: false 
+#| warning: false 
+#| label: fig-source-all
+#| fig-cap: "Oversikt over hvilke tidsskrifter den inkluderte litteraturen er publisert i"    
+
+paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
+
+paper_details |>    
+  select(so) |>    
+  group_by(so) |>    
+  tally() |>    
+  top_n(10) |>    
+  ggplot(aes(reorder(so,n),n))+   
+  geom_histogram(stat = "identity", fill="darkolivegreen3") +   
+  labs(title = "",     
+       x = "",     
+       y = "number of records"   ) +   
+  theme(axis.text.y = element_text(size = 10),     
+        axis.title = element_text(size = 12),     
+        plot.title = element_text(size = 14)   ) +   
+  coord_flip()  
+
+
+```
+
+Som det framkommer av @fig-source-all er den inkluderte litteraturen publisert en en rekke ulike tidsskrifter. Selv om tidsskriftene i seg selv ikke gir et detaljert bilde på hva artiklene omhandler er det to av tidsskriftene på listen (*Forest ecology and management* og *Scandinavian journal of forestry*) er rene skogbrukstidsskrifter, mens *Agriculture, ecosystems and environment* er et interdisiplinært tidsskrift som fokuserer på interaksjonen mellom landbruk og økosystemer. Flere av de øvrige tidsskriftene å listen er generelle økologiske tidsskrifter, og ingen av tidsskriftene er primære samfunnsvitenskapelige tidsskrifter.
+
+```{r openalx concepts}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-openalex-concepts
+#| fig-cap: "En oversikt over hvikle OpenAlex-konspeter de inkluderte studiene kategorieres under"
+
+
+# Extracting top concepts for each record
+top_concepts <- lapply(paper_details$concepts, function(df) {
+  top_df <- df[order(-df$score), ][1:3, ]  # Assuming you want top 3 concepts
+  return(top_df)
+})
+
+# Count occurrences of each concept
+concept_counts <- table(unlist(lapply(top_concepts, `[[`, "display_name")))
+
+
+# Convert concept_counts to data frame
+concept_df <- data.frame(
+  concept = names(concept_counts),
+  count = as.numeric(concept_counts)
+)
+
+# Sort concepts by count
+concept_df <- concept_df[order(concept_df$count, decreasing = TRUE), ]
+
+# Plot the top concepts as a horizontal bar plot using ggplot2
+ggplot(concept_df[1:20, ], aes(x = count, y = reorder(concept, count))) +
+  geom_bar(stat = "identity", fill = "darkolivegreen3") +
+  labs(
+    title = "",
+    x = "number of records",
+    y = ""
+  ) +
+  theme(
+    axis.text.y = element_text(size = 10),
+    axis.title = element_text(size = 12),
+    plot.title = element_text(size = 14)
+  ) 
+
+```
+
+En annen måte å kategorisere litteraturen på er å se hvilke "konspter" under OpenAlex de ulike artiklene passer under @fig-openalex-concepts. Selv om konseptene ikke er hierakiske eller passer inn i et enkelt klassifiseringsskjema, ser man at enkelte konspter opptrer mer hyppig enn andre.
 
 ```{r topicModelling}
 #| echo: false
 #| message: false
 #| warning: false
-#| cashe: true
+#| cache: true
 
 all_included <- synthesisr::read_ref("data/Included_at_abs/Effekter_av_arealbruk_og_arealendringer.ris")
 # head(all_included)
@@ -2010,117 +2418,43 @@ tidy_topics_dtm<-tidy_topics |>
 #| echo: false
 #| message: false
 #| warning: false
+#| label: fig-keyword-network
+#| fig-cap: "Matt write short fig cap"
+#| cache: true
+
 set.seed(007)
 paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
 papers_bib<-paper_details |> 
   oa2bibliometrix() 
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
-net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
+net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
 
 ```
+
+Vi gjorde også en enkel analyse av hvilke nøkkelord som vanligvis oppterer samlet, og så hvordan dette fordelte seg mellom ulike nøkkelord @fig-keyword-network.
 
 ```{r cocitation}
 #| echo: false
 #| message: false
 #| warning: false
 #| label: fig_co-citation
-#| fig-cap: "Biblographic coupling (shared citations between papers) highlights conceptual groupings within the field as a whole"
+#| fig-cap: "Bibliografisk 'kobling' (delte siteringer mellom flere artikler) framhever konseptuelle grupper i datasettet"
+#| cache: true
+
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-citation", network = "references", sep = ";")
 net=networkPlot(NetMatrix, n = 500, Title = "Co-citations", type = "fruchterman", size=5,size.cex=T,remove.multiple=TRUE,label = NA)
 
 ```
 
-```{r top concepts openalex all included}
-#| echo: false
-#| message: false
-#| warning: false
-#| 
-
-# Extracting top concepts for each record
-top_concepts <- lapply(paper_details$concepts, function(df) {
-  top_df <- df[order(-df$score), ][1:3, ]  # Assuming you want top 3 concepts
-  return(top_df)
-})
-
-# Count occurrences of each concept
-concept_counts <- table(unlist(lapply(top_concepts, `[[`, "display_name")))
-
-
-# Convert concept_counts to data frame
-concept_df <- data.frame(
-  concept = names(concept_counts),
-  count = as.numeric(concept_counts)
-)
-
-# Sort concepts by count
-concept_df <- concept_df[order(concept_df$count, decreasing = TRUE), ]
-
-# Plot the top concepts as a horizontal bar plot using ggplot2
-ggplot(concept_df[1:20, ], aes(x = count, y = reorder(concept, count))) +
-  geom_bar(stat = "identity", fill = "skyblue") +
-  labs(
-    title = "Top Concepts",
-    x = "Frequency",
-    y = "Concept"
-  ) +
-  theme(
-    axis.text.y = element_text(size = 10),
-    axis.title = element_text(size = 12),
-    plot.title = element_text(size = 14)
-  ) 
-```
-
-```{r sources openalex all included}
-#| echo: false
-#| message: false
-#| warning: false
-
-paper_details |> 
-  select(so) |> 
-  group_by(so) |> 
-  tally() |> 
-  top_n(10) |> 
-  ggplot(aes(reorder(so,n),n))+
-  geom_bar(stat = "identity", fill = "skyblue") +
-  labs(
-    title = "Top Sources",
-    x = "Source",
-    y = "Frequency"
-  ) +
-  theme(
-    axis.text.y = element_text(size = 10),
-    axis.title = element_text(size = 12),
-    plot.title = element_text(size = 14)
-  ) +
-  coord_flip()
-```
-
-```{r open access status openalex all included}
-#| echo: false
-#| message: false
-#| warning: false
-#| 
-
-o_A<-paper_details |> 
-  select(oa_status) |> 
-  group_by(oa_status) |> 
-  tally() |> 
-  mutate(pal=c("#cd7f32", "red", "gold", "green", "forestgreen")) 
-  
-o_A |> ggplot(aes(oa_status, n, fill=pal))+
-  geom_histogram(stat="identity")+
-  scale_fill_manual(values=c("#cd7f32", "forestgreen", "gold", "green", "darkred"))+
-  labs(x="Open Access status", y="Frequency")+
-  theme(legend.position = "none")
-```
-
-Change in frequency of keywords in all included
+En nettverksanalyse av siteringsnettverkene viser videre at det er klare grupperinger i datasettet @fig–co-citation. Disse klustrene, markert med ulike farger domineres av henholdsvis <!--# Matt - can we say something very rough about the clusters? -->
 
 ```{r wordfreq}
 #| echo: false
 #| message: false
 #| warning: false
-#| 
+#| label: fig-wordfreq
+#| fig-cap: "Matt - this you must describe"
+
 wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
 wordfreq |> 
   filter(!feature=="systematic",
@@ -2133,6 +2467,8 @@ wordfreq |>
   labs(x="", y="Chi.square statistic")
 
 ```
+
+Vi undersøkte også hvilke tema som ble vanligere og sjeldnere over tid <!--# Matt - I need help to write this section-->
 
 ## En beslutningsmodell basert på inkluderte artikler fra Norge
 
@@ -2167,7 +2503,7 @@ res <- thematicMap(nor_bib, field = "AB", n = 1000, minfreq = 2, ngrams = 2, siz
 
 dat<-res$clusters
 
-p<-dat |> 
+p <- dat |> 
   ggplot(aes(rcentrality, rdensity, size=as.numeric(freq), colour = color))+
   geom_point()+
   labs(x="Relevance degree\n(Centrality)", y="Development degree\n(Density)")+
