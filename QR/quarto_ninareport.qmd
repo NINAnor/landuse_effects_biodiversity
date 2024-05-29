@@ -155,8 +155,12 @@ Pågående areal- og landskapsendringer i Norge er et resultat av historiske pro
 
 Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Norge skiller seg fra mange andre europeiske land ved at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal er ifølge SSB også i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km2, som tilsvarer litt under 50 km2 årlig. Utenom bebygd areal og jordbruksområder er Norges landareal i dag dominert av fjell, hei og vidde (45 prosent), skog (37 prosent), ferskvann, (6 prosent) og våtmark (5 prosent) og varig is og snø (1 prosent; SSB 2024).
 
-```{r}
-#| fig-cap: "Prosentvis fordeling av ulike arealtyper i Norgee"
+```{r arealtyper}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-arealtyper
+#| fig-cap: "Prosentvis fordeling av ulike arealtyper i Norge"
 Sys.setlocale(locale='no_NB.utf8') 
 options(scipen = 999)
 
@@ -194,6 +198,11 @@ De første naturfredningene av enkeltlokaliteter i Norge ble vedtatt i 1905 og N
 Vi vet fra andre land at naturlige forstyrrelser i økosystemene i form av for eksempel skogbranner, insektangrep, vindfall, flom, ras og skred øker i takt med et endret klima. Vi har generelt lite data om omfanget og frekvensen av slike forstyrrelser over tid i Norge, men regionale prognoser for Norge tilsier færre døgn med snø, økt omfang av naturlige forstyrrelser i økosystemene i form av skogbranner, insektangrep, vindfall, flom, ras og skred.
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-tettstedsareal
+#| 
 Sys.setlocale(locale='no_NB.utf8') 
 
 #Figure a
