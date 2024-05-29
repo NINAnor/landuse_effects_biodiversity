@@ -680,9 +680,6 @@ prisma(
 )
 ```
 
-### Kilder og dokumenttyper for inkluderte artikler {.unnumbered}
-
-### Deskriptiv statistikk {.unnumbered}
 
 ## Litteratur fra Norge
 
