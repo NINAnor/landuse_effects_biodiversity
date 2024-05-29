@@ -141,7 +141,7 @@ library(synthesisr)
 library(viridis)
 library(ggrepel)
 library(waffle)
-#ggplot2::theme_set(ggthemes::theme_base())
+library(ggpubr)
 ggplot2::theme_set(theme_gray())
 ```
 
@@ -449,10 +449,6 @@ fig_d <- ggplot(vern) +
 ggarrange(fig_a, fig_b, fig_c, fig_d, ncol = 2, nrow = 2)
 
 ```
-
-@Figure
-
-SETT INN FIGUR HER
 
 ## Involvering av brukere og samfunnsaktører
 
