@@ -201,7 +201,7 @@ De første naturfredningene av enkeltlokaliteter i Norge ble vedtatt i 1905 og N
 
 Vi vet fra andre land at naturlige forstyrrelser i økosystemene i form av for eksempel skogbranner, insektangrep, vindfall, flom, ras og skred øker i takt med et endret klima. Vi har generelt lite data om omfanget og frekvensen av slike forstyrrelser over tid i Norge, men regionale prognoser for Norge tilsier færre døgn med snø, økt omfang av naturlige forstyrrelser i økosystemene i form av skogbranner, insektangrep, vindfall, flom, ras og skred.
 
-Grunnleggende kunnskap om utbygging, endringer i arealbruksintentistet og andre konkrete arealendringer er grunnlaget for i neste omgang å vurdere hvilken virkning endringene har for naturmangfold og naturgoder.
+Grunnleggende kunnskap om utbygging, endringer i arealbruksintentisitet og andre konkrete arealendringer er grunnlaget for i neste omgang å vurdere hvilken virkning endringene har for naturmangfold og naturgoder.
 
 ```{r}
 #| fig-cap: "a) Utvikling i a) tettstedsareal, b) jordbruksareal, c) areal med produktiv skog og d) areal vernet etter naturmangfoldloven over tid"
