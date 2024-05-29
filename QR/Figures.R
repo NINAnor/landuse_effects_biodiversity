@@ -500,4 +500,18 @@ sysRev |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 
 
+#################################################################################
+#################################################################################
+
+## Only social science
+
+test <- join_Nor_form_soc |> filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "No")
+
+write_delim(test, "QR/data/social_science.csv", delim=";")
+write_delim(join_Nor_form_soc, "QR/data/social_science_all.csv", delim=";")
+
+
+
+
+
 

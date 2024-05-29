@@ -123,12 +123,12 @@ options(width = 60,
         "xtable.comment" = F,
         "xtable.include.rownames" = F)
 # Libraries
-#library(CiteSource)
+library(CiteSource) # remotes::install_github("ESHackathon/CiteSource")
 library(PRISMAstatement)
 library(googlesheets4, quietly = TRUE)
-library(rayyanR)
+library(rayyanR) #remotes::install_github("https://github.com/befriendabacterium/rayyanR")
 library(synthesisr)
-library(openalex)
+library(openalex) # devtools::install_github("kth-library/openalex", dependencies = TRUE)
 library(openalexR)
 library(ldatuning)
 library(topicmodels)
@@ -137,12 +137,14 @@ library(tidytext)
 library(stm)
 library(wordcloud2)
 library(bibliometrix)
-library(synthesisr)
 library(viridis)
 library(ggrepel)
+ggplot2::theme_set(theme_gray(base_size = 18))
+commonResponse <- "Number of records"
+nudgeDist <- 3
+nudgeExpDist <- 1.1
 library(waffle)
-#ggplot2::theme_set(ggthemes::theme_base())
-ggplot2::theme_set(theme_gray())
+library(ggpubr)
 ```
 
 # Innledning {#sec-inl}
@@ -155,8 +157,12 @@ Pågående areal- og landskapsendringer i Norge er et resultat av historiske pro
 
 Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Norge skiller seg fra mange andre europeiske land ved at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal er ifølge SSB også i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km2, som tilsvarer litt under 50 km2 årlig. Utenom bebygd areal og jordbruksområder er Norges landareal i dag dominert av fjell, hei og vidde (45 prosent), skog (37 prosent), ferskvann, (6 prosent) og våtmark (5 prosent) og varig is og snø (1 prosent; SSB 2024).
 
-```{r}
-
+```{r arealtyper}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-arealtyper
+#| fig-cap: "Prosentvis fordeling av ulike arealtyper i Norge"
 Sys.setlocale(locale='no_NB.utf8') 
 options(scipen = 999)
 
@@ -176,8 +182,11 @@ waffle(arealtyper, rows = 10,
        title = "Arealtyper Fastlands-Norge") 
 
 ```
+<<<<<<< HEAD
 
 **Figur X** *Prosentvis fordeling av ulike arealtyper i Norge*.
+=======
+>>>>>>> 460ab6896f6446e20b6cf4666c80d18108125655
 
 Selv om andelen av landarealet i Norge som er direkte utbygd eller dyrket opp er lav (ca. 5%), er mye av landet klart påvirket av menneskelig arealbruk. Siden siste istid har så å si alt areal vært i bruk av mennesker – til jakt, fiske, beite, høsting av for, skogbruk, utvinning av naturressurser, friluftsliv og rekreasjon, og senere også til naturvern, som også er en form for arealbruk. Omfang og intensitet i den menneskelige arealbruken har imidlertid endret seg mye opp gjennom århundrene. På terskelen til den moderne tid, omkring 1850, var naturressursene utnyttet helt til grensa for hva landområdene kunne tåle, og produksjonen var maksimert med datidens teknologi. Store arealer ble påvirket av menneskelig arealbruk, men med moderat intensitet etter dagens målestokk. Ifølge [@Edvardsen_2024] kjennetegnes perioden etter 1850 ved en polarisering av den menneskelige arealbruken, med mer intensiv bruk av de best egnede arealene til jord- og skogbruk, mens andre arealer i utmarka gradvis ble tatt ut av bruk eller tas i bruk til nye formål. Vi høster mer fra naturressursene enn før, takket være avl, teknologi, og vitenskap og innovasjon, men det foregår på en mindre del av landarealet (intensivering). Opphør av ekstensiv hevd og skjøtsel av tradisjonelle utmarksarealer fører til endringer i kulturlandskap, som beite- og slåtteenger, lyng- og fjellheier.
 
@@ -196,6 +205,11 @@ De første naturfredningene av enkeltlokaliteter i Norge ble vedtatt i 1905 og N
 Vi vet fra andre land at naturlige forstyrrelser i økosystemene i form av for eksempel skogbranner, insektangrep, vindfall, flom, ras og skred øker i takt med et endret klima. Vi har generelt lite data om omfanget og frekvensen av slike forstyrrelser over tid i Norge, men regionale prognoser for Norge tilsier færre døgn med snø, økt omfang av naturlige forstyrrelser i økosystemene i form av skogbranner, insektangrep, vindfall, flom, ras og skred.
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-tettstedsareal
+#| 
 Sys.setlocale(locale='no_NB.utf8') 
 
 #Figure a
@@ -277,7 +291,7 @@ min_point_jord_label <- paste0(min_point_jord$value, " ")
 max_point_jord <- filter(jordbruksareal_sum, år == max(jordbruksareal$år))
 max_point_jord_label <- paste0(max_point_jord$value, "")
 
-levels(jordbruksareal$areal)
+#levels(jordbruksareal$areal)
 jordbruksareal$areal <- ordered(jordbruksareal$areal, 
                                 levels = c("- 49 dekar", 
                                            "50 - 99 dekar", 
@@ -443,8 +457,11 @@ ggarrange(fig_a, fig_b, fig_c, fig_d, ncol = 2, nrow = 2)
 
 ```
 
+<<<<<<< HEAD
 SETT INN FIGUR HER
 
+=======
+>>>>>>> 460ab6896f6446e20b6cf4666c80d18108125655
 ## Involvering av brukere og samfunnsaktører
 
 Utkastet til vurderingen ble presentert på en konferanse holdt av Miljødirektoratet og Norges forskningsråd 23. oktober 2022. Et generelt interessentmøte ble arrangert av NINA 25. april 2023. Fokus og omfang av vurderingen ble innsnevret og bedre definert under et spesifikt interessentarrangement den #date. Detaljer om dette møtet og endringene i omfang er tilgjengelige på forespørsel. Interessenter som deltok på dette arrangementet ble invitert til å kommentere utkastet til protokollen før innsending til publisering. Interessenter var ikke involvert under gjennomføringen av vurderingen.
@@ -632,16 +649,19 @@ For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkluder
 
 \newpage
 
-# Resultater {#res}
+# Resultater {#sec-res}
 
 ## Resultat av litteratursøket
 
-Matt - How many papers and things like that
+Litteratursøket resulterte i totalt `r params$'search-results'` artikler (@fig-prisma). 
 
-```{r prisma}
+<!-- Matt - How many papers and things like that. FILL IN SOME MORE HERE -->
+
+```{r fig-prisma}
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-cap: 'Flytskjema (PRISMA) som viser hvor mange artikler som går videre til de ulike stegene i den systematiske litterturgjennomgangsprosessen.'
 
 
 prisma(
@@ -658,13 +678,13 @@ prisma(
 )
 ```
 
-### Kilder og dokumenttyper for inkluderte artikler
+### Kilder og dokumenttyper for inkluderte artikler {.unnumbered}
 
-### Deskriptiv statistikk
+### Deskriptiv statistikk {.unnumbered}
 
 ## Litteratur fra Norge
 
-```{r}
+```{r getNorwayData}
 #| echo: false
 #| message: false
 #| warning: false
@@ -785,16 +805,16 @@ join_Nor_form_nat<-readRDS("data/cache_data/join_Nor_form_nat.RDS")
 
 ```
 
-Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. De tidligste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Som vist i @fig-publication-year varierte antallet mellom ulike år, og selv om det har vært en genrell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 20 årene.
+Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. De tidligste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Som vist i @fig-publication-year varierte antallet mellom ulike år, og selv om det har vært en generell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 20 årene.
 
-#### Kronologisk fordeling og innhold i inkluderte artikler fra Norge
+#### Kronologisk fordeling og innhold i inkluderte artikler fra Norge {.unnumbered}
 
 ```{r publication year}
 #| echo: false
 #| message: false
 #| warning: false
 #| label: fig-publication-year
-#| fig-cap: "Oversikt over kumulativ økning i antall artikler (venstre y-akse, orange sirkler) og antall artkler publisert i de ulike årene i perioden 1986 - 2024."
+#| fig-cap: "Oversikt over kumulativ økning i antall artikler (venstre y-akse, orange sirkler) og antall artikler publisert i de ulike årene i perioden 1986 - 2024."
 
 plot_years<-nor_bib |> 
   mutate(year=year(publication_date)) |> 
@@ -810,7 +830,7 @@ ggplot(aes(x = year)) +
   xlab("Aar") +
   scale_y_continuous(
     name = "Kumulativt antall artikler",
-    sec.axis = sec_axis(~., name = "Antall")  # Reverse the scaling for the secondary axis
+    sec.axis = sec_axis(~., name = "Antall per år")  # Reverse the scaling for the secondary axis
   ) +
   theme(
     axis.title.y = element_text(color = "#E69F00"),
@@ -821,17 +841,19 @@ ggplot(aes(x = year)) +
 
 ```
 
-### Overordnet karakterisering av studiedesign og tilnærming
+<!-- ### Overordnet karakterisering av studiedesign og tilnærming {.unnumbered} -->
 
-I dette kapittelet vil gi en overikt over hvordan forskningen som er fanget opp i vår litteraturgjennomgang fordeler seg rekke akser som tilsammen besrkiver viktige forhold i litteraturen. Disse aksene spenner både hvorvidt forskningen er basert på empiriske data eller andre tilnærminger (scenarioer, simuleringer osv), hvorvidt det er benyttet et eksperimentelt studiedesign, hvilkge fagdisipliner forskningen knyttes til, hvilken romlig skala forskningen er gjennomført på, og hvorvidt forskningen har vært basert på open science-prinsipper.
+<!-- Dette må nok skrivet litt om, eller slettes:
 
-#### Hvor stor andel av forskningen er basert på ulike forskningstilnærminger?
+I dette kapittelet vil vi gi en oversikt over hvordan forskningen som er fanget opp i vår litteraturgjennomgang fordeler seg langs en  rekke akser som tilsammen besrkiver viktige forhold i litteraturen. Disse aksene spenner både hvorvidt forskningen er basert på empiriske data eller andre tilnærminger (scenarioer, simuleringer osv), hvorvidt det er benyttet et eksperimentelt studiedesign, hvilkge fagdisipliner forskningen knyttes til, hvilken romlig skala forskningen er gjennomført på, og hvorvidt forskningen har vært basert på open science-prinsipper. -->
 
-```{r research_type}
+<!-- #### Hvor stor andel av forskningen er basert på ulike forskningstilnærminger? -->
+Som det framkommer av @fig-research-approach er det en stor overvekt over observasjonsstudier (*Observational studies*) i vårt datamateriale. observasjonsstudier er her definert som studier som baserer seg på empiriske data fra systemet som undersøkes. Også konseptuelle artikler og scenario-modellering er relativt hyppig forkommende.
+
+```{r fig-research-approach}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-research-approach
 #| fig-cap: "Oversikt over forskningen basert forskningskategori."
 
 join_Nor_form_nat |> 
@@ -839,51 +861,60 @@ join_Nor_form_nat |>
   group_by(research_type) |>
   tally() |> 
   drop_na() |> 
-  top_n(5) |>
+  #top_n(5) |>
   ggplot(aes(reorder(research_type, n),n,fill=research_type))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist+8
+    )
 ```
 
-Som det framkommer av @fig-research-approach er det en stor overvekt over observajonelle studier (*Observational studies*) i vårt datamateriale. Observasjonelle studier er her definert som studier som baserer seg på empiriske data fra systemet som undersøkes. også konseptuelle arbeider og scenario-modellering er relativt hyppig forkommende.
+## Naturvitenskapelig litteratur fra Norge
+Her ser vi nærmere på de artiklene som brute en naturvitenskapelig metode. De klart mest benyttede forsøksdesignene blandt disse er kontroll-behandling (*Control-Impact*)-design og etter (*After*)-design (@fig-studydesign). Merk at vi har inkludert forskning som f.eks. undersøker hvordan gradienter i arealbruk påvirker den aktuelle responsvariabelen under kontroll-behandling. Det er en påfallende mangel på godt designede randomisert eksperimenter (*Randomised controlled trials*) og studier som følger både kontrollområder og behandligsområder både før og etter (*Before-after-control-impact*) at et tiltak er satt i verk.
 
-#### Hvor stor andel av forskningen er basert på eksperimenter vs observasjonelle studier?
-
-```{r study_design}
+```{r fig-studydesign}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-studydesign
-#| fig-cap: "Forskningens fordeling mellom ulike forsøksdesign."
-
-join_Nor_form_nat |> 
-  filter(grepl("observational",tolower(research_type))) |> 
-  select(study_id ,study_title,study_design_observational_studies ) |> 
-  group_by(study_design_observational_studies) |> 
-  tally() |> 
-  drop_na() |> 
-  ggplot(aes(reorder(study_design_observational_studies,n),n,fill=study_design_observational_studies))+
-  geom_histogram(stat="identity")+
-  coord_flip()+
-  theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+#| fig-cap: "Fordeling av observasjonsstudier mellom ulike forsøksdesign."
+join_Nor_form_nat |>
+  filter(grepl("observational", tolower(research_type))) |>
+  select(study_id, study_title, study_design_observational_studies) |>
+  group_by(study_design_observational_studies) |>
+  tally() |>
+  drop_na() |>
+  mutate(study_design_observational_studies = case_match(
+    study_design_observational_studies,
+    "After (A)" ~ "After",
+    "Before-After (BA)" ~ "Before-After",
+    "Before-after-control-impact (BACI)" ~ "Before-after-control-impact",
+    "Control-impact (CA)" ~ "Control-impact",
+    "Randomised controlled trials (RCTs)" ~ "Randomised controlled trials",
+    .default = study_design_observational_studies
+  )) |>
+  ggplot(aes(reorder(study_design_observational_studies, n), n, fill = study_design_observational_studies)) +
+  geom_histogram(stat = "identity") +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D") +
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist
+  )
 ```
 
-**Figur X** *Forskningens fordeling mellom ulike forsøksdesign*.
+#### Hvor stor andel av forskningen praktiserer Open Science prinspper? {.unnumbered}
 
-De klart mest benyttede forsøksdesignene er kontroll-behandling (*Control-Impact*)-design og etter (*After*)-design (@fig-studydesign). Merk at vi har inkludert forskning som f.eks. undersøker hvordan gradienter i arealbruk påvirker den aktuelle responsvariabelen under kontroll-behandling. Det er en påfallende mangel på godt designede randomisert eksperimenter (*Randomised controlled trials*) og studier som følger både kontrollområder og behandligsområder både før og etter (*Before-after-control-impact*) at en tiltak er satt i verk.
+I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (@fig-OS1). En enda mindra andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden de kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden.
 
-#### Hvor stor andel av forskningen praktiserer Open Science prinspper?
-
-```{r open data}
+```{r fig-OS1}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-OS1
 #| fig-cap: "Oversikt over hvorvidt forskningen har gjort data og kildekode åpent tilgjengelig, og hvorvidt den er basert på forhåndsdefinerte hypoteser."
 
 
@@ -912,22 +943,22 @@ all_open<-rbind(od,oc,pr)
 all_open |> 
   ggplot(aes(Response, n, fill = question))+
   geom_histogram(stat="identity", position = "dodge")+
-  labs(x="", y="Antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
-
-
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D") +
+  theme(legend.title=element_blank())
 
 ```
 
-I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (@fig-OS1). En enda mindra andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden de kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden.
 
-#### Hvordan er forskningen fordelt på ulike disipliner?
+#### Hvordan er forskningen fordelt på ulike disipliner? {.unnumbered}
 
-```{r discipline}
+<!-- Mulig dette skal bort -->
+I vårt materiale er det en stor overvekt av forskning som faller inn under fagdisiplinen matematikk og naturvitenskap (*Mathematics and Natural Sciences*) (@fig-dicipline), men det er også en betydelig andel samfunnsvitenskapelige studier (*Social Sciences*).
+
+```{r fig-dicipline}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-dicipline
 #| fig-cap: "Oversikt over hvordan forskningen fordeler seg mellom ulike disipliner."
 
 
@@ -940,50 +971,59 @@ join_Nor_form_nat |>
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist+5
+    )
 
 
 ```
 
-I vårt materiale er det en stor overvekt av forskning som faller inn under fagdisiplinen matematikk og naturvitenskap (*Mathematics and Natural Sciences*) (@fig-dicipline), men det er også en betydelig andel samfunnsvitenskapelige studier (*Social Sciences*).
+#### Hvordan er forskningen fordelt med hensyn til størrelse på studieområde (romlig skala) {.unnumbered}
 
-#### Hvordan er forskningen fordelt med hensyn til størrelse på studieområde (romlig skala)
+Det meste av forskningen er gjennomført på det vi har karakterisert som lokal (f.eks. en del av en kommune) eller regional (f.eks. et fjellområder eller et fylke) (@fig-spatialscale). En betydelig mindre andel av forskningen dekker hele landet eller er basert på multinasjonale datasett.
 
-```{r scale}
+```{r fig-spatialscale}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-spatialscale
-#| fig-cap: "Oversikt over hvilken geografisk målestokk forskningen er gjennomført på." 
+#| fig-cap: "Oversikt over hvilken geografisk målestokk forskningen er gjennomført på. 'Regional' tilsvarer et fylke eller en fjell- eller kystregion, 'Local' tilsvarer en kommune eller end el av en kommune." 
 
 join_Nor_form_nat |> 
   group_by(spatial_scale) |>
   tally() |> 
   drop_na() |> 
+  mutate(spatial_scale = case_match(spatial_scale,
+    "Regional (e.g., a County, a larger mountain area, a coastal region)"~ "Regional",
+    "Local (e.g. a municipality or a part of a municipality)" ~ "Local",
+    .default = spatial_scale)) |>
   ggplot(aes(reorder(spatial_scale, n),n,fill=spatial_scale))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
   labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist
+    )
 
 ```
 
-Det meste av forskningen er gjennomført på det vi har karakterisert som lokal (f.eks. en del av en kommune) eller regional (f.eks. et fjellområder eller et fylke) (@fig-spatialscale). En betydelig mindre andel av forskningen dekker hele landet eller er basert på multinasjonale datasett.
-
-### Overordnet karakterisering av forskningen fordelt på geografisk fordeling, arealbruk, arealbruksendringer og økosystemer
+### Overordnet karakterisering av forskningen fordelt på geografisk fordeling, arealbruk, arealbruksendringer og økosystemer {.unnumbered}
 
 I dette kapittelet gir vi en oversikt over hvordan forskningen vi har fanget opp i vårt systematiske litteratursøk når det gjelder hvor i landet (fylke) det er gjennomført, hvordan ulike former for arealbruk er representert i datamaterialet, og hvordan de ulike hovedøkosystemene er representert. For alle disse kategoriene kan en og samme artikkel være representert i flere kategorier (f.eks. med flere økosystemer) slik at totalsummen i figurene ikke summerer opp til antall artikler.
 
-#### Hvor stor andel av forskningen er gjennomført i ulike økosystemer?
+#### Hvor stor andel av forskningen er gjennomført i ulike økosystemer? {.unnumbered}
 
-```{r ecosystems }
+De hyppigst studerte økosystemene i vårt materiale er skog (*Forest*) etterfulgt av fjelløkosystemer (*Mountains*) og semi-naturlige økosystmer (*Semi-natural ecosystems*) (@fig-ecosys). Den siste kategorien er dominert av studier på semi-naturlig engvegetasjon. De øvrige økosystemtypene er langt dårligere representert.
+
+
+```{r fig-ecosys }
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-ecosys
-#| fig-cap: "Fordeling av forskningsartikler hvor de ulike hovedøkosystemene er representert."
+#| fig-cap: "Antall forskningsartikler som dekker ulike hovedøkosystemer."
 
  
 join_Nor_form_nat |> 
@@ -994,24 +1034,28 @@ join_Nor_form_nat |>
   mutate(ecosystems_main=trimws(ecosystems_main)) |> 
   tally() |> 
   drop_na() |>
-  top_n(10) |> 
+  #top_n(10) |> 
   ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D") +
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist+2
+    )
 ```
 
-De hyppigst studerte økosystemene i vårt materiale er skog (*Forest*) etterfulgt av fjelløkosystemer (*Mountains*) og semi-naturlige økosystmer (*Semi-natural ecosystems*) (@fig-ecosys). Den siste kategorien er dominert av studier på semi-naturlig engvegetasjon. De øvrige økosystemtypene er langt dårligere representert.
 
-#### Hvordan er forskningen fordelt på ulike fylker?
+#### Hvordan er forskningen fordelt på ulike fylker? {.unnumbered}
 
-```{r County distribution}
+Det er en betydelig variasjon i hvor mye av forskningen som er fanget opp i vår litteraturgjennomgang som har vært lokalisert i de ulike fylkene (@fig-fylke). Flest studier er gjennomført i fylkene Innlandet, Trøndelag, Vestland og AKershus, mens det er færrest artikler fra Vetfold, Møre og Romsdal og Troms. I tillegg er det få studier som fokuserer på arealbruk på Svalbard.
+
+
+```{r fig-fylke}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-fylke
 #| fig-cap: "Fordeling av forskningsartikler på ulike fylker i Norge."
 
 join_Nor_form_nat |> 
@@ -1022,7 +1066,7 @@ join_Nor_form_nat |>
   mutate(county_name_of_norwegian_county_main=trimws(county_name_of_norwegian_county_main)) |> 
   tally() |>
     mutate(county_name_of_norwegian_county_main = fct_recode(county_name_of_norwegian_county_main, 
-                                                Innlandet = "Hedmark", Innlandet = "Oppland")) |> 
+      Innlandet = "Hedmark", Innlandet = "Oppland")) |> 
   group_by(county_name_of_norwegian_county_main) |>
   summarize(n = sum(n)) |> 
   drop_na() |>
@@ -1031,20 +1075,26 @@ join_Nor_form_nat |>
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")  
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist)
 
 ```
 
-Det er en betydelig variasjon i hvor mye av forskningen som er fanget opp i vår litteraturgjennomgang som har vært lokalisert i de ulike fylkene (@fig-fylke). Flest studier er gjennomført i fylkene Innlandet, Trøndelag, Vestland og AKershus, mens det er færrest artikler fra Vetfold, Møre og Romsdal og Troms. I tillegg er det få studier som fokuserer på arealbruk på Svalbard.
 
-#### Hvordan er forskningen fordelt med tanke på arealbruk og arealbruksendringer?
+#### Hvordan er forskningen fordelt med tanke på arealbruk og arealbruksendringer? {.unnumbered}
 
-```{r landuse2}
+Som det framgår av figurene over (@fig-landuse-coarse og @fig-landuse-detailed) 
+
+Det er gjennomført studier av en lang rekke ulike former for arealbruk og arealbruksendringer (@fig-landuse-coarse; @fig-landuse-detailed). På et overordnet plan er det effekter av ulike former for landbruk (*Agriculture*) og utnyttelse av biologiske ressurser (*Biological Resource use*) som er hyppigst studert. Det er langt færre artikler som omhandler vern (*Protection*) og restaurering (*Restoriation*).
+
+Dersom vi bryter ned areabruk og arelabruksenderinger i finere kategorier (ref. [@nilsen2024]), ser man at særlig er effekter av skogbruk (*Biological resource use: forestry*) og effekter av tamme beitedyr (*Agricultrue & aquaculture: outfield resources (including grazing*)) hyppig studert (@fig-landuse-detailed).
+
+```{r fig-landuse-coarse}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-landuse-coarse
 #| fig-cap: "Fordeling av forskningsartikler som har studert effekter av de ulike hovedformene for arealbruk."
 
 join_Nor_form_nat |> 
@@ -1070,15 +1120,17 @@ join_Nor_form_nat |>
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist+3)
 ```
 
-```{r landuse1}
+```{r fig-landuse-detailed}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-landuse-detailed
+#| fig-width: 12
 #| fig-cap: "Antall forskningsartikler som har studert effekten av ulike former for arealbruk eller arealbruksenderinger."
 
 join_Nor_form_nat |> 
@@ -1091,31 +1143,31 @@ join_Nor_form_nat |>
   filter(land_use != "fishing collection") |>
   mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
   drop_na() |> 
-  top_n(20) |> 
+  #top_n(20) |> 
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+                nudge_y = nudgeDist)
+  #scale_x_discrete(labels = scales::label_wrap(35)) 
 
 ```
 
-Som det framgår av figurene over (@fig-landuse-coarse og @fig-landuse-detailed) er det gjennomført studier av en lang rekke ulike former for arealbruk og arealbruksendringer. På et overordnet plan er det effekter av ulike former for landbruk (*Agriculture*) og utnyttelse av biologiske ressurser (*Biological Resource use*) som er hyppigst studert. Det er langt færre artikler som omhandler vern (*Protection*) og restaurering (*Restoriation*).
 
-Dersom vi bryter ned areabruk og arelabruksenderinger i finere kategorier (ref. [@nilsen2024]), ser man at særlig er effekter av skogbruk (*Biological resource use: forestry*) og effekter av tamme beitedyr (*Agricultrue & aquaculture: outfield resources (including grazing*)) hyppig studert (@fig-landuse-detailed).
+### Biologisk organisering {.unnumbered}
 
-## Overordnet karakterisering av hvilke responsvariabler som benyttes i forskningen på effekter av arealbruk og arealbruksendringer på biologisk mangfold og økosystemtjenester
+I dette kapittelet vil vi beskrive hvordan forskningen fordeler seg med tanke på hvilket nivå av biologisk organisering (f.eks. arter, slekter eller høyere taksonomiske nivå). Videre vil vi beskrive hvordan ulike essensielle biodiversitetsvariabler (EBV - ref) er representert i forskningsmaterialet, samt hvor ofte ulike former for økosystemtjenester er studert.
 
-I dette kapittelet vil vi beskrive hvordan forskningen fordeler seg med tanke på hvilket nivå av biologisk organisering (f.eks. arter, slekter eller høyere taksonomiske nivå). Videre vil vi beskrive hvordan ulike essensielle biodiversitetsvariabler (EBV - ref) er representert i forskningsmaterialet, samt hvordan hyppig ulike former for økosystemtjenester er studert.
+#### Hvordan er forskningen fordelt på ulike taksonomiske nivå? {.unnumbered}
+Det er en klar overvekt av artikler som fokuserer på (en eller flere) arter (*Species*) i den litteraturen vi har gått gjennom fra Norge (@fig-taxonomic-level). Det er også en relativt stor andel av litteraturen som fokuserer på hele riker (*Kingdom*). Dette er i stor grad snakk om artikler som beskriver responsen til hele plantesamfunn på en eller flere former for arealbruk.
 
-#### Hvordan er forskningen fordelt på ulike taksonomiske nivå?
-
-```{r taxon}
+```{r fig-taxonomic-level}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-taxonomic-level
 #| fig-cap: "Fordeling av ulike taksonomiske nivå i forskningslitteraturen."
 
 '%!in%' <- function(x,y)!('%in%'(x,y))
@@ -1132,54 +1184,65 @@ join_Nor_form_nat |>
   ggplot(aes(reorder(taxonomic_level, n),n,fill=taxonomic_level))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  labs(x="", y="antall publikasjoner")+
+  labs(x="", y=commonResponse)+
   theme(legend.position = "Null") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+   geom_text(aes(label = n),
+                nudge_y = nudgeDist)
 
 ```
 
-Det er en klar overvekt av artikler som fokuserer på (en eller flere) arter (*Species*) i den litteraturen vi har gått gjennom fra Norge (@fig-taxonomic-level). Det er også en relativt stor andel av litteraturen som fokuserer på hele riker (*Kingdom*). Dette er i stor grad snakk om artikler som f.eks. beskriver responsen til hele plantesamfunn på en eller flere former for arealbruk.
 
-#### Hvordan er forskningen fordelt på ulike essensielle biodiversitetsvariabler (EBV)
 
-```{r EBV}
+#### Hvordan er forskningen fordelt på ulike essensielle biodiversitetsvariabler (EBV) {.unnumbered}
+
+```{r fig-EBVs}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "EBVs"
+#| fig-cap: "Antall artikler som har fokusert på ulike essesnsialle biodiversitetvariabler (EBV)."
 #| fig-width: 14
 #| fig-height: 10
 
 EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
 
-plotEBVs<-function(var){
-  join_Nor_form_nat |> 
-    select({{var}}) |>
-    mutate(var =str_split({{var}},",\\s(?=[A-Z])"))   |> 
-    unnest(var)  |> 
-    mutate(var = trimws(var))  |> 
-    group_by(var) |> 
-    tally() |> 
-    drop_na() |> 
-    ggplot(aes(reorder(var, n),n,fill=var))+
+join_Nor_form_nat |> 
+  select(EBVs) |>
+  pivot_longer(cols = EBVs,
+               names_to = "EBV_group",
+               values_to = "EBV_level",
+               values_drop_na = T) |>
+  filter(EBV_group != "ecosystem_services") |>
+  mutate(EBV_level =str_split(EBV_level,",\\s(?=[A-Z])")) |>
+  unnest(EBV_level) |>
+  mutate(EBV_level = str_split_i(EBV_level, " - ", 1)) |>
+  group_by(EBV_group, EBV_level) |> 
+  tally() |>
+  mutate(EBV_group = case_match(EBV_group,
+    "community_composition" ~ "Community\ncomposition",
+    "ecosystem_functioning" ~ "Ecosystem\nfunctioning",
+    "ecosystem_structure" ~ "Ecosystem\nstructure",
+    "genetic_composition" ~ "Genetic\ncomposition",
+    "species_populations" ~ "Species\npopulations",
+    "species_traits" ~ "Species\ntraits")) |>
+  ggplot(aes(x = reorder(EBV_level, n),
+             y = n,
+             fill=EBV_level))+
     geom_histogram(stat="identity")+
     coord_flip()+
     theme(legend.position = "Null")+
-    labs(x="", y="antall publikasjoner") +
-    scale_fill_viridis(discrete = TRUE, option = "D")
-}
-
-plotEBVs(genetic_composition)
-plotEBVs(species_populations)
-plotEBVs(species_traits)
-plotEBVs(community_composition)
-plotEBVs(ecosystem_functioning)
-plotEBVs(ecosystem_structure)
-
+    labs(x="", y=commonResponse) +
+    scale_fill_viridis(discrete = TRUE, option = "D")+
+  #cannot make this fit nicely:
+  #geom_text(aes(label = n),
+  #              nudge_y = nudgeDist) +
+  facet_wrap(.~EBV_group,
+             scales = "free",
+             ncol=2)
   
 ```
 
-#### Hvordan er forskningen fordelt på ulike økosystemtjenester?
+#### Hvordan er forskningen fordelt på ulike økosystemtjenester? {.unnumbered}
 
 ```{r Ecosystem_services}
 #| echo: false
@@ -1190,20 +1253,37 @@ plotEBVs(ecosystem_structure)
 #| fig-width: 14
 #| fig-height: 10
 
-plotEBVs(ecosystem_services)
+join_Nor_form_nat |> 
+  select(ecosystem_services) |>
+  mutate(ecosystem_services = str_split(ecosystem_services,",\\s(?=[A-Z])"))   |> 
+  unnest(ecosystem_services)  |> 
+  mutate(ecosystem_services = trimws(ecosystem_services))  |> 
+  group_by(ecosystem_services) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(ecosystem_services, n),n,fill=ecosystem_services))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist-2)
+
 ```
 
-#### Hvordan er studier som fokuserer på arter fordelt?
+#### Hvordan er studier som fokuserer på arter fordelt? {.unnumbered}
 
-```{r species}
+Blant studier som fokuserte på en eller et fåtall arter var det studiert av reinsdyr (*Rangifer tarandus*) som var hyppigst forekommende i vårt datamateriale (@fig-species), mens studier av arealbrukseffekter på gaupe (*Lynx lynx*), elg (*Alces alces*) og laks (*Salmo salar*) kom de neste plassene i frekvenslisten.
+
+```{r fig-species}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-species
-#| fig-cap: "Omfang av artikler som fokuserer på effekten av arealbruk på arter i norsk natur fordelt på de enkelte artene"
+#| fig-cap: "Omfang av artikler som fokuserer på effekten av arealbruk på arter i norsk natur fordelt på de enkelte artene. Kun de 15 vanligste taxa er vist i figuren."
 #| fig-width: 14
 #| fig-height: 10
-#| 
+
 join_Nor_form_nat |> 
   filter(taxonomic_level == "Species") |>
   group_by(taxonomic_name) |>
@@ -1212,23 +1292,27 @@ join_Nor_form_nat |>
   group_by(taxonomic_name2) |> 
   mutate(taxonomic_name2=trimws(taxonomic_name2)) |> 
   tally() |> 
+  filter(taxonomic_name2 != "vascular plants") |>
   drop_na() |> 
-  top_n(10) |>
+  top_n(15) |>
   ggplot(aes(reorder(taxonomic_name2, n),n,fill=taxonomic_name2))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist-2)
 
 
 ```
 
-Blant studier som fokuserte på en eller et fåtall arter var det studiert av reinsdyr (*Rangifer tarandus*) som var hyppigst forekommende i vårt datamateriale (@fig-species), mens studier av arealbrukseffekter på gaupe (*Lynx lynx*), elg (*Alces alces*) og laks (*Salmo salar*) kom de neste plassene i frekvenslisten.
 
-### Samfunnsvitenskapelige studier av konflikter, verktøy og involverte aktører
 
-#### Fordeling av samfunnsvitenskapelige studier mellom ulike økosystemer og former for arealbruk
+## Samfunnsvitenskapelige litteratur fra Norge
+
+#### Fordeling av samfunnsvitenskapelige studier mellom ulike økosystemer og former for arealbruk {.unnumbered}
+
 
 ```{r social science ecosystems}
 #| echo: false
@@ -1825,12 +1909,17 @@ Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
+<<<<<<< HEAD
 I denne seksjonen...
 
 ```{r topic model wordcloud}
+=======
+```{r topicModelling}
+>>>>>>> 460ab6896f6446e20b6cf4666c80d18108125655
 #| echo: false
 #| message: false
 #| warning: false
+#| cashe: true
 
 all_included <- synthesisr::read_ref("data/Included_at_abs/Effekter_av_arealbruk_og_arealendringer.ris")
 # head(all_included)
@@ -2065,6 +2154,7 @@ I figuren under har visualisert nettverket i et strategisk diagram, hvor temaene
 #| message: false
 #| warning: false
 #| label: fig-themeMap
+#| cashe: true
 #| fig-cap: "Oversikt over ulike tema og deres fordeling i matrisen"
 
 res <- thematicMap(nor_bib, field = "AB", n = 1000, minfreq = 2, ngrams = 2, size = 0.5, repel = TRUE, subgraphs = TRUE)
