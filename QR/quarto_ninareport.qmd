@@ -142,7 +142,6 @@ library(ggrepel)
 ggplot2::theme_set(theme_gray(base_size = 18))
 commonResponse <- "Number of records"
 nudgeDist <- 3
-nudgeExpDist <- 1.1
 library(waffle)
 library(ggpubr)
 ```
@@ -1299,16 +1298,131 @@ join_Nor_form_nat |>
 
 
 
-## Samfunnsvitenskapelige litteratur fra Norge
+## Samfunnsrelatert litteratur fra Norge
 
-#### Fordeling av samfunnsvitenskapelige studier mellom ulike økosystemer og former for arealbruk {.unnumbered}
+Her følger resultatene fra vår gjennomgang av de studiene som har analysert en eller annen form for konflikt, et forvaltningsverktøy eller styring (_governance_). 
+Dette tilsvarer `r nrow(join_Nor_form_soc)` artikler av total `r nrow(join_Nor_form)`, dvs. `r round(nrow(join_Nor_form_soc)/nrow(join_Nor_form)*100)`%.
+Av disse igjen er det kun `r nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences"))` artikler som bruker samfunsvitenskeplige metoder.
 
+#### Hvilke samfunnsfaglige tema har blitt forsket på? (Konflikter, styring og forvaltningsverktøy) {.unnumbered}
 
-```{r social science ecosystems}
+```{r fig-socialscience-ecosys}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-socialscience-ecosys
+#| fig-cap: "Omfang av samfunnsrelatert litteratur som fokuserer på ulike samfunsfaglige tema. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Rest av syølen (den grå delen) refererer til naturvitenskapelige studier som også har studert de samme temaene."
+
+join_Nor_form_soc |>
+  select(
+    empirical_focus_of_study,
+    study_area_discipline
+  ) |>
+  mutate(
+    empirical_focus_of_study = strsplit(empirical_focus_of_study, ","),
+    study_area_discipline = case_match(study_area_discipline,
+      "Social Sciences" ~ "Social_Sciences",
+      .default = "Other"
+    )
+  ) |>
+  unnest(empirical_focus_of_study) |>
+  mutate(empirical_focus_of_study = trimws(empirical_focus_of_study)) |>
+  group_by(empirical_focus_of_study, study_area_discipline) |>
+  tally() |>
+  mutate(empirical_focus_of_study = case_when(
+    is.na(empirical_focus_of_study) ~ "Unknown",
+    .default = empirical_focus_of_study
+  )) |>
+  drop_na() |>
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences))) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(empirical_focus_of_study, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(empirical_focus_of_study, total),
+      y = total,
+      label = total),
+    nudge_y = nudgeDist - 2
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(empirical_focus_of_study, total),
+      y = Social_Sciences,
+      fill = empirical_focus_of_study
+    ),
+    stat = "identity"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(empirical_focus_of_study, total),
+      y = Social_Sciences,
+      label = Social_Sciences),
+    nudge_y = nudgeDist - 2
+  ) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+
+```
+
+#### Hvilke metoder er brukt i de samfunnrelaterte studiene? {.unnumbered}
+
+```{r fig-analytisk}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?"
+
+join_Nor_form_soc |> 
+  select(data_gathering_methods) |>
+  mutate(data_gathering_methods = strsplit(data_gathering_methods, ","))  |> 
+  unnest(data_gathering_methods)  |> 
+  mutate(data_gathering_methods = trimws(data_gathering_methods),
+         data_gathering_methods = case_when(
+           is.na(data_gathering_methods) ~ "Unknown",
+           .default = data_gathering_methods),
+         data_gathering_methods = case_match(
+           data_gathering_methods,
+           "Ethmography" ~ "Ethnography",
+           .default = data_gathering_methods
+         )
+         ) |>
+group_by(data_gathering_methods) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(data_gathering_methods, n),n,fill=data_gathering_methods))+
+   geom_histogram(stat="identity")+
+   coord_flip()+
+   theme(legend.position = "Null")+
+   labs(x="", y=commonResponse) +
+    scale_fill_viridis(discrete = TRUE, option = "D")
+
+```
+
+
+
+#### Hvilke økosystemer har vært tema for samfunnsrelaterte studier? {.unnumbered}
+
+Av den samfunnsvitenskapelige forskningen vi har undersøkt er flest studier relatert til skogøkosystemer, etterfulgt av fjelløkosystemer og semi-naturlige økosystemer. 
+Disse er igjen etterfulgt av studier relatert til elve- og innsjøøkosystemer, kystøkosystemer, naturlige åpne områder under tregrensen, polare økosystemer og arktisk tundra, våtmarks- og myrøkosystemer, urbane økosystemer samt økosystemer knyttet til jordbruk.
+
+```{r fig-socialscience-ecosys}
+#| echo: false
+#| message: false
+#| warning: false
 #| fig-cap: "Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike økosystemer"
 
 join_Nor_form_soc |> 
@@ -1330,12 +1444,12 @@ join_Nor_form_soc |>
 
 ```
 
-```{r social science area use coarse}
+```{r fig-socialscience-areause_coarse}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-socialscience-areause_coarse
 #| fig-cap: "Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike typer arealbruk"
+#| fig-width: 12
 
 join_Nor_form_soc |> 
   group_by(x23) |>
@@ -1347,12 +1461,12 @@ join_Nor_form_soc |>
   filter(land_use != "fishing collection") |>
   mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
   drop_na() |> 
-  top_n(20) |> 
+  #top_n(20) |> 
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
+  labs(x="", y=commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 
 
@@ -1395,28 +1509,6 @@ join_Nor_form_soc |>
 
 ```
 
-#### Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?
-
-```{r analytisk}
-#| echo: false
-#| message: false
-#| warning: false
-#| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?"
-join_Nor_form_soc |> 
-  select(data_gathering_methods) |>
-  mutate(data_gathering_methods = strsplit(data_gathering_methods, ","))  |> 
-  unnest(data_gathering_methods)  |> 
-  group_by(data_gathering_methods) |> 
-  tally() |> 
-  drop_na() |> 
-  ggplot(aes(reorder(data_gathering_methods, n),n,fill=data_gathering_methods))+
-   geom_histogram(stat="identity")+
-   coord_flip()+
-   theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner") +
-    scale_fill_viridis(discrete = TRUE, option = "D")
-
-```
 
 #### Hvilke aktører er hyppigst representert i forskningen?
 
