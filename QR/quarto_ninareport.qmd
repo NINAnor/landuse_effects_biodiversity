@@ -458,6 +458,8 @@ ggarrange(fig_a, fig_b, fig_c, fig_d, ncol = 2, nrow = 2)
 
 ```
 
+
+
 ## Kunnskap om effekter av arealbruk og arealendringer på naturmangfold og naturgoder
 
 Et sentralt kunnskapsgrunnlag i arbeidet med vurderinger av påvirkningsfaktorer på naturmangfoldet i Norge er rødlister for arter og naturtyper som vurderer risiko for at arter dør ut i Norge eller at naturtyper går tapt (#artsdatabanken_norsk_2018, #artsdatabanken_norsk_2021). Rødlistevurderingene følger internasjonale metoder og utføres av eksperter med høy kompetanse på artsgruppene som vurderes (ekspertvurderinger), men vurderingene av *påvirkningsfaktorer*, inkludert arealbruk og arealendringer, foregår likevel på et relativt overordnet nivå, der kausale sammenhenger mellom arealendringer og effekter på utbredelse og bestandssituasjon for arter og naturtyper sjelden kvantifiseres.
@@ -536,7 +538,9 @@ Før prosjektet ble gjennomført ble det utviklet en detaljert protokoll som bes
 
 -   Regler for datakoding
 
+
 Versjon 1.0 av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes her https://osf.io/mwapc/. Den endelige versjonen av protokollen kan leses her [@nilsen2024].
+
 
 ## Involvering av brukere og samfunnsaktører
 
@@ -2254,6 +2258,7 @@ Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
+
 I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra Norge, Sverige og Finland. Siden disse artiklene kun har gått gjennom første screening men ikke er kodet er det mer begrenset hva vi kan lese ut av disse artiklene. Vi har her benyttet oss av endel biobliometriske analysemetoder og informasjon fra åpne kilder (for eksempel OpenAlex, som er en database med data og metadata som omhandler den vitenskapelige litteraturen).
 
 ```{r openalex source}
@@ -2329,6 +2334,7 @@ ggplot(concept_df[1:20, ], aes(x = count, y = reorder(concept, count))) +
 ```
 
 En annen måte å kategorisere litteraturen på er å se hvilke "konspter" under OpenAlex de ulike artiklene passer under @fig-openalex-concepts. Selv om konseptene ikke er hierakiske eller passer inn i et enkelt klassifiseringsskjema, ser man at enkelte konspter opptrer mer hyppig enn andre.
+
 
 ```{r topicModelling}
 #| echo: false
