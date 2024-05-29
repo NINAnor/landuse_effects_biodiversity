@@ -511,7 +511,101 @@ write_delim(test, "QR/data/social_science.csv", delim=";")
 write_delim(join_Nor_form_soc, "QR/data/social_science_all.csv", delim=";")
 
 
+EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
 
+################################################################################
+EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
 
+join_Nor_form_nat |> 
+  select(EBVs) |>
+  pivot_longer(cols = EBVs,
+               names_to = "EBV_group",
+               values_to = "EBV_level",
+               values_drop_na = T) |>
+  filter(EBV_group != "ecosystem_services") |>
+  mutate(EBV_level =str_split(EBV_level,",\\s(?=[A-Z])")) |>
+  unnest(EBV_level) |>
+  mutate(EBV_level = str_split_i(EBV_level, " - ", 1)) |>
+  group_by(EBV_group, EBV_level) |> 
+  tally() |>
+  mutate(EBV_group = case_match(EBV_group,
+                                "community_composition" ~ "Community\ncomposition",
+                                "ecosystem_functioning" ~ "Ecosystem\nfunctioning",
+                                "ecosystem_structure" ~ "Ecosystem\nstructure",
+                                "genetic_composition" ~ "Genetic\ncomposition",
+                                "species_populations" ~ "Species\npopulations",
+                                "species_traits" ~ "Species\ntraits")) |>
+  ggplot(aes(x = reorder(EBV_level, n),
+             y = n,
+             fill=EBV_level))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  #cannot make this fit nicely:
+  #geom_text(aes(label = n),
+  #              nudge_y = nudgeDist) +
+  facet_wrap(.~EBV_group,
+             scales = "free",
+             ncol=2) 
 
+  
+  
+  group_by(EBV_group) |> 
+  summarize(n = sum(n))
+
+  
+  EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
+  
+  join_Nor_form_nat |> 
+    select(EBVs) |>
+    pivot_longer(cols = EBVs,
+                 names_to = "EBV_group",
+                 values_to = "EBV_level",
+                 values_drop_na = T) |>
+    filter(EBV_group != "ecosystem_services") |>
+    mutate(EBV_level =str_split(EBV_level,",\\s(?=[A-Z])")) |>
+    unnest(EBV_level) |>
+    mutate(EBV_level = str_split_i(EBV_level, " - ", 1)) |>
+    group_by(EBV_group, EBV_level) |> 
+    tally() |>
+    group_by(EBV_group) |> 
+    summarize(n = sum(n)) |>mutate(EBV_group = case_match(EBV_group,
+                                  "community_composition" ~ "Community\ncomp",
+                                  "ecosystem_functioning" ~ "Ecosystem\nfunc",
+                                  "ecosystem_structure" ~ "Ecosystem\nstruc",
+                                  "genetic_composition" ~ "Genetic\ncomp",
+                                  "species_populations" ~ "Species\npop",
+                                  "species_traits" ~ "Species\ntraits")) |>
+    ggplot(aes(x = reorder(EBV_group, n),
+               y = n,
+               fill=EBV_group))+
+    geom_histogram(stat="identity")+
+    coord_flip()+
+    theme(legend.position = "Null")+
+    labs(x="", y=commonResponse) +
+    scale_fill_viridis(discrete = TRUE, option = "D")
+  
+  
+  ##############################################################################
+
+  join_Nor_form_nat |>
+    filter(!is.na(study_duration_start_year)) |>
+    mutate(duration = (study_duration_end_year - study_duration_start_year)+1) |>
+    group_by(duration) |>
+    tally () |>
+    #mutate(duration = if_else(duration > 20, 21, duration)) |>
+    #group_by(duration) |>
+    #summarize(n = sum(n)) |>
+    drop_na() |>
+    ggplot(aes(x = duration,
+               y = n))+
+    geom_histogram(stat="identity", fill="darkolivegreen3")+
+    #coord_flip()+
+    theme(legend.position = "Null")+
+    scale_x_continuous(breaks = c(1,10,25, 50, 75, 100, 125, 150))+
+    labs(x="", y=commonResponse) +
+    scale_fill_viridis(discrete = TRUE, option = "D") 
+    
 
