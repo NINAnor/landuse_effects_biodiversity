@@ -123,7 +123,7 @@ options(width = 60,
         "xtable.comment" = F,
         "xtable.include.rownames" = F)
 # Libraries
-#library(CiteSource)
+library(CiteSource)
 library(PRISMAstatement)
 library(googlesheets4, quietly = TRUE)
 library(rayyanR)
