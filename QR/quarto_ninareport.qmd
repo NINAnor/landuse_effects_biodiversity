@@ -194,6 +194,255 @@ De første naturfredningene av enkeltlokaliteter i Norge ble vedtatt i 1905 og N
 
 Vi vet fra andre land at naturlige forstyrrelser i økosystemene i form av for eksempel skogbranner, insektangrep, vindfall, flom, ras og skred øker i takt med et endret klima. Vi har generelt lite data om omfanget og frekvensen av slike forstyrrelser over tid i Norge, men regionale prognoser for Norge tilsier færre døgn med snø, økt omfang av naturlige forstyrrelser i økosystemene i form av skogbranner, insektangrep, vindfall, flom, ras og skred.
 
+```{r}
+Sys.setlocale(locale='no_NB.utf8') 
+
+#Figure a
+# Create the tibble directly from the provided data
+tett3 <- tibble(
+  statistikkvariabel = rep("Areal av tettsted (km²)", 20),
+  år = c(2000, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2011, 2012, 2013, 
+         2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021),
+  value = c(1843, 1898, 1929, 1922, 1924, 1967, 1998, 2038, 2044, 2108, 2127, 
+            2127, 2147, 2158, 2172, 2191, 2205, 2206, 2218, 2233)
+)
+
+tettstedsareal <- tett3
+
+min_point_tett <- filter(tettstedsareal, år == min(tettstedsareal$år))
+min_point_tett_label <- paste0(min_point_tett$value, "")
+max_point_tett <- filter(tettstedsareal, år == max(tettstedsareal$år))
+max_point_tett_label <- paste0(max_point_tett$value, "")
+
+fig_a <- ggplot(tettstedsareal) +
+  aes(x = år, y = value) +
+  geom_line(size = 1L, colour = "#112446") +
+  geom_ribbon(aes(ymin=0, ymax=value), 
+              fill = "#d9d9d9")+
+  geom_line(size = 1L, colour = "#112446") +
+  labs(
+    x = "år",
+    y = "Kvadratkilometer",
+    title = "a) Tettstedsareal",
+    caption = "Kilde: SSB tabell 04862"
+  ) +
+  theme(plot.title = element_text(size=16, face = "plain"))+
+  theme_classic() +
+  ylim(0, 2500)+
+  geom_point(data = min_point_tett, aes(år, value)) +
+  geom_text(data = min_point_tett, label=min_point_tett_label, hjust=-0.2, vjust=-1.2) +
+  geom_point(data = max_point_tett, aes(år, value), 
+             shape = 62, size = 5) +
+  geom_text(data = max_point_tett, label=max_point_tett_label, hjust=0.9, vjust=-1.2)
+
+# Figure b
+# Create the tibble directly from the provided data
+jordbruksareal <- tibble(
+  areal = factor(c(
+    rep("- 49 dekar", 28),
+    rep("50 - 99 dekar", 28),
+    rep("100 - 199 dekar", 28),
+    rep("200 - 299 dekar", 28),
+    rep("300 - 499 dekar", 28),
+    rep("500 dekar og mer", 28)
+  )),
+  statistikkvariabel = rep("Jordbruksareal", 168),
+  år = c(
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
+    1969, 1979, 1989, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023
+  ),
+  value = c(
+    2245350, 1512892, 930710, 416390, 381175, 332466, 280106, 227496, 190154, 161847, 145252, 141925, 144010, 134412, 134112, 131622, 139962, 135349, 135433, 135847, 132083, 128042, 127247, 123406, 125558, 124865, 128357, 128382,
+    2916550, 2287551, 1774754, 1212458, 1138235, 1076525, 984594, 898853, 829472, 750394, 713845, 660288, 642541, 623013, 604758, 593917, 578839, 562444, 550684, 544164, 530645, 504375, 486021, 478635, 471798, 461111, 452637, 447893,
+    2412994, 2963904, 3551927, 3222171, 3104059, 2981057, 2841247, 2714732, 2591351, 2452592, 2328272, 2226684, 2123705, 2031622, 1972033, 1891852, 1829091, 1759845, 1703703, 1669463, 1609391, 1558042, 1503038, 1454966, 1421795, 1369783, 1329438, 1297499,
+    931638, 1338061, 1877552, 2497287, 2545681, 2588210, 2556974, 2520003, 2511256, 2477430, 2395899, 2324720, 2242662, 2144812, 2063261, 2013075, 1940500, 1881355, 1809690, 1749696, 1704765, 1661789, 1609929, 1546574, 1501012, 1471423, 1426200, 1383623,
+    696680, 943249, 1196191, 1949961, 2076342, 2173616, 2305761, 2393294, 2474717, 2544704, 2606076, 2650466, 2647052, 2634610, 2591011, 2564917, 2530645, 2482840, 2467175, 2432091, 2409750, 2403692, 2369716, 2363310, 2312421, 2291744, 2255899, 2214937,
+    350124, 489620, 579639, 1084199, 1176306, 1315298, 1497535, 1649478, 1800338, 1967269, 2155263, 2316115, 2444913, 2574405, 2694682, 2793804, 2909597, 3049595, 3200994, 3329094, 3449974, 3595176, 3766851, 3875649, 4027034, 4126241, 4253966, 4374851
+  )
+)
+
+
+jordbruksareal_sum <- jordbruksareal %>%
+  group_by(år) %>%
+  summarise(value = sum(value))  
+
+
+min_point_jord <- filter(jordbruksareal_sum, år == min(jordbruksareal$år))
+min_point_jord_label <- paste0(min_point_jord$value, " ")
+max_point_jord <- filter(jordbruksareal_sum, år == max(jordbruksareal$år))
+max_point_jord_label <- paste0(max_point_jord$value, "")
+
+levels(jordbruksareal$areal)
+jordbruksareal$areal <- ordered(jordbruksareal$areal, 
+                                levels = c("- 49 dekar", 
+                                           "50 - 99 dekar", 
+                                           "100 - 199 dekar",
+                                           "200 - 299 dekar",
+                                           "300 - 499 dekar",
+                                           "500 dekar og mer"))
+
+
+# Define the custom color palette
+custom_palette <- c(
+  "#ffffd4",
+  "#fee391",
+  "#fec44f",
+  "#fe9929",
+  "#d95f0e",
+  "#993404"
+)
+
+fig_b <- ggplot(jordbruksareal) +
+  aes(x = år, y = value) +
+  geom_area(aes(fill = areal)) +
+  scale_fill_manual(values = custom_palette) + 
+  stat_summary(fun = sum, geom = "line", size = 1, colour = "#112446")+
+  geom_point(data = max_point_jord, aes(år, value), 
+             shape = 62, size = 5) +
+  geom_point(data = min_point_jord, aes(år, value)) +
+  geom_text(data = min_point_jord, aes(år, value), label=min_point_jord_label, hjust=-0.2, vjust=-1.2) +
+  geom_text(data = max_point_jord, aes(år, value), label=max_point_jord_label, hjust=0.9, vjust=-1.2)+
+  labs(x = "år", y = "Kvadratkilometer", title = "b) Samlet jorbruksareal", caption = "Kilde: SSB tabell 04496") +
+  theme(plot.title = element_text(size=16, face = "plain"))+
+  theme_classic()+
+  theme(legend.position="top", legend.justification='left')+
+  theme(legend.title=element_blank())+
+  guides(fill = guide_legend(reverse = TRUE))+
+  theme(legend.key.height= unit(0.20, 'cm'),
+        legend.key.width= unit(0.20, 'cm'))+
+  ylim(0, 11000000)
+
+# Figure c
+# Create the tibble directly from the data
+skogareal <- tibble(
+  Hogstklasse = rep(c("I", "II", "III", "IV", "V"), each = 26),
+  year = c(rep("1957-1964", 5), rep("1964-1976", 5), rep("1982-1984", 5), 
+           rep("1986-1992", 5), rep("1994-1998", 5), rep("1998-2002", 5), 
+           rep("1999-2003", 5), rep("2000-2004", 5), rep("2001-2005", 5), 
+           rep("2002-2006", 5), rep("2003-2007", 5), rep("2004-2008", 5), 
+           rep("2005-2009", 5), rep("2006-2010", 5), rep("2007-2011", 5), 
+           rep("2008-2012", 5), rep("2009-2013", 5), rep("2010-2014", 5), 
+           rep("2011-2015", 5), rep("2012-2016", 5), rep("2013-2017", 5), 
+           rep("2014-2018", 5), rep("2015-2019", 5), rep("2016-2020", 5), 
+           rep("2017-2021", 5), rep("2018-2022", 5)),
+  value = c(3550, 2180, 2530, 1710, 1390, 1240, 1200, 1110, 940, 940, 
+            930, 910, 950, 920, 770, 740, 690, 590, 610, 660, 700, 700, 
+            800, 840, 850, 860, 4010, 8090, 8380, 7660, 8000, 8150, 
+            8070, 8020, 8030, 8020, 7930, 7890, 7840, 7790, 7670, 
+            7620, 7450, 7400, 7250, 7110, 6870, 6850, 6730, 6660, 
+            6720, 6830, 4130, 4050, 5840, 6780, 7260, 7280, 7220, 
+            7220, 7270, 7420, 7410, 7480, 7590, 7620, 7830, 7870, 
+            7850, 7860, 7860, 7890, 7920, 7800, 7740, 7750, 7510, 
+            7510, 12100, 9500, 7600, 7070, 6570, 6670, 6720, 6630, 
+            6850, 6730, 6790, 6790, 7300, 7140, 7020, 7110, 7140, 
+            7180, 7180, 7180, 7330, 7370, 7390, 7400, 7500, 7390, 
+            6590, 7190, 8050, 9640, 10080, 10360, 10450, 10390, 
+            10530, 10560, 10720, 10840, 11510, 11660, 11800, 11740, 
+            11870, 11960, 11930, 12030, 12010, 12020, 11950, 11860, 
+            11860, 11820),
+  year1 = rep(c(1957, 1964, 1982, 1986, 1994, 1998, 1999, 2000, 2001, 
+                2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 
+                2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018), 5),
+  year2 = rep(c(1964, 1976, 1984, 1992, 1998, 2002, 2003, 2004, 2005, 
+                2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 
+                2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022), 5)
+)
+
+
+skogareal_sum <- skogareal %>%
+  group_by(year2) %>%
+  summarise(value = sum(value))  
+
+min_point_skog <- filter(skogareal_sum, year2 == min(skogareal$year2))
+min_point_skog_label <- paste0(min_point_skog$value, "")
+max_point_skog <- filter(skogareal_sum, year2 == max(skogareal$year2))
+max_point_skog_label <- paste0(max_point_skog$value, "")
+
+fig_c <- ggplot(skogareal, aes(year2, value)) +
+  geom_area(aes(fill = Hogstklasse)) +
+  scale_fill_manual(values = c(I = "#edf8e9", 
+                               II = "#bae4b3", 
+                               III = "#74c476", 
+                               IV = "#31a354", 
+                               V = "#006d2c")) +
+  stat_summary(fun = sum, geom = "line", size = 1)+
+  geom_point(data = max_point_skog, aes(year2, value), 
+             shape = 62, size = 5) +
+  geom_point(data = min_point_skog, aes(year2, value)) +
+  geom_text(data = min_point_skog, aes(year2, value), label=min_point_skog_label, hjust=-0.2, vjust=-1.2) +
+  geom_text(data = max_point_skog, aes(year2, value), label=max_point_skog_label, hjust=0.9, vjust=-1.2)+
+  labs(x = "år", y = "Kvadratkilometer", title = "c) Samlet areal med produktiv skog", caption = "Kilde: SSB tabell 06286") +
+  theme(plot.title = element_text(size=16, face = "plain"))+
+  theme_classic()+
+  theme(legend.position="top", legend.justification='left')+
+  #theme(legend.title=element_blank())+
+  guides(fill = guide_legend(reverse = TRUE))+
+  theme(legend.key.height= unit(0.20, 'cm'),
+        legend.key.width= unit(0.20, 'cm'))+
+  ylim(0, 40000)
+
+# figure d
+
+# Create the tibble directly from the data
+vern <- tibble(
+  År = c(1975, 1980, 1985, 1990, 1995, 2000, 2005, 2006, 2007, 2008, 2009, 2010, 
+         2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023),
+  Nasjonalpark = c(5087, 6228, 9650, 12558, 13788, 13868, 22193, 26778, 26778, 26774, 
+                   29582, 29960, 31046, 31265, 31281, 31280, 31285, 31295, 31349, 
+                   31587, 31524, 31614, 31614, 31618, 31673),
+  Naturreservat = c(148, 219, 895, 1427, 2210, 2796, 3805, 4159, 4266, 4726, 4774, 
+                    4958, 5645, 5623, 5788, 5992, 6255, 6445, 6795, 7118, 7401, 
+                    7554, 7645, 7756, 7932),
+  Landskapsvernområde = c(216, 638, 1795, 4229, 4659, 7798, 14163, 15077, 15075, 
+                          15217, 16291, 16288, 17322, 17281, 17274, 17273, 17246, 
+                          17234, 17272, 17228, 17262, 17247, 17247, 17246, 17246),
+  Annet_vern = c(1, 2, 52, 102, 108, 93, 127, 412, 432, 427, 427, 427, 390, 388, 
+                 388, 388, 387, 387, 388, 395, 394, 393, 393, 392, 392)
+) |> 
+  pivot_longer(!År, names_to = "Verneform")
+
+vern2 <- vern %>%
+  group_by(År) %>%
+  summarise(value = sum(value))
+
+min_point <- filter(vern2, År == min(vern2$År))
+min_point_label <- paste0(min_point$value, "")
+max_point <- filter(vern2, År == max(vern2$År))
+max_point_label <- paste0(max_point$value, "")
+
+fig_d <- ggplot(vern) +
+  aes(x = År, y = value) +
+  geom_area(aes(fill = Verneform)) +
+  scale_fill_manual(values = c(Annet.vern = "#dfc27d", 
+                               Landskapsvernområde = "#dfc27d", 
+                               Nasjonalpark = "#80cdc1", 
+                               Naturreservat = "#018571")) +
+  stat_summary(fun = sum, geom = "line", size = 1, colour = "#112446")+
+  geom_point(data = max_point, aes(År, value), 
+             shape = 62, size = 5) +
+  geom_point(data = min_point, aes(År, value)) +
+  geom_text(data = min_point, aes(År, value), label=min_point_label, hjust=-0.2, vjust=-1.2) +
+  geom_text(data = max_point, aes(År, value), label=max_point_label, hjust=0.9, vjust=-1.2)+
+  labs(x = "År", y = "Kvadratkilometer", title = "d) Vernet landareal Fastlands-Norge", caption = "Kilde: Miljødirektoratet") +
+  theme(plot.title = element_text(size=16, face = "plain"))+
+  theme_classic()+
+  theme(legend.position="top", legend.justification='left')+
+  theme(legend.title=element_blank())+
+  guides(fill = guide_legend(reverse = TRUE))+
+  theme(legend.key.height= unit(0.20, 'cm'),
+        legend.key.width= unit(0.20, 'cm'))+
+  ylim(0, 70000)
+
+# arrange
+ggarrange(fig_a, fig_b, fig_c, fig_d, ncol = 2, nrow = 2)
+
+```
+
+
 SETT INN FIGUR HER
 
 ## Involvering av brukere og samfunnsaktører
