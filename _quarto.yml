@@ -1,11 +1,11 @@
-name: "Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge" 
 project:
   type: website
   output-dir: docs
-navbar:
-  title: "NavBar Title"
-  right:
-    - text: "Home"
-      href: index.html
-    - text: 'About'
-      href: about.html
+website: 
+  title: "Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge" 
+  navbar:
+    right:
+      - text: 'About'
+        href: about.html
+      - text: "Map"
+        href: index.html
