@@ -537,7 +537,7 @@ Før prosjektet ble gjennomført ble det utviklet en detaljert protokoll som bes
 
 -   Regler for datakoding
 
-Versjon 1.0 av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes her https://osf.io/mwapc/. Den endelige versjonen av protokollen kan leses her (ref).
+Versjon 1.0 av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes her https://osf.io/mwapc/. Den endelige versjonen av protokollen kan leses her [@nilsen2024].
 
 ## Involvering av brukere og samfunnsaktører
 
@@ -577,7 +577,7 @@ Følgende søkestreng ble benyttet i WoS (tilsvarende streng ble benyttet i Scop
 
 *TS=(sustainab\* OR biodiversity OR "Ecosystem service" OR (carbon NEAR/3 (stor OR sequest)) OR (ecosystem NEAR/3 (impact\* OR effect\* OR provision\* OR regulat\* OR support\* OR cultur)) OR ((loss OR shrink OR bisection\* OR perforation OR fragmentation) AND (habitat OR land)) OR (climate NEAR/3 adapt) OR ecodiversity OR "ecosystem type" OR "ecological process" OR anthropogenic OR conflict OR (diversity NEAR/3 (ecological OR speci\* OR population\*)) OR red-list OR "water purification" OR "soil retention" OR spiritual OR cultural OR aesthetics OR "climate mitigation")*
 
-Vi Screenet alle systematiske litteratursammenstillinger og systematiske kart fra den internasjonale litteraturen, og de to kategoriene ble konminert ved TS=("Systematic review*" OR "systematic map*" OR "rapid review\*"). For den primære forskningslitteraturen ble de to kategoriene kombinert ved TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish), og alle resultatene ble screenet.
+Vi screenet alle systematiske litteratursammenstillinger og systematiske kart fra den internasjonale litteraturen, og de to kategoriene ble konminert ved TS=("Systematic review*" OR "systematic map*" OR "rapid review\*"). For den primære forskningslitteraturen ble de to kategoriene kombinert ved TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish), og alle resultatene ble screenet.
 
 ### Test av søkets omfang og dekning
 
@@ -1918,7 +1918,81 @@ Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
-I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra Norge, Sverige og Finland.
+I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra Norge, Sverige og Finland. Siden disse artiklene kun har gått gjennom første screening men ikke er kodet er det mer begrenset hva vi kan lese ut av disse artiklene. Vi har her benyttet oss av endel biobliometriske analysemetoder og informasjon fra åpne kilder (for eksempel OpenAlex, som er en database med data og metadata som omhandler den vitenskapelige litteraturen).
+
+```{r openalex source}
+#| echo: false 
+#| message: false 
+#| warning: false 
+#| label: fig-source-all
+#| fig-cap: "Oversikt over hvilke tidsskrifter den inkluderte litteraturen er publisert i"    
+
+paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
+
+paper_details |>    
+  select(so) |>    
+  group_by(so) |>    
+  tally() |>    
+  top_n(10) |>    
+  ggplot(aes(reorder(so,n),n))+   
+  geom_histogram(stat = "identity", fill="darkolivegreen3") +   
+  labs(title = "",     
+       x = "",     
+       y = "number of records"   ) +   
+  theme(axis.text.y = element_text(size = 10),     
+        axis.title = element_text(size = 12),     
+        plot.title = element_text(size = 14)   ) +   
+  coord_flip()  
+
+
+```
+
+Som det framkommer av @fig-source-all er den inkluderte litteraturen publisert en en rekke ulike tidsskrifter. Selv om tidsskriftene i seg selv ikke gir et detaljert bilde på hva artiklene omhandler er det to av tidsskriftene på listen (*Forest ecology and management* og *Scandinavian journal of forestry*) er rene skogbrukstidsskrifter, mens *Agriculture, ecosystems and environment* er et interdisiplinært tidsskrift som fokuserer på interaksjonen mellom landbruk og økosystemer. Flere av de øvrige tidsskriftene å listen er generelle økologiske tidsskrifter, og ingen av tidsskriftene er primære samfunnsvitenskapelige tidsskrifter.
+
+```{r openalx concepts}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-openalex-concepts
+#| fig-cap: "En oversikt over hvikle OpenAlex-konspeter de inkluderte studiene kategorieres under"
+
+
+# Extracting top concepts for each record
+top_concepts <- lapply(paper_details$concepts, function(df) {
+  top_df <- df[order(-df$score), ][1:3, ]  # Assuming you want top 3 concepts
+  return(top_df)
+})
+
+# Count occurrences of each concept
+concept_counts <- table(unlist(lapply(top_concepts, `[[`, "display_name")))
+
+
+# Convert concept_counts to data frame
+concept_df <- data.frame(
+  concept = names(concept_counts),
+  count = as.numeric(concept_counts)
+)
+
+# Sort concepts by count
+concept_df <- concept_df[order(concept_df$count, decreasing = TRUE), ]
+
+# Plot the top concepts as a horizontal bar plot using ggplot2
+ggplot(concept_df[1:20, ], aes(x = count, y = reorder(concept, count))) +
+  geom_bar(stat = "identity", fill = "darkolivegreen3") +
+  labs(
+    title = "",
+    x = "number of records",
+    y = ""
+  ) +
+  theme(
+    axis.text.y = element_text(size = 10),
+    axis.title = element_text(size = 12),
+    plot.title = element_text(size = 14)
+  ) 
+
+```
+
+En annen måte å kategorisere litteraturen på er å se hvilke "konspter" under OpenAlex de ulike artiklene passer under @fig-openalex-concepts. Selv om konseptene ikke er hierakiske eller passer inn i et enkelt klassifiseringsskjema, ser man at enkelte konspter opptrer mer hyppig enn andre.
 
 ```{r topicModelling}
 #| echo: false
@@ -2008,117 +2082,40 @@ tidy_topics_dtm<-tidy_topics |>
 #| echo: false
 #| message: false
 #| warning: false
+#| label: fig-keyword-network
+#| fig-cap: "Matt write short fig cap"
+
 set.seed(007)
 paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
 papers_bib<-paper_details |> 
   oa2bibliometrix() 
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
-net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "Keyword Co-occurrences", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
+net=networkPlot(NetMatrix, normalize="association", weighted=T, n = 30, Title = "", type = "fruchterman", size=T,edgesize = 5,labelsize=0.7)
 
 ```
+
+Vi gjorde også en enkel analyse av hvilke nøkkelord som vanligvis oppterer samlet, og så hvordan dette fordelte seg mellom ulike nøkkelord @fig-keyword-network.
 
 ```{r cocitation}
 #| echo: false
 #| message: false
 #| warning: false
 #| label: fig_co-citation
-#| fig-cap: "Biblographic coupling (shared citations between papers) highlights conceptual groupings within the field as a whole"
+#| fig-cap: "Bibliografisk 'kobling' (delte siteringer mellom flere artikler) framhever konseptuelle grupper i datasettet"
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-citation", network = "references", sep = ";")
 net=networkPlot(NetMatrix, n = 500, Title = "Co-citations", type = "fruchterman", size=5,size.cex=T,remove.multiple=TRUE,label = NA)
 
 ```
 
-```{r top concepts openalex all included}
-#| echo: false
-#| message: false
-#| warning: false
-#| 
-
-# Extracting top concepts for each record
-top_concepts <- lapply(paper_details$concepts, function(df) {
-  top_df <- df[order(-df$score), ][1:3, ]  # Assuming you want top 3 concepts
-  return(top_df)
-})
-
-# Count occurrences of each concept
-concept_counts <- table(unlist(lapply(top_concepts, `[[`, "display_name")))
-
-
-# Convert concept_counts to data frame
-concept_df <- data.frame(
-  concept = names(concept_counts),
-  count = as.numeric(concept_counts)
-)
-
-# Sort concepts by count
-concept_df <- concept_df[order(concept_df$count, decreasing = TRUE), ]
-
-# Plot the top concepts as a horizontal bar plot using ggplot2
-ggplot(concept_df[1:20, ], aes(x = count, y = reorder(concept, count))) +
-  geom_bar(stat = "identity", fill = "skyblue") +
-  labs(
-    title = "Top Concepts",
-    x = "Frequency",
-    y = "Concept"
-  ) +
-  theme(
-    axis.text.y = element_text(size = 10),
-    axis.title = element_text(size = 12),
-    plot.title = element_text(size = 14)
-  ) 
-```
-
-```{r sources openalex all included}
-#| echo: false
-#| message: false
-#| warning: false
-
-paper_details |> 
-  select(so) |> 
-  group_by(so) |> 
-  tally() |> 
-  top_n(10) |> 
-  ggplot(aes(reorder(so,n),n))+
-  geom_bar(stat = "identity", fill = "skyblue") +
-  labs(
-    title = "Top Sources",
-    x = "Source",
-    y = "Frequency"
-  ) +
-  theme(
-    axis.text.y = element_text(size = 10),
-    axis.title = element_text(size = 12),
-    plot.title = element_text(size = 14)
-  ) +
-  coord_flip()
-```
-
-```{r open access status openalex all included}
-#| echo: false
-#| message: false
-#| warning: false
-#| 
-
-o_A<-paper_details |> 
-  select(oa_status) |> 
-  group_by(oa_status) |> 
-  tally() |> 
-  mutate(pal=c("#cd7f32", "red", "gold", "green", "forestgreen")) 
-  
-o_A |> ggplot(aes(oa_status, n, fill=pal))+
-  geom_histogram(stat="identity")+
-  scale_fill_manual(values=c("#cd7f32", "forestgreen", "gold", "green", "darkred"))+
-  labs(x="Open Access status", y="Frequency")+
-  theme(legend.position = "none")
-```
-
-Change in frequency of keywords in all included
+En nettverksanalyse av siteringsnettverkene viser videre at det er klare grupperinger i datasettet @fig–co-citation. Disse klustrene, markert med ulike farger domineres av henholdsvis <!--# Matt - can we say something very rough about the clusters? -->
 
 ```{r wordfreq}
 #| echo: false
 #| message: false
 #| warning: false
-#| 
+#| label: fig-wordfreq
+#| fig-cap: "Matt - this you must describe"
+
 wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
 wordfreq |> 
   filter(!feature=="systematic",
@@ -2131,6 +2128,8 @@ wordfreq |>
   labs(x="", y="Chi.square statistic")
 
 ```
+
+Vi undersøkte også hvilke tema som ble vanligere og sjeldnere over tid <!--# Matt - I need help to write this section-->
 
 ## En beslutningsmodell basert på inkluderte artikler fra Norge
 
@@ -2191,7 +2190,7 @@ Temaer som er stigende omfatter blant annet hyttebygging og bevaring av biologis
 
 # Diskusjon
 
-Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema det finnes forskning på og hvilke tema det mangler. Basert på over 20.000 artikler som ble fanget opp av vårt søk endte vi opp med \> 2000 artikler som svarte på inkluderingskriteriene etter første runde med screening. Alle artikler fra Norge samt systematiske kunnskapssammenstillinger ble videreført til en andre runde med screening samt datakoding. Totalt omfattende denne litteraturen XX artikler. Som det framgår av resultatseksjonen er det imidlertid stor forskjell på hvor godt de ulike tema, former for arealbruk og arealbruksendringer er dekket. Det er også stor variasjon i hvor mye forskning som har blitt gjennomført i de ulike fylkene (merk - her snakker vi om hvor studiene er gjennomført, ikke hvor forskningsgruppa holder til).
+Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema det finnes forskning på og hvilke tema det mangler. Basert på over 20.000 artikler som ble fanget opp av vårt søk endte vi opp med `r dim(all_included)[1]` artikler som oppfylte inkluderingskriteriene etter første runde med screening. Alle artikler fra Norge samt systematiske kunnskapssammenstillinger ble videreført til en andre runde med screening samt datakoding. Totalt omfattende denne litteraturen XX artikler. Som det framgår av resultatseksjonen er det imidlertid stor forskjell på hvor godt de ulike tema, former for arealbruk og arealbruksendringer er dekket. Det er også stor variasjon i hvor mye forskning som har blitt gjennomført i de ulike fylkene (merk - her snakker vi om hvor studiene er gjennomført, ikke hvor forskningsgruppa holder til).
 
 Et gjennomgående trekk fra vår sammestilling av litteraturen fra Norge er at et dominerende andel av den naturvitenskapelige forskningen er basert på empiriske data samlet inn i felt eller fra moderne teknologier (fjernmåling osv). Den støreste andelen av forskningen baserer seg også på lokale eller regionale studier, noe som inneærer at de dekker for eksempel en del av en kommune eller et fylke, eller et større fjellområde. Det er relativt få studier som dekker hele landet. Dette kan være en begrensning siden mange vurderinger (f.eks. rødlisting av arter, ulike rapportering til internasjonale indekser osv) er basert på landsdekkende trender og status. Siden det i Norge er mange overvåkningsprogram som i prinsippet dekker hele landet (for eksempel TOV-e og Rovdata sin rovdyrovervåkning) er dette funnet noe overraskende.
 
