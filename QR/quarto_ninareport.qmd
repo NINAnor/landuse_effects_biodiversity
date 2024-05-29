@@ -1316,12 +1316,9 @@ join_Nor_form_nat |>
 
 ```
 
-
 ## Samfunnsrelatert litteratur fra Norge
 
-Her følger resultatene fra vår gjennomgang av de studiene som har analysert en eller annen form for konflikt, et forvaltningsverktøy eller styring (_governance_). 
-Dette tilsvarer `r nrow(join_Nor_form_soc)` artikler av total `r nrow(join_Nor_form)`, dvs. `r round(nrow(join_Nor_form_soc)/nrow(join_Nor_form)*100)`%.
-Av disse igjen er det kun `r nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences"))` artikler som bruker samfunsvitenskeplige metoder.
+Her følger resultatene fra vår gjennomgang av de studiene som har analysert en eller annen form for konflikt, et forvaltningsverktøy eller styring (*governance*). Dette tilsvarer `r nrow(join_Nor_form_soc)` artikler av total `r nrow(join_Nor_form)`, dvs. `r round(nrow(join_Nor_form_soc)/nrow(join_Nor_form)*100)`%. Av disse igjen er det kun `r nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences"))` artikler som bruker samfunsvitenskeplige metoder.
 
 #### Hvilke samfunnsfaglige tema har blitt forsket på? (Konflikter, styring og forvaltningsverktøy) {.unnumbered}
 
@@ -1400,10 +1397,7 @@ join_Nor_form_soc |>
 
 #### Hvilke metoder er brukt i de samfunnrelaterte studiene? {.unnumbered}
 
-Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (@fig-analytisk). 
-Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. 
-Mange studier har også brukt intervjuer, samt blandede metoder. 
-Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
+Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (@fig-analytisk). Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. Mange studier har også brukt intervjuer, samt blandede metoder. Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
 
 ```{r fig-analytisk}
 #| echo: false
@@ -1477,13 +1471,11 @@ group_by(data_gathering_methods, study_area_discipline) |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
-Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered}
-<!-- Her skal det inn en figur basrt på analytical_approach_of_study, men den er litt tricky -->
+Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered} <!-- Her skal det inn en figur basrt på analytical_approach_of_study, men den er litt tricky -->
 
 #### Hvilke økosystemer har vært tema for samfunnsrelaterte studier? {.unnumbered}
 
-Av den samfunnsrelaterte og den samfunnsvitenskapelige forskningen vi har undersøkt er flest studier relatert til skogøkosystemer, etterfulgt av fjelløkosystemer og semi-naturlige økosystemer. 
-Disse er igjen etterfulgt av studier relatert til elve- og innsjøøkosystemer, kystøkosystemer, naturlige åpne områder under tregrensen, polare økosystemer og arktisk tundra, våtmarks- og myrøkosystemer, urbane økosystemer samt økosystemer knyttet til jordbruk.
+Av den samfunnsrelaterte og den samfunnsvitenskapelige forskningen vi har undersøkt er flest studier relatert til skogøkosystemer, etterfulgt av fjelløkosystemer og semi-naturlige økosystemer. Disse er igjen etterfulgt av studier relatert til elve- og innsjøøkosystemer, kystøkosystemer, naturlige åpne områder under tregrensen, polare økosystemer og arktisk tundra, våtmarks- og myrøkosystemer, urbane økosystemer samt økosystemer knyttet til jordbruk.
 
 ```{r fig-socialscience-ecosys}
 #| echo: false
@@ -1565,7 +1557,6 @@ join_Nor_form_soc |>
 ```
 
 #### Hvilke typer arealbruk fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
-
 
 ```{r fig-socialscience-areause-coarse}
 #| echo: false
@@ -1712,13 +1703,11 @@ group_by(governance_level_using_the_tool,
 
 ```
 
-
 #### Hvilke sektorer fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
 <!-- Denne figuren skal oppdateres etter litt ny koding fra Håkon og Thomas -->
 
-Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk samt sektor for klima- og miljøpolitikk (@fig-sectors). 
-Et fåtall studier var relevant for olje- og energipolitikk, nærings- og fiskeripolitikk samt handel.
+Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk samt sektor for klima- og miljøpolitikk (@fig-sectors). Et fåtall studier var relevant for olje- og energipolitikk, nærings- og fiskeripolitikk samt handel.
 
 ```{r fig-sectors}
 #| echo: false
@@ -1827,7 +1816,6 @@ join_Nor_form_soc |>
 
 ```
 
-
 <!-- #### Hvilke aktører er hyppigst representert i forskningen? {.unnumbered} -->
 
 ```{r actors}
@@ -1855,8 +1843,6 @@ join_Nor_form_soc |>
     scale_fill_viridis(discrete = TRUE, option = "D")
 
 ```
-
-
 
 <!-- #### Hvilke verktøy er foreslått for å løse konfliktene? -->
 
@@ -1914,7 +1900,6 @@ group_by(tool_characteristics) |>
 
 
 ```
-
 
 ## Systematiske litteratursammenstillinger
 
@@ -2022,7 +2007,6 @@ sysRev |>
 ```
 
 ```{r sys rev areause}
-
 #| echo: false
 #| message: false
 #| warning: false
@@ -2455,9 +2439,8 @@ Vi gjorde også en enkel analyse av hvilke nøkkelord som vanligvis oppterer sam
 #| warning: false
 #| label: fig_co-citation
 #| fig-cap: "Bibliografisk 'kobling' (delte siteringer mellom flere artikler) framhever konseptuelle grupper i datasettet"
-
 #| cache: true
->>>>>>> c00d8427d594ebdba1864e5dcf65e955441a4970
+
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-citation", network = "references", sep = ";")
 net=networkPlot(NetMatrix, n = 500, Title = "Co-citations", type = "fruchterman", size=5,size.cex=T,remove.multiple=TRUE,label = NA)
 
@@ -2520,7 +2503,7 @@ res <- thematicMap(nor_bib, field = "AB", n = 1000, minfreq = 2, ngrams = 2, siz
 
 dat<-res$clusters
 
-p<-dat |> 
+p <- dat |> 
   ggplot(aes(rcentrality, rdensity, size=as.numeric(freq), colour = color))+
   geom_point()+
   labs(x="Relevance degree\n(Centrality)", y="Development degree\n(Density)")+
