@@ -159,7 +159,6 @@ Pågående areal- og landskapsendringer i Norge er et resultat av historiske pro
 
 Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Norge skiller seg fra mange andre europeiske land ved at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal er ifølge SSB også i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km2, som tilsvarer litt under 50 km2 årlig. Utenom bebygd areal og jordbruksområder er Norges landareal i dag dominert av fjell, hei og vidde (45 prosent), skog (37 prosent), ferskvann, (6 prosent) og våtmark (5 prosent) og varig is og snø (1 prosent; SSB 2024).
 
-
 ```{r arealtyper}
 #| echo: false
 #| message: false
@@ -185,7 +184,6 @@ waffle(arealtyper, rows = 10,
        title = "Arealtyper Fastlands-Norge") 
 
 ```
-
 
 Selv om andelen av landarealet i Norge som er direkte utbygd eller dyrket opp er lav (ca. 5%), er mye av landet klart påvirket av menneskelig arealbruk. Siden siste istid har så å si alt areal vært i bruk av mennesker – til jakt, fiske, beite, høsting av for, skogbruk, utvinning av naturressurser, friluftsliv og rekreasjon, og senere også til naturvern, som også er en form for arealbruk. Omfang og intensitet i den menneskelige arealbruken har imidlertid endret seg mye opp gjennom århundrene. På terskelen til den moderne tid, omkring 1850, var naturressursene utnyttet helt til grensa for hva landområdene kunne tåle, og produksjonen var maksimert med datidens teknologi. Store arealer ble påvirket av menneskelig arealbruk, men med moderat intensitet etter dagens målestokk. Ifølge [@Edvardsen_2024] kjennetegnes perioden etter 1850 ved en polarisering av den menneskelige arealbruken, med mer intensiv bruk av de best egnede arealene til jord- og skogbruk, mens andre arealer i utmarka gradvis ble tatt ut av bruk eller tas i bruk til nye formål. Vi høster mer fra naturressursene enn før, takket være avl, teknologi, og vitenskap og innovasjon, men det foregår på en mindre del av landarealet (intensivering). Opphør av ekstensiv hevd og skjøtsel av tradisjonelle utmarksarealer fører til endringer i kulturlandskap, som beite- og slåtteenger, lyng- og fjellheier.
 
@@ -513,7 +511,7 @@ Vi vil karakterisere den eksisterende litteraturen langs følgende akser:
 
 -   Hvilke aktører er hyppigst representert i forskningen?
 
--   Hvilke sektorer og samfunnsområder er hyppigst studert?
+-   Hvilke samfunnsområder og -sektorer er mest studert?
 
 -   Hvilke geografiske og organisatoriske nivåer i samfunnet er hyppigst studert?
 
@@ -666,7 +664,9 @@ For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkluder
 
 ## Resultat av litteratursøket
 
-Litteratursøket resulterte i totalt `r params$'search-results'` artikler (@fig-prisma). 
+Litteratursøket resulterte i totalt `r params$'search-results'` artikler (@fig-prisma).
+
+I litteratursøket identifiserte vi 36 418 referanser gjennom databasesøk. Etter fjerning av duplikater sto vi igjen med 20 265 referanser. Disse ble deretter gjennomgått, og 14 808 referanser ble vurdert nærmere. I tillegg ble 1 965 referanser identifisert gjennom andre kilder. Etter videre gjennomgang ble 12 144 referanser ekskludert. 2 398 fulltekstartikler ble vurdert for egnethet. Ingen studier ble inkludert i den kvalitative syntesen. Det var heller ingen fulltekstartikler som ble ekskludert med spesifikke begrunnelser. Til slutt ble ingen studier inkludert i den kvantitative syntesen (meta-analysen)
 
 <!-- Matt - How many papers and things like that. FILL IN SOME MORE HERE -->
 
@@ -856,11 +856,13 @@ ggplot(aes(x = year)) +
 
 <!-- ### Overordnet karakterisering av studiedesign og tilnærming {.unnumbered} -->
 
+```{=html}
 <!-- Dette må nok skrivet litt om, eller slettes:
 
 I dette kapittelet vil vi gi en oversikt over hvordan forskningen som er fanget opp i vår litteraturgjennomgang fordeler seg langs en  rekke akser som tilsammen besrkiver viktige forhold i litteraturen. Disse aksene spenner både hvorvidt forskningen er basert på empiriske data eller andre tilnærminger (scenarioer, simuleringer osv), hvorvidt det er benyttet et eksperimentelt studiedesign, hvilkge fagdisipliner forskningen knyttes til, hvilken romlig skala forskningen er gjennomført på, og hvorvidt forskningen har vært basert på open science-prinsipper. -->
-
+```
 <!-- #### Hvor stor andel av forskningen er basert på ulike forskningstilnærminger? -->
+
 Som det framkommer av @fig-research-approach er det en stor overvekt over observasjonsstudier (*Observational studies*) i vårt datamateriale. observasjonsstudier er her definert som studier som baserer seg på empiriske data fra systemet som undersøkes. Også konseptuelle artikler og scenario-modellering er relativt hyppig forkommende.
 
 ```{r fig-research-approach}
@@ -887,7 +889,8 @@ join_Nor_form_nat |>
 ```
 
 ## Naturvitenskapelig litteratur fra Norge
-Her ser vi nærmere på de artiklene som brute en naturvitenskapelig metode. De klart mest benyttede forsøksdesignene blandt disse er kontroll-behandling (*Control-Impact*)-design og etter (*After*)-design (@fig-studydesign). Merk at vi har inkludert forskning som f.eks. undersøker hvordan gradienter i arealbruk påvirker den aktuelle responsvariabelen under kontroll-behandling. Det er en påfallende mangel på godt designede randomisert eksperimenter (*Randomised controlled trials*) og studier som følger både kontrollområder og behandligsområder både før og etter (*Before-after-control-impact*) at et tiltak er satt i verk.
+
+Her ser vi nærmere på de artiklene som brukte en naturvitenskapelig metode. De klart mest benyttede forsøksdesignene blandt disse er kontroll-behandling (*Control-Impact*)-design og etter (*After*)-design (@fig-studydesign). Merk at vi har inkludert forskning som f.eks. undersøker hvordan gradienter i arealbruk påvirker den aktuelle responsvariabelen under kontroll-behandling. Det er en påfallende mangel på godt designede randomisert eksperimenter (*Randomised controlled trials*) og studier som følger både kontrollområder og behandligsområder både før og etter (*Before-after-control-impact*) at et tiltak er satt i verk.
 
 ```{r fig-studydesign}
 #| echo: false
@@ -922,7 +925,7 @@ join_Nor_form_nat |>
 
 #### Hvor stor andel av forskningen praktiserer Open Science prinspper? {.unnumbered}
 
-I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (@fig-OS1). En enda mindra andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden de kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden.
+I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (@fig-OS1). En enda mindre andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden det kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden.
 
 ```{r fig-OS1}
 #| echo: false
@@ -962,11 +965,11 @@ all_open |>
 
 ```
 
-
 #### Hvordan er forskningen fordelt på ulike disipliner? {.unnumbered}
 
 <!-- Mulig dette skal bort -->
-I vårt materiale er det en stor overvekt av forskning som faller inn under fagdisiplinen matematikk og naturvitenskap (*Mathematics and Natural Sciences*) (@fig-dicipline), men det er også en betydelig andel samfunnsvitenskapelige studier (*Social Sciences*).
+
+En stor overvekt av forskningen som fanges opp av kunnskapskartet faller inn under fagdisiplinen matematikk og naturvitenskap (*Mathematics and Natural Sciences*) (@fig-dicipline), men det er også en betydelig andel samfunnsvitenskapelige studier (*Social Sciences*).
 
 ```{r fig-dicipline}
 #| echo: false
@@ -1031,7 +1034,6 @@ I dette kapittelet gir vi en oversikt over hvordan forskningen vi har fanget opp
 
 De hyppigst studerte økosystemene i vårt materiale er skog (*Forest*) etterfulgt av fjelløkosystemer (*Mountains*) og semi-naturlige økosystmer (*Semi-natural ecosystems*) (@fig-ecosys). Den siste kategorien er dominert av studier på semi-naturlig engvegetasjon. De øvrige økosystemtypene er langt dårligere representert.
 
-
 ```{r fig-ecosys }
 #| echo: false
 #| message: false
@@ -1059,11 +1061,9 @@ join_Nor_form_nat |>
     )
 ```
 
-
 #### Hvordan er forskningen fordelt på ulike fylker? {.unnumbered}
 
-Det er en betydelig variasjon i hvor mye av forskningen som er fanget opp i vår litteraturgjennomgang som har vært lokalisert i de ulike fylkene (@fig-fylke). Flest studier er gjennomført i fylkene Innlandet, Trøndelag, Vestland og AKershus, mens det er færrest artikler fra Vetfold, Møre og Romsdal og Troms. I tillegg er det få studier som fokuserer på arealbruk på Svalbard.
-
+Det er en betydelig variasjon i hvor mye av forskningen som er fanget opp i vår litteraturgjennomgang har vært lokalisert i de ulike fylkene (@fig-fylke). Flest studier er gjennomført i fylkene Innlandet, Trøndelag, Vestland og Akershus, mens det er færrest artikler fra Vestfold, Møre og Romsdal og Troms. I tillegg er det få studier som fokuserer på effektene av arealbruk på Svalbard.
 
 ```{r fig-fylke}
 #| echo: false
@@ -1095,14 +1095,13 @@ join_Nor_form_nat |>
 
 ```
 
-
 #### Hvordan er forskningen fordelt med tanke på arealbruk og arealbruksendringer? {.unnumbered}
 
-Som det framgår av figurene over (@fig-landuse-coarse og @fig-landuse-detailed) 
+Som det framgår av figurene over (@fig-landuse-coarse og @fig-landuse-detailed)
 
 Det er gjennomført studier av en lang rekke ulike former for arealbruk og arealbruksendringer (@fig-landuse-coarse; @fig-landuse-detailed). På et overordnet plan er det effekter av ulike former for landbruk (*Agriculture*) og utnyttelse av biologiske ressurser (*Biological Resource use*) som er hyppigst studert. Det er langt færre artikler som omhandler vern (*Protection*) og restaurering (*Restoriation*).
 
-Dersom vi bryter ned areabruk og arelabruksenderinger i finere kategorier (ref. [@nilsen2024]), ser man at særlig er effekter av skogbruk (*Biological resource use: forestry*) og effekter av tamme beitedyr (*Agricultrue & aquaculture: outfield resources (including grazing*)) hyppig studert (@fig-landuse-detailed).
+Dersom vi bryter ned areabruk og arelabruksenderinger i finere kategorier (ref. [@nilsen2024]), ser vi at effekter av skogbruk (*Biological resource use: forestry*) og tamme beitedyr (*Agricultrue & aquaculture: outfield resources (including grazing*)) er særlig hyppig studert (@fig-landuse-detailed).
 
 ```{r fig-landuse-coarse}
 #| echo: false
@@ -1169,13 +1168,13 @@ join_Nor_form_nat |>
 
 ```
 
-
 ### Biologisk organisering {.unnumbered}
 
-I dette kapittelet vil vi beskrive hvordan forskningen fordeler seg med tanke på hvilket nivå av biologisk organisering (f.eks. arter, slekter eller høyere taksonomiske nivå). Videre vil vi beskrive hvordan ulike essensielle biodiversitetsvariabler (EBV - ref) er representert i forskningsmaterialet, samt hvor ofte ulike former for økosystemtjenester er studert.
+I dette kapittelet beskriver vi hvordan forskningen fordeler seg på ulike nivåer av biologisk organisering som arter, slekter eller høyere taksonomiske nivå). Videre vil vi beskrive hvordan ulike essensielle biodiversitetsvariabler (EBV - ref) er representert i forskningsmaterialet, samt hvor ofte ulike former for økosystemtjenester er studert.
 
 #### Hvordan er forskningen fordelt på ulike taksonomiske nivå? {.unnumbered}
-Det er en klar overvekt av artikler som fokuserer på (en eller flere) arter (*Species*) i den litteraturen vi har gått gjennom fra Norge (@fig-taxonomic-level). Det er også en relativt stor andel av litteraturen som fokuserer på hele riker (*Kingdom*). Dette er i stor grad snakk om artikler som beskriver responsen til hele plantesamfunn på en eller flere former for arealbruk.
+
+Det er en klar overvekt av artikler som fokuserer på (en eller flere) arter (*Species*) i den litteraturen vi har gått gjennom fra Norge (@fig-taxonomic-level). Det er også en relativt stor andel av litteraturen som fokuserer på hele riker (*Kingdom*). Dette er i stor grad snakk om artikler som beskriver hvordan hele plantesamfunn responderer på en eller flere former for arealbruk.
 
 ```{r fig-taxonomic-level}
 #| echo: false
@@ -1205,9 +1204,7 @@ join_Nor_form_nat |>
 
 ```
 
-
-
-#### Hvordan er forskningen fordelt på ulike essensielle biodiversitetsvariabler (EBV) {.unnumbered}
+#### Hvordan er forskningen fordelt på ulike essensielle naturbeskrivelsesvariabler (EBV) {.unnumbered}
 
 ```{r fig-EBVs}
 #| echo: false
@@ -1287,7 +1284,7 @@ join_Nor_form_nat |>
 
 #### Hvordan er studier som fokuserer på arter fordelt? {.unnumbered}
 
-Blant studier som fokuserte på en eller et fåtall arter var det studiert av reinsdyr (*Rangifer tarandus*) som var hyppigst forekommende i vårt datamateriale (@fig-species), mens studier av arealbrukseffekter på gaupe (*Lynx lynx*), elg (*Alces alces*) og laks (*Salmo salar*) kom de neste plassene i frekvenslisten.
+Blant studier som fokuserte på én eller et fåtall arter var det studier av reinsdyr (*Rangifer tarandus*) som var hyppigst forekommende i vårt datamateriale (@fig-species), mens studier av arealbrukseffekter på gaupe (*Lynx lynx*), elg (*Alces alces*) og laks (*Salmo salar*) kom de neste plassene i frekvenslisten.
 
 ```{r fig-species}
 #| echo: false
@@ -1320,12 +1317,9 @@ join_Nor_form_nat |>
 
 ```
 
-
-
 ## Samfunnsvitenskapelige litteratur fra Norge
 
 #### Fordeling av samfunnsvitenskapelige studier mellom ulike økosystemer og former for arealbruk {.unnumbered}
-
 
 ```{r social science ecosystems}
 #| echo: false
@@ -1418,7 +1412,7 @@ join_Nor_form_soc |>
 
 ```
 
-#### Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?
+#### Hva er de vanligste analytiske tilnærmingene i samfunnsvitenskapelige studier?
 
 ```{r analytisk}
 #| echo: false
@@ -1467,7 +1461,7 @@ join_Nor_form_soc |>
 
 ```
 
-#### Hvilke sektorer og samfunnsmessige områder er hyppigst studert?
+#### Hvilke samfunnsområder og -sektorer er mest studert?
 
 ```{r sectors}
 #| echo: false
@@ -1546,7 +1540,7 @@ group_by(tool_characteristics) |>
 
 ```
 
-#### Hvilket samfunnsmessig nivå benytter verktøyet?
+#### Hvem benytter verktøyet i planlegging og forvaltning?
 
 ```{r tool_level}
 #| echo: false
@@ -1640,9 +1634,9 @@ sysRev<-readRDS("data/cache_data/sysRev.RDS")
 
 ```
 
-I dette kapittelet presenteres resultatene fra gjennomgangen av de systematiske litteraturgjennomgangene som ble fanget opp av vårt søk og som ble vurdet som relevante basert på våre inkluderingskriterier. I motsetning til primærstudier, hvor vi kun inkluderte artikler fra norge, Sverige og Finland var kriteriet for systematiske litteratursammenstillinger at de hadde et global eller , Europeisk eller Fennoskandisk dekning. Narrative oversiktsartikler ble ikke inkludert i vår gjennomgang. Totalt ble `r dim(sysRev)[1]` artikler inkludert.
+I dette kapittelet presenteres resultatene fra gjennomgangen av de systematiske litteraturgjennomgangene som ble fanget opp av vårt søk og som ble vurdert som relevante basert på våre inkluderingskriteriene. I motsetning til primærstudier, hvor vi kun inkluderte artikler fra Norge, var kriteriet for systematiske litteratursammenstillinger at de hadde en global eller , Europeisk eller Fennoskandisk dekning. Narrative oversiktsartikler ble ikke inkludert i vår gjennomgang. Totalt ble `r dim(sysRev)[1]` artikler inkludert.
 
-#### Hvor hyppig er ulike økosystemer, arealbruk og arealbruksendringer inkludert i de systematiske litteratursammenstillingene?
+#### Hvor hyppig er ulike økosystemer og ulike typer arealbruk og arealbruksendringer inkludert i de systematiske litteratursammenstillingene?
 
 ```{r ecosystem}
 #| echo: false
@@ -1739,7 +1733,7 @@ sysRev |>
 
 Tekst her om sys revs...
 
-#### Vurdering av studiekvalitet på systematiske litteraturesammenstillinger
+#### Vurdering av kvaliteten til de systematiske litteraturesammenstillingene
 
 ```{r type of summerised evidence}
 #| echo: false
@@ -1918,7 +1912,7 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 
 ```
 
-Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt datamateriale er.... (@fig-type-sum-evidence).
+Den hyppigst forekommende formen for systematisk litteratursammenstilling i vårt datamateriale er.... (@fig-type-sum-evidence).
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
@@ -2138,25 +2132,25 @@ wordfreq |>
 
 ```
 
-## En beslutningsmodell basert på inkluderte artikler fra Norge
+## Et beslutningsstøtteverktøy basert på norske forskningsartikler
 
-Vi kan vurdere den konseptuelle utviklingen av et forskningsfelt ved hjelp av bibliometrisk nettverksanalyse (@cobo2011approach). Nærmere bestemt vurderer en slik nettverksanalyse forholdet mellom nøkkelord i et sett med dokumenter. Det hjelper med å identifisere nøkkeltemaer, deres sammenhenger og hvordan de endrer seg over tid, og gir verdifull innsikt for forskere og beslutningstakere når man skal prioritere ny forskning.
+Vi kan vurdere den konseptuelle og tematiske utviklingen av et forskningsfelt ved hjelp av bibliometrisk nettverksanalyse (@cobo2011approach). En slik nettverksanalyse vurderer forholdet mellom nøkkelord i et sett med dokumenter. Analysen hjelper med å identifisere nøkkeltemaer, sammenhengen mellom dem og hvordan de endrer seg over tid. Dette gir verdifull innsikt for forskere og beslutningstakere når man skal prioritere ny forskning.
 
-Basert på metoden beskrevet i @cobo2011approach hentet vi først nøkkelord (*keywords*) fra alle de inkluderte artiklene fra Norge. Vi opprettet deretter en såkalt "Co-Currence Matrix" som teller hvor ofte hvert par med nøkkelord forekommer samtidig i dokumentene. Matrisen for samtidig forekomst ble deretter konvertert til en nettverksgraf, der nøkkelord er noder forbundet med kanter som representerer deres samtidige forekomst.
+Basert på metoden beskrevet i @cobo2011approach hentet vi først nøkkelord (*keywords*) fra alle de inkluderte artiklene fra Norge. Vi opprettet deretter en såkalt "Co-Currence Matrix" som teller hvor ofte hvert par med nøkkelord forekommer samtidig i dokumentene. Matrisen for samtidig forekomst ble deretter konvertert til en nettverksgraf, der nøkkelord er "noder" forbundet med linjer som representerer deres samtidige forekomst.
 
-Ved å bruke «walktrap-algoritmen» blir nøkkelord gruppert i klynger. Walktrap-algoritmen er en fellesskapsdeteksjonsmetode som bruker tilfeldige ruter for å utforske nettverket og identifisere klynger av noder som er tettere koblet til hverandre enn til resten av nettverket. Ved å simulere tilfeldige ruter og slå sammen noder basert på deres samtidige forekomstfrekvenser, avslører det effektivt fellesskapsstrukturen i nettverket. Dette gjør det spesielt nyttig for å analysere komplekse nettverk.
+Ved å bruke «walktrap-algoritmen» blir nøkkelord gruppert i klynger. Walktrap-algoritmen er en metode som identifiserer felleskap gjennom å bruker tilfeldige ruter for å utforske nettverket og identifisere klynger av noder som er tettere koblet til hverandre enn til resten av nettverket. Ved å simulere tilfeldige ruter og slå sammen noder basert på deres samtidige forekomstfrekvenser, avslører det effektivt fellesskapsstrukturen i nettverket. Dette gjør det spesielt nyttig for å analysere komplekse nettverk.
 
-Hver klynge representerer et tematisk område innenfor forskningsfeltet (hvor nøkkelord innenfor samme klynge forekommer oftere). Vi benytter to egenskaper til å beskrive de ulike tema. Sentralitet og tetthet. Sentraliteten til hver tema indikerer viktigheten av tema for hele nettverket. Høy sentralitet tilsier at temaer er godt integrert i forskningsfeltet. De fungerer som broer mellom ulike tema og regnes ofte som kjerne- eller «mainstream-temaer». Temaer med lav sentralitet er mer isolerte og har færre forbindelser til andre temaer. Dette kan være nye tema eller nisjeområder som ennå ikke er bredt integrert i det bredere forskningsfeltet. Tetthet måler den interne sammenhengen i et tema. Den indikerer hvor sterkt nøkkelordene innenfor et bestemt tema er knyttet til hverandre. Det gjenspeiler i hvilken grad et tema er selvstendig eller fokusert. Temaer med høy tetthet har sterke interne forbindelser, noe som betyr at nøkkelordene i temaet ofte forekommer sammen med hverandre. Disse temaene er godt utviklet og internt sammenhengende, og representerer ofte spesialiserte forskningsområder. Temaer med lav tetthet har svakere interne forbindelser. Nøkkelordene innenfor disse temaene forekommer ikke like ofte, noe som indikerer at temaet kan være bredere, mindre fokusert eller fortsatt i utvikling.
+Hver klynge representerer et tematisk område innenfor forskningsfeltet (hvor nøkkelord innenfor samme klynge forekommer oftere). Vi benytter to egenskaper til å beskrive sentrale egenskaper ved klyngene: sentralitet og tetthet. Sentraliteten til hvert tema indikerer betydningen av temaet for hele nettverket. Høy sentralitet tilsier at temaer er godt integrert i forskningsfeltet. Sentrale tema fungerer også som broer mellom beslektede tema og regnes ofte som kjerne- eller «mainstream-temaer». Temaer med lav sentralitet er mer isolerte og har færre forbindelser til andre temaer. Dette kan være nye tema eller nisjeområder som ennå ikke er dypt integrert i det bredere forskningsfeltet. Tetthet måler den interne sammenhengen innenfor et tema, og indikerer hvor sterkt nøkkelordene innenfor et bestemt tema er knyttet til hverandre. Det gjenspeiler i hvilken grad et tema er selvstendig eller "modent". Temaer med høy tetthet har sterke interne forbindelser, noe som betyr at nøkkelordene i temaet ofte forekommer sammen med hverandre. Disse temaene er godt utviklet og internt sammenhengende, og representerer ofte spesialiserte forskningsområder. Temaer med lav tetthet har svakere interne forbindelser. Nøkkelordene innenfor disse temaene forekommer ikke like ofte, noe som indikerer at temaet kan være løsere definert, mindre modent og fortsatt i utvikling.
 
-I figuren under har visualisert nettverket i et strategisk diagram, hvor temaenes sentralitet og tetthet er kategorisert ved deres posisjon i kvadrantene.
+I figuren under har vi visualisert nettverket i et strategisk diagram, hvor temaenes sentralitet og tetthet er kategorisert ved deres posisjon i kvadrantene.
 
 -   **Motor-tema** (høy sentralitet, høy tetthet): Dette er tema som er viktige og godt utviklet, og som er sentrale for forskningsfeltet. De har høy grad av intern samhold og er bredt koblet til andre tema.
 
--   **Grunnleggende og transverse** tema (høy sentralitet, lav tetthet): Disse tema er sentrale med har mindre grad av internt samhold. De fungerer som broer mellom ulike forskingstema og kan dekke en større bredde i forskningen.
+-   **Grunnleggende og transverse** tema (høy sentralitet, lav tetthet): Disse temaene er sentrale, men har mindre grad av internt samhold. De fungerer som broer mellom ulike forskingstema og kan dekke en større bredde i forskningen.
 
--   **Nisjetema** (lav sentralitet, høy tetthet): Disse temaene er spesialisert og har høy grad av intern samhold, men er ofte ikke godt integrert i det større forskningsfeltet. De representerer fokusert forskningstema.
+-   **Nisjetema** (lav sentralitet, høy tetthet): Disse temaene er spesialiserte og har høy grad av internt samhold, men de er ofte ikke godt integrert i det større forskningsfeltet. De representerer fokuserte (spesialiserte) forskningstema.
 
--   **Stigende eller dalende tema** (lav sentralitet, lav tetthet): Disse temaene er minder utviklet. De kan være nye tema på veg opp eller eldre tema som har fått mindre fokus.
+-   **Stigende eller dalende tema** (lav sentralitet, lav tetthet): Disse temaene er mindre utviklet. Dette kan være nye temaer på veg opp eller eldre tema som har fått mindre fokus.
 
 ```{r themeMap}
 #| echo: false
@@ -2191,7 +2185,7 @@ p+
 
 ```
 
-I @fig-themeMap er temaer indikert med et enkelt felles nøkkelord. Vi kan se at godt studerte temaer i Norge inkluderte artsrikhet (*species richness*) spesielt i sammenheng med skogforvaltning, rein (*Rangifer tarandus*) – her med fokus på villrein. Studier rundt habitatvalg (*habitat selection*) inkluderte studier på gaupe og rådyr. Konflikt mellom mennesker og dyreliv rundt gjess og jordbruk er også godt studert.
+I @fig-themeMap er temaer indikert med et enkelt felles nøkkelord. Vi kan se at godt studerte temaer i utvalget fra Norge inkluderte artsrikhet (*species richness*) spesielt i sammenheng med skogforvaltning, og rein (*Rangifer tarandus*) – her med fokus på villrein. Studier rundt habitatvalg (*habitat selection*) inkluderte studier på gaupe og rådyr. Konflikt mellom mennesker og dyreliv rundt gjess og jordbruk er også godt studert.
 
 Temaer som er stigende omfatter blant annet hyttebygging og bevaring av biologisk mangfold i forbindelse med klimaendringer, samt bærekraftig utvikling. Fremtidige scenarier for arealbruksendring (så vel som andre globale endringer) er også et felt i vekst. Studier rundt urfolk i sammenheng med arealbruksendring er underrepresentert i feltet.
 
