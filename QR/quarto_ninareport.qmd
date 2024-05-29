@@ -286,7 +286,7 @@ min_point_jord_label <- paste0(min_point_jord$value, " ")
 max_point_jord <- filter(jordbruksareal_sum, år == max(jordbruksareal$år))
 max_point_jord_label <- paste0(max_point_jord$value, "")
 
-levels(jordbruksareal$areal)
+#levels(jordbruksareal$areal)
 jordbruksareal$areal <- ordered(jordbruksareal$areal, 
                                 levels = c("- 49 dekar", 
                                            "50 - 99 dekar", 
