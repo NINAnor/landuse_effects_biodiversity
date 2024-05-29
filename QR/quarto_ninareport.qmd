@@ -581,7 +581,7 @@ join_Nor_form_nat |>
   labs(x="", y=commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")+
   geom_text(aes(label = n),
-    nudge_y = nudgeDist
+    nudge_y = nudgeDist+8
     )
 ```
 
@@ -686,7 +686,7 @@ join_Nor_form_nat |>
   labs(x="", y=commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")+
   geom_text(aes(label = n),
-    nudge_y = nudgeDist
+    nudge_y = nudgeDist+5
     )
 
 
@@ -754,7 +754,7 @@ join_Nor_form_nat |>
   labs(x="", y=commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D") +
   geom_text(aes(label = n),
-    nudge_y = 3
+    nudge_y = nudgeDist+2
     )
 ```
 
@@ -835,13 +835,14 @@ join_Nor_form_nat |>
   labs(x="", y=commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")+
   geom_text(aes(label = n),
-    nudge_y = nudgeDist)
+    nudge_y = nudgeDist+3)
 ```
 
 ```{r fig-landuse-detailed}
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Antall forskningsartikler som har studert effekten av ulike former for arealbruk eller arealbruksenderinger."
 
 join_Nor_form_nat |> 
@@ -873,7 +874,7 @@ join_Nor_form_nat |>
 I dette kapittelet vil vi beskrive hvordan forskningen fordeler seg med tanke på hvilket nivå av biologisk organisering (f.eks. arter, slekter eller høyere taksonomiske nivå). Videre vil vi beskrive hvordan ulike essensielle biodiversitetsvariabler (EBV - ref) er representert i forskningsmaterialet, samt hvor ofte ulike former for økosystemtjenester er studert.
 
 #### Hvordan er forskningen fordelt på ulike taksonomiske nivå? {.unnumbered}
-Det er en klar overvekt av artikler som fokuserer på (en eller flere) arter (*Species*) i den litteraturen vi har gått gjennom fra Norge (@fig-taxonomic-level). Det er også en relativt stor andel av litteraturen som fokuserer på hele riker (*Kingdom*). Dette er i stor grad snakk om artikler som f.eks. beskriver responsen til hele plantesamfunn på en eller flere former for arealbruk.
+Det er en klar overvekt av artikler som fokuserer på (en eller flere) arter (*Species*) i den litteraturen vi har gått gjennom fra Norge (@fig-taxonomic-level). Det er også en relativt stor andel av litteraturen som fokuserer på hele riker (*Kingdom*). Dette er i stor grad snakk om artikler som beskriver responsen til hele plantesamfunn på en eller flere former for arealbruk.
 
 ```{r fig-taxonomic-level}
 #| echo: false
@@ -905,46 +906,55 @@ join_Nor_form_nat |>
 
 
 
-#### Hvordan er forskningen fordelt på ulike essensielle biodiversitetsvariabler (EBV)
+#### Hvordan er forskningen fordelt på ulike essensielle biodiversitetsvariabler (EBV) {.unnumbered}
 
-```{r EBV}
+```{r fig-EBVs}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "EBVs"
+#| fig-cap: "Antall artikler som har fokusert på ulike essesnsialle biodiversitetvariabler (EBV)."
 #| fig-width: 14
 #| fig-height: 10
 
 EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
 
-plotEBVs<-function(var){
-  join_Nor_form_nat |> 
-    select({{var}}) |>
-    mutate(var =str_split({{var}},",\\s(?=[A-Z])"))   |> 
-    unnest(var)  |> 
-    mutate(var = trimws(var))  |> 
-    group_by(var) |> 
-    tally() |> 
-    drop_na() |> 
-    ggplot(aes(reorder(var, n),n,fill=var))+
+join_Nor_form_nat |> 
+  select(EBVs) |>
+  pivot_longer(cols = EBVs,
+               names_to = "EBV_group",
+               values_to = "EBV_level",
+               values_drop_na = T) |>
+  filter(EBV_group != "ecosystem_services") |>
+  mutate(EBV_level =str_split(EBV_level,",\\s(?=[A-Z])")) |>
+  unnest(EBV_level) |>
+  mutate(EBV_level = str_split_i(EBV_level, " - ", 1)) |>
+  group_by(EBV_group, EBV_level) |> 
+  tally() |>
+  mutate(EBV_group = case_match(EBV_group,
+    "community_composition" ~ "Community\ncomposition",
+    "ecosystem_functioning" ~ "Ecosystem\nfunctioning",
+    "ecosystem_structure" ~ "Ecosystem\nstructure",
+    "genetic_composition" ~ "Genetic\ncomposition",
+    "species_populations" ~ "Species\npopulations",
+    "species_traits" ~ "Species\ntraits")) |>
+  ggplot(aes(x = reorder(EBV_level, n),
+             y = n,
+             fill=EBV_level))+
     geom_histogram(stat="identity")+
     coord_flip()+
     theme(legend.position = "Null")+
-    labs(x="", y="antall publikasjoner") +
-    scale_fill_viridis(discrete = TRUE, option = "D")
-}
-
-plotEBVs(genetic_composition)
-plotEBVs(species_populations)
-plotEBVs(species_traits)
-plotEBVs(community_composition)
-plotEBVs(ecosystem_functioning)
-plotEBVs(ecosystem_structure)
-
+    labs(x="", y=commonResponse) +
+    scale_fill_viridis(discrete = TRUE, option = "D")+
+  #cannot make this fit nicely:
+  #geom_text(aes(label = n),
+  #              nudge_y = nudgeDist) +
+  facet_wrap(.~EBV_group,
+             scales = "free",
+             ncol=2)
   
 ```
 
-#### Hvordan er forskningen fordelt på ulike økosystemtjenester?
+#### Hvordan er forskningen fordelt på ulike økosystemtjenester? {.unnumbered}
 
 ```{r Ecosystem_services}
 #| echo: false
@@ -955,20 +965,37 @@ plotEBVs(ecosystem_structure)
 #| fig-width: 14
 #| fig-height: 10
 
-plotEBVs(ecosystem_services)
+join_Nor_form_nat |> 
+  select(ecosystem_services) |>
+  mutate(ecosystem_services = str_split(ecosystem_services,",\\s(?=[A-Z])"))   |> 
+  unnest(ecosystem_services)  |> 
+  mutate(ecosystem_services = trimws(ecosystem_services))  |> 
+  group_by(ecosystem_services) |> 
+  tally() |> 
+  drop_na() |> 
+  ggplot(aes(reorder(ecosystem_services, n),n,fill=ecosystem_services))+
+  geom_histogram(stat="identity")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist-2)
+
 ```
 
-#### Hvordan er studier som fokuserer på arter fordelt?
+#### Hvordan er studier som fokuserer på arter fordelt? {.unnumbered}
 
-```{r species}
+Blant studier som fokuserte på en eller et fåtall arter var det studiert av reinsdyr (*Rangifer tarandus*) som var hyppigst forekommende i vårt datamateriale (@fig-species), mens studier av arealbrukseffekter på gaupe (*Lynx lynx*), elg (*Alces alces*) og laks (*Salmo salar*) kom de neste plassene i frekvenslisten.
+
+```{r fig-species}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-species
-#| fig-cap: "Omfang av artikler som fokuserer på effekten av arealbruk på arter i norsk natur fordelt på de enkelte artene"
+#| fig-cap: "Omfang av artikler som fokuserer på effekten av arealbruk på arter i norsk natur fordelt på de enkelte artene. Kun de 15 vanligste taxa er vist i figuren."
 #| fig-width: 14
 #| fig-height: 10
-#| 
+
 join_Nor_form_nat |> 
   filter(taxonomic_level == "Species") |>
   group_by(taxonomic_name) |>
@@ -977,23 +1004,27 @@ join_Nor_form_nat |>
   group_by(taxonomic_name2) |> 
   mutate(taxonomic_name2=trimws(taxonomic_name2)) |> 
   tally() |> 
+  filter(taxonomic_name2 != "vascular plants") |>
   drop_na() |> 
-  top_n(10) |>
+  top_n(15) |>
   ggplot(aes(reorder(taxonomic_name2, n),n,fill=taxonomic_name2))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist-2)
 
 
 ```
 
-Blant studier som fokuserte på en eller et fåtall arter var det studiert av reinsdyr (*Rangifer tarandus*) som var hyppigst forekommende i vårt datamateriale (@fig-species), mens studier av arealbrukseffekter på gaupe (*Lynx lynx*), elg (*Alces alces*) og laks (*Salmo salar*) kom de neste plassene i frekvenslisten.
 
-### Samfunnsvitenskapelige studier av konflikter, verktøy og involverte aktører
 
-#### Fordeling av samfunnsvitenskapelige studier mellom ulike økosystemer og former for arealbruk
+## Samfunnsvitenskapelige litteratur fra Norge
+
+#### Fordeling av samfunnsvitenskapelige studier mellom ulike økosystemer og former for arealbruk {.unnumbered}
+
 
 ```{r social science ecosystems}
 #| echo: false
