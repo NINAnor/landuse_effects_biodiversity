@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -90,55 +56,99 @@ div.csl-indent {
 <link href="quarto_ninareport_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 </head><body><button type="button" class="btn btn-primary btn-lg bi bi-arrow-up" id="btn-back-to-top"></button>
 
+
+
 <style>
+
 #btn-back-to-top {
+
   position: fixed;
+
   bottom: 20px;
+
   right: 20px;
+
   display: none;
+
 }
+
 </style>
 
+
+
 <script id="backtotop" type="application/javascript">
+
 let backToTopButton = document.getElementById("btn-back-to-top");
 
+
+
 window.addEventListener('scroll', () => {
+
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+
             backToTopButton.style.display = "block";
+
         } else {
+
             backToTopButton.style.display = "none";
+
         }
+
     });
 
+
+
 backToTopButton.addEventListener("click", function () {
+
   document.body.scrollTop = 0;
+
   document.documentElement.scrollTop = 0;
+
 });
+
 </script>
 <div id="progress-bar" style="width: 0%; height:2px; background-color: rgb(89 127 235);; position: fixed; top: 0px; z-index: 2000;"></div>
 
+
+
 <script id="progressbar" type="text/javascript">
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
 
+
+
     const bar = document.querySelector('#progress-bar');
+
     const post = document.querySelector('#quarto-content');
+
     const html = document.documentElement;
+
     
+
     const height = post.scrollHeight + post.offsetTop;
+
     
+
     window.addEventListener('scroll', () => {
+
         bar.style.width = (html.scrollTop / (height- html.clientHeight)) * 100 + '%';
+
     });
+
 });
+
 </script>
-<script src="quarto_ninareport_files/libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="quarto_ninareport_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="quarto_ninareport_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 
 <script src="quarto_ninareport_files/libs/viz-1.8.2/viz.js"></script>
 
 <link href="quarto_ninareport_files/libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 
-<script src="quarto_ninareport_files/libs/grViz-binding-1.0.10/grViz.js"></script>
+<script src="quarto_ninareport_files/libs/grViz-binding-1.0.11/grViz.js"></script>
 
 
 
@@ -154,21 +164,18 @@ document.addEventListener("DOMContentLoaded", function() {
   <ul>
   <li><a href="#sec-inl" id="toc-sec-inl" class="nav-link active" data-scroll-target="#sec-inl"><span class="header-section-number">1</span> Innledning</a>
   <ul class="collapse">
-  <li><a href="#pågående-areal--og-landskapsendringer-i-norge" id="toc-pågående-areal--og-landskapsendringer-i-norge" class="nav-link" data-scroll-target="#pågående-areal--og-landskapsendringer-i-norge"><span class="header-section-number">1.0.1</span> Pågående areal- og landskapsendringer i Norge</a></li>
-  <li><a href="#kunnskap-om-effekter-av-arealbruk-og-arealendringer-på-naturmangfold-og-naturgoder" id="toc-kunnskap-om-effekter-av-arealbruk-og-arealendringer-på-naturmangfold-og-naturgoder" class="nav-link" data-scroll-target="#kunnskap-om-effekter-av-arealbruk-og-arealendringer-på-naturmangfold-og-naturgoder"><span class="header-section-number">1.0.2</span> Kunnskap om effekter av arealbruk og arealendringer på naturmangfold og naturgoder</a></li>
-  <li><a href="#involvering-av-brukere-og-samfunnsaktører" id="toc-involvering-av-brukere-og-samfunnsaktører" class="nav-link" data-scroll-target="#involvering-av-brukere-og-samfunnsaktører"><span class="header-section-number">1.1</span> Involvering av brukere og samfunnsaktører</a>
+  <li><a href="#pågående-areal--og-landskapsendringer-i-norge" id="toc-pågående-areal--og-landskapsendringer-i-norge" class="nav-link" data-scroll-target="#pågående-areal--og-landskapsendringer-i-norge"><span class="header-section-number">1.1</span> Pågående areal- og landskapsendringer i Norge</a></li>
+  <li><a href="#kunnskap-om-effekter-av-arealbruk-og-arealendringer-på-naturmangfold-og-naturgoder" id="toc-kunnskap-om-effekter-av-arealbruk-og-arealendringer-på-naturmangfold-og-naturgoder" class="nav-link" data-scroll-target="#kunnskap-om-effekter-av-arealbruk-og-arealendringer-på-naturmangfold-og-naturgoder"><span class="header-section-number">1.2</span> Kunnskap om effekter av arealbruk og arealendringer på naturmangfold og naturgoder</a></li>
+  <li><a href="#systematiske-kart-over-kunnskap-og-kunnskapshull" id="toc-systematiske-kart-over-kunnskap-og-kunnskapshull" class="nav-link" data-scroll-target="#systematiske-kart-over-kunnskap-og-kunnskapshull"><span class="header-section-number">1.3</span> Systematiske kart over kunnskap og kunnskapshull</a></li>
+  <li><a href="#formålet-med-kunnskapssammenstillingen" id="toc-formålet-med-kunnskapssammenstillingen" class="nav-link" data-scroll-target="#formålet-med-kunnskapssammenstillingen"><span class="header-section-number">1.4</span> Formålet med kunnskapssammenstillingen</a>
   <ul class="collapse">
-  <li><a href="#systematiske-kart-over-kunnskap-og-kunnskapshull" id="toc-systematiske-kart-over-kunnskap-og-kunnskapshull" class="nav-link" data-scroll-target="#systematiske-kart-over-kunnskap-og-kunnskapshull"><span class="header-section-number">1.1.1</span> Systematiske kart over kunnskap og kunnskapshull</a></li>
-  </ul></li>
-  <li><a href="#formålet-med-kunnskapssammenstillingen" id="toc-formålet-med-kunnskapssammenstillingen" class="nav-link" data-scroll-target="#formålet-med-kunnskapssammenstillingen"><span class="header-section-number">1.2</span> Formålet med kunnskapssammenstillingen</a>
-  <ul class="collapse">
-  <li><a href="#hovedproblemstilling" id="toc-hovedproblemstilling" class="nav-link" data-scroll-target="#hovedproblemstilling"><span class="header-section-number">1.2.1</span> Hovedproblemstilling</a></li>
-  <li><a href="#underproblemstillinger" id="toc-underproblemstillinger" class="nav-link" data-scroll-target="#underproblemstillinger"><span class="header-section-number">1.2.2</span> Underproblemstillinger</a></li>
+  <li><a href="#hovedproblemstilling" id="toc-hovedproblemstilling" class="nav-link" data-scroll-target="#hovedproblemstilling"><span class="header-section-number">1.4.1</span> Hovedproblemstilling</a></li>
+  <li><a href="#underproblemstillinger" id="toc-underproblemstillinger" class="nav-link" data-scroll-target="#underproblemstillinger"><span class="header-section-number">1.4.2</span> Underproblemstillinger</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#sec-met" id="toc-sec-met" class="nav-link" data-scroll-target="#sec-met"><span class="header-section-number">2</span> Metoder</a>
   <ul class="collapse">
-  <li><a href="#involvering-av-brukere-og-samfunnsaktører-1" id="toc-involvering-av-brukere-og-samfunnsaktører-1" class="nav-link" data-scroll-target="#involvering-av-brukere-og-samfunnsaktører-1"><span class="header-section-number">2.1</span> Involvering av brukere og samfunnsaktører</a></li>
+  <li><a href="#involvering-av-brukere-og-samfunnsaktører" id="toc-involvering-av-brukere-og-samfunnsaktører" class="nav-link" data-scroll-target="#involvering-av-brukere-og-samfunnsaktører"><span class="header-section-number">2.1</span> Involvering av brukere og samfunnsaktører</a></li>
   <li><a href="#avvik-fra-protokollen" id="toc-avvik-fra-protokollen" class="nav-link" data-scroll-target="#avvik-fra-protokollen"><span class="header-section-number">2.2</span> Avvik fra protokollen</a></li>
   <li><a href="#søk-etter-litteratur" id="toc-søk-etter-litteratur" class="nav-link" data-scroll-target="#søk-etter-litteratur"><span class="header-section-number">2.3</span> Søk etter litteratur</a>
   <ul class="collapse">
@@ -187,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function() {
   </ul></li>
   <li><a href="#vurdering-av-studienes-validitet" id="toc-vurdering-av-studienes-validitet" class="nav-link" data-scroll-target="#vurdering-av-studienes-validitet"><span class="header-section-number">2.5</span> Vurdering av studienes validitet</a></li>
   <li><a href="#datakodestrategier" id="toc-datakodestrategier" class="nav-link" data-scroll-target="#datakodestrategier"><span class="header-section-number">2.6</span> Datakodestrategier</a></li>
-  <li><a href="#involvering-av-brukere-og-samfunnsaktører-2" id="toc-involvering-av-brukere-og-samfunnsaktører-2" class="nav-link" data-scroll-target="#involvering-av-brukere-og-samfunnsaktører-2"><span class="header-section-number">2.7</span> Involvering av brukere og samfunnsaktører</a></li>
+  <li><a href="#involvering-av-brukere-og-samfunnsaktører-1" id="toc-involvering-av-brukere-og-samfunnsaktører-1" class="nav-link" data-scroll-target="#involvering-av-brukere-og-samfunnsaktører-1"><span class="header-section-number">2.7</span> Involvering av brukere og samfunnsaktører</a></li>
   <li><a href="#avvik-fra-protokollen-1" id="toc-avvik-fra-protokollen-1" class="nav-link" data-scroll-target="#avvik-fra-protokollen-1"><span class="header-section-number">2.8</span> Avvik fra protokollen</a></li>
   </ul></li>
   <li><a href="#sec-res" id="toc-sec-res" class="nav-link" data-scroll-target="#sec-res"><span class="header-section-number">3</span> Resultater</a>
@@ -199,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
   <li><a href="#overordnet-karakterisering-av-forskningen-fordelt-på-geografisk-fordeling-arealbruk-arealbruksendringer-og-økosystemer" id="toc-overordnet-karakterisering-av-forskningen-fordelt-på-geografisk-fordeling-arealbruk-arealbruksendringer-og-økosystemer" class="nav-link" data-scroll-target="#overordnet-karakterisering-av-forskningen-fordelt-på-geografisk-fordeling-arealbruk-arealbruksendringer-og-økosystemer">Overordnet karakterisering av forskningen fordelt på geografisk fordeling, arealbruk, arealbruksendringer og økosystemer</a></li>
   <li><a href="#biologisk-organisering" id="toc-biologisk-organisering" class="nav-link" data-scroll-target="#biologisk-organisering">Biologisk organisering</a></li>
   </ul></li>
-  <li><a href="#samfunnsvitenskapelige-litteratur-fra-norge" id="toc-samfunnsvitenskapelige-litteratur-fra-norge" class="nav-link" data-scroll-target="#samfunnsvitenskapelige-litteratur-fra-norge"><span class="header-section-number">3.4</span> Samfunnsvitenskapelige litteratur fra Norge</a></li>
+  <li><a href="#samfunnsrelatert-litteratur-fra-norge" id="toc-samfunnsrelatert-litteratur-fra-norge" class="nav-link" data-scroll-target="#samfunnsrelatert-litteratur-fra-norge"><span class="header-section-number">3.4</span> Samfunnsrelatert litteratur fra Norge</a></li>
   <li><a href="#systematiske-litteratursammenstillinger" id="toc-systematiske-litteratursammenstillinger" class="nav-link" data-scroll-target="#systematiske-litteratursammenstillinger"><span class="header-section-number">3.5</span> Systematiske litteratursammenstillinger</a></li>
   <li><a href="#sammenstilning-av-data-fra-alle-inkluderte-artikler-fra-norge-sverige-og-finland" id="toc-sammenstilning-av-data-fra-alle-inkluderte-artikler-fra-norge-sverige-og-finland" class="nav-link" data-scroll-target="#sammenstilning-av-data-fra-alle-inkluderte-artikler-fra-norge-sverige-og-finland"><span class="header-section-number">3.6</span> Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland</a></li>
   <li><a href="#en-beslutningsmodell-basert-på-inkluderte-artikler-fra-norge" id="toc-en-beslutningsmodell-basert-på-inkluderte-artikler-fra-norge" class="nav-link" data-scroll-target="#en-beslutningsmodell-basert-på-inkluderte-artikler-fra-norge"><span class="header-section-number">3.7</span> En beslutningsmodell basert på inkluderte artikler fra Norge</a></li>
@@ -291,8 +298,8 @@ Tekst inn her, et kort resymé av innholdet. Teksten i sammendraget er søkbar i
 <h1 data-number="1"><span class="header-section-number">1</span> Innledning</h1>
 <p>Endringer i menneskelig arealbruk vurderes vurderes som den viktigste årsaken til tilbakegang og tap av arter og naturtyper både globalt og i Norge (<span class="citation" data-cites="diaz2019">Díaz et al. (<a href="#ref-diaz2019" role="doc-biblioref">2019</a>)</span>; <span class="citation" data-cites="malhi_climate_2020">Malhi et al. (<a href="#ref-malhi_climate_2020" role="doc-biblioref">2020</a>)</span>; <span class="citation" data-cites="artsdatabanken_norsk_2021">Artsdatabanken (<a href="#ref-artsdatabanken_norsk_2021" role="doc-biblioref">2021</a>)</span>). Arealendringer påvirker økosystemenes sammensetning, struktur og funksjon, og påvirker dermed økosystemenes evne til å produsere ulike goder og tjenester vi mennesker får fra naturen – ofte omtalt som naturgoder eller økosystemtjenester (<span class="citation" data-cites="ipbes_global_2019">IPBES (<a href="#ref-ipbes_global_2019" role="doc-biblioref">2019</a>)</span>). Det kanskje mest omtalte naturgodet i senere år er klimaregulering, der opptak og lagring av karbon i økosystemene er sentrale faktorer. Menneskelig bruk av arealene er dermed en nøkkelfaktor både i arbeidet med å bremse klimaendringene, tilpasning til et endret klima og som som den viktigste enkeltfaktoren i arbeidet med å stanse tap av natur og biologisk mangfold (<span class="citation" data-cites="diaz2019">Díaz et al. (<a href="#ref-diaz2019" role="doc-biblioref">2019</a>)</span>). Kunnskap om effektene av ulike former for arealbruk og arealendringer på naturmangfold og naturgoder, er dermed sentralt for både for arealpolitikk, klima- og miljøpolitikk.</p>
 <p>Å kvantifisere, forstå og formidle dynamikken i arealendringer og effektene av endringene for naturmangfoldet, er dermed en grunnleggende forutsetning for kunnskapbasert arealplanlegging og -forvaltning. Imidlertid mangler aktørene i arealforvaltningen i dag oppdaterte norske kunnskapssynteser om de direkte og indirekte sammenhengene mellom arealbruk, klimaendringer og naturmangfold, der den samlede vekten av evidens fra forskningen er vurdert, og der usikkerheten omkring kunnskapen er synliggjort. Dette gjelder både grunnleggende usikkerhet om årsak-virkningsmekanismer om effekter av arealbruk på naturmangfold og usikkerhet om det empiriske datagrunnlaget for slike vurderinger (<span class="citation" data-cites="jaureguiberry_direct_2022">Jaureguiberry et al. (<a href="#ref-jaureguiberry_direct_2022" role="doc-biblioref">2022</a>)</span>). I samfunnsdebatten om arealbruk og natur vises det derfor ofte til internasjonale globale kunnskapssynteser, til tross for betydelig usikkerhet rundt hvorvidt kunnskapen fra slike globale kunnskapssynteser lar seg overføre til nasjonalt, regionalt og lokalt nivå i Norge.</p>
-<section id="pågående-areal--og-landskapsendringer-i-norge" class="level3" data-number="1.0.1">
-<h3 data-number="1.0.1" class="anchored" data-anchor-id="pågående-areal--og-landskapsendringer-i-norge"><span class="header-section-number">1.0.1</span> Pågående areal- og landskapsendringer i Norge</h3>
+<section id="pågående-areal--og-landskapsendringer-i-norge" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="pågående-areal--og-landskapsendringer-i-norge"><span class="header-section-number">1.1</span> Pågående areal- og landskapsendringer i Norge</h2>
 <p>Pågående areal- og landskapsendringer i Norge er et resultat av historiske prosesser, og endringer i menneskelig arealbruk som delvis skyldes globale trender og til dels et resultat av regionale endringer, lokal politikk og lokal arealbruk. Her summerer vi opp noen sentrale endringer i menneskelig arealbruk siden 1850, som bakteppe for å vurdere effekten av disse endringene på biodiversitet, økosystemtjenester og karbonlagring.</p>
 <p>Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Norge skiller seg fra&nbsp;mange andre europeiske land ved at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal er ifølge SSB også i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km2, som tilsvarer litt under 50 km2 årlig. Utenom bebygd areal og jordbruksområder er Norges landareal i dag dominert av fjell, hei og vidde (45 prosent), skog (37 prosent), ferskvann, (6 prosent) og våtmark (5 prosent) og varig is og snø (1 prosent; SSB 2024).</p>
 <div class="cell" data-layout-align="left">
@@ -333,29 +340,26 @@ Figur&nbsp;2: a) Utvikling i a) tettstedsareal, b) jordbruksareal, c) areal med 
 </div>
 </div>
 </section>
-<section id="kunnskap-om-effekter-av-arealbruk-og-arealendringer-på-naturmangfold-og-naturgoder" class="level3" data-number="1.0.2">
-<h3 data-number="1.0.2" class="anchored" data-anchor-id="kunnskap-om-effekter-av-arealbruk-og-arealendringer-på-naturmangfold-og-naturgoder"><span class="header-section-number">1.0.2</span> Kunnskap om effekter av arealbruk og arealendringer på naturmangfold og naturgoder</h3>
+<section id="kunnskap-om-effekter-av-arealbruk-og-arealendringer-på-naturmangfold-og-naturgoder" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="kunnskap-om-effekter-av-arealbruk-og-arealendringer-på-naturmangfold-og-naturgoder"><span class="header-section-number">1.2</span> Kunnskap om effekter av arealbruk og arealendringer på naturmangfold og naturgoder</h2>
 <p>Et sentralt kunnskapsgrunnlag i arbeidet med vurderinger av påvirkningsfaktorer på naturmangfoldet i Norge er rødlister for arter og naturtyper som vurderer risiko for at arter dør ut i Norge eller at naturtyper går tapt (#artsdatabanken_norsk_2018, #artsdatabanken_norsk_2021). Rødlistevurderingene følger internasjonale metoder og utføres av eksperter med høy kompetanse på artsgruppene som vurderes (ekspertvurderinger), men vurderingene av <em>påvirkningsfaktorer</em>, inkludert arealbruk og arealendringer, foregår likevel på et relativt overordnet nivå, der kausale sammenhenger mellom arealendringer og effekter på utbredelse og bestandssituasjon for arter og naturtyper sjelden kvantifiseres.</p>
 <p>Flere fagsystemer og sentrale overvåkningsprogram er etablert med sikte på å gi en samlet oversikt over tilstand og utvikling i økosystemer eller for ulike artsgrupper (f.eks. Landsskogstaksteringen, Breidenbach#; fagsystemet for økologisk tilstand , <span class="citation" data-cites="nybo_fagsystem_2017">Nybø et al. (<a href="#ref-nybo_fagsystem_2017" role="doc-biblioref">2017</a>)</span>; Nasjonal insektovervåkning (#ref) og overvåkningsprogram for hjortevilt #ref), men slike fagsystemer og overvåkningsprogram gir ikke alltid grunnlag for å avdekke årsak-virkningforhold mellom de konkrete endringene i arealbruk og effekten på studieobjektene (arter, økosystemer og naturgoder).</p>
-</section>
-<section id="involvering-av-brukere-og-samfunnsaktører" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="involvering-av-brukere-og-samfunnsaktører"><span class="header-section-number">1.1</span> Involvering av brukere og samfunnsaktører</h2>
 <p>Mangelen på en samlet og omfattende oversikt over forskningsbasert kunnskap om effekter av arealbruk og arealendringer på norske arter, økosystemer og naturgoder fører også til at ulike interessegrupper og sektorer stoler på ulike “fakta,” noe som ofte fører til eskalerende konfliktnivå og dårlige beslutninger. Det er derfor et klart behov både for en oppsummering av kunnskap om temaet og en systematisk kartlegging av kunnskapshull. Politikk og beslutningstaking knyttet til arealbruk og dens effekter av arealbruk på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper (<span class="citation" data-cites="guldbrandsen_hvem_2022">Guldbrandsen and Handberg (<a href="#ref-guldbrandsen_hvem_2022" role="doc-biblioref">2022</a>)</span>; <span class="citation" data-cites="skogen_wolf_2021">Skogen et al. (<a href="#ref-skogen_wolf_2021" role="doc-biblioref">2021</a>)</span>). Kontrovers om kunnskapsgrunnlaget er også ofte et sentralt apaspekt ved konfliktene, kjennetegnet ved uenighet om kunnskapens status og motstridende tolkning av kunnskapen om effektene for naturen av ulike alternativer for arealbruk (<span class="citation" data-cites="aspoy_segmented_2022">Aspøy and Stokland (<a href="#ref-aspoy_segmented_2022" role="doc-biblioref">2022</a>)</span>; <span class="citation" data-cites="rusch2022">Rusch et al. (<a href="#ref-rusch2022" role="doc-biblioref">2022</a>)</span>).</p>
 <p><span class="citation" data-cites="ipbes_global_2019">IPBES (<a href="#ref-ipbes_global_2019" role="doc-biblioref">2019</a>)</span>, 2022a, 2022b og <span class="citation" data-cites="ipcc_global_2018">IPCC (<a href="#ref-ipcc_global_2018" role="doc-biblioref">2018</a>)</span> har foreslått forvaltningsstrategier og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av FNs bærekraftsmål (#UNFCC 2015), klimaavtalens mål om å begrense global oppvarming til grensen på 1,5°C og den globale naturavtalens 2050-visjon om å stanse og reversere fortap av biodiversitet (CBD 2022). Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres implementeringutnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy til en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese som også identifiseringer av kunnskapshull knyttet til angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima.</p>
-<section id="systematiske-kart-over-kunnskap-og-kunnskapshull" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="systematiske-kart-over-kunnskap-og-kunnskapshull"><span class="header-section-number">1.1.1</span> Systematiske kart over kunnskap og kunnskapshull</h3>
+</section>
+<section id="systematiske-kart-over-kunnskap-og-kunnskapshull" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="systematiske-kart-over-kunnskap-og-kunnskapshull"><span class="header-section-number">1.3</span> Systematiske kart over kunnskap og kunnskapshull</h2>
 <p>Systematiske kart, også kjent som Evidenskart eller Evidenshullkart, ble utviklet for å gi en oversikt over tilgjengelig evidens om et bredt tema (Saran et al., 2020). Mens systematiske kunnskapsoversikter (systematic reviews) søker&nbsp;å svare på smale, veldefinerte spørsmål , er systematiske kart først og fremst egnet&nbsp; til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål (<span class="citation" data-cites="james_methodology_2016">James et al. (<a href="#ref-james_methodology_2016" role="doc-biblioref">2016</a>)</span>). Systematiske kart søker å sammenstille resultatene fra kunnskapsgjennomganger på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser (Miake-Lye et al., 2016). Interaktive figurer og applikasjoner og som visualiserer kartleggingen blir i økende grad brukt for å gi en dynamisk presentasjon av resultatene for brukerne (slik som EviAtlas; <span class="citation" data-cites="haddaway_eviatlas_2019">Haddaway et al. (<a href="#ref-haddaway_eviatlas_2019" role="doc-biblioref">2019</a>)</span>). Det er viktig at systematiske kart over kunnskap ikke fremstilles som et mål i seg selv. Systematiske kart forteller først og fremst <em>hva</em> vi har kunnskap om, mens systematiske oversikter indikerer hva vekten av evidens sier om utvalgte forskningsspørsmål. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. ved stemmeoptelling, jf. (<span class="citation" data-cites="hedges_vote-counting_1980">Hedges and Olkin (<a href="#ref-hedges_vote-counting_1980" role="doc-biblioref">1980</a>)</span>)). Systematiske kart kan ikke erstatte stringensen ved systematiske oversikter, men kan gi beslutningstakere en oversikt over kunnskapsgrunnlaget ved å belyse hull eller klynger av evidens. De kan vise hvor evidenssyntese kan eller bør finne sted, der vi kan gå fra å å hvite hva vi har av kunnskap til å trekke slutninger om hva kunnskapen forteller oss. Hvilke forskningsspørsmål har vi tilstrekkelig med tilgjengelig evidens til å svare på gjennom en systematisk oversikt? På hvilke områder er videre primærforskning er nødvendig? Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i beslutningskonteksten (<span class="citation" data-cites="carrick_ik">(<a href="#ref-carrick_ik" role="doc-biblioref"><strong>carrick_ik?</strong></a>)</span> og arealbruksendringer i Norge</p>
 </section>
-</section>
-<section id="formålet-med-kunnskapssammenstillingen" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="formålet-med-kunnskapssammenstillingen"><span class="header-section-number">1.2</span> Formålet med kunnskapssammenstillingen</h2>
+<section id="formålet-med-kunnskapssammenstillingen" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="formålet-med-kunnskapssammenstillingen"><span class="header-section-number">1.4</span> Formålet med kunnskapssammenstillingen</h2>
 <p>Hovedmålet med dette prosjektet er å gi en helhetlig oversikt over tilgjengelig kunnskap knyttet til effekter av arealbruk og arealbruksendringer på norsk natur, med fokus på biologisk mangfold, økosystemtjenester, klimatilpasning, karbonbinding og lagring. Kartet er begrenset i geografisk omfang til Norge, Sverige og Finland (se inklusjonskriterier nedenfor). Rapporten er dessuten ledsaget av et beslutningsstøtteverktøy som en utvidelse av det systematiske kartet for å kontekstualisere tilgjengelig kunnskap. Verktøyet er utformet som en konseptuell modell av kunnskapsfeltet og synliggjøre betydningen av kunnskapshull på ulike områder.</p>
-<section id="hovedproblemstilling" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="hovedproblemstilling"><span class="header-section-number">1.2.1</span> Hovedproblemstilling</h3>
+<section id="hovedproblemstilling" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="hovedproblemstilling"><span class="header-section-number">1.4.1</span> Hovedproblemstilling</h3>
 <p>Hovedspørsmålet i vårt systematiske kart er «Hvilke forskningsbasert kunnskap finnes knyttet til virkningene av arealbruk og endringer i arealbruk på biologisk mangfold, økosystemtjenester og karbonbinding i Norge, hvilken type konflikter er identifisert mellom ulike former for arealbruk, og hvilke verktøy foreslås for å forbedre styringen”.</p>
 </section>
-<section id="underproblemstillinger" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="underproblemstillinger"><span class="header-section-number">1.2.2</span> Underproblemstillinger</h3>
+<section id="underproblemstillinger" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="underproblemstillinger"><span class="header-section-number">1.4.2</span> Underproblemstillinger</h3>
 <p>Vi vil karakterisere den eksisterende litteraturen langs følgende akser:</p>
 <ul>
 <li><p>Hvor stor andel av forskningen er basert på empiriske data?</p></li>
@@ -391,9 +395,9 @@ Figur&nbsp;2: a) Utvikling i a) tettstedsareal, b) jordbruksareal, c) areal med 
 <li><p>Prosedyrer for sjekk av konsistens mellom review-gruppa</p></li>
 <li><p>Regler for datakoding</p></li>
 </ul>
-<p>Versjon 1.0 av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes her https://osf.io/mwapc/. Den endelige versjonen av protokollen kan leses her (ref).</p>
-<section id="involvering-av-brukere-og-samfunnsaktører-1" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="involvering-av-brukere-og-samfunnsaktører-1"><span class="header-section-number">2.1</span> Involvering av brukere og samfunnsaktører</h2>
+<p>Versjon 1.0 av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes her https://osf.io/mwapc/. Den endelige versjonen av protokollen kan leses her <span class="citation" data-cites="nilsen2024">(<a href="#ref-nilsen2024" role="doc-biblioref">Nilsen et al. 2024</a>)</span>.</p>
+<section id="involvering-av-brukere-og-samfunnsaktører" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="involvering-av-brukere-og-samfunnsaktører"><span class="header-section-number">2.1</span> Involvering av brukere og samfunnsaktører</h2>
 <p>Utkastet til vurderingen ble presentert på en konferanse holdt av Miljødirektoratet og Norges forskningsråd 23. oktober 2022. Et generelt interessentmøte ble arrangert av NINA 25. april 2023. Fokus og omfang av vurderingen ble innsnevret og bedre definert under et spesifikt interessentarrangement den #date. Detaljer om dette møtet og endringene i omfang er tilgjengelige på forespørsel. Interessenter som deltok på dette arrangementet ble invitert til å kommentere utkastet til protokollen før innsending til publisering. Interessenter var ikke involvert under gjennomføringen av vurderingen.</p>
 </section>
 <section id="avvik-fra-protokollen" class="level2" data-number="2.2">
@@ -421,7 +425,7 @@ Figur&nbsp;2: a) Utvikling i a) tettstedsareal, b) jordbruksareal, c) areal med 
 <p><em>TS=(“land use” OR “land cover” OR “space use” OR LULCC OR (planning AND (spati* OR region* OR area* OR conservation OR land* OR urban)) OR (conversion AND (land* OR habitat* OR area* OR ecosystem* OR natur)) OR (change NEAR/3 (land* OR area)) OR “national park” OR landscape* OR habitat* OR Husbandry OR “land shar” OR “land spar” OR (Outdoor NEAR/3 (life OR livin* OR recreat)) OR (restoration AND (nature OR ecosystem)) OR forestry OR (reindeer NEAR/3 (herd* OR husbandr)) OR (livestock NEAR/3 graz) OR “holiday home” OR “secondary home”OR (recreation* NEAR/3 (home* OR cottage* OR cabin* OR propert)) OR tourism OR “wind power” OR “Land manag” OR “Nature conservation” OR ((governance OR management) AND (spati* OR region* OR area* OR conservation OR land* OR urban)) OR aquaculture OR “fish farm” OR hydropower OR “green energy” OR “energy development” OR herding OR agriculture OR transportation OR road OR “oil and gas” OR petroleum OR mining OR windpower OR traffic OR road* OR railway* OR “hydroelectric power” OR “solar power” OR “solar electricity” OR “power plant” OR LULC OR LULUCF OR AFOLU OR FOLU)</em></p>
 <p><em>AND</em></p>
 <p><em>TS=(sustainab* OR biodiversity OR “Ecosystem service” OR (carbon NEAR/3 (stor OR sequest)) OR (ecosystem NEAR/3 (impact* OR effect* OR provision* OR regulat* OR support* OR cultur)) OR ((loss OR shrink OR bisection* OR perforation OR fragmentation) AND (habitat OR land)) OR (climate NEAR/3 adapt) OR ecodiversity OR “ecosystem type” OR “ecological process” OR anthropogenic OR conflict OR (diversity NEAR/3 (ecological OR speci* OR population*)) OR red-list OR “water purification” OR “soil retention” OR spiritual OR cultural OR aesthetics OR “climate mitigation”)</em></p>
-<p>Vi Screenet alle systematiske litteratursammenstillinger og systematiske kart fra den internasjonale litteraturen, og de to kategoriene ble konminert ved TS=(“Systematic review<em>” OR ”systematic map</em>” OR “rapid review*”). For den primære forskningslitteraturen ble de to kategoriene kombinert ved TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish), og alle resultatene ble screenet.</p>
+<p>Vi screenet alle systematiske litteratursammenstillinger og systematiske kart fra den internasjonale litteraturen, og de to kategoriene ble konminert ved TS=(“Systematic review<em>” OR ”systematic map</em>” OR “rapid review*”). For den primære forskningslitteraturen ble de to kategoriene kombinert ved TS=(Norway OR Norwegian OR Sweden OR Swedish OR Finland OR Finnish), og alle resultatene ble screenet.</p>
 </section>
 <section id="test-av-søkets-omfang-og-dekning" class="level3" data-number="2.3.3">
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="test-av-søkets-omfang-og-dekning"><span class="header-section-number">2.3.3</span> Test av søkets omfang og dekning</h3>
@@ -492,8 +496,8 @@ Figur&nbsp;3: overlapp mellom de ulike kildene til litteratur og benchmark-artik
 <h2 data-number="2.6" class="anchored" data-anchor-id="datakodestrategier"><span class="header-section-number">2.6</span> Datakodestrategier</h2>
 <p>For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterier for koding er gitt i vedlegg 3. ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy.</p>
 </section>
-<section id="involvering-av-brukere-og-samfunnsaktører-2" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="involvering-av-brukere-og-samfunnsaktører-2"><span class="header-section-number">2.7</span> Involvering av brukere og samfunnsaktører</h2>
+<section id="involvering-av-brukere-og-samfunnsaktører-1" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="involvering-av-brukere-og-samfunnsaktører-1"><span class="header-section-number">2.7</span> Involvering av brukere og samfunnsaktører</h2>
 <p>Utkastet til vurderingen ble presentert på en konferanse holdt av Miljødirektoratet og Norges forskningsråd 23. oktober 2022. Et generelt interessentmøte ble arrangert av NINA 25. april 2023. Fokus og omfang av vurderingen ble innsnevret og bedre definert under et spesifikt interessentarrangement den #date. Detaljer om dette møtet og endringene i omfang er tilgjengelige på forespørsel. Interessenter som deltok på dette arrangementet ble invitert til å kommentere utkastet til protokollen før innsending til publisering. Interessenter var ikke involvert under gjennomføringen av vurderingen.</p>
 </section>
 <section id="avvik-fra-protokollen-1" class="level2" data-number="2.8">
@@ -512,8 +516,8 @@ Figur&nbsp;3: overlapp mellom de ulike kildene til litteratur og benchmark-artik
 <div id="fig-prisma" class="cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-prisma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9d669b35ebaf83ca828c" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-9d669b35ebaf83ca828c">{"x":{"diagram":"digraph prisma {\n    node [shape=\"box\", fontsize = 10];\n    graph [splines=ortho, nodesep=1, dpi = 72]\n    a -> nodups;\n    b -> nodups;\n    a [label=\"Records identified through\ndatabase searching\n(n = 36418)\"];\n    b [label=\"Additional records identified\nthrough other sources\n(n = 1965)\"]\n    nodups -> incex;\n    nodups [label=\"Records after duplicates removed\n(n = 20265)\"];\n    incex -> {ex; ft}\n    incex [label=\"Records screened\n(n = 14808)\"];\n    ex [label=\"Records excluded\n(n = 12144)\"];\n    {rank=same; incex ex}\n    ft -> {qual; ftex};\n    ft [label=\"Full-text articles assessed\nfor eligibility\n(n = 2398)\"];\n    {rank=same; ft ftex}\n    ftex [label=\"Full-text articles excluded,\nwith reasons\n(n = 0)\"];\n    qual -> quant\n    qual [label=\"Studies included in qualitative synthesis\n(n = 0)\"];\n    quant [label=\"Studies included in\nquantitative synthesis\n(meta-analysis)\n(n = 0)\"];\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-8748b36e3e8d311590e3" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8748b36e3e8d311590e3">{"x":{"diagram":"digraph prisma {\n    node [shape=\"box\", fontsize = 10];\n    graph [splines=ortho, nodesep=1, dpi = 72]\n    a -> nodups;\n    b -> nodups;\n    a [label=\"Records identified through\ndatabase searching\n(n = 36418)\"];\n    b [label=\"Additional records identified\nthrough other sources\n(n = 1965)\"]\n    nodups -> incex;\n    nodups [label=\"Records after duplicates removed\n(n = 20265)\"];\n    incex -> {ex; ft}\n    incex [label=\"Records screened\n(n = 14808)\"];\n    ex [label=\"Records excluded\n(n = 12144)\"];\n    {rank=same; incex ex}\n    ft -> {qual; ftex};\n    ft [label=\"Full-text articles assessed\nfor eligibility\n(n = 2398)\"];\n    {rank=same; ft ftex}\n    ftex [label=\"Full-text articles excluded,\nwith reasons\n(n = 0)\"];\n    qual -> quant\n    qual [label=\"Studies included in qualitative synthesis\n(n = 0)\"];\n    quant [label=\"Studies included in\nquantitative synthesis\n(meta-analysis)\n(n = 0)\"];\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-prisma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figur&nbsp;4: Flytskjema (PRISMA) som viser hvor mange artikler som går videre til de ulike stegene i den systematiske litterturgjennomgangsprosessen.
@@ -784,10 +788,48 @@ Figur&nbsp;18: Omfang av artikler som fokuserer på effekten av arealbruk på ar
 </section>
 </section>
 </section>
-<section id="samfunnsvitenskapelige-litteratur-fra-norge" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="samfunnsvitenskapelige-litteratur-fra-norge"><span class="header-section-number">3.4</span> Samfunnsvitenskapelige litteratur fra Norge</h2>
-<section id="fordeling-av-samfunnsvitenskapelige-studier-mellom-ulike-økosystemer-og-former-for-arealbruk" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="fordeling-av-samfunnsvitenskapelige-studier-mellom-ulike-økosystemer-og-former-for-arealbruk">Fordeling av samfunnsvitenskapelige studier mellom ulike økosystemer og former for arealbruk</h4>
+<section id="samfunnsrelatert-litteratur-fra-norge" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="samfunnsrelatert-litteratur-fra-norge"><span class="header-section-number">3.4</span> Samfunnsrelatert litteratur fra Norge</h2>
+<p>Her følger resultatene fra vår gjennomgang av de studiene som har analysert en eller annen form for konflikt, et forvaltningsverktøy eller styring (<em>governance</em>). Dette tilsvarer 73 artikler av total 264, dvs. 28%. Av disse igjen er det kun 32 artikler som bruker samfunsvitenskeplige metoder.</p>
+<section id="hvilke-samfunnsfaglige-tema-har-blitt-forsket-på-konflikter-styring-og-forvaltningsverktøy" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="hvilke-samfunnsfaglige-tema-har-blitt-forsket-på-konflikter-styring-og-forvaltningsverktøy">Hvilke samfunnsfaglige tema har blitt forsket på? (Konflikter, styring og forvaltningsverktøy)</h4>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div id="fig-ssEmpiricalFocus" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ssEmpiricalFocus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quarto_ninareport_files/figure-html/fig-ssEmpiricalFocus-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ssEmpiricalFocus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;19: Omfang av samfunnsrelatert litteratur som fokuserer på ulike samfunsfaglige tema. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hvilke-metoder-er-brukt-i-de-samfunnrelaterte-studiene" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="hvilke-metoder-er-brukt-i-de-samfunnrelaterte-studiene">Hvilke metoder er brukt i de samfunnrelaterte studiene?</h4>
+<p>Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (<a href="#fig-analytisk" class="quarto-xref">Figur&nbsp;20</a>). Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. Mange studier har også brukt intervjuer, samt blandede metoder. Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div id="fig-analytisk" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-analytisk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quarto_ninareport_files/figure-html/fig-analytisk-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-analytisk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;20: Hva er de dominante analytiske tilnærmingene for samfunnsrelaterte studier? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered} <!-- Her skal det inn en figur basrt på analytical_approach_of_study, men den er litt tricky --></p>
+</section>
+<section id="hvilke-økosystemer-har-vært-tema-for-samfunnsrelaterte-studier" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="hvilke-økosystemer-har-vært-tema-for-samfunnsrelaterte-studier">Hvilke økosystemer har vært tema for samfunnsrelaterte studier?</h4>
+<p>Av den samfunnsrelaterte og den samfunnsvitenskapelige forskningen vi har undersøkt er flest studier relatert til skogøkosystemer, etterfulgt av fjelløkosystemer og semi-naturlige økosystemer. Disse er igjen etterfulgt av studier relatert til elve- og innsjøøkosystemer, kystøkosystemer, naturlige åpne områder under tregrensen, polare økosystemer og arktisk tundra, våtmarks- og myrøkosystemer, urbane økosystemer samt økosystemer knyttet til jordbruk.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div id="fig-socialscience-ecosys" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
@@ -796,120 +838,71 @@ Figur&nbsp;18: Omfang av artikler som fokuserer på effekten av arealbruk på ar
 <img src="quarto_ninareport_files/figure-html/fig-socialscience-ecosys-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-socialscience-ecosys-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figur&nbsp;19: Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike økosystemer
+Figur&nbsp;21: Omfang av samfunnsrelaterte artikler som fokuserer på ulike økosystemer. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+</section>
+<section id="hvilke-typer-arealbruk-fokuserer-de-samfunnsvitenskapelige-studiene-på" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="hvilke-typer-arealbruk-fokuserer-de-samfunnsvitenskapelige-studiene-på">Hvilke typer arealbruk fokuserer de samfunnsvitenskapelige studiene på?</h4>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div id="fig-socialscience-areause_coarse" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
+<div id="fig-socialscience-areause-coarse" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-socialscience-areause_coarse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="quarto_ninareport_files/figure-html/fig-socialscience-areause_coarse-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
+<div aria-describedby="fig-socialscience-areause-coarse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quarto_ninareport_files/figure-html/fig-socialscience-areause-coarse-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-socialscience-areause_coarse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figur&nbsp;20: Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike typer arealbruk
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-socialscience-areause-coarse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;22: Omfang av samfunnsrelaterte artikler som fokuserer på ulike typer arealbruk. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+</section>
+<section id="hvilke-styringsnivå-fokuserer-de-samfunnsvitenskapelige-studiene-på" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="hvilke-styringsnivå-fokuserer-de-samfunnsvitenskapelige-studiene-på">Hvilke styringsnivå fokuserer de samfunnsvitenskapelige studiene på?</h4>
+<p>De fleste samfunsrelaterte artiklene fokuserte på det lokale styringsnivået, typisk kommunenivå (<a href="#fig-toolLevel" class="quarto-xref">Figur&nbsp;23</a>).</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div id="fig-socialscience-areause_fine" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
+<div id="fig-toolLevel" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-socialscience-areause_fine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="quarto_ninareport_files/figure-html/fig-socialscience-areause_fine-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
+<div aria-describedby="fig-toolLevel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quarto_ninareport_files/figure-html/fig-toolLevel-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-socialscience-areause_fine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figur&nbsp;21: Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike typer arealbruk
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-toolLevel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;23: Omfang samfunnsrelaterte artikler som fokuserer på ulike styringsnivå. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="hva-er-de-dominante-analytiske-tilnærmingene-for-samfunnsvitenskapelige-studier" class="level4" data-number="3.4.0.1">
-<h4 data-number="3.4.0.1" class="anchored" data-anchor-id="hva-er-de-dominante-analytiske-tilnærmingene-for-samfunnsvitenskapelige-studier"><span class="header-section-number">3.4.0.1</span> Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?</h4>
+<section id="hvilke-sektorer-fokuserer-de-samfunnsvitenskapelige-studiene-på" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="hvilke-sektorer-fokuserer-de-samfunnsvitenskapelige-studiene-på">Hvilke sektorer fokuserer de samfunnsvitenskapelige studiene på?</h4>
+<!-- Denne figuren skal oppdateres etter litt ny koding fra Håkon og Thomas -->
+<p>Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk samt sektor for klima- og miljøpolitikk (<a href="#fig-sectors" class="quarto-xref">Figur&nbsp;24</a>). Et fåtall studier var relevant for olje- og energipolitikk, nærings- og fiskeripolitikk samt handel.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/analytisk-1.svg" class="img-fluid figure-img"></p>
-<figcaption>Hva er de dominante analytiske tilnærmingene for samfunnsvitenskapelige studier?</figcaption>
+<div id="fig-sectors" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quarto_ninareport_files/figure-html/fig-sectors-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sectors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;24: Hvilke sektorer og samfunnsmessige områder er hyppigst studert blan de samfunnsrelaterte artiklene? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="hvilke-aktører-er-hyppigst-representert-i-forskningen" class="level4" data-number="3.4.0.2">
-<h4 data-number="3.4.0.2" class="anchored" data-anchor-id="hvilke-aktører-er-hyppigst-representert-i-forskningen"><span class="header-section-number">3.4.0.2</span> Hvilke aktører er hyppigst representert i forskningen?</h4>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/actors-1.svg" class="img-fluid figure-img"></p>
-<figcaption>Hvilke aktører er hyppigst representert i forskningen?</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="hvilke-sektorer-og-samfunnsmessige-områder-er-hyppigst-studert" class="level4" data-number="3.4.0.3">
-<h4 data-number="3.4.0.3" class="anchored" data-anchor-id="hvilke-sektorer-og-samfunnsmessige-områder-er-hyppigst-studert"><span class="header-section-number">3.4.0.3</span> Hvilke sektorer og samfunnsmessige områder er hyppigst studert?</h4>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/sectors-1.svg" class="img-fluid figure-img"></p>
-<figcaption>Hvilke sektorer og samfunnsmessige områder er hyppigst studert?</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="hvilke-verktøy-er-foreslått-for-å-løse-konfliktene" class="level4" data-number="3.4.0.4">
-<h4 data-number="3.4.0.4" class="anchored" data-anchor-id="hvilke-verktøy-er-foreslått-for-å-løse-konfliktene"><span class="header-section-number">3.4.0.4</span> Hvilke verktøy er foreslått for å løse konfliktene?</h4>
-</section>
-<section id="needs-cleaning" class="level4" data-number="3.4.0.5">
-<h4 data-number="3.4.0.5" class="anchored" data-anchor-id="needs-cleaning"><span class="header-section-number">3.4.0.5</span> NEEDS CLEANING</h4>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/tools-1.svg" class="img-fluid figure-img"></p>
-<figcaption>Hvilke verktøy er foreslått for å løse konfliktene?</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="karakterisering-av-foreslåtte-verktøy" class="level4" data-number="3.4.0.6">
-<h4 data-number="3.4.0.6" class="anchored" data-anchor-id="karakterisering-av-foreslåtte-verktøy"><span class="header-section-number">3.4.0.6</span> Karakterisering av foreslåtte verktøy</h4>
-<p>NEEDS TIDYING UP</p>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/tools_characteristic-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="hvilket-samfunnsmessig-nivå-benytter-verktøyet" class="level4" data-number="3.4.0.7">
-<h4 data-number="3.4.0.7" class="anchored" data-anchor-id="hvilket-samfunnsmessig-nivå-benytter-verktøyet"><span class="header-section-number">3.4.0.7</span> Hvilket samfunnsmessig nivå benytter verktøyet?</h4>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/tool_level-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+<!-- #### Hvilke aktører er hyppigst representert i forskningen? {.unnumbered} -->
+<!-- #### Hvilke verktøy er foreslått for å løse konfliktene? -->
+<!-- #### NEEDS CLEANING -->
+<!-- #### Karakterisering av foreslåtte verktøy -->
+<!-- NEEDS TIDYING UP -->
 </section>
 </section>
 <section id="systematiske-litteratursammenstillinger" class="level2" data-number="3.5">
@@ -925,47 +918,22 @@ Figur&nbsp;21: Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike
 <img src="quarto_ninareport_files/figure-html/fig-sysrev-ecosystem-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sysrev-ecosystem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figur&nbsp;22: Indirectness
+Figur&nbsp;25: Indirectness
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell" data-layout-align="left">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># | echo: false | message: false | warning: false</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># | label: fig-sysrev-areause-coarse | fig-cap:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 'Indirectness'</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sysRev <span class="sc">|&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(x23) <span class="sc">|&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">land_use =</span> <span class="fu">strsplit</span>(x23, <span class="st">","</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest</span>(land_use) <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(land_use) <span class="sc">|&gt;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tally</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">land_use =</span> <span class="fu">case_when</span>(<span class="fu">grepl</span>(<span class="st">"Agricul"</span>, land_use) <span class="sc">~</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Agriculture"</span>, <span class="fu">grepl</span>(<span class="st">"Biological resource use"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        land_use) <span class="sc">~</span> <span class="st">"Biological resource use"</span>, <span class="fu">grepl</span>(<span class="st">"Energy"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        land_use) <span class="sc">~</span> <span class="st">"Energy"</span>, <span class="fu">grepl</span>(<span class="st">"Resident"</span>, land_use) <span class="sc">~</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Residential"</span>, <span class="fu">grepl</span>(<span class="st">"Transport"</span>, land_use) <span class="sc">~</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Transportation"</span>, <span class="fu">grepl</span>(<span class="st">"fish"</span>, land_use) <span class="sc">~</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Biological resource use"</span>, <span class="cn">TRUE</span> <span class="sc">~</span> land_use)) <span class="sc">|&gt;</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">land_use =</span> <span class="fu">trimws</span>(land_use)) <span class="sc">|&gt;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(land_use) <span class="sc">|&gt;</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">reorder</span>(land_use, n), n, <span class="at">fill =</span> land_use)) <span class="sc">+</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"Null"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"antall publikasjoner"</span>) <span class="sc">+</span> <span class="fu">scale_fill_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">option =</span> <span class="st">"D"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in geom_histogram(stat = "identity"): Ignoring
-unknown parameters: `binwidth`, `bins`, and `pad`</code></pre>
-</div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/sys%20rev%20areause-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
+<div id="fig-sysrev-areause-coarse" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sysrev-areause-coarse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quarto_ninareport_files/figure-html/fig-sysrev-areause-coarse-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sysrev-areause-coarse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;26: Indirectness
+</figcaption>
 </figure>
 </div>
 </div>
@@ -978,7 +946,7 @@ unknown parameters: `binwidth`, `bins`, and `pad`</code></pre>
 <img src="quarto_ninareport_files/figure-html/fig-sysrev-areause-detailed-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sysrev-areause-detailed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figur&nbsp;23: Indirectness
+Figur&nbsp;27: Indirectness
 </figcaption>
 </figure>
 </div>
@@ -996,7 +964,7 @@ Figur&nbsp;23: Indirectness
 <img src="quarto_ninareport_files/figure-html/fig-type-sum-evidence-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-type-sum-evidence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figur&nbsp;24: En oversikt over hvor hyppig de ulike typene systematisk litteratursammenstilling forekommer i datamaterialet.
+Figur&nbsp;28: En oversikt over hvor hyppig de ulike typene systematisk litteratursammenstilling forekommer i datamaterialet.
 </figcaption>
 </figure>
 </div>
@@ -1062,68 +1030,83 @@ Figur&nbsp;24: En oversikt over hvor hyppig de ulike typene systematisk litterat
 </div>
 </div>
 </div>
-<p>Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt datamateriale er…. (<a href="#fig-type-sum-evidence" class="quarto-xref">Figur&nbsp;24</a>).</p>
+<p>Den hyppist forekommende formen for systematisk litteratursammenstilling i vårt datamateriale er…. (<a href="#fig-type-sum-evidence" class="quarto-xref">Figur&nbsp;28</a>).</p>
 </section>
 </section>
 <section id="sammenstilning-av-data-fra-alle-inkluderte-artikler-fra-norge-sverige-og-finland" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="sammenstilning-av-data-fra-alle-inkluderte-artikler-fra-norge-sverige-og-finland"><span class="header-section-number">3.6</span> Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland</h2>
-<p>I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra Norge, Sverige og Finland.</p>
+<p>I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra Norge, Sverige og Finland. Siden disse artiklene kun har gått gjennom første screening men ikke er kodet er det mer begrenset hva vi kan lese ut av disse artiklene. Vi har her benyttet oss av endel biobliometriske analysemetoder og informasjon fra åpne kilder (for eksempel OpenAlex, som er en database med data og metadata som omhandler den vitenskapelige litteraturen).</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/all_cooccur-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
+<div id="fig-source-all" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-source-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quarto_ninareport_files/figure-html/fig-source-all-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-source-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;29: Oversikt over hvilke tidsskrifter den inkluderte litteraturen er publisert i
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>Som det framkommer av <a href="#fig-source-all" class="quarto-xref">Figur&nbsp;29</a> er den inkluderte litteraturen publisert en en rekke ulike tidsskrifter. Selv om tidsskriftene i seg selv ikke gir et detaljert bilde på hva artiklene omhandler er det to av tidsskriftene på listen (<em>Forest ecology and management</em> og <em>Scandinavian journal of forestry</em>) er rene skogbrukstidsskrifter, mens <em>Agriculture, ecosystems and environment</em> er et interdisiplinært tidsskrift som fokuserer på interaksjonen mellom landbruk og økosystemer. Flere av de øvrige tidsskriftene å listen er generelle økologiske tidsskrifter, og ingen av tidsskriftene er primære samfunnsvitenskapelige tidsskrifter.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div id="fig-openalex-concepts" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-openalex-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quarto_ninareport_files/figure-html/fig-openalex-concepts-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-openalex-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;30: En oversikt over hvikle OpenAlex-konspeter de inkluderte studiene kategorieres under
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En annen måte å kategorisere litteraturen på er å se hvilke “konspter” under OpenAlex de ulike artiklene passer under <a href="#fig-openalex-concepts" class="quarto-xref">Figur&nbsp;30</a>. Selv om konseptene ikke er hierakiske eller passer inn i et enkelt klassifiseringsskjema, ser man at enkelte konspter opptrer mer hyppig enn andre.</p>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div id="fig-keyword-network" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-keyword-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quarto_ninareport_files/figure-html/fig-keyword-network-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-keyword-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;31: Matt write short fig cap
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Vi gjorde også en enkel analyse av hvilke nøkkelord som vanligvis oppterer samlet, og så hvordan dette fordelte seg mellom ulike nøkkelord <a href="#fig-keyword-network" class="quarto-xref">Figur&nbsp;31</a>.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="quarto_ninareport_files/figure-html/fig_co-citation-1.svg" class="img-fluid figure-img"></p>
-<figcaption>Biblographic coupling (shared citations between papers) highlights conceptual groupings within the field as a whole</figcaption>
+<figcaption>Bibliografisk ‘kobling’ (delte siteringer mellom flere artikler) framhever konseptuelle grupper i datasettet</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>En nettverksanalyse av siteringsnettverkene viser videre at det er klare grupperinger i datasettet <span class="citation" data-cites="fig">(<a href="#ref-fig" role="doc-biblioref"><strong>fig?</strong></a>)</span>–co-citation. Disse klustrene, markert med ulike farger domineres av henholdsvis <!--# Matt - can we say something very rough about the clusters? --></p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/top%20concepts%20openalex%20all%20included-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
+<div id="fig-wordfreq" class="quarto-figure quarto-figure-left quarto-float anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wordfreq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="quarto_ninareport_files/figure-html/fig-wordfreq-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wordfreq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figur&nbsp;32: Matt - this you must describe
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/sources%20openalex%20all%20included-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/open%20access%20status%20openalex%20all%20included-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Change in frequency of keywords in all included</p>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="quarto_ninareport_files/figure-html/wordfreq-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>Vi undersøkte også hvilke tema som ble vanligere og sjeldnere over tid <!--# Matt - I need help to write this section--></p>
 </section>
 <section id="en-beslutningsmodell-basert-på-inkluderte-artikler-fra-norge" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="en-beslutningsmodell-basert-på-inkluderte-artikler-fra-norge"><span class="header-section-number">3.7</span> En beslutningsmodell basert på inkluderte artikler fra Norge</h2>
@@ -1146,19 +1129,19 @@ Figur&nbsp;24: En oversikt over hvor hyppig de ulike typene systematisk litterat
 <img src="quarto_ninareport_files/figure-html/fig-themeMap-1.svg" class="img-fluid quarto-figure quarto-figure-left figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-themeMap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figur&nbsp;25: Oversikt over ulike tema og deres fordeling i matrisen
+Figur&nbsp;33: Oversikt over ulike tema og deres fordeling i matrisen
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>I <a href="#fig-themeMap" class="quarto-xref">Figur&nbsp;25</a> er temaer indikert med et enkelt felles nøkkelord. Vi kan se at godt studerte temaer i Norge inkluderte artsrikhet (<em>species richness</em>) spesielt i sammenheng med skogforvaltning, rein (<em>Rangifer tarandus</em>) – her med fokus på villrein. Studier rundt habitatvalg (<em>habitat selection</em>) inkluderte studier på gaupe og rådyr. Konflikt mellom mennesker og dyreliv rundt gjess og jordbruk er også godt studert.</p>
+<p>I <a href="#fig-themeMap" class="quarto-xref">Figur&nbsp;33</a> er temaer indikert med et enkelt felles nøkkelord. Vi kan se at godt studerte temaer i Norge inkluderte artsrikhet (<em>species richness</em>) spesielt i sammenheng med skogforvaltning, rein (<em>Rangifer tarandus</em>) – her med fokus på villrein. Studier rundt habitatvalg (<em>habitat selection</em>) inkluderte studier på gaupe og rådyr. Konflikt mellom mennesker og dyreliv rundt gjess og jordbruk er også godt studert.</p>
 <p>Temaer som er stigende omfatter blant annet hyttebygging og bevaring av biologisk mangfold i forbindelse med klimaendringer, samt bærekraftig utvikling. Fremtidige scenarier for arealbruksendring (så vel som andre globale endringer) er også et felt i vekst. Studier rundt urfolk i sammenheng med arealbruksendring er underrepresentert i feltet.</p>
 </section>
 </section>
 <section id="diskusjon" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Diskusjon</h1>
-<p>Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema det finnes forskning på og hvilke tema det mangler. Basert på over 20.000 artikler som ble fanget opp av vårt søk endte vi opp med &gt; 2000 artikler som svarte på inkluderingskriteriene etter første runde med screening. Alle artikler fra Norge samt systematiske kunnskapssammenstillinger ble videreført til en andre runde med screening samt datakoding. Totalt omfattende denne litteraturen XX artikler. Som det framgår av resultatseksjonen er det imidlertid stor forskjell på hvor godt de ulike tema, former for arealbruk og arealbruksendringer er dekket. Det er også stor variasjon i hvor mye forskning som har blitt gjennomført i de ulike fylkene (merk - her snakker vi om hvor studiene er gjennomført, ikke hvor forskningsgruppa holder til).</p>
+<p>Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema det finnes forskning på og hvilke tema det mangler. Basert på over 20.000 artikler som ble fanget opp av vårt søk endte vi opp med 2301 artikler som oppfylte inkluderingskriteriene etter første runde med screening. Alle artikler fra Norge samt systematiske kunnskapssammenstillinger ble videreført til en andre runde med screening samt datakoding. Totalt omfattende denne litteraturen XX artikler. Som det framgår av resultatseksjonen er det imidlertid stor forskjell på hvor godt de ulike tema, former for arealbruk og arealbruksendringer er dekket. Det er også stor variasjon i hvor mye forskning som har blitt gjennomført i de ulike fylkene (merk - her snakker vi om hvor studiene er gjennomført, ikke hvor forskningsgruppa holder til).</p>
 <p>Et gjennomgående trekk fra vår sammestilling av litteraturen fra Norge er at et dominerende andel av den naturvitenskapelige forskningen er basert på empiriske data samlet inn i felt eller fra moderne teknologier (fjernmåling osv). Den støreste andelen av forskningen baserer seg også på lokale eller regionale studier, noe som inneærer at de dekker for eksempel en del av en kommune eller et fylke, eller et større fjellområde. Det er relativt få studier som dekker hele landet. Dette kan være en begrensning siden mange vurderinger (f.eks. rødlisting av arter, ulike rapportering til internasjonale indekser osv) er basert på landsdekkende trender og status. Siden det i Norge er mange overvåkningsprogram som i prinsippet dekker hele landet (for eksempel TOV-e og Rovdata sin rovdyrovervåkning) er dette funnet noe overraskende.</p>
 <p>Et annet veldig tydelig funn er at en veldig stor andel av den naturvitenskapelige litteraturen baserer seg på relativt “svake” forsøkdsdesing. Når vi skriver svak mener vi her design som ikke nødvendigvis er godt egent til å avdekke årsak-virkningssamennhenger. Som det framgår av <a href="#fig-studydesign" class="quarto-xref">Figur&nbsp;7</a> er forskningen vi har kategorisert fra Norge i veldig stor grad domiert av det vi har kategorisert som controll-påvirkning (<em>Control-impact</em>) og etter-desing (<em>After</em>), med en visst innslag av før-etter design (<em>Before-after</em>). Særlig designtypen etter mangler styrke til å si noe om årsak-virkning, siden man ikke har et kontrollområde å sammenlikne effekten av intervensjonen mot. Men også for studiedesign av typen kontroll-påvirkning og før-etter er det velkjent at slutningen kan være utsatte for bias og skjevhet. Nyere statistiske metoder basert på “causal inference” har blitt utviklet for i større grad kunne trekke slutninger om årsak-virkning også fra slike studiedesign. Vi har ikke hatt kapasitet til å undersøke hvor ofte disse har blitt benyttet i den litteraturen vi har kategorisert, men basert på vår genrelle kjennskap til forskningsfeltet er det all grunn til å anta at disse sjeldent benyttes. I motsetning til studiedesignene beskrevet over har studiedesignene randomisert-kontrollert forsøk (<em>Randomised controlled trials</em> - RCT) og tildels før-etter-kontroll-impact (<em>Before-after-controll-impact</em> - BACI) mye større styrke til å avdekke årsak-virkningsforhold og unngås skjevhet i resultatene. Særlig er RCT regnet som gullstandarden innenfor naturvitenskapelig forskning, og det er en påfallende mangel på slike studier i vår gjennomgang (med noen svært gode unntak). En utfordring med RCT og BACI-design knyttet til å forstå effekter av arealbruk på ulike biodiversitetsmål er at de ofte er ressurskrevende og ofte må gjennomføres over en betydelig romlig- og tidsmessig skala for å gi sikker inferens. Dette kan være utfordrende med dagens finansiering av forskning, hvor prosjektene er av en relativt kort varighet og ofte relativt små.</p>
 <p>For de inkluderte systematiske litteratursammenstillingene gjorde vi en vurdering basert på modifiserte GRADE-vurderinger (se Metoder). Denne vurderingen avdekket at en relativt liten andel av denne litteraturen var basert på sammenstillinger som en kritisk måte vurderte litteraturen som ble inkludert.</p>
