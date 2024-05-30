@@ -144,6 +144,7 @@ commonResponse <- "Number of records"
 nudgeDist <- 3
 library(waffle)
 library(ggpubr)
+library(readxl)
 ```
 
 # Innledning {#sec-inl}
@@ -815,6 +816,44 @@ join_Nor_form_nat<-readRDS("data/cache_data/join_Nor_form_nat.RDS")
 
 ```
 
+```{r addManualSocialScianceCoding}
+#| echo: false
+#| message: false
+#| warning: false
+
+# some categories were not available as options in the google sheet. These were coded afterwards in a sperate excel file. 
+# I import it here and join it with the social science records
+
+ssNew <- read_excel("data/manuallCodingOfNorwegianSocialScienceRecords.xlsx")
+# Look for non-NAs
+ssNew_long <- ssNew |>
+  pivot_longer(cols = `Labour and social inclusion`:`Trade, industry and fisheries`,
+               values_drop_na = T)
+
+# find their titles
+defence <- ssNew_long |> filter(name == "Defence") |> pull(study_title)
+LSI <- ssNew_long |> filter(name == "Labour and social inclusion") |> pull(study_title)
+
+# and add them
+join_Nor_form_soc <- join_Nor_form_soc |>
+  rowwise() |>
+  mutate(sector_societal_concern = case_when(
+    study_title %in% defence ~ "Defence",
+    study_title %in% LSI ~ "Labour and social inclusion",
+    .default = sector_societal_concern
+  ))
+
+# Getting a list of facrt levels that had no entries
+sector_societal_concern_empty_levels <- names(ssNew)[2:11][!names(ssNew)[2:11] %in% ssNew_long$name]
+
+# There is also a variable in ssNew called carbon_or_biodiversity.
+# I will not try to join (cbind) the in here now because of encoding errors making it 
+# too time consuming. I will just use the ssNew data directly in that figure
+
+```
+
+
+add_row(sector_societal_concern = "Labour and social inclusion") |>
 Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. De tidligste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Som vist i @fig-publication-year varierte antallet mellom ulike år, og selv om det har vært en generell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 20 årene.
 
 #### Kronologisk fordeling og innhold i inkluderte artikler fra Norge {.unnumbered}
@@ -858,6 +897,7 @@ Som det framkommer av @fig-research-approach er det en stor overvekt over observ
 #| message: false
 #| warning: false
 #| fig-cap: "Oversikt over forskningen basert forskningskategori."
+#| fig-width: 12
 
 join_Nor_form |> 
   select(study_id ,study_title, research_type) |> 
@@ -1461,13 +1501,14 @@ join_Nor_form_soc |>
 
 #### Hvilke metoder er brukt i de samfunnrelaterte studiene? {.unnumbered}
 
-Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (@fig-analytisk). Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. Mange studier har også brukt intervjuer, samt blandede metoder. Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
+Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (@fig-ssMetode). Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. Mange studier har også brukt intervjuer, samt blandede metoder. Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
 
-```{r fig-analytisk}
+
+```{r fig-ssMetode}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsrelaterte studier? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+#| fig-cap: "Antall samfunnsrelaterte studeier som har brukt ulike metoder. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
 join_Nor_form_soc |> 
   select(data_gathering_methods,
@@ -1535,7 +1576,69 @@ group_by(data_gathering_methods, study_area_discipline) |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
-Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered} <!-- Her skal det inn en figur basrt på analytical_approach_of_study, men den er litt tricky -->
+#### Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered} 
+
+Hovedparten av de samfunnsrelaterte studiene hadde en analytisk tilnærming fokusert på styring og forvaltning (@fig-analytisk). 
+
+```{r fig-analytisk}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsrelaterte studier? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+
+join_Nor_form_soc |> 
+  select(analytical_approach_of_study,
+         study_area_discipline) |> 
+  mutate(
+    analytical_approach_of_study = case_when(
+      is.na(analytical_approach_of_study) ~ "Unknown",
+       .default = analytical_approach_of_study),
+     analytical_approach_of_study = str_split(analytical_approach_of_study,",\\s(?=[A-Z])"),
+       study_area_discipline = case_match(study_area_discipline,
+        "Social Sciences" ~ "Social_Sciences",
+        .default = "Other"
+    ))  |>
+  unnest(analytical_approach_of_study) |>
+  mutate(analytical_approach_of_study = trimws(analytical_approach_of_study)) |>
+  group_by(analytical_approach_of_study, study_area_discipline) |> 
+  tally() |> 
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = analytical_approach_of_study) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total,
+      label = total),
+    nudge_y = nudgeDist
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences,
+      fill = myVar
+    ),
+    stat = "identity"
+  ) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+```
+
 
 #### Hvilke økosystemer har vært tema for samfunnsrelaterte studier? {.unnumbered}
 
@@ -1620,6 +1723,48 @@ join_Nor_form_soc |>
 
 ```
 
+#### I hvilken grad fokuserer de samfunnsvitenskapelige studiene på effekter av arealbruk henholdsvis på naturmangfold, klima eller begge? {.unnumbered}
+
+De aller fleste av de samfunnsrelaterte artiklene fokuserte på biologisk mangfold, mens noen få også så på aspekter ved karbonlagring  eller -opptak (@fig-c-bio). 
+Ingen så kun på karbonlagring eller -opptak.
+
+```{r fig-c-bio}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på biologisk mangfold, karbonlagring, eller begge deler. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+
+ssNew |> 
+  mutate(carbon_or_biodiversity = case_match(
+    carbon_or_biodiversity,
+    "both" ~ "Biodiversity and Carbon",
+    "biodiversity" ~ "Biodiversity",
+    .default = carbon_or_biodiversity
+  )) |>
+  group_by(carbon_or_biodiversity) |>
+  tally() |> 
+  ggplot(aes(
+      x = fct_reorder(carbon_or_biodiversity, n),
+      y = n,
+      fill = carbon_or_biodiversity
+    )) +
+  geom_histogram(
+    stat = "identity"
+  ) +
+  geom_text(
+    aes(
+      label = n
+      ),
+    nudge_y = nudgeDist
+  ) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+```
+
+
 #### Hvilke typer arealbruk fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
 ```{r fig-socialscience-areause-coarse}
@@ -1628,6 +1773,7 @@ join_Nor_form_soc |>
 #| warning: false
 #| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på ulike typer arealbruk. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 #| fig-width: 12
+#| fig-height: 10
 
 join_Nor_form_soc |> 
   group_by(x23,
@@ -1769,9 +1915,8 @@ group_by(governance_level_using_the_tool,
 
 #### Hvilke sektorer fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
-<!-- Denne figuren skal oppdateres etter litt ny koding fra Håkon og Thomas -->
-
 Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk samt sektor for klima- og miljøpolitikk (@fig-sectors). Et fåtall studier var relevant for olje- og energipolitikk, nærings- og fiskeripolitikk samt handel.
+Vi lette også etter artikler som studerte følgende sektorer eller samfunnsmessige områder, men hvor vi ikke fant noen artikler: Children and Families, Digitalisation and Public Governance, Health and Care Services, Justice and Public Security, Culture and Equality, Education and Research, Transport, Foreign Affairs.
 
 ```{r fig-sectors}
 #| echo: false
@@ -1779,7 +1924,7 @@ Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert ti
 #| warning: false
 #| fig-cap: "Hvilke sektorer og samfunnsmessige områder er hyppigst studert blan de samfunnsrelaterte artiklene? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
-
+# see 'sector_societal_concern_empty_levels' for empty factor levels 
 join_Nor_form_soc |> 
   select(sector_societal_concern,
          study_area_discipline) |>
@@ -2037,16 +2182,17 @@ sysRev<-readRDS("data/cache_data/sysRev.RDS")
 
 ```
 
-I dette kapittelet presenteres resultatene fra gjennomgangen av de systematiske litteraturgjennomgangene som ble fanget opp av vårt søk og som ble vurdet som relevante basert på våre inkluderingskriterier. I motsetning til primærstudier, hvor vi kun inkluderte artikler fra norge, Sverige og Finland var kriteriet for systematiske litteratursammenstillinger at de hadde et global eller , Europeisk eller Fennoskandisk dekning. Narrative oversiktsartikler ble ikke inkludert i vår gjennomgang. Totalt ble `r dim(sysRev)[1]` artikler inkludert.
+I dette kapittelet presenteres resultatene fra gjennomgangen av de systematiske litteraturgjennomgangene som ble fanget opp av vårt søk og som ble vurdet som relevante basert på våre inkluderingskriterier. I motsetning til primærstudier, hvor vi kun inkluderte artikler fra norge, Sverige og Finland var kriteriet for systematiske litteratursammenstillinger at de hadde global, Europeisk eller Fennoskandisk dekning. Narrative oversiktsartikler ble ikke inkludert i vår gjennomgang. Totalt ble `r dim(sysRev)[1]` artikler inkludert.
 
-#### Hvor hyppig er ulike økosystemer, arealbruk og arealbruksendringer inkludert i de systematiske litteratursammenstillingene?
+#### Hvor hyppig er ulike økosystemer, arealbruk og arealbruksendringer inkludert i de systematiske litteratursammenstillingene? {.unnumbered}
 
-```{r ecosystem}
+Skog, elver og innsjøer og semi-naturlige økosystemer var klart overrepresnterte blant de systematiske litteratursammenstillingene (@fig-sysrev-ecosystem).
+
+```{r fig-sysrev-ecosystem}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-sysrev-ecosystem
-#| fig-cap: "Indirectness"
+#| fig-cap: "Antall artikler blant de systematiske litteratursammenstillingene som har foksuert på ulike økosystemer."
 
 
 sysRev |> 
@@ -2056,25 +2202,35 @@ sysRev |>
   group_by(ecosystems_main) |> 
   mutate(ecosystems_main=trimws(ecosystems_main)) |> 
   tally() |> 
-  drop_na() |>
-  top_n(10) |> 
+  mutate(ecosystems_main = case_when(
+    is.na(ecosystems_main) ~ "Unknown",
+    .default = ecosystems_main
+  )) |>
   ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(
+    aes(
+      label = n),
+    nudge_y = nudgeDist
+  )
 
 
 
 
 ```
 
-```{r sys rev areause}
+#### Hvilke arealbrukskategorier er studert blant de systematiske litteratursammenstillingene? {.unnumbered}
+
+Hovedvekten av de systematiske litteratursammenstillingene har fokusert på jordbruk (*Agriculture*), inkludert beiting, og ressursbruk (skogbruk, jakt, fisk osv.; *Biological resource use*) (@fig-sysrev-areause-coarse; fig-sysrev-areause-detailed).
+
+```{r fig-sysrev-areause-coarse}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-sysrev-areause-coarse
 #| fig-cap: "Indirectness"
 
 sysRev |> 
@@ -2083,8 +2239,8 @@ sysRev |>
   unnest(land_use)  |> 
   group_by(land_use) |> 
   tally() |> 
-  drop_na() |> 
   mutate(land_use=case_when(
+    is.na(land_use) ~ "Unknown",
     grepl("Agricul", land_use)~"Agriculture",
     grepl("Biological resource use", land_use)~"Biological resource use",
     grepl("Energy", land_use)~"Energy",
@@ -2101,15 +2257,20 @@ sysRev |>
   coord_flip()+
   theme(legend.position = "Null")+
   labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(
+    aes(
+      label = n),
+    nudge_y = nudgeDist
+  )
 
 ```
 
-```{r}
+```{r fig-sysrev-areause-detailed}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-sysrev-areause-detailed
+#| fig-width: 12
 #| fig-cap: "Indirectness"
 
 
@@ -2118,134 +2279,173 @@ sysRev |>
   mutate(land_use = strsplit(x23, ","))  |> 
   unnest(land_use)  |> 
   group_by(land_use) |> 
-  mutate(land_use=trimws(land_use)) |> 
+  mutate(land_use=trimws(land_use),
+         land_use = case_when(
+           is.na(land_use) ~ "Unknown",
+           .default = land_use
+         )) |> 
   tally() |> 
   filter(land_use != "fishing collection") |>
   mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
-  drop_na() |> 
-  top_n(15) |> 
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+  labs(x="", y=commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(
+    aes(
+      label = n),
+    nudge_y = nudgeDist-2
+  )
 
 ```
 
-Tekst her om sys revs...
+Tekst her om sys revs…
 
-#### Vurdering av studiekvalitet på systematiske litteraturesammenstillinger
+#### Vurdering av studiekvalitet på systematiske litteraturesammenstillinger {.unnumbered}
 
-```{r type of summerised evidence}
+De systematiske litteraturesammenstillingene har i stor grad fokusert på _Critically appraised_ tema eller de har gjort en meta-analyse basert på en systematsk litteraturesammenstilling (@fig-type-sum-evidence).
+_Critical appraisal_ mangler en god oversettelse til norsk, men i kunnskapssynteser dette henspeiler på den systematiske evalueringen av studier for å avdekke forskjeller i kvalitet, gyldighet, og relevans, før man velger å eventuelt inkludere de i en litteratursammenstilling. 
+Prosessen med _critial appraisal_ hjelper for å sikre at konklusjonene fra kunnskapssyntesen er basert på troverdig og robust evidens.
+
+
+```{r fig-type-sum-evidence}
 #| echo: false
 #| message: false
 #| warning: false
-#| label: fig-type-sum-evidence
 #| fig-cap: "En oversikt over hvor hyppig de ulike typene systematisk litteratursammenstilling forekommer i datamaterialet."
 
 sysRev |> 
 group_by(type_of_summarised_evidence) |> 
 tally() |> 
+  mutate(type_of_summarised_evidence = case_when(
+    is.na(type_of_summarised_evidence) ~ "Unknown",
+    .default = type_of_summarised_evidence
+  )) |>
 drop_na() |> 
 ggplot(aes(reorder(type_of_summarised_evidence,n),n,fill=type_of_summarised_evidence)) +
 geom_histogram(stat="identity") +
 theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner")+
+   labs(x="", y=commonResponse)+
 coord_flip() +
-  scale_fill_viridis(discrete = TRUE, option = "D") 
+  scale_fill_viridis(discrete = TRUE, option = "D") +
+  geom_text(
+    aes(
+      label = n),
+    nudge_y = nudgeDist
+  )
 
 ```
 
-```{r risk of bias}
+#### Risiko for systematisk skjevhet {.unnumbered}
+
+De systematiske litteratursammenstillingene som forekommer i datamaterialet har betydelige sannsyneligheter for systematisk skjevhet og har i mindre grad vurdert denne skjevheten i de inindividuelle studiene som de har benyttet seg av (@fig-riskOfBias).
+```{r fig-riskOfBias}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Risk of bias"
+#| fig-cap: "En oversikt over risikoen for systematisk skjevhet i de systematiske litteratursammenstillingene som forekommer i datamaterialet og hvorvidt de har vurdert denne risikoen for de individualle studiene som inngår i de enkelte sammenstillingene."
+#| fig-width: 12
 
-p1<-sysRev |> 
-group_by(risk_of_bias_is_the_risk_of_bias_in_individual_studies_limitations_in_study_design_or_conduct_that_could_influence_the_reported_effect_size_and_direction_enough_to_influence_the_summarised_evidence) |> 
-tally() |> 
-drop_na() |> 
-ggplot(aes(reorder(risk_of_bias_is_the_risk_of_bias_in_individual_studies_limitations_in_study_design_or_conduct_that_could_influence_the_reported_effect_size_and_direction_enough_to_influence_the_summarised_evidence,n), n, fill=risk_of_bias_is_the_risk_of_bias_in_individual_studies_limitations_in_study_design_or_conduct_that_could_influence_the_reported_effect_size_and_direction_enough_to_influence_the_summarised_evidence))+
-geom_histogram(stat="identity") +
-theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner")+
-coord_flip()+
-scale_fill_viridis(discrete = TRUE, option = "D") +
-ggtitle("Is there potential risk of bias")
 
-p2<-sysRev |> 
-group_by(risk_of_bias_does_the_summarised_evidence_undertake_any_assessment_of_the_risk_of_bias) |> 
-tally() |> 
-drop_na() |> 
-ggplot(aes(reorder(risk_of_bias_does_the_summarised_evidence_undertake_any_assessment_of_the_risk_of_bias,n), n, fill=risk_of_bias_does_the_summarised_evidence_undertake_any_assessment_of_the_risk_of_bias))+
-geom_histogram(stat="identity") +
-theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner")+
-coord_flip()+
-scale_fill_viridis(discrete = TRUE, option = "D") +
-ggtitle("Does the article undertake risk of bias assessments")
+bias <-c("risk_of_bias_is_the_risk_of_bias_in_individual_studies_limitations_in_study_design_or_conduct_that_could_influence_the_reported_effect_size_and_direction_enough_to_influence_the_summarised_evidence",
+         "risk_of_bias_does_the_summarised_evidence_undertake_any_assessment_of_the_risk_of_bias")
 
-library(patchwork)
-p1+
-p2
+sysRev |> 
+  select(bias) |>
+  pivot_longer(cols = bias,
+               names_to = "bias_variable",
+               values_to = "bias_response",
+               values_drop_na = T) |>
+  group_by(bias_variable, bias_response) |> 
+  tally() |>
+  mutate(bias_variable = case_match(bias_variable,
+   bias[1] ~ "Is there a risk\nof bias?",
+   bias[2] ~ "Does the article undertake\nrisk of bias assessments"
+   )) |>
+  ggplot(aes(x = reorder(bias_response, n),
+             y = n,
+             fill=bias_response))+
+    geom_histogram(stat="identity")+
+    coord_flip()+
+    theme(legend.position = "Null")+
+    labs(x="", y=commonResponse) +
+    scale_fill_viridis(discrete = TRUE, option = "D")+
+  geom_text(aes(label = n),
+                nudge_y = nudgeDist) +
+  facet_wrap(.~bias_variable,
+             scales = "free",
+             ncol=2) 
 
 ```
 
-```{r imprecision}
+
+Det er i de fleste tilfeller uklart om de systematiske litteratursammenstillingene har tilstrekkelig stort dataomfang til å konkludere som de har gjort, og om de har vært gode nok til å vurdere eller analysere kildene til variasjon mellom de individuelle studiene som de baserer seg på (@fig-imprecision).
+
+```{r fig-imprecision}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Imprecision"
-
-p1<-sysRev |> 
-group_by(imprecision_is_the_sample_size_sufficient_to_make_an_unbiased_estimate_of_effect) |> 
-tally() |> 
-drop_na() |> 
-ggplot(aes(reorder(imprecision_is_the_sample_size_sufficient_to_make_an_unbiased_estimate_of_effect,n), n, fill=imprecision_is_the_sample_size_sufficient_to_make_an_unbiased_estimate_of_effect))+
-geom_histogram(stat="identity") +
-theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner")+
-coord_flip()+
-scale_fill_viridis(discrete = TRUE, option = "D") +
-ggtitle("Is sample size sufficient")
+#| fig-cap: "En oversikt over i hvilken grad de systematiske litteratursammenstillingene som forekommer i datamaterialet har vurdert variasjonen blat individuelle studier (t.h.) og om de har tilstrekkelig dataomfang til å kunne gi robuste konklusjoner (t.h.)."
 
 
-p2<-sysRev |> 
-group_by(imprecision_how_varied_is_the_summarised_effect_and_has_this_variation_be_adequately_assessed) |> 
-tally() |> 
-drop_na() |> 
-ggplot(aes(reorder(imprecision_how_varied_is_the_summarised_effect_and_has_this_variation_be_adequately_assessed,n), n, fill=imprecision_how_varied_is_the_summarised_effect_and_has_this_variation_be_adequately_assessed))+
-geom_histogram(stat="identity") +
-theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner")+
-coord_flip()+
-scale_fill_viridis(discrete = TRUE, option = "D") +
-ggtitle("Has imprecision been taken account of")
+imprecission <-c("imprecision_is_the_sample_size_sufficient_to_make_an_unbiased_estimate_of_effect",
+         "imprecision_how_varied_is_the_summarised_effect_and_has_this_variation_be_adequately_assessed")
 
-p1+
-p2
-
+sysRev |> 
+  select(imprecission) |>
+  pivot_longer(cols = imprecission,
+               names_to = "variable",
+               values_to = "response",
+               values_drop_na = T) |>
+  group_by(variable, response) |> 
+  tally() |>
+  mutate(variable = case_match(variable,
+   imprecission[1] ~ "Is sample size\nsufficient?",
+   imprecission[2] ~ "Has imprecision been\ntaken account of?"
+   )) |>
+  ggplot(aes(x = reorder(response, n),
+             y = n,
+             fill=response))+
+    geom_histogram(stat="identity")+
+    coord_flip()+
+    theme(legend.position = "Null")+
+    labs(x="", y=commonResponse) +
+    scale_fill_viridis(discrete = TRUE, option = "D")+
+  #cannot make this fit nicely:
+  geom_text(aes(label = n),
+    nudge_y = nudgeDist) +
+  facet_wrap(.~variable,
+             scales = "free",
+             ncol=2)
 
 ```
 
-```{r Inconsistency}
+Det har i de fløeste tilfeller vært vanskelig å vurdere om de systematiske litteratursammenstillingene har vist en konsisten (ensartet) retning på den effekten de har studert, og i hvor stor grad konfidensintervallene på de individuelle studiene overlapper (@fig-inconsistency).
+
+```{r fig-inconsistency}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Inconsistency"
+#| fig-cap: "En oversikt over i hvilken grad effekten som studeres i de systematiske litteratursammenstillingene som forekommer i datamaterialet har en konsistent retning."
 
 sysRev |> 
 group_by(inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap) |> 
 tally() |> 
+mutate(inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap = case_when(
+  is.na(inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap) ~ "Unknown",
+  .default = inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap
+)) |>
 drop_na() |> 
 ggplot(aes(reorder(inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap,n), n, fill=inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap))+
 geom_histogram(stat="identity") +
 theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner")+
+   labs(x="", y=commonResponse)+
 coord_flip()+
-scale_fill_viridis(discrete = TRUE, option = "D") 
+scale_fill_viridis(discrete = TRUE, option = "D") +
+  geom_text(aes(label = n),
+                nudge_y = nudgeDist)
 
 
 ```
@@ -2253,13 +2453,6 @@ scale_fill_viridis(discrete = TRUE, option = "D")
 ```{r Indirectness}
 #| echo: false
 #| message: false
-#| warning: false
-#| fig-cap: "Indirectness"
-
-sysRev |> 
-group_by(indirectness_does_the_summarised_evidence_directly_assess_the_hypothesis_or_question_at_hand_or_does_it_make_use_of_proxy_outcomes) |> 
-tally() |> 
-drop_na() |> 
 ggplot(aes(reorder(indirectness_does_the_summarised_evidence_directly_assess_the_hypothesis_or_question_at_hand_or_does_it_make_use_of_proxy_outcomes,n), n, fill=indirectness_does_the_summarised_evidence_directly_assess_the_hypothesis_or_question_at_hand_or_does_it_make_use_of_proxy_outcomes))+
 geom_histogram(stat="identity") +
 theme(legend.position = "Null")+
@@ -2519,7 +2712,10 @@ The largest cluster represents studies that address directly the effect of a par
 #| message: false
 #| warning: false
 #| label: fig-wordfreq
+#| cache: true
+#| fig-cap: "Matt - this you must describe"
 #| fig-cap: "The change in frequency of certain words used in the Titles and Abstracts of included papers. Word frequency before 2015 (the median year in the dataset) is compared to word frequency after 2015"
+
 
 wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
 wordfreq |> 
@@ -2564,7 +2760,7 @@ I figuren under har visualisert nettverket i et strategisk diagram, hvor temaene
 #| message: false
 #| warning: false
 #| label: fig-themeMap
-#| cashe: true
+#| cache: true
 #| fig-cap: "Oversikt over ulike tema og deres fordeling i matrisen"
 
 res <- thematicMap(nor_bib, field = "AB", n = 1000, minfreq = 2, ngrams = 2, size = 0.5, repel = TRUE, subgraphs = TRUE)
