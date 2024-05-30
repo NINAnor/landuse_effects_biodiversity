@@ -586,7 +586,7 @@ For å sørge for at søket ga en god dekning av den aktuelle litteraturen valgt
 #| fig-cap: "Overlapp mellom de ulike kildene til litteratur og benchmark-artiklene."
 
 
-unique_citations <- readRDS(here::here("data/unique_citations.RDS"))
+unique_citations <- readRDS("data/unique_citations.RDS")
 source_comparison <- compare_sources(unique_citations, comp_type = "sources")
 # Generate a source comparison upset plot.
 plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE), main.bar.color="#E69F00", matrix.color="#b8e186", point.size=5,sets.bar.color=c("#4dac26"))
@@ -794,8 +794,8 @@ prisma(
 #    oa2bibliometrix()
 #saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
 #saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
-nor_bib <- readRDS(here::here("data/cache_data/nor_bib.RDS"))
-join_Nor_form<-readRDS(here::here("data/cache_data/join_Nor_form.RDS"))
+nor_bib <- readRDS("data/cache_data/nor_bib.RDS")
+join_Nor_form<-readRDS("data/cache_data/join_Nor_form.RDS")
 
 #split social sci responses 
 
@@ -2327,7 +2327,7 @@ I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra N
 #| label: fig-source-all
 #| fig-cap: "Oversikt over hvilke tidsskrifter den inkluderte litteraturen er publisert i"    
 
-paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
+paper_details <- readRDS("data/Included_at_abs/paper_details.rds")
 
 paper_details |>    
   select(so) |>    
@@ -2483,11 +2483,11 @@ tidy_topics_dtm<-tidy_topics |>
 #| message: false
 #| warning: false
 #| label: fig-keyword-network
-#| fig-cap: "Matt write short fig cap"
+#| fig-cap: "Keyword co-occurrences identify clusters of publications which share keywords. Interestingly 'ecosystem services' studies cluster more closely to 'business' and 'plolitical science' studies than to the more ecological studies"
 #| cache: true
 
 set.seed(007)
-paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
+paper_details <- readRDS("data/Included_at_abs/paper_details.rds")
 papers_bib<-paper_details |> 
   oa2bibliometrix() 
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
@@ -2512,12 +2512,14 @@ net=networkPlot(NetMatrix, n = 500, Title = "Co-citations", type = "fruchterman"
 
 En nettverksanalyse av siteringsnettverkene viser videre at det er klare grupperinger i datasettet @fig-co-citation. Disse klustrene, markert med ulike farger domineres av henholdsvis.... <!--# Matt - can we say something very rough about the clusters? -->
 
+The largest cluster represents studies that address directly the effect of a particular landuse change on biodiversity (for example farmland conservation measures). The second largest cluster represnts studies that address ecosystem services. The third cluster consists of studies that are more conceptual and discuss, for example, rewilding or valuing nature (as a concept rather than applied work). The final cluster (the smallest) are studies on reindeer. This suggests that reindeer studies tend to cite each other more often than citing more general ecological or ecosystem services studies. 
+
 ```{r wordfreq}
 #| echo: false
 #| message: false
 #| warning: false
 #| label: fig-wordfreq
-#| fig-cap: "Matt - this you must describe"
+#| fig-cap: "The change in frequency of certain words used in the Titles and Abstracts of included papers. Word frequency before 2015 (the median year in the dataset) is compared to word frequency after 2015"
 
 wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
 wordfreq |> 
@@ -2533,6 +2535,9 @@ wordfreq |>
 ```
 
 Vi undersøkte også hvilke tema som ble vanligere og sjeldnere over tid <!--# Matt - I need help to write this section-->
+
+Prior to 2015 words such as "climate", "biodiversity", "ecosystem" and "services" were much less common in the title or abstract of included studies than afterwards. After 2015 words such as "forest", "fragmentation", "old-growth", etc were much less common than before. This suggests that the language used in titles and abstracts has become more focused on policy relevant buzzwords rather than habitats or species traits. We can not conclude from this that the actual studies have changed however.
+
 
 ## En beslutningsmodell basert på inkluderte artikler fra Norge
 
@@ -2603,7 +2608,25 @@ Et annet veldig tydelig funn er at en stor andel av den naturvitenskapelige litt
 
 For de inkluderte systematiske litteratursammenstillingene gjorde vi en vurdering basert på modifiserte GRADE-vurderinger (se Metoder). Denne vurderingen avdekket at en relativt liten andel av denne litteraturen var basert på sammenstillinger som en kritisk måte vurderte litteraturen som ble inkludert.
 
-<!--# MATT ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
+
+Evidence syntheses were largely focused on Applied subjects (forest management and agriculture FIGURE LINK) which is expected as these methods are well-suited to understanding the effect of management interventions.  
+
+The majority of systematic review studies were so-called "systematic maps". 
+Systematic maps catalogue the available evidence (which is very useful) but are generally broad in scope. 
+Focused systematic reviews and meta-analyses were limited, but within this group there were several studies that investigated landuse/landuse-change "interventions" (can be negative or positive interventions) which provide strong evidence of effect. 
+For example, @flowerstrip2023 discuss the effectiveness of flower-strips in agricultural landscapes. 
+They highlight a large pooled effect of flower-strips on the abundance and richness of pollinator insects. 
+They also highlight a potential source of confounding in that habitat quality of control sites needs to be equivalent to that of the interventions in order to avoid wrongly concluding an effect.
+@harper2022changes assessed the effect of hydropower flow magnitude changes on fish abundance. They show that effects on fish are highly context dependent meaning that site-specific adaptive management might be necessary. 
+
+One major theme in the highest quality systematic reviews & meta-analyses was difficulty in assessing primary literature due to low "validity" and poor reporting. Long-term continuous monitoring and spatial/temporal replication are needed to adequately understand the impact of interventions. 
+In ecology, synthesizing evidence from multiple studies to inform policy and practice is often challenging due to inconsistent measurement and reporting of outcomes. 
+This lack of standardisation impedes the ability to make informed decisions. 
+In medicine this problem has been addressed by establishing consensus on consistently measured and reported outcomes, thereby improving data synthesis and supporting evidence-based decision making. 
+In ecology this concept has only been applied in a limited way (see @reed2022peatland). 
+
+
+
 
 ```{r}
 #| echo: false
