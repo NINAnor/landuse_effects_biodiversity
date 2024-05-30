@@ -144,6 +144,7 @@ commonResponse <- "Number of records"
 nudgeDist <- 3
 library(waffle)
 library(ggpubr)
+library(readxl)
 ```
 
 # Innledning {#sec-inl}
@@ -819,6 +820,41 @@ join_Nor_form_nat<-readRDS("data/cache_data/join_Nor_form_nat.RDS")
 
 ```
 
+```{r addManualSocialScianceCoding}
+#| echo: false
+#| message: false
+#| warning: false
+
+# some categories were not available as options in the google sheet. These were coded afterwards in a sperate excel file. 
+# I import it here and join it with the social science records
+
+ssNew <- read_excel("data/manuallCodingOfNorwegianSocialScienceRecords.xlsx")
+# Look for non-NAs
+ssNew_long <- ssNew |>
+  pivot_longer(cols = `Labour and social inclusion`:`Trade, industry and fisheries`,
+               values_drop_na = T)
+
+# find their titles
+defence <- ssNew_long |> filter(name == "Defence") |> pull(study_title)
+LSI <- ssNew_long |> filter(name == "Labour and social inclusion") |> pull(study_title)
+
+# and add them
+join_Nor_form_soc <- join_Nor_form_soc |>
+  rowwise() |>
+  mutate(sector_societal_concern = case_when(
+    study_title %in% defence ~ "Defence",
+    study_title %in% LSI ~ "Labour and social inclusion",
+    .default = sector_societal_concern
+  ))
+
+# Getting a list of facrt levels that had no entries
+sector_societal_concern_empty_levels <- names(ssNew)[2:11][!names(ssNew)[2:11] %in% ssNew_long$name]
+
+
+```
+
+
+add_row(sector_societal_concern = "Labour and social inclusion") |>
 Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. De tidligste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Som vist i @fig-publication-year varierte antallet mellom ulike år, og selv om det har vært en generell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 20 årene.
 
 #### Kronologisk fordeling og innhold i inkluderte artikler fra Norge {.unnumbered}
@@ -1469,6 +1505,7 @@ join_Nor_form_soc |>
 
 Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (@fig-ssMetode). Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. Mange studier har også brukt intervjuer, samt blandede metoder. Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
 
+
 ```{r fig-ssMetode}
 #| echo: false
 #| message: false
@@ -1542,7 +1579,8 @@ group_by(data_gathering_methods, study_area_discipline) |>
 ```
 
 #### Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered} 
-<!-- Her skal det inn en figur basrt på analytical_approach_of_study, men den er litt tricky -->
+
+Hovedparten av de samfunnsrelaterte studiene hadde en analytisk tilnærming fokusert på styring og forvaltning (@fig-analytisk). 
 
 ```{r fig-analytisk}
 #| echo: false
@@ -1837,9 +1875,8 @@ group_by(governance_level_using_the_tool,
 
 #### Hvilke sektorer fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
-<!-- Denne figuren skal oppdateres etter litt ny koding fra Håkon og Thomas -->
-
 Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk samt sektor for klima- og miljøpolitikk (@fig-sectors). Et fåtall studier var relevant for olje- og energipolitikk, nærings- og fiskeripolitikk samt handel.
+Vi lette også etter artikler som studerte følgende sektorer eller samfunnsmessige områder, men hvor vi ikke fant noen artikler: Children and Families, Digitalisation and Public Governance, Health and Care Services, Justice and Public Security, Culture and Equality, Education and Research, Transport, Foreign Affairs.
 
 ```{r fig-sectors}
 #| echo: false
@@ -1847,7 +1884,7 @@ Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert ti
 #| warning: false
 #| fig-cap: "Hvilke sektorer og samfunnsmessige områder er hyppigst studert blan de samfunnsrelaterte artiklene? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
-
+# see 'sector_societal_concern_empty_levels' for empty factor levels 
 join_Nor_form_soc |> 
   select(sector_societal_concern,
          study_area_discipline) |>
