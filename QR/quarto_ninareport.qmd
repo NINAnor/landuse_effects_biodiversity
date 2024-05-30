@@ -590,7 +590,7 @@ For å sørge for at søket ga en god dekning av den aktuelle litteraturen valgt
 #| fig-cap: "Overlapp mellom de ulike kildene til litteratur og benchmark-artiklene."
 
 
-unique_citations <- readRDS(here::here("data/unique_citations.RDS"))
+unique_citations <- readRDS("data/unique_citations.RDS")
 source_comparison <- compare_sources(unique_citations, comp_type = "sources")
 # Generate a source comparison upset plot.
 plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE), main.bar.color="#E69F00", matrix.color="#b8e186", point.size=5,sets.bar.color=c("#4dac26"))
@@ -798,8 +798,8 @@ prisma(
 #    oa2bibliometrix()
 #saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
 #saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
-nor_bib <- readRDS(here::here("data/cache_data/nor_bib.RDS"))
-join_Nor_form<-readRDS(here::here("data/cache_data/join_Nor_form.RDS"))
+nor_bib <- readRDS("data/cache_data/nor_bib.RDS")
+join_Nor_form<-readRDS("data/cache_data/join_Nor_form.RDS")
 
 #split social sci responses 
 
@@ -862,6 +862,7 @@ Som det framkommer av @fig-research-approach er det en stor overvekt over observ
 #| message: false
 #| warning: false
 #| fig-cap: "Oversikt over forskningen basert forskningskategori."
+#| fig-width: 12
 
 join_Nor_form |> 
   select(study_id ,study_title, research_type) |> 
@@ -1231,7 +1232,7 @@ join_Nor_form_nat |>
 #| warning: false
 #| fig-cap: "Antall artikler som har fokusert på ulike essensielle biodiversitetvariabler (EBV) fordelt på de seks klassene."
 #| fig-width: 14
-#| fig-height: 10
+
 
 EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
 
@@ -1466,13 +1467,13 @@ join_Nor_form_soc |>
 
 #### Hvilke metoder er brukt i de samfunnrelaterte studiene? {.unnumbered}
 
-Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (@fig-analytisk). Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. Mange studier har også brukt intervjuer, samt blandede metoder. Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
+Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (@fig-ssMetode). Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. Mange studier har også brukt intervjuer, samt blandede metoder. Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
 
-```{r fig-analytisk}
+```{r fig-ssMetode}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsrelaterte studier? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+#| fig-cap: "Antall samfunnsrelaterte studeier som har brukt ulike metoder. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
 join_Nor_form_soc |> 
   select(data_gathering_methods,
@@ -1540,7 +1541,68 @@ group_by(data_gathering_methods, study_area_discipline) |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
-Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered} <!-- Her skal det inn en figur basrt på analytical_approach_of_study, men den er litt tricky -->
+#### Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered} 
+<!-- Her skal det inn en figur basrt på analytical_approach_of_study, men den er litt tricky -->
+
+```{r fig-analytisk}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsrelaterte studier? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+
+join_Nor_form_soc |> 
+  select(analytical_approach_of_study,
+         study_area_discipline) |> 
+  mutate(
+    analytical_approach_of_study = case_when(
+      is.na(analytical_approach_of_study) ~ "Unknown",
+       .default = analytical_approach_of_study),
+     analytical_approach_of_study = str_split(analytical_approach_of_study,",\\s(?=[A-Z])"),
+       study_area_discipline = case_match(study_area_discipline,
+        "Social Sciences" ~ "Social_Sciences",
+        .default = "Other"
+    ))  |>
+  unnest(analytical_approach_of_study) |>
+  mutate(analytical_approach_of_study = trimws(analytical_approach_of_study)) |>
+  group_by(analytical_approach_of_study, study_area_discipline) |> 
+  tally() |> 
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = analytical_approach_of_study) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_text(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total,
+      label = total),
+    nudge_y = nudgeDist
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences,
+      fill = myVar
+    ),
+    stat = "identity"
+  ) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+```
+
 
 #### Hvilke økosystemer har vært tema for samfunnsrelaterte studier? {.unnumbered}
 
@@ -1633,6 +1695,7 @@ join_Nor_form_soc |>
 #| warning: false
 #| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på ulike typer arealbruk. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 #| fig-width: 12
+#| fig-height: 10
 
 join_Nor_form_soc |> 
   group_by(x23,
@@ -2332,7 +2395,7 @@ I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra N
 #| label: fig-source-all
 #| fig-cap: "Oversikt over hvilke tidsskrifter den inkluderte litteraturen er publisert i"    
 
-paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
+paper_details <- readRDS("data/Included_at_abs/paper_details.rds")
 
 paper_details |>    
   select(so) |>    
@@ -2492,7 +2555,7 @@ tidy_topics_dtm<-tidy_topics |>
 #| cache: true
 
 set.seed(007)
-paper_details <- readRDS(here::here("data/Included_at_abs/paper_details.rds"))
+paper_details <- readRDS("data/Included_at_abs/paper_details.rds")
 papers_bib<-paper_details |> 
   oa2bibliometrix() 
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
@@ -2522,6 +2585,7 @@ En nettverksanalyse av siteringsnettverkene viser videre at det er klare grupper
 #| message: false
 #| warning: false
 #| label: fig-wordfreq
+#| cache: true
 #| fig-cap: "Matt - this you must describe"
 
 wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
@@ -2564,7 +2628,7 @@ I figuren under har visualisert nettverket i et strategisk diagram, hvor temaene
 #| message: false
 #| warning: false
 #| label: fig-themeMap
-#| cashe: true
+#| cache: true
 #| fig-cap: "Oversikt over ulike tema og deres fordeling i matrisen"
 
 res <- thematicMap(nor_bib, field = "AB", n = 1000, minfreq = 2, ngrams = 2, size = 0.5, repel = TRUE, subgraphs = TRUE)
