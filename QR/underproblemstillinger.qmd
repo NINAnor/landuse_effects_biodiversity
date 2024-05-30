@@ -1,0 +1,43 @@
+---
+title: "Underproblemstillinger"
+format: html
+editor: visual
+---
+
+### Underproblemstillinger
+
+Vi vil karakterisere den eksisterende litteraturen langs følgende akser:
+
+-   Hvor stor andel av forskningen er basert på empiriske data?
+
+-   Hvor stor andel av forskningen er basert på eksperimenter vs observasjonelle studier?
+
+-   Hvor stor andel av forskningen er basert på kvalitative metoder vs kvantitative/blandete metoder?
+
+-   Hvordan er forskningen fordelt over ulike økosystemer?
+
+-   Hvordan er forskningen fordelt på ulike disipliner?
+
+-   Hvordan er forskningen fordelt over ulike nivå av biologisk organisering?
+
+-   Hvilke naturbeskrivelsesvariabler (Essential Biodiversity Variables; EBV) er mest studert?
+
+-   Hva er de mest studerte formene for arealbruk og arealbruksendringer?
+
+-   Hvilke regioner/fylker er mest representert i datamaterialet?
+
+-   Hvor stor andel av forskningen fokuserer på governance, konfliker og verktøy?
+
+-   Hvilke typer arealbruksendringer er mest studert?
+
+-   Hva er de dominerende analytiske tilnærmingene for samfunnsvitenskapelige studier?
+
+-   Hvilke aktører er hyppigst representert i forskningen?
+
+-   Hvilke sektorer og samfunnsområder er hyppigst studert?
+
+-   Hvilke geografiske og organisatoriske nivåer i samfunnet er hyppigst studert?
+
+-   Hvilke arealbrukskonflikter er hyppigst studert?
+
+-   Hvilke verktøy er foreslått for å løse konfliktene?
