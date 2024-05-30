@@ -850,6 +850,9 @@ join_Nor_form_soc <- join_Nor_form_soc |>
 # Getting a list of facrt levels that had no entries
 sector_societal_concern_empty_levels <- names(ssNew)[2:11][!names(ssNew)[2:11] %in% ssNew_long$name]
 
+# There is also a variable in ssNew called carbon_or_biodiversity.
+# I will not try to join (cbind) the in here now because of encoding errors making it 
+# too time consuming. I will just use the ssNew data directly in that figure
 
 ```
 
@@ -1724,6 +1727,48 @@ join_Nor_form_soc |>
 
 
 ```
+
+#### I hvilken grad fokuserer de samfunnsvitenskapelige studiene på effekter av arealbruk henholdsvis på naturmangfold, klima eller begge? {.unnumbered}
+
+De aller fleste av de samfunnsrelaterte artiklene fokuserte på biologisk mangfold, mens noen få også så på aspekter ved karbonlagring  eller -opptak (@fig-c-bio). 
+Ingen så kun på karbonlagring eller -opptak.
+
+```{r fig-c-bio}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på biologisk mangfold, karbonlagring, eller begge deler. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+
+ssNew |> 
+  mutate(carbon_or_biodiversity = case_match(
+    carbon_or_biodiversity,
+    "both" ~ "Biodiversity and Carbon",
+    "biodiversity" ~ "Biodiversity",
+    .default = carbon_or_biodiversity
+  )) |>
+  group_by(carbon_or_biodiversity) |>
+  tally() |> 
+  ggplot(aes(
+      x = fct_reorder(carbon_or_biodiversity, n),
+      y = n,
+      fill = carbon_or_biodiversity
+    )) +
+  geom_histogram(
+    stat = "identity"
+  ) +
+  geom_text(
+    aes(
+      label = n
+      ),
+    nudge_y = nudgeDist
+  ) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = commonResponse) +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+
+```
+
 
 #### Hvilke typer arealbruk fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
