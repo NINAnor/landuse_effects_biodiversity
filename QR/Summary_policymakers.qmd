@@ -1,0 +1,321 @@
+---
+title: Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge - Et systematisk kart og beslutningsstøtteverktøy 
+subtitle: Oppsummering for beslutningstakere
+format: html
+editor: visual
+---
+
+## Bakgrunn
+
+Endringer i menneskelig arealbruk vurderes som den viktigste årsaken til tilbakegang og tap av arter og naturtyper både globalt og i Norge. Arealendringer påvirker økosystemenes sammensetning, struktur og funksjon, og påvirker dermed økosystemenes evne til å produsere ulike goder og tjenester vi mennesker får fra naturen – ofte omtalt som naturgoder eller økosystemtjenester. Det kanskje mest omtalte naturgodet i senere år er klimaregulering, der opptak og lagring av karbon i økosystemene er sentrale faktorer. Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal er ifølge SSB også i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km^2^, som tilsvarer litt under 50 km^2^ årlig. Grunnleggende kunnskap om utbygging, endringer i arealbruksintensitet og andre konkrete arealendringer er grunnlaget for i neste omgang å vurdere hvilken virkning endringene har for naturmangfold og naturgoder.
+
+Vi har i dette prosjektet utviklet et systematisk kart (også kjent som Evidenskart eller Evidenshullkart) over tilgjengelig kunnskap knyttet til effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge. Oversikten inkluderte også forskning som fokuserte på verktøy konflikter knyttet til arealbruk. Systematiske kart er utviklet for å gi en oversikt over tilgjengelig evidens om et bredt tema og benyttes først og fremst til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål. Oversikten vi har framskaffet er basert på en detaljert protokoll og stringente regler for litteratursøk, inkluderingskriterier, og hvilken informasjon som skal trekkes ut fra de inkluderte artiklene. Vi utformet søk og inkluderingskriterier med tanke på å fange opp alle relevante vitenskapelige artikler fra Norge, Sverige og Finland, samt alle publikasjoner som allerede sammenstilte litteraturen (systematiske oversiktsartikler) så lenge de hadde et globalt, europeisk eller norsk fokus. Som et ledd i utviklingen av protokollen hadde vi også et arbeidsverksted hvor ulike samfunninteresser deltok, og vi mottok skriftlig tilbakemelding på protokollen fra både denne gruppen og en utvidet ekspergruppe bestående av forskere. Dette ble gjort for å sikre at protokollen var tilstrekkelig definert til å fange opp litteratur av interesse.
+
+## Resultater
+
+```{r fig-summary}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: 7
+#| fig-width: 8
+#| fig-cap: "Oversikt over de viktigste funnene fra vår litteratursammentilling"
+
+
+
+library(ggpubr)
+library(tidyverse)
+library(viridis)
+
+nor_bib <- readRDS(here::here("data/cache_data/nor_bib.RDS"))
+join_Nor_form  <-readRDS(here::here("data/cache_data/join_Nor_form.RDS"))
+join_Nor_form_soc <-readRDS("data/cache_data/join_Nor_form_soc.RDS")
+join_Nor_form_nat <-readRDS("data/cache_data/join_Nor_form_nat.RDS")
+sysRev<-readRDS("data/cache_data/sysRev.RDS")
+
+########################################################################
+########################################################################
+### Fig - tidstrend
+
+plot_years <- 
+  nor_bib |> 
+  mutate(year=year(publication_date)) |> 
+  group_by(year) |> 
+  tally() |> 
+  mutate(csum=cumsum(n)) |> 
+ggplot(aes(x = year)) +
+  geom_point(aes(y = csum), color = "darkgoldenrod4") +
+  #geom_bar(aes(y = n), stat = "identity", fill = "#4dac26", alpha = 0.5) +  
+  xlab("År") +
+  scale_y_continuous(
+    name = "Kumulativt\nantall artikler",
+  #  sec.axis = sec_axis(~., name = "Antall pr år")  # Reverse the scaling for the secondary axis
+  ) #+
+ # theme(
+  #  axis.title.y = element_text(color = "#E69F00"),
+    #axis.text.y = element_text(color = "#E69F00"),
+   # axis.title.y.right = element_text(color = "#4dac26"),
+    #axis.text.y.right = element_text(color = "#4dac26")
+ # )
+
+###############################################################################
+### disiplin
+fig_disiplin <-
+join_Nor_form |> 
+  mutate(study_area_discipline = fct_recode(study_area_discipline, Economy = "economic")) |>
+  group_by(study_area_discipline) |> 
+  tally() |> 
+  drop_na() |>
+  filter(study_area_discipline !="Interdiciplinary") |>
+  mutate(study_area_discipline = as.character(study_area_discipline)) |>
+  mutate(study_area_discipline = case_when(
+            grepl("Mathematics", study_area_discipline)~ "Naturvitenskap",
+            grepl("Economy", study_area_discipline) ~ "Økonomi",
+            grepl("Humanities", study_area_discipline) ~ "Humaniora",
+            grepl("Social", study_area_discipline) ~ "Samfunnsvitenskap",
+            grepl("Agricultural", study_area_discipline) ~ "Landbr og fiskeri", 
+                                  TRUE~study_area_discipline)) |>
+  ggplot(aes(reorder(study_area_discipline, n),n))+
+  geom_histogram(stat="identity", fill = "darkgoldenrod4")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") 
+
+
+###############################################################################
+## Figur økosystem
+
+fig_ecosys <-
+join_Nor_form_nat |> 
+  group_by(ecosystem_type_main) |>
+  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
+  unnest(ecosystems_main)  |> 
+  group_by(ecosystems_main) |> 
+  mutate(ecosystems_main=trimws(ecosystems_main)) |> 
+  tally() |> 
+  drop_na() |>
+  filter(n > 1) |>
+  mutate(ecosystems_main = case_when(
+            grepl("Forest", ecosystems_main)~ "Skog",
+            grepl("Semi-natural", ecosystems_main) ~ "Seminaturlig",
+            grepl("Rivers", ecosystems_main) ~ "Elv & innsjø",
+            grepl("Polar", ecosystems_main) ~ "Polar & tundra",
+            grepl("Naturally", ecosystems_main) ~ "Naturlig åpen lav.",
+            grepl("Urban", ecosystems_main) ~ "Urbane økosys", 
+            grepl("Wetlands", ecosystems_main) ~ "Våtmark & myr",
+            grepl("Coastal", ecosystems_main) ~ "Kyst",
+            grepl("Mountains", ecosystems_main) ~ "Fjell",
+                                  TRUE~ecosystems_main)) |> 
+  ggplot(aes(reorder(ecosystems_main, n),n))+
+  geom_histogram(stat="identity", fill = "darkolivegreen3")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") 
+
+###############################################################################
+### fig arealbruk
+
+fig_arealbruk <-
+join_Nor_form_nat |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  tally() |> 
+  drop_na() |> 
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Landbruk",
+    grepl("Biological resource use", land_use)~"Biol. ressursbruk",
+    grepl("Energy", land_use)~"Energi",
+    grepl("Resident", land_use)~"Bebyggelse",
+    grepl("Transport", land_use)~"Transport",
+    grepl("fish", land_use)~"Biol. ressurs",
+    grepl("Human", land_use)~"Forstyrrelse",
+    grepl("Protection", land_use)~"Vern",
+    grepl("Restoration", land_use)~"Restaurering",
+    grepl("Natural system", land_use)~"Habitatmodifisering",
+    TRUE~land_use
+  )) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  group_by(land_use) |> 
+  summarise(n=sum(n))|> 
+  ggplot(aes(reorder(land_use, n),n))+
+  geom_histogram(stat="identity", fill = "darkolivegreen3")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler")
+
+
+###############################################################################
+### Fig EBV
+  EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
+
+fig_ebv <-
+join_Nor_form_nat |> 
+    select(EBVs) |>
+    pivot_longer(cols = EBVs,
+                 names_to = "EBV_group",
+                 values_to = "EBV_level",
+                 values_drop_na = T) |>
+    filter(EBV_group != "ecosystem_services") |>
+    mutate(EBV_level =str_split(EBV_level,",\\s(?=[A-Z])")) |>
+    unnest(EBV_level) |>
+    mutate(EBV_level = str_split_i(EBV_level, " - ", 1)) |>
+    group_by(EBV_group, EBV_level) |> 
+    tally() |>
+    group_by(EBV_group) |> 
+    summarize(n = sum(n)) |> 
+    mutate(EBV_group = case_match(EBV_group,
+                                  "community_composition" ~ "Samfunn",
+                                  "ecosystem_functioning" ~ "Økosys. funk",
+                                  "ecosystem_structure" ~ "Økosys. struk",
+                                  "genetic_composition" ~ "Genetisk",
+                                  "species_populations" ~ "Arter",
+                                  "species_traits" ~ "Artsegenskaper")) |>
+    ggplot(aes(x = reorder(EBV_group, n),
+               y = n))+
+    geom_histogram(stat="identity", fill = "darkolivegreen3")+
+    coord_flip()+
+    theme(legend.position = "Null")+
+    labs(x="", y="Antall artikler") 
+
+
+###############################################################################
+## Økosystemtjenester
+
+fig_ES <-
+join_Nor_form_nat |> 
+  select(ecosystem_services) |>
+  mutate(ecosystem_services = str_split(ecosystem_services,",\\s(?=[A-Z])"))   |> 
+  unnest(ecosystem_services)  |> 
+  mutate(ecosystem_services = trimws(ecosystem_services))  |> 
+  group_by(ecosystem_services) |> 
+  tally() |> 
+  drop_na() |>
+  mutate(ecosystem_services = case_when(
+    grepl("R&M - carbon storage and sequestration", ecosystem_services)~"Karbonsekvestrering",
+    grepl("Provisioning", ecosystem_services)~"Forsynende",
+    grepl("Regulation", ecosystem_services)~"Regulerende",
+    grepl("Cultural", ecosystem_services)~"Kulturelle",
+    grepl("Others", ecosystem_services)~"Andre",
+    TRUE~ecosystem_services
+  )) |> 
+  ggplot(aes(reorder(ecosystem_services, n),n))+
+  geom_histogram(stat="identity", fill = "darkolivegreen3")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") 
+
+###############################################################################
+## samf vitenskap
+
+
+
+###############################################################################
+### Sys rev ecosys
+
+fig_sysrev_ecotype <-
+sysRev |> 
+  group_by(ecosystem_type_main) |>
+  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
+  unnest(ecosystems_main)  |> 
+  group_by(ecosystems_main) |> 
+  mutate(ecosystems_main=trimws(ecosystems_main)) |> 
+  tally() |> 
+  drop_na() |>
+  top_n(8) |> 
+  mutate(ecosystems_main = case_when(
+            grepl("Forest", ecosystems_main)~ "Skog",
+            grepl("Semi-natural", ecosystems_main) ~ "Seminaturlig",
+            grepl("Rivers", ecosystems_main) ~ "Elv & innsjø",
+            grepl("Polar", ecosystems_main) ~ "Polar & tundra",
+            grepl("Naturally", ecosystems_main) ~ "Naturlig åpen lav.",
+            grepl("Urban", ecosystems_main) ~ "Urbane økosys", 
+            grepl("Wetlands", ecosystems_main) ~ "Våtmark & myr",
+            grepl("Coastal", ecosystems_main) ~ "Kyst",
+            grepl("Mountains", ecosystems_main) ~ "Fjell",
+                                  TRUE~ecosystems_main)) |> 
+  ggplot(aes(reorder(ecosystems_main, n),n))+
+  geom_histogram(stat="identity", fill = "chocolate1")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") 
+
+###################################################################################
+fig_sysrev_areause <-
+sysRev |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  tally() |> 
+  drop_na() |> 
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Agriculture",
+    grepl("Biological resource use", land_use)~"Biological resource use",
+    grepl("Energy", land_use)~"Energy",
+    grepl("Resident", land_use)~"Residential",
+    grepl("Transport", land_use)~"Transportation",
+    grepl("fish", land_use)~"Biological resource use",
+    TRUE~land_use
+  )) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  group_by(land_use) |> 
+  summarise(n=sum(n))|>
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Landbruk",
+    grepl("Biological resource use", land_use)~"Biol. ressursbruk",
+    grepl("Energy", land_use)~"Energi",
+    grepl("Resident", land_use)~"Bebyggelse",
+    grepl("Transport", land_use)~"Transport",
+    grepl("fish", land_use)~"Biol. ressurs",
+    grepl("Human", land_use)~"Forstyrrelse",
+    grepl("Protection", land_use)~"Vern",
+    grepl("Restoration", land_use)~"Restaurering",
+    grepl("Natural system", land_use)~"Habitatmodifisering",
+    TRUE~land_use
+  )) |> 
+  ggplot(aes(reorder(land_use, n),n))+
+  geom_histogram(stat="identity", fill = "chocolate1")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") 
+
+###################################################################################
+
+
+ggarrange(plot_years, fig_disiplin, 
+          fig_ecosys, fig_arealbruk, 
+          fig_ebv, fig_ES,
+          fig_sysrev_ecotype, fig_sysrev_areause,
+          ncol = 2, nrow = 4)
+
+
+
+```
+
+#### Oversikt over det samlede materialet fra Norge
+
+Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. De tidligste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Antallet mellom ulike år, men selv om det har vært en generell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 20 årene. I vårt materiale er det en stor overvekt av forskning som faller inn under fagdisiplinen matematikk og naturvitenskap, men det er også en betydelig andel samfunnsvitenskapelige studier. De andre disiplinene er i liten grad inkludert i vårt datamateriale fra Norge.
+
+#### Naturvitenskapelige studier fra Norge
+
+Inkluderte naturvitenskapelige studier fokuserte enten på effekten av arealbruk på biologiske manfgold eller effekten på økosystemtjenester. De hyppigst studerte økosystemene i vårt materiale når vi filterer ut studier innenfor naturvitenskap er skog etterfulgt av semi-naturlige økosystmer og fjelløkosystemer. De øvrige økosystemtypene er langt dårligere representert i vårt materiale. Når det gjelder ulike former for arealbruk og arealbruksendringer er det effekter av landbruk og biologisk ressursutnyttelse som er mest studert. Dersom vi bryter opp arealbruken i finere inndeling (se hovedteksten) finner vi at det er særlig effekt av skogbruk (biologisk ressursutnyttelse) og beiting (landbruk) som er mye studert. Til sammenlikning er de øvrige formene for arealbruk, inkludert effekten av energiproduksjon, langt mindre representert i materialet. Det er svært få naturvitenskapelige artikler som har fokusert på vern eller restaurering. Videre avdekker vår gjennomgang at fokus på flertallet av de naturvitenskapelige artiklene har vært på enten arter, artssamfunn eller artsegenskaper. Det er færre studier som har studert effekter på økosystem-nivå (både struktur og funksjon), og det er svært få studier som har undersøkt effekter på genetisk sammensetning. Når det gjelder studier som har fokusert på effekter på økosystemtjenester er antallet studier generelt langt lavere. Fleste studier fokuserte på karbonsekvestrering og færrest studier fokuserte på kulturelle økosystemtjenester.
+
+Vår gjennomgang av den naturvitenskapelige litteraturen viste videre at flertallet av studiene er basert på det som ofte karakteriseres som svake forsøksdesign, det er en overvekt av studier på lokalt- eller regionalt skala og få studier som har inkludert data fra hele landet, og de fleste studiene er basert på korte tidsserier (1-3 år er dominerende). Til sist viser gjennomgangen at det er et fåtall av studiene som har gjort data- og kildekode tilgjengelig i etterkant av studiet, noe som er hemmende på videre utvikling av fagfeltet.
+
+#### Samfunnsvitenskapelig litteratur fra Norge
+
+\[kort tekst her\]
+
+#### Systematiske litteratursammenstillinger
+
+Vår gjennomgang av eksisterende systematiske litteratursammenstillinger fanget opp totalt `r dim(sysRev)[1]` , hvorav `r dim(filter(sysRev, type_of_summarised_evidence == "Meta-analyses based on a systematic review"))[1]` var eksisterende metaanalyser basert på systematiske litteraturgjennomganger. De systematiske litteratursammenstillingene vi fanget opp fokuserte i stor grad på skog, elv & innsjø eller seminaturlige økosystemer. De øvrige økosystemene var i mindre grad representert. I likhet med den naturvitenskapelige litterturen fokusert et høyest antall systematiske litteratursammenstillinger på effekter av landbruk (produksjon og beiting) og biologisk ressursutnyttelse (inkludert skogbruk). Det var også en høyere andel av artiklene i denne kategorien som fokuserte på vern og restaurering.
+
+Vår gjennomgang av eksisterende systematiske litteratursammenstillinger avdekket også at en relativt lav andel av disse har benyttet seg av metoder for å vurdere risiko for publiseringsskjevhet og andre faktorer som kan gjøre materialet mindre egnet til å trekke sikre slutninger.
+
+## Diskusjon
+
+Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema vi har mye og lite forskningsbasert kunnskap om. Sammenstillingen skiller seg fra tidligere norske kunnskapssammenstillinger ved at vi identifiserer studier som dreier seg om *effektene* av arealbruk på natur og på naturgoder, i motsetning til kunnskapssammenstillinger som omfatter de to temaene hver for seg. Vår gjennomgang gir en god oversikt over for hvilke tema det finnes forskningsbasert kunnskap og hvor det mangler. En begrensning med et systematisk kart, slik vi har utviklet her, er at tema er for stort til å gå i detaljer på enkelttema eller vurdere kvaliteten på de inkluderte studiene. Selv om vi har fulgt en streng protokoll og har vurdert rundt 20.000 artikler opp mot våre inkluderingskriterier er det alltid en fare for at enkeltstudier ikke fanges opp av våre søk eller at enkelt studier er vanskelig å vurdere opp mot inkluderingskriteriene. Vår oversikt over litteraturen gir likevel en veldig god oversikt over tilgjengelig litteratur, og er en nyttig oversikt for videre forskning, forvaltning og policyutvikling.
+
+#### Datahull og kunnskapsmangler
