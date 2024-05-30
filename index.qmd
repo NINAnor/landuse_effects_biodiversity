@@ -9,7 +9,6 @@ Den systematiske kartdatabasen består av studier som er vurdert. Flertallet av 
 ```{=html}
 <iframe width="780" height="500" src="map.html" title="Kunnskapskart"></iframe>
 ```
-
 Inkluderte artikler er oppført i den søkbare datatabellen nedenfor.
 
 ```{r}
