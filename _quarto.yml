@@ -8,6 +8,6 @@ website:
       - text: 'Om prosjekten'
         href: about.html
       - text: 'Rapport'
-        href: report.html
+        href: quarto_ninareport.html
       - text: "Datatabell"
         href: index.html
