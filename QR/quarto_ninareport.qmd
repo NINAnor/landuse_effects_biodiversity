@@ -852,9 +852,7 @@ sector_societal_concern_empty_levels <- names(ssNew)[2:11][!names(ssNew)[2:11] %
 
 ```
 
-
-add_row(sector_societal_concern = "Labour and social inclusion") |>
-Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. De tidligste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Som vist i @fig-publication-year varierte antallet mellom ulike år, og selv om det har vært en generell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 20 årene.
+add_row(sector_societal_concern = "Labour and social inclusion") \|\> Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. De tidligste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Som vist i @fig-publication-year varierte antallet mellom ulike år, og selv om det har vært en generell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 20 årene.
 
 #### Kronologisk fordeling og innhold i inkluderte artikler fra Norge {.unnumbered}
 
@@ -1503,7 +1501,6 @@ join_Nor_form_soc |>
 
 Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (@fig-ssMetode). Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. Mange studier har også brukt intervjuer, samt blandede metoder. Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
 
-
 ```{r fig-ssMetode}
 #| echo: false
 #| message: false
@@ -1576,9 +1573,9 @@ group_by(data_gathering_methods, study_area_discipline) |>
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
-#### Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered} 
+#### Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered}
 
-Hovedparten av de samfunnsrelaterte studiene hadde en analytisk tilnærming fokusert på styring og forvaltning (@fig-analytisk). 
+Hovedparten av de samfunnsrelaterte studiene hadde en analytisk tilnærming fokusert på styring og forvaltning (@fig-analytisk).
 
 ```{r fig-analytisk}
 #| echo: false
@@ -1638,7 +1635,6 @@ join_Nor_form_soc |>
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
-
 
 #### Hvilke økosystemer har vært tema for samfunnsrelaterte studier? {.unnumbered}
 
@@ -1725,8 +1721,7 @@ join_Nor_form_soc |>
 
 #### I hvilken grad fokuserer de samfunnsvitenskapelige studiene på effekter av arealbruk henholdsvis på naturmangfold, klima eller begge? {.unnumbered}
 
-De aller fleste av de samfunnsrelaterte artiklene fokuserte på biologisk mangfold, mens noen få også så på aspekter ved karbonlagring  eller -opptak (@fig-c-bio). 
-Ingen så kun på karbonlagring eller -opptak.
+De aller fleste av de samfunnsrelaterte artiklene fokuserte på biologisk mangfold, mens noen få også så på aspekter ved karbonlagring eller -opptak (@fig-c-bio). Ingen så kun på karbonlagring eller -opptak.
 
 ```{r fig-c-bio}
 #| echo: false
@@ -1734,36 +1729,35 @@ Ingen så kun på karbonlagring eller -opptak.
 #| warning: false
 #| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på biologisk mangfold, karbonlagring, eller begge deler. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
-ssNew |> 
-  mutate(carbon_or_biodiversity = case_match(
-    carbon_or_biodiversity,
-    "both" ~ "Biodiversity and Carbon",
-    "biodiversity" ~ "Biodiversity",
-    .default = carbon_or_biodiversity
-  )) |>
-  group_by(carbon_or_biodiversity) |>
-  tally() |> 
-  ggplot(aes(
-      x = fct_reorder(carbon_or_biodiversity, n),
-      y = n,
-      fill = carbon_or_biodiversity
-    )) +
-  geom_histogram(
-    stat = "identity"
-  ) +
-  geom_text(
-    aes(
-      label = n
-      ),
-    nudge_y = nudgeDist
-  ) +
-  coord_flip() +
-  theme(legend.position = "Null") +
-  labs(x = "", y = commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D")
+# ssNew |> 
+#   mutate(carbon_or_biodiversity = case_match(
+#     carbon_or_biodiversity,
+#     "both" ~ "Biodiversity and Carbon",
+#     "biodiversity" ~ "Biodiversity",
+#     .default = carbon_or_biodiversity
+#   )) |>
+#   group_by(carbon_or_biodiversity) |>
+#   tally() |> 
+#   ggplot(aes(
+#       x = fct_reorder(carbon_or_biodiversity, n),
+#       y = n,
+#       fill = carbon_or_biodiversity
+#     )) +
+#   geom_histogram(
+#     stat = "identity"
+#   ) +
+#   geom_text(
+#     aes(
+#       label = n
+#       ),
+#     nudge_y = nudgeDist
+#   ) +
+#   coord_flip() +
+#   theme(legend.position = "Null") +
+#   labs(x = "", y = commonResponse) +
+#   scale_fill_viridis(discrete = TRUE, option = "D")
 
 ```
-
 
 #### Hvilke typer arealbruk fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
@@ -1915,8 +1909,7 @@ group_by(governance_level_using_the_tool,
 
 #### Hvilke sektorer fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
-Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk samt sektor for klima- og miljøpolitikk (@fig-sectors). Et fåtall studier var relevant for olje- og energipolitikk, nærings- og fiskeripolitikk samt handel.
-Vi lette også etter artikler som studerte følgende sektorer eller samfunnsmessige områder, men hvor vi ikke fant noen artikler: Children and Families, Digitalisation and Public Governance, Health and Care Services, Justice and Public Security, Culture and Equality, Education and Research, Transport, Foreign Affairs.
+Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk samt sektor for klima- og miljøpolitikk (@fig-sectors). Et fåtall studier var relevant for olje- og energipolitikk, nærings- og fiskeripolitikk samt handel. Vi lette også etter artikler som studerte følgende sektorer eller samfunnsmessige områder, men hvor vi ikke fant noen artikler: Children and Families, Digitalisation and Public Governance, Health and Care Services, Justice and Public Security, Culture and Equality, Education and Research, Transport, Foreign Affairs.
 
 ```{r fig-sectors}
 #| echo: false
@@ -2305,10 +2298,7 @@ Tekst her om sys revs…
 
 #### Vurdering av studiekvalitet på systematiske litteraturesammenstillinger {.unnumbered}
 
-De systematiske litteraturesammenstillingene har i stor grad fokusert på _Critically appraised_ tema eller de har gjort en meta-analyse basert på en systematsk litteraturesammenstilling (@fig-type-sum-evidence).
-_Critical appraisal_ mangler en god oversettelse til norsk, men i kunnskapssynteser dette henspeiler på den systematiske evalueringen av studier for å avdekke forskjeller i kvalitet, gyldighet, og relevans, før man velger å eventuelt inkludere de i en litteratursammenstilling. 
-Prosessen med _critial appraisal_ hjelper for å sikre at konklusjonene fra kunnskapssyntesen er basert på troverdig og robust evidens.
-
+De systematiske litteraturesammenstillingene har i stor grad fokusert på *Critically appraised* tema eller de har gjort en meta-analyse basert på en systematsk litteraturesammenstilling (@fig-type-sum-evidence). *Critical appraisal* mangler en god oversettelse til norsk, men i kunnskapssynteser dette henspeiler på den systematiske evalueringen av studier for å avdekke forskjeller i kvalitet, gyldighet, og relevans, før man velger å eventuelt inkludere de i en litteratursammenstilling. Prosessen med *critial appraisal* hjelper for å sikre at konklusjonene fra kunnskapssyntesen er basert på troverdig og robust evidens.
 
 ```{r fig-type-sum-evidence}
 #| echo: false
@@ -2341,6 +2331,7 @@ coord_flip() +
 #### Risiko for systematisk skjevhet {.unnumbered}
 
 De systematiske litteratursammenstillingene som forekommer i datamaterialet har betydelige sannsyneligheter for systematisk skjevhet og har i mindre grad vurdert denne skjevheten i de inindividuelle studiene som de har benyttet seg av (@fig-riskOfBias).
+
 ```{r fig-riskOfBias}
 #| echo: false
 #| message: false
@@ -2379,7 +2370,6 @@ sysRev |>
              ncol=2) 
 
 ```
-
 
 Det er i de fleste tilfeller uklart om de systematiske litteratursammenstillingene har tilstrekkelig stort dataomfang til å konkludere som de har gjort, og om de har vært gode nok til å vurdere eller analysere kildene til variasjon mellom de individuelle studiene som de baserer seg på (@fig-imprecision).
 
@@ -2453,12 +2443,12 @@ scale_fill_viridis(discrete = TRUE, option = "D") +
 ```{r Indirectness}
 #| echo: false
 #| message: false
-ggplot(aes(reorder(indirectness_does_the_summarised_evidence_directly_assess_the_hypothesis_or_question_at_hand_or_does_it_make_use_of_proxy_outcomes,n), n, fill=indirectness_does_the_summarised_evidence_directly_assess_the_hypothesis_or_question_at_hand_or_does_it_make_use_of_proxy_outcomes))+
-geom_histogram(stat="identity") +
-theme(legend.position = "Null")+
-   labs(x="", y="antall publikasjoner")+
-coord_flip()+
-scale_fill_viridis(discrete = TRUE, option = "D") 
+# ggplot(aes(reorder(indirectness_does_the_summarised_evidence_directly_assess_the_hypothesis_or_question_at_hand_or_does_it_make_use_of_proxy_outcomes,n), n, fill=indirectness_does_the_summarised_evidence_directly_assess_the_hypothesis_or_question_at_hand_or_does_it_make_use_of_proxy_outcomes))+
+# geom_histogram(stat="identity") +
+# theme(legend.position = "Null")+
+#    labs(x="", y="antall publikasjoner")+
+# coord_flip()+
+# scale_fill_viridis(discrete = TRUE, option = "D") 
 
 
 
@@ -2705,7 +2695,7 @@ net=networkPlot(NetMatrix, n = 500, Title = "Co-citations", type = "fruchterman"
 
 En nettverksanalyse av siteringsnettverkene viser videre at det er klare grupperinger i datasettet @fig-co-citation. Disse klustrene, markert med ulike farger domineres av henholdsvis.... <!--# Matt - can we say something very rough about the clusters? -->
 
-The largest cluster represents studies that address directly the effect of a particular landuse change on biodiversity (for example farmland conservation measures). The second largest cluster represnts studies that address ecosystem services. The third cluster consists of studies that are more conceptual and discuss, for example, rewilding or valuing nature (as a concept rather than applied work). The final cluster (the smallest) are studies on reindeer. This suggests that reindeer studies tend to cite each other more often than citing more general ecological or ecosystem services studies. 
+The largest cluster represents studies that address directly the effect of a particular landuse change on biodiversity (for example farmland conservation measures). The second largest cluster represnts studies that address ecosystem services. The third cluster consists of studies that are more conceptual and discuss, for example, rewilding or valuing nature (as a concept rather than applied work). The final cluster (the smallest) are studies on reindeer. This suggests that reindeer studies tend to cite each other more often than citing more general ecological or ecosystem services studies.
 
 ```{r wordfreq}
 #| echo: false
@@ -2713,7 +2703,6 @@ The largest cluster represents studies that address directly the effect of a par
 #| warning: false
 #| label: fig-wordfreq
 #| cache: true
-#| fig-cap: "Matt - this you must describe"
 #| fig-cap: "The change in frequency of certain words used in the Titles and Abstracts of included papers. Word frequency before 2015 (the median year in the dataset) is compared to word frequency after 2015"
 
 
@@ -2733,7 +2722,6 @@ wordfreq |>
 Vi undersøkte også hvilke tema som ble vanligere og sjeldnere over tid <!--# Matt - I need help to write this section-->
 
 Prior to 2015 words such as "climate", "biodiversity", "ecosystem" and "services" were much less common in the title or abstract of included studies than afterwards. After 2015 words such as "forest", "fragmentation", "old-growth", etc were much less common than before. This suggests that the language used in titles and abstracts has become more focused on policy relevant buzzwords rather than habitats or species traits. We can not conclude from this that the actual studies have changed however.
-
 
 ## En beslutningsmodell basert på inkluderte artikler fra Norge
 
@@ -2804,25 +2792,11 @@ Et annet veldig tydelig funn er at en stor andel av den naturvitenskapelige litt
 
 For de inkluderte systematiske litteratursammenstillingene gjorde vi en vurdering basert på modifiserte GRADE-vurderinger (se Metoder). Denne vurderingen avdekket at en relativt liten andel av denne litteraturen var basert på sammenstillinger som en kritisk måte vurderte litteraturen som ble inkludert.
 
+Evidence syntheses were largely focused on Applied subjects (forest management and agriculture FIGURE LINK) which is expected as these methods are well-suited to understanding the effect of management interventions.
 
-Evidence syntheses were largely focused on Applied subjects (forest management and agriculture FIGURE LINK) which is expected as these methods are well-suited to understanding the effect of management interventions.  
+The majority of systematic review studies were so-called "systematic maps". Systematic maps catalogue the available evidence (which is very useful) but are generally broad in scope. Focused systematic reviews and meta-analyses were limited, but within this group there were several studies that investigated landuse/landuse-change "interventions" (can be negative or positive interventions) which provide strong evidence of effect. For example, @flowerstrip2023 discuss the effectiveness of flower-strips in agricultural landscapes. They highlight a large pooled effect of flower-strips on the abundance and richness of pollinator insects. They also highlight a potential source of confounding in that habitat quality of control sites needs to be equivalent to that of the interventions in order to avoid wrongly concluding an effect. @harper2022changes assessed the effect of hydropower flow magnitude changes on fish abundance. They show that effects on fish are highly context dependent meaning that site-specific adaptive management might be necessary.
 
-The majority of systematic review studies were so-called "systematic maps". 
-Systematic maps catalogue the available evidence (which is very useful) but are generally broad in scope. 
-Focused systematic reviews and meta-analyses were limited, but within this group there were several studies that investigated landuse/landuse-change "interventions" (can be negative or positive interventions) which provide strong evidence of effect. 
-For example, @flowerstrip2023 discuss the effectiveness of flower-strips in agricultural landscapes. 
-They highlight a large pooled effect of flower-strips on the abundance and richness of pollinator insects. 
-They also highlight a potential source of confounding in that habitat quality of control sites needs to be equivalent to that of the interventions in order to avoid wrongly concluding an effect.
-@harper2022changes assessed the effect of hydropower flow magnitude changes on fish abundance. They show that effects on fish are highly context dependent meaning that site-specific adaptive management might be necessary. 
-
-One major theme in the highest quality systematic reviews & meta-analyses was difficulty in assessing primary literature due to low "validity" and poor reporting. Long-term continuous monitoring and spatial/temporal replication are needed to adequately understand the impact of interventions. 
-In ecology, synthesizing evidence from multiple studies to inform policy and practice is often challenging due to inconsistent measurement and reporting of outcomes. 
-This lack of standardisation impedes the ability to make informed decisions. 
-In medicine this problem has been addressed by establishing consensus on consistently measured and reported outcomes, thereby improving data synthesis and supporting evidence-based decision making. 
-In ecology this concept has only been applied in a limited way (see @reed2022peatland). 
-
-
-
+One major theme in the highest quality systematic reviews & meta-analyses was difficulty in assessing primary literature due to low "validity" and poor reporting. Long-term continuous monitoring and spatial/temporal replication are needed to adequately understand the impact of interventions. In ecology, synthesizing evidence from multiple studies to inform policy and practice is often challenging due to inconsistent measurement and reporting of outcomes. This lack of standardisation impedes the ability to make informed decisions. In medicine this problem has been addressed by establishing consensus on consistently measured and reported outcomes, thereby improving data synthesis and supporting evidence-based decision making. In ecology this concept has only been applied in a limited way (see @reed2022peatland).
 
 ```{r}
 #| echo: false
