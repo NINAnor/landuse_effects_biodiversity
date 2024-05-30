@@ -2606,6 +2606,25 @@ For de inkluderte systematiske litteratursammenstillingene gjorde vi en vurderin
 
 <!--# MATT ADD SHORT TEXT HERE ABOUT SYS REVS - 5-10 LINES -->
 
+Evidence syntheses were largely focused on Applied subjects (forest management and agriculture FIGURE LINK) which is expected as these methods are well-suited to understanding the effect of management interventions.  
+
+The majority of systematic review studies were so-called "systematic maps". 
+Systematic maps catalogue the available evidence (which is very useful) but are generally broad in scope. 
+Focused systematic reviews and meta-analyses were limited, but within this group there were several studies that investigated landuse/landuse-change "interventions" (can be negative or positive interventions) which provide strong evidence of effect. 
+For example, @flowerstrip2023 discuss the effectiveness of flower-strips in agricultural landscapes. 
+They highlight a large pooled effect of flower-strips on the abundance and richness of pollinator insects. 
+They also highlight a potential source of confounding in that habitat quality of control sites needs to be equivalent to that of the interventions in order to avoid wrongly concluding an effect.
+@harper2022changes assessed the effect of hydropower flow magnitude changes on fish abundance. They show that effects on fish are highly context dependent meaning that site-specific adaptive management might be necessary. 
+
+One major theme in the highest quality systematic reviews & meta-analyses was difficulty in assessing primary literature due to low "validity" and poor reporting. Long-term continuous monitoring and spatial/temporal replication are needed to adequately understand the impact of interventions. 
+In ecology, synthesizing evidence from multiple studies to inform policy and practice is often challenging due to inconsistent measurement and reporting of outcomes. 
+This lack of standardisation impedes the ability to make informed decisions. 
+In medicine this problem has been addressed by establishing consensus on consistently measured and reported outcomes, thereby improving data synthesis and supporting evidence-based decision making. 
+In ecology this concept has only been applied in a limited way (see @reed2022peatland). 
+
+
+
+
 ```{r}
 #| echo: false
 #| message: false
