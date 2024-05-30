@@ -17,7 +17,7 @@ Vi har i dette prosjektet utviklet et systematisk kart (også kjent som Evidensk
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-height: 7
+#| fig-height: 10
 #| fig-width: 8
 #| fig-cap: "Oversikt over de viktigste funnene fra vår litteratursammentilling"
 
@@ -45,18 +45,8 @@ plot_years <-
   mutate(csum=cumsum(n)) |> 
 ggplot(aes(x = year)) +
   geom_point(aes(y = csum), color = "darkgoldenrod4") +
-  #geom_bar(aes(y = n), stat = "identity", fill = "#4dac26", alpha = 0.5) +  
   xlab("År") +
-  scale_y_continuous(
-    name = "Kumulativt\nantall artikler",
-  #  sec.axis = sec_axis(~., name = "Antall pr år")  # Reverse the scaling for the secondary axis
-  ) #+
- # theme(
-  #  axis.title.y = element_text(color = "#E69F00"),
-    #axis.text.y = element_text(color = "#E69F00"),
-   # axis.title.y.right = element_text(color = "#4dac26"),
-    #axis.text.y.right = element_text(color = "#4dac26")
- # )
+  scale_y_continuous(name = "Kumulativt\nantall artikler") 
 
 ###############################################################################
 ### disiplin
@@ -207,8 +197,71 @@ join_Nor_form_nat |>
   labs(x="", y="Antall artikler") 
 
 ###############################################################################
-## samf vitenskap
+## samf vitenskap - arealbruk
 
+fig_samf_areal <-
+join_Nor_form_soc |> 
+  group_by(x23,
+           study_area_discipline) |>
+  mutate(land_use = strsplit(x23, ","),
+         study_area_discipline = case_match(study_area_discipline,
+                                            "Social Sciences" ~ "Social_Sciences",
+                                            .default = "Other"))  |> 
+  unnest(land_use)|> 
+  group_by(land_use,
+           study_area_discipline) |> 
+  mutate(land_use=trimws(land_use),
+         land_use = case_when(
+           is.na(land_use) ~ "Unknown",
+           .default = land_use)) |> 
+  tally() |> 
+  filter(land_use !="Unknown") |>
+  filter(land_use != "fishing collection") |>
+  mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Landbruk",
+    grepl("Biological resource use", land_use)~"Biol. ressursbruk",
+    grepl("Energy", land_use)~"Energi",
+    grepl("Resident", land_use)~"Bebyggelse",
+    grepl("Transport", land_use)~"Transport",
+    grepl("fish", land_use)~"Biol. ressurs",
+    grepl("Human", land_use)~"Forstyrrelse",
+    grepl("Protection", land_use)~"Vern",
+    grepl("Restoration", land_use)~"Restaurering",
+    grepl("Natural system", land_use)~"Habitatmodifisering",
+    TRUE~land_use
+  )) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  group_by(land_use, study_area_discipline) |> 
+  summarise(n=sum(n))|> 
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = land_use) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences
+      
+    ),
+    stat = "identity",
+    fill = "darkseagreen",
+  ) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = "Antall artikler") 
 
 
 ###############################################################################
@@ -282,13 +335,78 @@ sysRev |>
   labs(x="", y="Antall artikler") 
 
 ###################################################################################
+###################################################################################
+## figur social science analytic
+
+fig_sosial_analytic <- 
+  join_Nor_form_soc |> 
+  select(analytical_approach_of_study,
+         study_area_discipline) |> 
+  mutate(
+    analytical_approach_of_study = case_when(
+      is.na(analytical_approach_of_study) ~ "Unknown",
+      .default = analytical_approach_of_study),
+    analytical_approach_of_study = str_split(analytical_approach_of_study,",\\s(?=[A-Z])"),
+    study_area_discipline = case_match(study_area_discipline,
+                                       "Social Sciences" ~ "Social_Sciences",
+                                       .default = "Other"
+    ))  |>
+  unnest(analytical_approach_of_study) |>
+  mutate(analytical_approach_of_study = trimws(analytical_approach_of_study)) |>
+  filter(analytical_approach_of_study !="Unknown") |>
+group_by(analytical_approach_of_study, study_area_discipline) |> 
+  tally() |> 
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = analytical_approach_of_study) |>
+  mutate(myVar=case_when(
+    grepl("Approach focused on perceptions", myVar)~"Forståelse",
+    grepl("Approach focused on power relations", myVar)~"Maktbalanse",
+    grepl("Cross-sectoral", myVar)~"Tverrsektor",
+    grepl("Economy", myVar)~"Økonomiorient.",
+    grepl("Governance/management", myVar)~"Forvalt. & styring",
+    grepl("Knowledge-oriented", myVar)~"Kunnskapsorientert",
+    grepl("Participatory/deliberative", myVar)~"Forstyrrelse",
+    grepl("Sustainability", myVar)~"Bærekraft",
+    grepl("Transformative", myVar)~"Transformativ",
+    grepl("Value-oriented", myVar)~"Verdiorientert",
+    TRUE~myVar
+  )) |> 
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences
+    ),
+    stat = "identity",
+    fill = "darkseagreen"
+  ) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = "Antall artikler")  
+
+
+###################################################################################
 
 
 ggarrange(plot_years, fig_disiplin, 
           fig_ecosys, fig_arealbruk, 
           fig_ebv, fig_ES,
+          fig_sosial_analytic, fig_samf_areal,
           fig_sysrev_ecotype, fig_sysrev_areause,
-          ncol = 2, nrow = 4)
+          ncol = 2, nrow = 5)
 
 
 
