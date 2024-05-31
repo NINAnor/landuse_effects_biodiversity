@@ -1862,8 +1862,6 @@ join_Nor_form_soc |>
 
 ```
 
-
-
 #### Hvilke styringsnivå fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
 De fleste samfunnsrelaterte artiklene fokuserte på det lokale styringsnivået, typisk kommunenivå (@fig-toolLevel).
@@ -2055,7 +2053,6 @@ join_Nor_form_soc |>
 
 
 ```
-
 
 <!-- #### Hvilke verktøy er foreslått for å løse konfliktene? -->
 
@@ -2480,7 +2477,6 @@ sysRev |>
 
 ```
 
-
 #### Publiseringsskjevhet {.unnumbered}
 
 Vi har sett på i hvilken grad de systematiske litteratursammenstillingenen har vurdert den potensielle systematiske publiseringsskjevheten (*publication bias*) i datamaterialet og ser at overvekten av studiene ikke har vurdert dette (@fig-publicationBias).
@@ -2541,7 +2537,6 @@ sysRev |>
 
 
 ```
-
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
