@@ -1682,6 +1682,7 @@ De aller fleste av de samfunnsrelaterte artiklene fokuserte på biologisk mangfo
 #| message: false
 #| warning: false
 #| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på biologisk mangfold, karbonlagring, eller begge deler. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+
 ssNew |>
   mutate(carbon_or_biodiversity = case_match(
     carbon_or_biodiversity,

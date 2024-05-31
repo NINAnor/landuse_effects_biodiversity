@@ -1,7 +1,7 @@
 ---
 title: Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge - Et systematisk kart og beslutningsstøtteverktøy 
 subtitle: Oppsummering for beslutningstakere
-format: docx
+format: html
 editor: visual
 ---
 
@@ -46,7 +46,8 @@ plot_years <-
 ggplot(aes(x = year)) +
   geom_point(aes(y = csum), color = "darkgoldenrod4") +
   xlab("År") +
-  scale_y_continuous(name = "Kumulativt\nantall artikler") 
+  scale_y_continuous(name = "Kumulativt\nantall artikler") +
+  annotate(geom = "text", x = 1987, y = 210, label = "Alle artikler fra Norge:\nKummulativt antall artikler", color = "darkgoldenrod4", size = 3.5, hjust = 0)
 
 ###############################################################################
 ### disiplin
@@ -69,7 +70,8 @@ join_Nor_form |>
   geom_histogram(stat="identity", fill = "darkgoldenrod4")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="Antall artikler") 
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 1.5, y = 80, label = "Alle artikler fra Norge:\nFagområde", color = "darkgoldenrod4", size = 3.5, hjust = 0)
 
 
 ###############################################################################
@@ -100,7 +102,8 @@ join_Nor_form_nat |>
   geom_histogram(stat="identity", fill = "darkolivegreen3")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="Antall artikler") 
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 2.4, y = 45, label = "Naturvitenskap:\nØkosystem", color = "darkolivegreen3", size = 3.5, hjust = 0)
 
 ###############################################################################
 ### fig arealbruk
@@ -133,7 +136,8 @@ join_Nor_form_nat |>
   geom_histogram(stat="identity", fill = "darkolivegreen3")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="Antall artikler")
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 2.5, y = 48, label = "Naturvitenskap:\nArealbruk", color = "darkolivegreen3", size = 3.5, hjust = 0) 
 
 
 ###############################################################################
@@ -167,7 +171,8 @@ join_Nor_form_nat |>
     geom_histogram(stat="identity", fill = "darkolivegreen3")+
     coord_flip()+
     theme(legend.position = "Null")+
-    labs(x="", y="Antall artikler") 
+    labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 2.0, y = 55, label = "Naturvitenskap:\nBiodiversitetsvariabler", color = "darkolivegreen3", size = 3.5, hjust = 0)
 
 
 ###############################################################################
@@ -194,7 +199,8 @@ join_Nor_form_nat |>
   geom_histogram(stat="identity", fill = "darkolivegreen3")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="Antall artikler") 
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 1.8, y = 6, label = "Naturvitenskap:\nØkosystemtjenester", color = "darkolivegreen3", size = 3.5, hjust = 0) 
 
 ###############################################################################
 ## samf vitenskap - arealbruk
@@ -261,7 +267,8 @@ join_Nor_form_soc |>
   ) +
   coord_flip() +
   theme(legend.position = "Null") +
-  labs(x = "", y = "Antall artikler") 
+  labs(x = "", y = "Antall artikler") +
+  annotate(geom = "text", x = 2.2, y = 14, label = "Samfunnsvitenskap:\nArealbruk", color = "darkseagreen", size = 3.5, hjust = 0)  
 
 
 ###############################################################################
@@ -292,7 +299,8 @@ sysRev |>
   geom_histogram(stat="identity", fill = "chocolate1")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="Antall artikler") 
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 2.2, y = 11, label = "Litteratursammenst:\nØkosystem", color = "chocolate1", size = 3.5, hjust = 0)  
 
 ###################################################################################
 fig_sysrev_areause <-
@@ -332,7 +340,8 @@ sysRev |>
   geom_histogram(stat="identity", fill = "chocolate1")+
   coord_flip()+
   theme(legend.position = "Null")+
-  labs(x="", y="Antall artikler") 
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 2.2, y = 14, label = "Litteratursammenst:\nArealbruk", color = "chocolate1", size = 3.5, hjust = 0)  
 
 ###################################################################################
 ###################################################################################
@@ -395,7 +404,8 @@ group_by(analytical_approach_of_study, study_area_discipline) |>
   ) +
   coord_flip() +
   theme(legend.position = "Null") +
-  labs(x = "", y = "Antall artikler")  
+  labs(x = "", y = "Antall artikler") +
+  annotate(geom = "text", x = 2.2, y = 17, label = "Samfunnsvitenskap:\nAnalytisk metode", color = "darkseagreen", size = 3.5, hjust = 0) 
 
 
 ###################################################################################
