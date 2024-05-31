@@ -1377,7 +1377,7 @@ join_Nor_form_nat |>
 
 ## Samfunnsrelatert litteratur fra Norge
 
-Her følger resultatene fra vår gjennomgang av de studiene som har analysert en eller annen form for konflikt, et forvaltningsverktøy eller styring (*governance*). Dette tilsvarer `r nrow(join_Nor_form_soc)` artikler av total `r nrow(join_Nor_form)`, dvs. `r round(nrow(join_Nor_form_soc)/nrow(join_Nor_form)*100)`%. Av disse igjen er det kun `r nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences"))` artikler som bruker samfunsvitenskeplige metoder.
+Her følger resultatene fra vår gjennomgang av de studiene som har analysert en eller annen form for konflikt, et forvaltningsverktøy eller styring mer generelt (*governance*). Dette tilsvarer `r nrow(join_Nor_form_soc)` artikler av total `r nrow(join_Nor_form)`, dvs. `r round(nrow(join_Nor_form_soc)/nrow(join_Nor_form)*100)`%. Av disse igjen er det kun `r nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences"))` artikler som bruker samfunsvitenskeplige metoder, det vil si `r round(((nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences")) / nrow(join_Nor_form)) * 100),0)`% av studiene totalt.
 
 #### Hvilke samfunnsfaglige tema har blitt forsket på? (Konflikter, styring og forvaltningsverktøy) {.unnumbered}
 
@@ -1454,9 +1454,11 @@ join_Nor_form_soc |>
 
 ```
 
-#### Hvilke metoder er brukt i de samfunnrelaterte studiene? {.unnumbered}
+Av de samfunnsrelaterte studiene fokuserer betydelig flere på styring (governance) og forvaltningsverktøy enn på konflikter (@fig-ssEmpiricalFocus).
 
-Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier som analytisk tilnærming (@fig-ssMetode). Dette gjenspeiler også at en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. Mange studier har også brukt intervjuer, samt blandede metoder. Noen få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
+#### Hvilke samfunnsvitenskapelige metoder er brukt i de samfunnrelaterte studiene? {.unnumbered}
+
+Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har brukt dokumentstudier og intervju som metode (@fig-ssMetode). Det høye antallet av førstnevnte gjenspeiler i noen grad en del studier kompletterer andre forskningsmetoder ved å undersøke for eksempel politiske dokumenter eller tidligere utvikling på temaet. En del studier har også brukt spørreundersøkelser, samt blandede metoder. Få studier tok i bruk metoder for aksjonsforskning og deltagende forskning, mens en studie tok i bruk etnografiske metoder.
 
 ```{r fig-ssMetode}
 #| echo: false
@@ -1525,13 +1527,13 @@ group_by(data_gathering_methods, study_area_discipline) |>
 
 #### Hvilke analytiske tilnærminger er brukt i de samfunnsvitenskapelige studiene? {.unnumbered}
 
-Hovedparten av de samfunnsrelaterte studiene hadde en analytisk tilnærming fokusert på styring og forvaltning (@fig-analytisk).
+Hovedparten av de samfunnsrelaterte studiene hadde en analytisk tilnærming fokusert på styring og forvaltning (@fig-analytisk). Deretter følger tilnærminger som vektlegger økonomiske forhold,  aktørers oppfatninger og forståelser, deltagende, demokratiske og/eller deliberative prosesser, samt maktrelasjoner og aktørgrupper. Færre studier vektlegger analytiske tilnærminger knyttet til verdier, kunnskap, bærekraft, tverrsektorielle prosesser og gjennomgripende endringer (transformasjoner)[.]{.underline}
 
 ```{r fig-analytisk}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Hva er de dominante analytiske tilnærmingene for samfunnsrelaterte studier? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+#| fig-cap: "Hvilke analytiske tilnærminger er brukt i de samfunnsrelaterte studiene? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
 join_Nor_form_soc |> 
   select(analytical_approach_of_study,
@@ -1588,13 +1590,13 @@ join_Nor_form_soc |>
 
 #### Hvilke økosystemer har vært tema for samfunnsrelaterte studier? {.unnumbered}
 
-Av den samfunnsrelaterte og den samfunnsvitenskapelige forskningen vi har undersøkt er flest studier relatert til skogøkosystemer, etterfulgt av fjelløkosystemer og semi-naturlige økosystemer. Disse er igjen etterfulgt av studier relatert til elve- og innsjøøkosystemer, kystøkosystemer, naturlige åpne områder under tregrensen, polare økosystemer og arktisk tundra, våtmarks- og myrøkosystemer, urbane økosystemer samt økosystemer knyttet til jordbruk.
+Av den samfunnsrelaterte og den samfunnsvitenskapelige forskningen vi har undersøkt er flest studier relatert til skogøkosystemer, etterfulgt av fjelløkosystemer og semi-naturlige økosystemer (\@fig-socialscience-ecosys). Disse er igjen etterfulgt av studier relatert til elve- og innsjøøkosystemer, kystøkosystemer, naturlige åpne områder under tregrensen, polare økosystemer og arktisk tundra, økosystemer knyttet til jordbruk, våtmarks- og myrøkosystemer, samt urbane økosystemer.
 
 ```{r fig-socialscience-ecosys}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på ulike økosystemer. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+#| fig-cap: "Omfang av samfunnsrelaterte artikler som omhandler ulike økosystemer. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 join_Nor_form_soc |>
   group_by(
     ecosystem_type_main,
@@ -1673,7 +1675,7 @@ join_Nor_form_soc |>
 
 ```
 
-#### I hvilken grad fokuserer de samfunnsvitenskapelige studiene på effekter av arealbruk henholdsvis på naturmangfold, klima eller begge? {.unnumbered}
+#### I hvilken grad fokuserer de samfunnsrelaterte studiene på effekter av arealbruk henholdsvis på naturmangfold, karbonlagring eller begge? {.unnumbered}
 
 De aller fleste av de samfunnsrelaterte artiklene fokuserte på biologisk mangfold, mens noen få også så på aspekter ved karbonlagring eller -opptak (@fig-c-bio). Ingen så kun på karbonlagring eller -opptak.
 
@@ -1715,11 +1717,13 @@ ssNew |>
 
 #### Hvilke typer arealbruk fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
+Litteratursammenstillingen viste at to typer arealbruk skilte seg ut som de som har fått mest oppmerksomhet i den samfunnsrelaterte forskningen, nemlig skogbruk og vern (\@fig-socialscience-areause-coarse). Deretter følger flere ulike typer arealbruk som omfatter ressursbruk, forstyrrelser, arealinngrep samt restaurering.
+
 ```{r fig-socialscience-areause-coarse}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på ulike typer arealbruk. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+#| fig-cap: "Omfang av samfunnsrelaterte studier som fokuserer på ulike typer arealbruk. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 #| fig-width: 12
 #| fig-height: 10
 
@@ -1781,7 +1785,7 @@ join_Nor_form_soc |>
 
 #### Aktører {.unnumbered}
 
-Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk, samt sektor for klima- og miljøpolitikk (@fig-actors).
+I den samfunnsrelaterte forskningen vi har gjennomgått er det flest studier som involverer styringsorganer, etterfulgt av studier som involverer landeiere og landeierorganisasjoner, og deretter de som involverer borgere (@fig-actors). Andre aktører som er involvert i forskningen inkluderer, i avtagende rekkefølge, næringer og næringsorganisasjoner, andre organisasjoner, kunnskapsinstitusjoner og vitenskapelig ekspertise, miljøorganisasjoner, urbefolkning og politiske organisasjoner.
 
 ```{r fig-actors}
 #| echo: false
@@ -1864,13 +1868,13 @@ join_Nor_form_soc |>
 
 #### Hvilke styringsnivå fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
-De fleste samfunnsrelaterte artiklene fokuserte på det lokale styringsnivået, typisk kommunenivå (@fig-toolLevel).
+Flertallet av de samfunnsrelaterte artiklene satte søkelys på det lokale styringsnivået, typisk  kommunenivået, mens de fleste andre fokuserte på henholdsvis de nasjonale og regionale styringsnivåene (@fig-toolLevel).
 
 ```{r fig-toolLevel}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Omfang samfunnsrelaterte artikler som fokuserer på ulike styringsnivå. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+#| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på ulike styringsnivå. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
 join_Nor_form_soc |>
   select(
@@ -1942,13 +1946,13 @@ join_Nor_form_soc |>
 
 #### Hvilke sektorer fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
-Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk samt sektor for klima- og miljøpolitikk (@fig-sectors). Et fåtall studier var relevant for olje- og energipolitikk, nærings- og fiskeripolitikk samt handel. Vi lette også etter artikler som studerte følgende sektorer eller samfunnsmessige områder, men hvor vi ikke fant noen artikler: Children and Families, Digitalisation and Public Governance, Health and Care Services, Justice and Public Security, Culture and Equality, Education and Research, Transport, Foreign Affairs.
+Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert til sektor for kommunal- og distriktspolitikk, etterfulgt av sektor for landbruk- og matpolitikk samt sektor for klima- og miljøpolitikk (@fig-sectors). Vi lette også etter artikler som studerte følgende sektorer eller samfunnsmessige områder, men hvor vi ikke fant noen artikler: Children and Families, Digitalisation and Public Governance, Health and Care Services, Justice and Public Security, Culture and Equality, Education and Research, Transport, Foreign Affairs.
 
 ```{r fig-sectors}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Hvilke sektorer og samfunnsmessige områder er hyppigst studert blan de samfunnsrelaterte artiklene? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+#| fig-cap: "Hvilke sektorer og politikkområder er hyppigst studert blan de samfunnsrelaterte artiklene? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 # see 'sector_societal_concern_empty_levels' for empty factor levels
 join_Nor_form_soc |>
   select(
