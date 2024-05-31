@@ -2695,7 +2695,7 @@ net=networkPlot(NetMatrix, n = 500, Title = "Co-citations", type = "fruchterman"
 
 En nettverksanalyse av siteringsnettverkene viser videre at det er klare grupperinger i datasettet @fig-co-citation. Disse klyngene, markert med ulike farger domineres av henholdsvis.... <!--# Matt - can we say something very rough about the clusters? -->
 
-The largest cluster represents studies that address directly the effect of a particular landuse change on biodiversity (for example farmland conservation measures). The second largest cluster represnts studies that address ecosystem services. The third cluster consists of studies that are more conceptual and discuss, for example, rewilding or valuing nature (as a concept rather than applied work). The final cluster (the smallest) are studies on reindeer. This suggests that reindeer studies tend to cite each other more often than citing more general ecological or ecosystem services studies.
+Den største gruppen i nettverket representerer studier som undersøker den direkte effekten av en bestemt arealbruksendring på det biologiske mangfoldet (for eksempel tiltak for å bevare jordbrukslandskapet). Den nest største gruppen består av studier som tar for seg økosystemtjenester. Den tredje klyngen består av studier som er mer konseptuelle og diskuterer for eksempel "rewilding" eller verdsetting av natur (som et konsept snarere enn i anvendt arbeid). Den siste klyngen (den minste) er studier om rein. Dette tyder på at studier om rein har en tendens til å sitere hverandre oftere enn å sitere mer generelle studier om økologi eller økosystemtjenester.
 
 ```{r wordfreq}
 #| echo: false
@@ -2721,11 +2721,9 @@ wordfreq |>
 
 Vi undersøkte også hvilke tema som ble vanligere og sjeldnere over tid <!--# Matt - I need help to write this section-->
 
-Prior to 2015 words such as "climate", "biodiversity", "ecosystem" and "services" were much less common in the title or abstract of included studies than afterwards. After 2015 words such as "forest", "fragmentation", "old-growth", etc were much less common than before. This suggests that the language used in titles and abstracts has become more focused on policy relevant buzzwords rather than habitats or species traits. We can not conclude from this that the actual studies have changed however.
+Før 2015 var ord som «klima», «biologisk mangfold», «økosystem» og «tjenester» mye mindre vanlige i tittelen eller sammendraget til inkluderte studier enn etterpå. Etter 2015 var ord som «skog», «fragmentering», «gammel skog» osv. mye mindre vanlige enn tidligere. Dette kan tyde på at språket som brukes i titler og sammendrag, har blitt mer fokusert på politisk relevante moteord enn på habitater eller artsegenskaper. Vi kan imidlertid ikke konkludere med at det faktiske innholdet i studiene har endret seg.
 
 ## En beslutningsmodell basert på inkluderte artikler fra Norge
-
-<!--# Trond: Bør det stå beslutningsstøtteverktøy?-->
 
 Vi kan vurdere den konseptuelle utviklingen av et forskningsfelt ved hjelp av bibliometrisk nettverksanalyse (@cobo2011approach). Nærmere bestemt vurderer en slik nettverksanalyse forholdet mellom nøkkelord i et sett med dokumenter. Det hjelper med å identifisere nøkkeltemaer, deres sammenhenger og hvordan de endrer seg over tid, og gir verdifull innsikt for forskere og beslutningstakere når man skal prioritere ny forskning.
 
