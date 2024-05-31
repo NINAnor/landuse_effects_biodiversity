@@ -6,8 +6,8 @@ website:
   navbar:
     right:
       - text: 'Om prosjekten'
-        href: about.html
-      - text: 'Rapport'
-        href: quarto_ninareport.html
-      - text: "Datatabell"
         href: index.html
+      - text: "Datatabell"
+        href: datatabell.html
+#      - text: 'Rapport'
+#        href: quarto_ninareport.html

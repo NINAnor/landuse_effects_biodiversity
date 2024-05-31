@@ -1,0 +1,23 @@
+---
+title: "Datatabell"
+format: html
+editor: visual
+---
+
+Den systematiske kartdatabasen består av studier som er vurdert. Flertallet av studiene kommer fra Norge da disse ble prioritert for koding. Studier uten geografiske koordinater er plottet ved ekvator. Klikk på et punkt for å få tilgang til lenken til artikkelen.
+
+```{=html}
+<iframe width="780" height="500" src="map.html" title="Kunnskapskart"></iframe>
+```
+Inkluderte artikler er oppført i den søkbare datatabellen nedenfor.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+EVIATLAS <- readRDS("data/EVIATLAS.RDS")
+
+DT::datatable(EVIATLAS)
+
+```
