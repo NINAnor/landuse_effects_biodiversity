@@ -4,6 +4,8 @@ format: html
 editor: visual
 ---
 
+[BACK](https://ninanor.github.io/landuse_effects_biodiversity/about.html)
+
 ```{html}
-<iframe width="780" height="500" src="quarto_ninareport.html" title="Kunnskapskart"></iframe>
+<iframe width="780" height="500" src="quarto_ninareport.html" title="Rapport"></iframe>
 ```
