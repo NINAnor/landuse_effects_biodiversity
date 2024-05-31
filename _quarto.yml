@@ -9,5 +9,4 @@ website:
         href: index.html
       - text: "Datatabell"
         href: datatabell.html
-#      - text: 'Rapport'
-#        href: quarto_ninareport.html
+
