@@ -2192,11 +2192,11 @@ sysRev<-readRDS("data/cache_data/sysRev.RDS")
 
 ```
 
-I dette kapittelet presenteres resultatene fra gjennomgangen av de systematiske litteraturgjennomgangene som ble fanget opp av vårt søk og som ble vurdet som relevante basert på våre inkluderingskriterier. I motsetning til primærstudier, hvor vi kun inkluderte artikler fra norge, Sverige og Finland var kriteriet for systematiske litteratursammenstillinger at de hadde global, Europeisk eller Fennoskandisk dekning. Narrative oversiktsartikler ble ikke inkludert i vår gjennomgang. Totalt ble `r dim(sysRev)[1]` artikler inkludert.
+I dette kapittelet presenteres resultatene fra gjennomgangen av de systematiske litteraturgjennomgangene som ble fanget opp av vårt søk og som ble vurdet som relevante basert på våre inkluderingskriterier. I motsetning til primærstudier, hvor vi kun inkluderte artikler fra norge, Sverige og Finland var kriteriet for systematiske litteratursammenstillinger at de hadde global, Europeisk eller Fennoskandisk dekning. Narrative oversiktsartikler ble ikke inkludert i vår gjennomgang. Totalt ble `r dim(sysRev)[1]` artikler inkludert, hvorav `r nrow(sysRev |> filter(type_of_summarised_evidence == "Meta-analyses based on a systematic review"))` var metaanalyser basert på systematiske littertursammenstillinger av mer begrensede områder.
 
 #### Hvor hyppig er ulike økosystemer, arealbruk og arealbruksendringer inkludert i de systematiske litteratursammenstillingene? {.unnumbered}
 
-Skog, elver og innsjøer og semi-naturlige økosystemer var klart overrepresnterte blant de systematiske litteratursammenstillingene (@fig-sysrev-ecosystem).
+Skog, elver og innsjøer og semi-naturlige økosystemer var klart overrepresenterte blant de systematiske litteratursammenstillingene (@fig-sysrev-ecosystem). Til sammenlikning var det færre studier som fokuserte på fjell- og kystøkosystemer.
 
 ```{r fig-sysrev-ecosystem}
 #| echo: false
@@ -2236,7 +2236,7 @@ sysRev |>
 
 #### Hvilke arealbrukskategorier er studert blant de systematiske litteratursammenstillingene? {.unnumbered}
 
-Hovedvekten av de systematiske litteratursammenstillingene har fokusert på jordbruk (*Agriculture*), inkludert beiting, og ressursbruk (skogbruk, jakt, fisk osv.; *Biological resource use*) (@fig-sysrev-areause-coarse; @fig-sysrev-areause-detailed).
+Hovedvekten av de systematiske litteratursammenstillingene har fokusert på jordbruk (*Agriculture*), inkludert beiting, og ressursbruk (skogbruk, jakt, fisk osv.; *Biological resource use*) (@fig-sysrev-areause-coarse; @fig-sysrev-areause-detailed). Det var også et betydelig innslag av studier som fokuserte på effektene av vern og restaurering.  
 
 ```{r fig-sysrev-areause-coarse}
 #| echo: false
@@ -2278,6 +2278,8 @@ sysRev |>
 
 ```
 
+
+
 ```{r fig-sysrev-areause-detailed}
 #| echo: false
 #| message: false
@@ -2315,7 +2317,7 @@ sysRev |>
 
 ```
 
-Tekst her om sys revs…
+
 
 #### Vurdering av studiekvalitet på systematiske litteraturesammenstillinger {.unnumbered}
 
