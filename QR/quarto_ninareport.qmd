@@ -615,7 +615,7 @@ Utkastet til vurderingen ble presentert på en konferanse holdt av Miljødirekto
 
 ## Avvik fra protokollen
 
-Erlend skriver her...
+Før vi startet med litteraturgjennomgangen ble initiert utviklet vi en detaljert protokoll (@nilsen2024) som dannet grunnalg for vårt arbeid. Søket ble gjennomført som beskrevet, men på grunn av et vesentlig større treff på vitenskapelige artikler enn anntatt ble det ikke kapasitet i dette prosjektet til også å gå gjennom den grå litteraturen. I tillegg er et antall artikler (ca 10%) ikke gjennomgått screening på grunn av kapasitetsutfordringer. Vi benyttet imidlertid ulike filtre i verktøyet Rayan, inkludert Rayyan-AI 5-stjerners rangering av artikler og sørget for at alle artikler som har en høy sannsynlighet for å være relevante er screenet. Dette punktet er også berørt nærmere i diskusjonen. Både inkluderingskriterier og datakodestrategi var som beskrevet i protokollen. Kun primærstudier fra Norge samt alle systematiske litteratursammenstillinger ble prioritert for koding.
 
 \newpage
 
@@ -1403,10 +1403,10 @@ join_Nor_form_soc |>
   mutate(empirical_focus_of_study = trimws(empirical_focus_of_study)) |>
   group_by(empirical_focus_of_study, study_area_discipline) |>
   tally() |>
-  mutate(empirical_focus_of_study = case_when(
-    is.na(empirical_focus_of_study) ~ "Unknown",
-    .default = empirical_focus_of_study
-  )) |>
+  # mutate(empirical_focus_of_study = case_when(
+  #   is.na(empirical_focus_of_study) ~ "Unknown",
+  #   .default = empirical_focus_of_study
+  # )) |>
   drop_na() |>
   pivot_wider(
     names_from = study_area_discipline,
@@ -1476,9 +1476,9 @@ join_Nor_form_soc |>
     ))  |> 
   unnest(data_gathering_methods)  |> 
   mutate(data_gathering_methods = trimws(data_gathering_methods),
-         data_gathering_methods = case_when(
-           is.na(data_gathering_methods) ~ "Unknown",
-           .default = data_gathering_methods),
+         # data_gathering_methods = case_when(
+         #   is.na(data_gathering_methods) ~ "Unknown",
+         #   .default = data_gathering_methods),
          data_gathering_methods = case_match(
            data_gathering_methods,
            "Ethmography" ~ "Ethnography",
@@ -1539,9 +1539,9 @@ join_Nor_form_soc |>
   select(analytical_approach_of_study,
          study_area_discipline) |> 
   mutate(
-    analytical_approach_of_study = case_when(
-      is.na(analytical_approach_of_study) ~ "Unknown",
-       .default = analytical_approach_of_study),
+    # analytical_approach_of_study = case_when(
+    #   is.na(analytical_approach_of_study) ~ "Unknown",
+    #    .default = analytical_approach_of_study),
      analytical_approach_of_study = str_split(analytical_approach_of_study,",\\s(?=[A-Z])"),
        study_area_discipline = case_match(study_area_discipline,
         "Social Sciences" ~ "Social_Sciences",
@@ -1550,7 +1550,8 @@ join_Nor_form_soc |>
   unnest(analytical_approach_of_study) |>
   mutate(analytical_approach_of_study = trimws(analytical_approach_of_study)) |>
   group_by(analytical_approach_of_study, study_area_discipline) |> 
-  tally() |> 
+  tally() |>
+  drop_na() |>
   pivot_wider(
     names_from = study_area_discipline,
     values_from = n
@@ -1737,11 +1738,12 @@ join_Nor_form_soc |>
   unnest(land_use)|> 
   group_by(land_use,
            study_area_discipline) |> 
-  mutate(land_use=trimws(land_use),
-         land_use = case_when(
-           is.na(land_use) ~ "Unknown",
-           .default = land_use)) |> 
-  tally() |> 
+  # mutate(land_use=trimws(land_use),
+  #        land_use = case_when(
+  #          is.na(land_use) ~ "Unknown",
+  #          .default = land_use)) |> 
+  tally() |>
+  drop_na() |>
   filter(land_use != "fishing collection") |>
   mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
   pivot_wider(
@@ -1807,10 +1809,10 @@ join_Nor_form_soc |>
   unnest(actors) |>
   mutate(
     actors = trimws(actors),
-    actors = case_when(
-      is.na(actors) ~ "Unknown",
-      .default = actors
-    ),
+    # actors = case_when(
+    #   is.na(actors) ~ "Unknown",
+    #   .default = actors
+    #),
     actors = case_match(
       actors,
       "Indigenous Saami" ~ "Indigenous",
@@ -1825,6 +1827,7 @@ join_Nor_form_soc |>
     study_area_discipline
   ) |>
   tally() |>
+  drop_na() |>
   pivot_wider(
     names_from = study_area_discipline,
     values_from = n
@@ -1892,10 +1895,10 @@ join_Nor_form_soc |>
   ) |>
   unnest(governance_level_using_the_tool) |>
   mutate(
-    governance_level_using_the_tool = case_when(
-      is.na(governance_level_using_the_tool) ~ "Unknown",
-      .default = governance_level_using_the_tool
-    ),
+    # governance_level_using_the_tool = case_when(
+    #   is.na(governance_level_using_the_tool) ~ "Unknown",
+    #   .default = governance_level_using_the_tool
+    # ),
     governance_level_using_the_tool = trimws(governance_level_using_the_tool)
   ) |>
   group_by(
@@ -1903,6 +1906,7 @@ join_Nor_form_soc |>
     study_area_discipline
   ) |>
   tally() |>
+  drop_na() |>
   pivot_wider(
     names_from = study_area_discipline,
     values_from = n
@@ -1970,16 +1974,17 @@ join_Nor_form_soc |>
   unnest(sector_societal_concern) |>
   mutate(
     sector_societal_concern = trimws(sector_societal_concern),
-    sector_societal_concern = case_when(
-      is.na(sector_societal_concern) ~ "Unknown",
-      .default = sector_societal_concern
-    )
+    # sector_societal_concern = case_when(
+    #   is.na(sector_societal_concern) ~ "Unknown",
+    #   .default = sector_societal_concern
+    #)
   ) |>
   group_by(
     sector_societal_concern,
     study_area_discipline
   ) |>
   tally() |>
+  drop_na() |>
   pivot_wider(
     names_from = study_area_discipline,
     values_from = n
@@ -2207,10 +2212,11 @@ sysRev |>
   group_by(ecosystems_main) |> 
   mutate(ecosystems_main=trimws(ecosystems_main)) |> 
   tally() |> 
-  mutate(ecosystems_main = case_when(
-    is.na(ecosystems_main) ~ "Unknown",
-    .default = ecosystems_main
-  )) |>
+  # mutate(ecosystems_main = case_when(
+  #   is.na(ecosystems_main) ~ "Unknown",
+  #   .default = ecosystems_main
+  # )) |>
+  drop_na() |>
   ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
   geom_histogram(stat="identity")+
   coord_flip()+
@@ -2245,7 +2251,7 @@ sysRev |>
   group_by(land_use) |> 
   tally() |> 
   mutate(land_use=case_when(
-    is.na(land_use) ~ "Unknown",
+    #is.na(land_use) ~ "Unknown",
     grepl("Agricul", land_use)~"Agriculture",
     grepl("Biological resource use", land_use)~"Biological resource use",
     grepl("Energy", land_use)~"Energy",
@@ -2256,7 +2262,8 @@ sysRev |>
   )) |> 
   mutate(land_use=trimws(land_use)) |> 
   group_by(land_use) |> 
-  summarise(n=sum(n))|> 
+  summarise(n=sum(n))|>
+  drop_na() |>
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
@@ -2284,12 +2291,13 @@ sysRev |>
   group_by(land_use) |>
   mutate(
     land_use = trimws(land_use),
-    land_use = case_when(
-      is.na(land_use) ~ "Unknown",
-      .default = land_use
-    )
+    # land_use = case_when(
+    #   is.na(land_use) ~ "Unknown",
+    #   .default = land_use
+    # )
   ) |>
   tally() |>
+  drop_na() |>
   filter(land_use != "fishing collection") |>
   mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
   ggplot(aes(reorder(land_use, n), n, fill = land_use)) +
@@ -2321,10 +2329,10 @@ De systematiske litteraturesammenstillingene har i stor grad fokusert på *Criti
 sysRev |>
   group_by(type_of_summarised_evidence) |>
   tally() |>
-  mutate(type_of_summarised_evidence = case_when(
-    is.na(type_of_summarised_evidence) ~ "Unknown",
-    .default = type_of_summarised_evidence
-  )) |>
+  # mutate(type_of_summarised_evidence = case_when(
+  #   is.na(type_of_summarised_evidence) ~ "Unknown",
+  #   .default = type_of_summarised_evidence
+  # )) |>
   drop_na() |>
   ggplot(aes(reorder(type_of_summarised_evidence, n), n, fill = type_of_summarised_evidence)) +
   geom_histogram(stat = "identity") +
@@ -2450,10 +2458,10 @@ sysRev |>
   rename(cons = inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap) |>
   group_by(cons) |>
   tally() |>
-  mutate(cons = case_when(
-    is.na(cons) ~ "Unknown",
-    .default = cons
-  )) |>
+  # mutate(cons = case_when(
+  #   is.na(cons) ~ "Unknown",
+  #   .default = cons
+  # )) |>
   drop_na() |>
   ggplot(aes(reorder(cons, n), n, fill = cons)) +
   geom_histogram(stat = "identity") +
@@ -2495,10 +2503,11 @@ sysRev |>
   rename(bias = publication_bias_does_the_summarised_evidence_assess_publication_bias_through_some_formal_method) |>
   group_by(bias) |>
   tally() |>
-  mutate(bias = case_when(
-    is.na(bias) ~ "Unknown",
-    .default = bias
-  )) |>
+  # mutate(bias = case_when(
+  #   is.na(bias) ~ "Unknown",
+  #   .default = bias
+  # )) |>
+  drop_na() |>
   ggplot(aes(reorder(bias, n), n, fill = bias)) +
   geom_histogram(stat = "identity") +
   theme(legend.position = "Null") +
@@ -2524,10 +2533,11 @@ Baert på en systematisk gjennomgang av kriterier for å vurdere kvaliteten til 
 sysRev |>
   group_by(evidence_certainty) |>
   tally() |>
-  mutate(evidence_certainty = case_when(
-    is.na(evidence_certainty) ~ "Unknown",
-    .default = evidence_certainty
-  )) |>
+  # mutate(evidence_certainty = case_when(
+  #   is.na(evidence_certainty) ~ "Unknown",
+  #   .default = evidence_certainty
+  # )) |>
+  drop_na() |>
   ggplot(aes(reorder(evidence_certainty, n), n, fill = evidence_certainty)) +
   geom_histogram(stat = "identity") +
   theme(legend.position = "Null") +
