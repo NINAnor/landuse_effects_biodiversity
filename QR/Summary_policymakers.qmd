@@ -7,9 +7,11 @@ editor: visual
 
 ## Bakgrunn
 
-Endringer i menneskelig arealbruk vurderes som den viktigste årsaken til tilbakegang og tap av arter og naturtyper både globalt og i Norge. Arealendringer påvirker økosystemenes sammensetning, struktur og funksjon, og påvirker dermed økosystemenes evne til å produsere ulike goder og tjenester vi mennesker får fra naturen – ofte omtalt som naturgoder eller økosystemtjenester. Det kanskje mest omtalte naturgodet i senere år er klimaregulering, der opptak og lagring av karbon i økosystemene er sentrale faktorer. Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, inndefinedfrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal er ifølge SSB også i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km^2^, som tilsvarer litt under 50 km^2^ årlig. Grunnleggende kunnskap om utbygging, endringer i arealbruksintensitet og andre konkrete arealendringer er grunnlaget for i neste omgang å vurdere hvilken virkning endringene har for naturmangfold og naturgoder.
+Nedbygging av arealer og endringer i menneskelig arealbruk vurderes som den viktigste årsaken til tilbakegang og tap av arter og naturtyper både globalt og i Norge. Arealendringer påvirker økosystemenes sammensetning, struktur og funksjon, og påvirker dermed økosystemenes evne til å produsere ulike goder og tjenester vi mennesker får fra naturen –omtalt som naturgoder eller økosystemtjenester. Det kanskje mest omtalte naturgodet i senere år er klimaregulering, der opptak og lagring av karbon i økosystemene er sentrale faktorer. Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km^2^, som tilsvarer litt under 50 km^2^ årlig. Grunnleggende kunnskap om utbygging, endringer i arealbruk og andre arealbruksendringer er grunnlaget for i neste omgang å vurdere hvilken virkning disse endringene har for naturmangfold og økosystemtjenester.
 
-Vi har i dette prosjektet utviklet et systematisk kart (også kjent som Evidenskart eller Evidenshullkart) over tilgjengelig kunnskap knyttet til effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge. Oversikten inkluderer også forskning som fokuserer på konflikter knyttet til arealbruk og verktøy for planlegging og forvaltning. Systematiske kart er utviklet for å gi en oversikt over tilgjengelig evidens om et bredt tema og benyttes først og fremst til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål. Oversikten vi har framskaffet er basert på en detaljert protokoll og stringente regler for litteratursøk, inkluderingskriterier, og hvilken informasjon som skal trekkes ut fra de inkluderte artiklene. Vi utformet søk og inkluderingskriterier med tanke på å fange opp alle relevante vitenskapelige artikler fra Norge, Sverige og Finland, samt alle publikasjoner som allerede sammenstilte litteraturen (systematiske oversiktsartikler) så lenge de hadde et globalt, europeisk eller norsk fokus. Som et ledd i utviklingen av protokollen hadde vi også et arbeidsverksted hvor ulike samfunninteresser deltok, og vi mottok skriftlig tilbakemelding på protokollen fra både denne gruppen og en utvidet ekspergruppe bestående av forskere. Dette ble gjort for å sikre at protokollen var tilstrekkelig definert til å fange opp litteratur av interesse.
+Systematiske kart identifiserer hvilke tema hvor det er gjort my forskning og hvilke tema det er forsker lite på. En slik oversikt kan blant annet benyttes til å vurdere hvor det er nødvendig med ytterligere innsats for å øke kunnskapen. Vi har i dette prosjektet utviklet et systematisk kart over tilgjengelig kunnskap knyttet til effekter av arealbruk og arealbruksendringer på biodiversitet og økosystemtjenester inkludert karbonlagring i Norge. Vår oversikt inkluderer også forskning som fokuserer på konflikter og styring knyttet til arealbruk, samt verktøy for planlegging og forvaltning.
+
+Oversikten vi har framskaffet, er basert på en detaljert protokoll og stringente regler for litteratursøk, inkludert kriterier for hvilke vitenskapelige artikler som skal inkluderes i det systematiske kartet, og hvilken informasjon som skal trekkes ut fra de inkluderte artiklene. Vi utformet søk og inkluderingskriterier med tanke på å fange opp alle relevante vitenskapelige artikler fra Norge, Sverige og Finland, samt alle publikasjoner som allerede har sammenstilt relevant litteratur (systematiske oversiktsartikler) så lenge de hadde et globalt, europeisk eller norsk fokus. Som et ledd i utviklingen av protokollen, gjennomførte vi et arbeidsverksted hvor ulike samfunnsinteresser deltok. Etter verkstedet mottok vi skriftlig tilbakemelding på protokollen fra både deltakere på verksted, samt en utvidet ekspertgruppe bestående av forskere. Dette ble gjort for å sikre at protokollen var tilstrekkelig definert til å fange opp litteratur av interesse. Protokollen er åpent tilgjengelig her.
 
 ## Oppsummering av resultatene
 
@@ -19,7 +21,7 @@ Vi har i dette prosjektet utviklet et systematisk kart (også kjent som Evidensk
 #| warning: false
 #| fig-height: 10
 #| fig-width: 8
-#| fig-cap: "Oversikt over viktige funnene fra vår litteratursammentilling. Øverste rad (brune sirkler og søyler) omfatter alle inkluderte artikler fra Norge. Rad to og tre (grønne søyler) omfatter alle naturvitenskapelige artikler fra Norge. Rad fire omfatter artikler med samfunnsvitenskapelige problemstillinger (grå søyle:alle artikler, mørkegrønn søyle: artikler som har benyttet samfunnsvitenskapelige metoder). Rad fem omfatter (orange søyler) eksisterende systematiske litteratursammenstillinger som var inkludert i vårt materiale."
+#| fig-cap: "Oversikt over viktige funnene fra vår litteratursammentilling. Øverste rad (brune sirkler og søyler) omfatter alle inkluderte artikler fra Norge. Rad to og tre (grønne søyler) omfatter alle naturvitenskapelige artikler fra Norge. Rad fire omfatter artikler med samfunnsrelaterte problemstillinger (grå søyle: alle artikler, mørkegrønn søyle: artikler som har benyttet samfunnsvitenskapelige metoder). Rad fem (orange søyler) omfatter eksisterende systematiske litteratursammenstillinger."
 
 
 
@@ -47,7 +49,7 @@ ggplot(aes(x = year)) +
   geom_point(aes(y = csum), color = "darkgoldenrod4") +
   xlab("År") +
   scale_y_continuous(name = "Kumulativt\nantall artikler") +
-  annotate(geom = "text", x = 1987, y = 210, label = "Alle artikler fra Norge:\nKummulativt antall artikler", color = "darkgoldenrod4", size = 3.5, hjust = 0)
+  annotate(geom = "text", x = 1987, y = 210, label = "Alle artikler fra Norge:\nKummulativt antall artikler", color = "darkgoldenrod4", size = 4, hjust = 0)
 
 ###############################################################################
 ### disiplin
@@ -64,14 +66,14 @@ join_Nor_form |>
             grepl("Economy", study_area_discipline) ~ "Økonomi",
             grepl("Humanities", study_area_discipline) ~ "Humaniora",
             grepl("Social", study_area_discipline) ~ "Samfunnsvitenskap",
-            grepl("Agricultural", study_area_discipline) ~ "Landbr og fiskeri", 
+            grepl("Agricultural", study_area_discipline) ~ "Landbruk og fiskeri", 
                                   TRUE~study_area_discipline)) |>
   ggplot(aes(reorder(study_area_discipline, n),n))+
   geom_histogram(stat="identity", fill = "darkgoldenrod4")+
   coord_flip()+
   theme(legend.position = "Null")+
   labs(x="", y="Antall artikler") +
-  annotate(geom = "text", x = 1.5, y = 80, label = "Alle artikler fra Norge:\nFagområde", color = "darkgoldenrod4", size = 3.5, hjust = 0)
+  annotate(geom = "text", x = 1.5, y = 80, label = "Alle artikler fra Norge:\nFagområde", color = "darkgoldenrod4", size = 4, hjust = 0)
 
 
 ###############################################################################
@@ -92,7 +94,7 @@ join_Nor_form_nat |>
             grepl("Semi-natural", ecosystems_main) ~ "Seminaturlig",
             grepl("Rivers", ecosystems_main) ~ "Elv & innsjø",
             grepl("Polar", ecosystems_main) ~ "Polar & tundra",
-            grepl("Naturally", ecosystems_main) ~ "Naturlig åpen lav.",
+            grepl("Naturally", ecosystems_main) ~ "Naturlig åpent lavl. ",
             grepl("Urban", ecosystems_main) ~ "Urbane økosys", 
             grepl("Wetlands", ecosystems_main) ~ "Våtmark & myr",
             grepl("Coastal", ecosystems_main) ~ "Kyst",
@@ -103,7 +105,7 @@ join_Nor_form_nat |>
   coord_flip()+
   theme(legend.position = "Null")+
   labs(x="", y="Antall artikler") +
-  annotate(geom = "text", x = 2.4, y = 45, label = "Naturvitenskap:\nØkosystem", color = "darkolivegreen3", size = 3.5, hjust = 0)
+  annotate(geom = "text", x = 2.4, y = 25, label = "Naturvitenskap:\nØkosystem", color = "darkolivegreen3", size = 4, hjust = 0)
 
 ###############################################################################
 ### fig arealbruk
@@ -122,7 +124,7 @@ join_Nor_form_nat |>
     grepl("Energy", land_use)~"Energi",
     grepl("Resident", land_use)~"Bebyggelse",
     grepl("Transport", land_use)~"Transport",
-    grepl("fish", land_use)~"Biol. ressurs",
+    grepl("fish", land_use)~"Biol. ressursbruk",
     grepl("Human", land_use)~"Forstyrrelse",
     grepl("Protection", land_use)~"Vern",
     grepl("Restoration", land_use)~"Restaurering",
@@ -137,7 +139,7 @@ join_Nor_form_nat |>
   coord_flip()+
   theme(legend.position = "Null")+
   labs(x="", y="Antall artikler") +
-  annotate(geom = "text", x = 2.5, y = 48, label = "Naturvitenskap:\nArealbruk", color = "darkolivegreen3", size = 3.5, hjust = 0) 
+  annotate(geom = "text", x = 2.5, y = 45, label = "Naturvitenskap:\nArealbruk", color = "darkolivegreen3", size = 4, hjust = 0) 
 
 
 ###############################################################################
@@ -161,8 +163,8 @@ join_Nor_form_nat |>
     summarize(n = sum(n)) |> 
     mutate(EBV_group = case_match(EBV_group,
                                   "community_composition" ~ "Samfunn",
-                                  "ecosystem_functioning" ~ "Økosys. funk",
-                                  "ecosystem_structure" ~ "Økosys. struk",
+                                  "ecosystem_functioning" ~ "Økosysystem funk",
+                                  "ecosystem_structure" ~ "Økosysystem strukt",
                                   "genetic_composition" ~ "Genetisk",
                                   "species_populations" ~ "Arter",
                                   "species_traits" ~ "Artsegenskaper")) |>
@@ -172,7 +174,7 @@ join_Nor_form_nat |>
     coord_flip()+
     theme(legend.position = "Null")+
     labs(x="", y="Antall artikler") +
-  annotate(geom = "text", x = 2.0, y = 55, label = "Naturvitenskap:\nBiodiversitetsvariabler", color = "darkolivegreen3", size = 3.5, hjust = 0)
+  annotate(geom = "text", x = 2.0, y = 30, label = "Naturvitenskap:\nBiodiversitetsvariabler", color = "darkolivegreen3", size = 4, hjust = 0)
 
 
 ###############################################################################
@@ -188,10 +190,10 @@ join_Nor_form_nat |>
   tally() |> 
   drop_na() |>
   mutate(ecosystem_services = case_when(
-    grepl("R&M - carbon storage and sequestration", ecosystem_services)~"Karbonsekvestrering",
+    grepl("R&M - carbon storage and sequestration", ecosystem_services)~"Karbonopptak- \nog lagring",
     grepl("Provisioning", ecosystem_services)~"Forsynende",
     grepl("Regulation", ecosystem_services)~"Regulerende",
-    grepl("Cultural", ecosystem_services)~"Kulturelle",
+    grepl("Cultural", ecosystem_services)~"Opplevelse og-\nkunnskapstjenester",
     grepl("Others", ecosystem_services)~"Andre",
     TRUE~ecosystem_services
   )) |> 
@@ -200,7 +202,7 @@ join_Nor_form_nat |>
   coord_flip()+
   theme(legend.position = "Null")+
   labs(x="", y="Antall artikler") +
-  annotate(geom = "text", x = 1.8, y = 6, label = "Naturvitenskap:\nØkosystemtjenester", color = "darkolivegreen3", size = 3.5, hjust = 0) 
+  annotate(geom = "text", x = 1.8, y = 5.3, label = "Naturvitenskap:\nØkosystemtjenester", color = "darkolivegreen3", size = 4, hjust = 0) 
 
 ###############################################################################
 ## samf vitenskap - arealbruk
@@ -268,7 +270,7 @@ join_Nor_form_soc |>
   coord_flip() +
   theme(legend.position = "Null") +
   labs(x = "", y = "Antall artikler") +
-  annotate(geom = "text", x = 2.2, y = 14, label = "Samfunnsvitenskap:\nArealbruk", color = "darkseagreen", size = 3.5, hjust = 0)  
+  annotate(geom = "text", x = 2.2, y = 11, label = "Samfunnsrelatert:\nArealbruk", color = "darkseagreen", size = 4, hjust = 0)  
 
 
 ###############################################################################
@@ -289,7 +291,7 @@ sysRev |>
             grepl("Semi-natural", ecosystems_main) ~ "Seminaturlig",
             grepl("Rivers", ecosystems_main) ~ "Elv & innsjø",
             grepl("Polar", ecosystems_main) ~ "Polar & tundra",
-            grepl("Naturally", ecosystems_main) ~ "Naturlig åpen lav.",
+            grepl("Naturally", ecosystems_main) ~ "Naturlig åpent lavl. ",
             grepl("Urban", ecosystems_main) ~ "Urbane økosys", 
             grepl("Wetlands", ecosystems_main) ~ "Våtmark & myr",
             grepl("Coastal", ecosystems_main) ~ "Kyst",
@@ -300,7 +302,7 @@ sysRev |>
   coord_flip()+
   theme(legend.position = "Null")+
   labs(x="", y="Antall artikler") +
-  annotate(geom = "text", x = 2.2, y = 11, label = "Litteratursammenst:\nØkosystem", color = "chocolate1", size = 3.5, hjust = 0)  
+  annotate(geom = "text", x = 2.2, y = 7, label = "Litteratursammenst:\nØkosystem", color = "chocolate1", size = 4, hjust = 0)  
 
 ###################################################################################
 fig_sysrev_areause <-
@@ -341,7 +343,7 @@ sysRev |>
   coord_flip()+
   theme(legend.position = "Null")+
   labs(x="", y="Antall artikler") +
-  annotate(geom = "text", x = 2.2, y = 14, label = "Litteratursammenst:\nArealbruk", color = "chocolate1", size = 3.5, hjust = 0)  
+  annotate(geom = "text", x = 2.2, y = 11, label = "Litteratursammenst:\nArealbruk", color = "chocolate1", size = 4, hjust = 0)  
 
 ###################################################################################
 ###################################################################################
@@ -405,7 +407,7 @@ group_by(analytical_approach_of_study, study_area_discipline) |>
   coord_flip() +
   theme(legend.position = "Null") +
   labs(x = "", y = "Antall artikler") +
-  annotate(geom = "text", x = 2.2, y = 17, label = "Samfunnsvitenskap:\nAnalytisk metode", color = "darkseagreen", size = 3.5, hjust = 0) 
+  annotate(geom = "text", x = 2.2, y = 10, label = "Samfunnsrelatert:\nAnalytisk metode", color = "darkseagreen", size = 4, hjust = 0) 
 
 
 ###################################################################################
@@ -424,20 +426,22 @@ ggarrange(plot_years, fig_disiplin,
 
 #### Oversikt over det samlede materialet fra Norge
 
-Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema vi har mye og hvilke tema det er lite forskningsbasert kunnskap om. Sammenstillingen skiller seg fra tidligere norske kunnskapssammenstillinger ved at vi identifiserer studier som dreier seg om *effektene* av arealbruk på natur og på naturgoder. Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. Antallet varierte mellom år, men selv om det har vært en generell økende antall artikler publisert pr år er ikke denne økningen påfallende de siste 20 årene till tross for økt fokus på arealbruk i samfunnet generelt. I vårt materiale er det en stor overvekt av forskning som faller inn under fagdisiplinen matematikk og naturvitenskap, men det er også en betydelig andel samfunnsvitenskapelige studier.
+Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screening var gjennomført. Det har vært et økende antall artikler publisert pr år, men økningen er liten gitt det økte fokuset på betydningen av arealbruk for biodiversitet og økosystemtjenester. I vårt materiale er det en stor overvekt av forskning som faller inn under fagdisiplinen matematikk og naturvitenskap, mens samfunnsvitenskapelige studier i mindre grad er representert.
 
 #### Sammenstilling av den naturvitenskapelige forskningen fra Norge
 
-Inkluderte naturvitenskapelige studier fokuserte enten på effekten av arealbruk på biologiske manfgold eller effekten på økosystemtjenester. Totalt ble `r dim(join_Nor_form_nat)[1]` artikler inkludert. De hyppigst studerte økosystemene i vårt materiale når vi filterer ut studier innenfor naturvitenskap er skog etterfulgt av semi-naturlige økosystmer og fjelløkosystemer. De øvrige økosystemtypene er langt dårligere representert i vårt materiale. Når det gjelder ulike former for arealbruk og arealbruksendringer er det effekter av landbruk og biologisk ressursutnyttelse som er mest studert. Dersom vi bryter opp arealbruken i finere inndeling finner vi at det er særlig effekt av skogbruk (biologisk ressursutnyttelse) og beiting (landbruk) som er mye studert. Til sammenlikning er de øvrige formene for arealbruk, inkludert effekten av energiproduksjon, langt mindre representert i materialet. Det er også svært få naturvitenskapelige artikler som har fokusert på vern eller restaurering. Videre avdekker vår gjennomgang at flest studier har fokusert på enten arter, artssamfunn eller artsegenskaper, mens det er færre studier på økosystem-nivå (både struktur og funksjon), og det er svært få studier som har undersøkt effekter på genetisk sammensetning. Et mindre antall studier har fokusert på effekter på økosystemtjenester. Fleste studier fokuserte på karbonsekvestrering og færrest studier fokuserte på kulturelle økosystemtjenester. Vår gjennomgang viste videre at flertallet av studiene er basert på det som ofte karakteriseres som svake forsøksdesign, det er en overvekt av studier på lokalt- eller regionalt skala og få studier som har inkludert data fra hele landet, og de fleste studiene er basert på korte tidsserier. Til sist finner vi at kun et fåtall av studiene som har gjort data- og kildekode tilgjengelig i etterkant av studiet, noe som er hemmende på videre utvikling av fagfeltet.
+Totalt ble `r dim(join_Nor_form_nat)[1]` artikler som omhandlet naturvitenskapelige tema inkludert. De hyppigst studerte økosystemene i vårt materiale er skog etterfulgt av semi-naturlige økosystemer og fjell, mens øvrige økosystemtypene er langt mindre representert. Når det gjelder ulike former for arealbruk og arealbruksendringer er det effekter av landbruk og biologisk ressursutnyttelse som er mest studert. Dersom vi bryter opp arealbruken i finere inndeling finner vi at det er særlig effekt av skogbruk (biologisk ressursutnyttelse) og beiting (landbruk) som er mye studert. Til sammenlikning er de øvrige formene for arealbruk, inkludert effekten av energiproduksjon, langt mindre representert i materialet. Det er også svært få naturvitenskapelige artikler som omhandler betydningen av vern eller restaurering. Videre avdekker vår gjennomgang at det er flest studier arters populasjoner, artssamfunn eller artsegenskaper, mens det er færre studier på økosystem-nivå (både struktur og funksjon). Det er også svært få studier som har undersøkt effekter på genetisk sammensetning. Et mindre antall studier fokuserer på effekter på økosystemtjenester, hvorav de fleste omhandler karbonopptak og få omhandlet opplevelses- og kunnskapstjenester. Vår gjennomgang viste videre at flertallet av studiene er basert på det som ofte karakteriseres som svake forsøksdesign. Det er en overvekt av studier på lokal- eller regional skala og få studier som har inkludert data fra hele landet, og de fleste studiene er basert på korte tidsserier. Kun et fåtall av studiene har gjort data- og kildekode tilgjengelig i etterkant av studiet, noe som er hemmende på videre utvikling av fagfeltet.
 
 #### Viktige trekk ved studier som fokuserer på styring, verktøy og konflikter
 
-Totalt ble `r dim(join_Nor_form_soc)[1]` artikler som fokuserte på samfunnsvitenskapelige problemstillinger inkludert i litteratursammenstillingen, hvorav `r dim(filter(join_Nor_form_soc, study_area_discipline == "Social Sciences"))[1]` ble klassifisert som samfunnsvitenskapelige studier. Vår gjennomgang avdekket en overvekt av studier med et analytisk tilnærming med fokus på styring og forvaltning. Færre studier vektlegger analytiske tilnærminger knyttet til verdier, kunnskap, bærekraft, tverrsektorielle prosesser og gjennomgripende endringer (transformasjoner). Også i denne delen av litteraturen var det flest studier som fokuserte på bruk av biologiske ressurser (særlig skogbruk, men også jakt og fiske) samt jordbruk (særlig jordbruksproduksjon). Sammenliknet med den naturvitenskapelige litteraturen var det en høyere andel som fokuserte på vern. Fordelt på hovedøkosystemer er det flest studier fra skog-, fjell- og semi-naturlig økosystmer. Samlet for den samfunnsvitenskapelige litteraturen fant vi at flere studier fokuserte på styring og verktøy sammenliknet med antallet som fokuserte på konflikter. De hyppigst benyttede metodene i vårt materiale var intervjuer og dokumentstudier.
+Totalt ble `r dim(join_Nor_form_soc)[1]` artikler som fokuserte på samfunnsrelaterte problemstillinger inkludert, hvorav `r dim(filter(join_Nor_form_soc, study_area_discipline == "Social Sciences"))[1]` benyttet samfunnsvitenskapelige metoder. Vår gjennomgang avdekket en overvekt av studier med en analytisk tilnærming som fokuserer på styring og forvaltning. Færre studier vektlegger analytiske tilnærminger knyttet til verdier, kunnskap, bærekraft, tverrsektorielle prosesser og gjennomgripende endringer. Også i denne delen av litteraturen var det flest studier som fokuserte på bruk av biologiske ressurser (særlig skogbruk, men også jakt og fiske) samt jordbruk (særlig jordbruksproduksjon). Sammenliknet med den naturvitenskapelige litteraturen var det en høyere andel som fokuserte på vern. Fordelt på hovedøkosystemer er det flest studier fra skog-, fjell- og semi-naturlige økosystemer. Samlet for den samfunnsvitenskapelige litteraturen fant vi at flere studier fokuserte på styring og verktøy og få som omhandlet konflikter. De hyppigst benyttede metodene i vårt materiale var intervjuer og dokumentstudier.
 
-#### En gjennomgang av eksisterende systematiske litteratursammenstillinger på feltet
+#### En gjennomgang av eksisterende systematiske litteratursammenstillinger
 
-Vår gjennomgang av eksisterende systematiske litteratursammenstillinger fanget opp totalt `r dim(sysRev)[1]` , hvorav `r dim(filter(sysRev, type_of_summarised_evidence == "Meta-analyses based on a systematic review"))[1]` var eksisterende metaanalyser basert på systematiske litteraturgjennomganger. De systematiske litteratursammenstillingene vi fanget opp fokuserte i stor grad på skog, elv & innsjø eller seminaturlige økosystemer. De øvrige økosystemene var i mindre grad representert. I likhet med den naturvitenskapelige litterturen fokusert et høyest antall systematiske litteratursammenstillinger på effekter av landbruk (produksjon og beiting) og biologisk ressursutnyttelse (inkludert skogbruk). Det var også en høyere andel av artiklene i denne kategorien som fokuserte på vern og restaurering. Vår gjennomgang av eksisterende systematiske litteratursammenstillinger avdekket også at en relativt lav andel av disse har benyttet seg av metoder for å vurdere risiko for publiseringsskjevhet og andre faktorer som kan gjøre materialet mindre egnet til å trekke sikre slutninger.
+Vår gjennomgang av eksisterende systematiske litteratursammenstillinger fanget opp totalt `r dim(sysRev)[1]` artikler, hvorav `r dim(filter(sysRev, type_of_summarised_evidence == "Meta-analyses based on a systematic review"))[1]` var metaanalyser basert på systematiske litteraturgjennomganger. Disse studiene fokuserer i stor grad på skog, elv og innsjø, eller semi-naturlige økosystemer. I likhet med den naturvitenskapelige primærlitteraturen omhandlet mange systematiske litteratursammenstillinger effekter av landbruk (produksjon og beiting) og biologisk ressursutnyttelse (inkludert skogbruk). Det var også en høyere andel av artiklene i denne kategorien som omhandlet betydningen av vern og restaurering. Vår gjennomgang avdekket at en lav andel av de eksisterende systematiske litteratursammenstillingene har benyttet seg av metoder for å vurdere risiko for publiseringsskjevhet og andre faktorer som kan gjøre materialet mindre egnet til å trekke sikre slutninger.
 
 #### Datahull og kunnskapsmangler
 
-Vår oversikt over litteraturen gir en fyldig oversikt over tilgjengelig forskningslitteratur knyttet til effekter av arealbruk og arealbruksendringer, og er en nyttig oversikt for videre forskning, forvaltning og policyutvikling. Basert på vår sammenstilling av litteraturen har vi avdekket en rekke områder og tema hvor det er få studier. Generelt finner vi at det er et udekket behov for systematiske litteratursammenstillinger og metaanalyser på mer avgrensede tema, som baserer seg på de best tilgjengelige metoder for slike studier og inkluderer en kritisk vurdering av de inkluderte artiklene. På et overordnet plan mangler det innenfor naturvitenskapen studier med en eksperimentell tilnærming som er egnet til å avdekke årsaks-virkningsforhold, det er få studier som undersøker effekter av arealbruk på nasjonal skala, og det er generelt en mangel på studier som baserer sine analyser på lange tidsserier, og det er en stor forskjell i mengden forskning fra ulike fylker. Tematisk finner vi at det er få studier som har undersøkt effekter av vern og restaurering, og at det er relativt få studier som har studert effekter av ulike former for kraftproduksjon med tanke på den samfunnsmessige betydningen dette har. Det er også stor forskjell i forskningsvolum mellom ulike økosystmer, med et lavt volum i kystnære økosystemer og i myr og våtmark. Det er relativt få studier som har undersøkt effekten av arealbruk på økosystemtjenester, inkludert karbonsekvestrering. Innenfor den samfunnsrelaterte forskningen identifiserte vi få samfunnsrelaterte studier på enkelte tema som har fått mye politisk oppmerksomhet de siste årene, inkludert effekter av arealbruk og arealbruksendringer på karbonlagring i økosystemer og effekter av vindkraft. Videre er det få studier som benytter analytiske tilnærminger knyttet til gjennomgripende endringer (transformasjoner), tverrsektorielle prosesser, bærekraft, kunnskap, verdier, maktrelasjoner og deltagende prosesser, til tross for at disse fremheves i den internasjonale samfunnsfaglige litteraturen.
+Generelt finner vi at det er et udekket behov for systematiske litteratursammenstillinger og metaanalyser på mer avgrensede tema, som baserer seg på de best tilgjengelige metoder for slike studier og inkluderer en kritisk vurdering av de inkluderte artiklene. På et overordnet plan mangler det innenfor naturvitenskapen studier med en eksperimentell tilnærming som er egnet til å avdekke årsaks-virkningsforhold, det er få studier som undersøker effekter av arealbruk på nasjonal skala, det er generelt en mangel på studier som baserer sine analyser på lange tidsserier, og det er en stor forskjell i mengden forskning fra ulike fylker. Tematisk finner vi at det er få studier som har undersøkt effekter av vern og restaurering, og at det er relativt få studier som har studert effekter av ulike former for kraftproduksjon med tanke på den samfunnsmessige betydningen dette har. Det er også stor forskjell i forskningsvolum mellom ulike økosystemer, med et lavt volum i kystnære økosystemer og i myr og våtmark. Det er relativt få studier som har undersøkt effekten av arealbruk på økosystemtjenester, inkludert karbonopptak og lagring. Sammenstillingen vår avdekte en generelt mangelfull kunnskapsstatus om de samfunnsmessige forholdene knyttet til effekter av arealbruk og arealbruksendringer på naturmangfold og økosystemtjenester, og at det samlet sett er få samfunnsvitenskapelige studier som undersøker konflikter, forvaltningsverktøy og styring. Søket vårt identifiserte også få samfunnsrelaterte studier på enkelte tema som har fått mye politisk oppmerksomhet de siste årene, inkludert effekter av arealbruk og arealbruksendringer på karbonlagring og effekter av vindkraft. Videre er det få studier som benytter analytiske tilnærminger knyttet til gjennomgripende endringer, tverrsektorielle prosesser, bærekraft, kunnskap, verdier, maktrelasjoner og deltagende prosesser, til tross for at disse fremheves i den internasjonale samfunnsfaglige litteraturen.
+
+Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema vi har mye forskningsbasert kunnskap om og hvilke tema det er lite kunnskap om. Sammenstillingen skiller seg fra tidligere norske kunnskapssammenstillinger ved at vi identifiserer studier som dreier seg om *effektene* av arealbruk biodiversitet og økosystemtjenester. Sammenstillingen har avdekket en rekke områder og tema hvor det er lite forskningsbasert kunnskap tilgjengelig. Mange av disse tema har også stor betydning for kunnskapsbasert arealforvaltning, og bør vektlegges i framtidig prioritering av forskning og kunnskapsoppbygging.
