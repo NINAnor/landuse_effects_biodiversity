@@ -34,7 +34,7 @@ last_author:
 reportnr: 2472
 location: Trondheim
 ISBN_end: 978-82-426-5283-6
-self-ref: 'Nilsen, E.B., Simensen, T. Singsaas, F.T., Eriksen, L.F., Stokland, H., Sutcliffe, T.E., Kolstad, A., Pilotto, F., & Grainger, M. 2024. Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge. Et systematisk kart og beslutningsstøtteverktøy. NINA Rapport 2472. Norsk institutt for naturforskning'
+self-ref: 'Nilsen, E.B., Simensen, T. Singsaas, F.T., Eriksen, L.F., Stokland, H., Sutcliffe, T.E., Kolstad, A., Pilotto, F., & Grainger, M. 2024. Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge. Et systematisk kart og beslutningsstøtteverktøy. [rapportukast versjon 0.1]'
 ISBN: 978-82-426-5283-6
 english-self-ref: 'Nilsen, E.B., Grainger, M. 2024. Effects of land use and land cover changes on biodiversity, ecosystem services, and carbon storage in Norway: A systematic map and decision support tool. NINA Report 2472. Norwegian Institute for Nature Research'
 handle-endpoint: https://hdl.handle.net/11250/3131811
@@ -44,7 +44,7 @@ cover_picture: image/Evju_hyttelandskap.jpg
 cover_picture_text: Hyttelandskap
 cover_picture_photographer: Marianne Evju
 line_numbering:
-qualitycontrol: [xx]
+qualitycontrol: [Rapporten er ikke kvalitetssikret og regnes som en pre-print]
 boss_sign: Forskningssjef [fylles ut av forskningssjefen] (sign.)
 customer: [xx]
 customer_ref: [xx]
@@ -96,11 +96,11 @@ foreword:
     location: [Trondheim, date]
     name: Erlend B. Nilsen
 sammendrag: |
-  Tekst inn her, et kort resymé av innholdet. \textbf{Maksimalt 4000 tegn inkl. ordmellomrom. Dette er maxgrense i sammendragsfeltet i CRIStin, og dersom sammendraget er lengre kommer det ikke med her.} Teksten i sammendraget er søkbar i databaser og på nett, og er viktig for at rapporten skal fanges opp ved søk.\
+  Sammendrag settes inn i den trykte (pdf) versjonen av den godkjente rapporten.
+  Dette er en pre-print, og derfor ikke gått gjennom siste runde med fagfellevurdering og godkjenning. Rapporten skal derfor siteres som som Rapportutkast version 0.1.\
   \
-  Seksjoner og tomme rader mellom dem er litt tricky å få til i YAML-avsnittet, men det kan gjøres slik. Tomme rader i forordet kan også lages på samme måte.
   
-abstract: Tekst inn her, et kort resymé av innholdet. \textbf{Maksimalt 4000 tegn inkl. ordmellomrom. Dette er maxgrense i sammendragsfeltet i CRIStin, og dersom sammendraget er lengre kommer det ikke med her.} Teksten i sammendraget er søkbar i databaser og på nett, og er viktig for at rapporten skal fanges opp ved søk.
+abstract: Abstract will be insterted in the printed (pdf) version of the approved report.
 params:
   version: "0.1"
   search-results: 36418
@@ -147,17 +147,82 @@ library(ggpubr)
 library(readxl)
 ```
 
+```{r data loading}
+#| echo: false
+#| message: false
+#| warning: false
+
+## load data at the start of the document
+
+## Unique citations
+unique_citations <- readRDS("data/unique_citations.RDS")
+
+## All data from Norway
+nor_bib <- readRDS("data/cache_data/nor_bib.RDS")
+join_Nor_form<-readRDS("data/cache_data/join_Nor_form.RDS")
+
+## Social science and natural science from Norway
+join_Nor_form_soc<-readRDS("data/cache_data/join_Nor_form_soc.RDS")
+join_Nor_form_nat<-readRDS("data/cache_data/join_Nor_form_nat.RDS")
+
+## Systematic reviews
+sysRev_bib<-readRDS("data/cache_data/sysRev_bib.RDS")
+sysRev<-readRDS("data/cache_data/sysRev.RDS")
+
+## All papers from Norway, Sweden, finland
+paper_details <- readRDS("data/Included_at_abs/paper_details.rds")
+
+## All_included
+all_included <- synthesisr::read_ref("data/Included_at_abs/Effekter_av_arealbruk_og_arealendringer.ris")
+
+##wordfreq
+wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
+
+###############################################################################
+###############################################################################
+
+# some categories were not available as options in the google sheet. These were coded afterwards in a sperate excel file. 
+# I import it here and join it with the social science records
+
+ssNew <- read_excel("data/manuallCodingOfNorwegianSocialScienceRecords.xlsx")
+# Look for non-NAs
+ssNew_long <- ssNew |>
+  pivot_longer(cols = `Labour and social inclusion`:`Trade, industry and fisheries`,
+               values_drop_na = T)
+
+# find their titles
+defence <- ssNew_long |> filter(name == "Defence") |> pull(study_title)
+LSI <- ssNew_long |> filter(name == "Labour and social inclusion") |> pull(study_title)
+
+# and add them
+join_Nor_form_soc <- join_Nor_form_soc |>
+  rowwise() |>
+  mutate(sector_societal_concern = case_when(
+    study_title %in% defence ~ "Defence",
+    study_title %in% LSI ~ "Labour and social inclusion",
+    .default = sector_societal_concern
+  ))
+
+# Getting a list of factor levels that had no entries
+sector_societal_concern_empty_levels <- names(ssNew)[2:11][!names(ssNew)[2:11] %in% ssNew_long$name]
+
+# There is also a variable in ssNew called carbon_or_biodiversity.
+# I will not try to join (cbind) the in here now because of encoding errors making it 
+# too time consuming. I will just use the ssNew data directly in that figure
+
+```
+
 # Innledning {#sec-inl}
 
-Endringer i menneskelig arealbruk vurderes som den viktigste årsaken til tilbakegang og tap av arter og naturtyper både globalt og i Norge (@diaz2019; @malhi_climate_2020; @artsdatabanken_norsk_2021). Arealendringer påvirker økosystemenes sammensetning, struktur og funksjon, og påvirker dermed økosystemenes evne til å produsere ulike goder og tjenester vi mennesker får fra naturen – ofte omtalt som naturgoder eller økosystemtjenester (@potschin2011; @ipbes_global_2019). Det kanskje mest omtalte naturgodet i senere år er klimaregulering, der opptak og lagring av karbon i økosystemene er sentrale faktorer [@griscom2017]. Menneskelig bruk av arealene er dermed en nøkkelfaktor både i arbeidet med å bremse klimaendringene, tilpasning til et endret klima og som den viktigste enkeltfaktoren i arbeidet med å stanse tap av natur og biologisk mangfold (@diaz2019).
+Endringer i menneskelig arealbruk vurderes som den viktigste årsaken til tilbakegang og tap av arter og naturtyper både globalt og i Norge [@diaz2019; @malhi_climate_2020; @artsdatabanken_norsk_2021]. Arealendringer påvirker økosystemenes sammensetning, struktur og funksjon, og påvirker dermed økosystemenes evne til å produsere ulike goder og tjenester vi mennesker får fra naturen – ofte omtalt som naturgoder eller økosystemtjenester [@potschin2011; @ipbes_global_2019]. Det kanskje mest omtalte naturgodet i senere år er klimaregulering, der opptak og lagring av karbon i økosystemene er sentrale faktorer [@griscom2017]. Menneskelig bruk av arealene er dermed en nøkkelfaktor både i arbeidet med å bremse klimaendringene, tilpasning til et endret klima og som den viktigste enkeltfaktoren i arbeidet med å stanse tap av natur og biologisk mangfold [@diaz2019].
 
-Å kvantifisere, forstå og formidle dynamikken i arealendringer og effektene av endringene for naturmangfoldet, er dermed en grunnleggende forutsetning for kunnskapbasert arealplanlegging og -forvaltning. Imidlertid mangler aktørene i arealforvaltningen i dag oppdaterte norske kunnskapssynteser om de direkte og indirekte sammenhengene mellom arealbruk, klimaendringer og naturmangfold, der den samlede vekten av evidens fra forskningen er vurdert, og der usikkerheten omkring kunnskapen er synliggjort. Dette gjelder både grunnleggende usikkerhet om årsak-virkningsmekanismer om effekter av arealbruk på naturmangfold og usikkerhet om det empiriske datagrunnlaget for slike vurderinger (@jaureguiberry_direct_2022). I samfunnsdebatten om arealbruk og natur vises det derfor ofte til internasjonale globale kunnskapssynteser, til tross for betydelig usikkerhet rundt hvorvidt kunnskapen fra slike globale kunnskapssynteser lar seg overføre til nasjonalt, regionalt og lokalt nivå i Norge.
+Å kvantifisere, forstå og formidle dynamikken i arealendringer og effektene av endringene for naturmangfoldet, er dermed en grunnleggende forutsetning for kunnskapbasert arealplanlegging og -forvaltning. Imidlertid mangler aktørene i arealforvaltningen i dag oppdaterte norske kunnskapssynteser om de direkte og indirekte sammenhengene mellom arealbruk, klimaendringer og naturmangfold, der den samlede vekten av evidens fra forskningen er vurdert, og der usikkerheten omkring kunnskapen er synliggjort. Dette gjelder både grunnleggende usikkerhet om årsak-virkningsmekanismer om effekter av arealbruk på naturmangfold og usikkerhet om det empiriske datagrunnlaget for slike vurderinger [@jaureguiberry_direct_2022]. I samfunnsdebatten om arealbruk og natur vises det derfor ofte til internasjonale globale kunnskapssynteser, til tross for betydelig usikkerhet rundt hvorvidt kunnskapen fra slike globale kunnskapssynteser lar seg overføre til nasjonalt, regionalt og lokalt nivå i Norge.
 
-Som grunnlag for å vurdere kunnskapsgrunnlaget om hvordan arealendringer påvirker biodiversitet, økosystemtjenester og karbonlagring i Norge, gjør vi her kort rede for pågående areal- og arealbruksendringer i Norge. Disse endringene er delvis et resultat av historiske prosesser, og delvis et resultat av globale og regionale endringer, lokal politikk og lokal arealbruk.
+Som et utgangspunkt for å vurdere kunnskapsgrunnlaget om hvordan arealendringer påvirker biodiversitet, økosystemtjenester og karbonlagring i Norge, gjør vi her kort rede for pågående areal- og arealbruksendringer i Norge. Disse endringene er delvis et resultat av historiske prosesser, og delvis et resultat av globale og regionale endringer, lokal politikk og lokal arealbruk.
 
 ## Pågående areal- og landskapsendringer i Norge
 
-Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal [@ssb2024]. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Norge skiller seg fra mange andre europeiske land ved at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal er ifølge SSB også i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km^2^, som tilsvarer litt under 50 km^2^ årlig. Utenom bebygd areal og jordbruksområder er Norges landareal i dag dominert av fjell, hei og vidde (45 prosent), skog (37 prosent), ferskvann, (6 prosent) og våtmark (5 prosent) og varig is og snø (1 prosent).
+Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal ([SSB statistikkbanken](https://www.ssb.no/statbank/table/09594) - tabell 09594). Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Norge skiller seg fra mange andre europeiske land ved at vi har lite jordbruksareal: bare 3% dyrka mark og innmarksbeite. Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal er ifølge SSB også i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km^2^, som tilsvarer litt under 50 km^2^ årlig. Utenom bebygd areal og jordbruksområder er Norges landareal i dag dominert av fjell, hei og vidde (45 prosent), skog (37 prosent), ferskvann, (6 prosent) og våtmark (5 prosent) og varig is og snø (1 prosent).
 
 ```{r arealtyper}
 #| echo: false
@@ -186,11 +251,11 @@ waffle(arealtyper, rows = 10,
 
 ```
 
-Selv om andelen av landarealet i Norge som er direkte utbygd eller dyrket opp er lav (ca. 5%), er mye av landet påvirket av menneskelig arealbruk. Siden siste istid har så å si alt areal vært i bruk av mennesker – til jakt, fiske, beite, høsting av for, skogbruk, utvinning av naturressurser, friluftsliv og rekreasjon, og senere også til naturvern, som også er en form for arealbruk. Omfang og intensitet i den menneskelige arealbruken har imidlertid endret seg mye opp gjennom århundrene [@prosch-danielsen2000]. På terskelen til den moderne tid, omkring 1850, var naturressursene utnyttet helt til grensa for hva landområdene kunne tåle, og produksjonen var maksimert med datidens teknologi. Store arealer ble påvirket av menneskelig arealbruk, men med moderat intensitet etter dagens målestokk. Ifølge [@Edvardsen_2024] kjennetegnes perioden etter 1850 ved en polarisering av den menneskelige arealbruken, med mer intensiv bruk av de best egnede arealene til jord- og skogbruk, mens andre arealer i utmarka gradvis ble tatt ut av bruk eller tas i bruk til nye formål. Vi høster mer fra naturressursene enn før, takket være avl, teknologi, og vitenskap og innovasjon, men det foregår på en mindre del av landarealet (intensivering). Opphør av ekstensiv hevd og skjøtsel av tradisjonelle utmarksarealer fører til endringer i kulturlandskap, som beite- og slåtteenger, lyng- og fjellheier.
+Selv om andelen av landarealet i Norge som er direkte utbygd eller dyrket opp er lav (ca. 5%), er mye av landet påvirket av menneskelig arealbruk. Siden siste istid har så å si alt areal vært i bruk av mennesker – til jakt, fiske, beite, høsting av for, skogbruk, utvinning av naturressurser, friluftsliv og rekreasjon, og senere også til naturvern, som også er en form for arealbruk. Omfang og intensitet i den menneskelige arealbruken har imidlertid endret seg mye opp gjennom århundrene [@prosch-danielsen2000]. På terskelen til den moderne tid, omkring 1850, var naturressursene utnyttet helt til grensa for hva landområdene kunne tåle, og produksjonen var maksimert med datidens teknologi. Store arealer ble påvirket av menneskelig arealbruk, men med moderat intensitet etter dagens målestokk. Ifølge @Edvardsen_2024 kjennetegnes perioden etter 1850 ved en polarisering av den menneskelige arealbruken, med mer intensiv bruk av de best egnede arealene til jord- og skogbruk, mens andre arealer i utmarka gradvis ble tatt ut av bruk eller tas i bruk til nye formål. Vi høster mer fra naturressursene enn før, takket være avl, teknologi, og vitenskap og innovasjon, men det foregår på en mindre del av landarealet (intensivering). Opphør av ekstensiv hevd og skjøtsel av tradisjonelle utmarksarealer fører til endringer i kulturlandskap, som beite- og slåtteenger, lyng- og fjellheier.
 
-Gjennom mange år har jordbruksareal er blitt bygd ned til fordel for boliger, veier, industri og andre formål, men omfattende nydyrking har kompensert for tapt jordbruksareal slik at det samlede jordbruksarealet har holdt seg nokså stabilt siden 1920-tallet (SSB 2024). Omfattende strukturendringer i jordbruket har gitt en nedgang på 45 prosent i antall gårdsbruk, fra 70 740 i 1999 til 38 633 i 2020, og omfattende endringer i både arealbruk og driftsmåter, har ført til at jordbrukslandskapet har blitt mer homogent, der tidligere mosaikkformete kulturlandskap er endret til mer sammenhengende driftsarealer.
+Gjennom mange år har jordbruksareal er blitt bygd ned til fordel for boliger, veier, industri og andre formål, men omfattende nydyrking har kompensert for tapt jordbruksareal slik at det samlede jordbruksarealet har holdt seg nokså stabilt siden 1920-tallet ([SSB statistikkbanken](https://www.ssb.no/statbank/table/09594) - tabell 09594). Omfattende strukturendringer i jordbruket har gitt en nedgang på 45 prosent i antall gårdsbruk, fra 70 740 i 1999 til 38 633 i 2020, og omfattende endringer i både arealbruk og driftsmåter, har ført til at jordbrukslandskapet har blitt mer homogent, der tidligere mosaikkformete kulturlandskap er endret til mer sammenhengende driftsarealer.
 
-Det samlede arealet med fjell, hei og vidde er i tilbakegang. Redusert beite og sanking av ved til blant annet seterbruk, kombinert med akselererende klimaendringer, gjør at tre- og skoggrensene generelt stiger langsomt i Norge. Norges høyeste registrerte tregrense ligger nå 1404 meter over havet, snaut 208 meter høyere enn høyeste måling i 1918 (Jotunheimen). Arealer med varig snø og is (breer, m.m.) er i tilbakegang på grunn av varmere klima, og er nå på sitt minste etter at målinger av breer begynte tidlig på 1900-tallet [@artsdatabanken2018], [@artsdatabanken_norsk_2021].
+Det samlede arealet med fjell, hei og vidde er i tilbakegang. Redusert beite og sanking av ved til blant annet seterbruk, kombinert med akselererende klimaendringer, gjør at tre- og skoggrensene generelt stiger langsomt i Norge. Norges høyeste registrerte tregrense ligger nå 1404 meter over havet, snaut 208 meter høyere enn høyeste måling i 1918 (Jotunheimen). Arealer med varig snø og is (breer, m.m.) er i tilbakegang på grunn av varmere klima, og er nå på sitt minste etter at målinger av breer begynte tidlig på 1900-tallet [@artsdatabanken2018; @artsdatabanken_norsk_2021].
 
 Vi har både avskoging og «påskoging» i Norge, men det samlede arealet med skog vært relativt stabilt siden 1990-tallet. Samlet biomasse i skogene har fram til helt nylig økt, og det samlede skogvolumet er mer enn doblet de siste hundre årene, men tilveksten har flatet ut de siste årene (SSB 2021). De virkelig gamle naturskogene har vi stadig færre igjen av. Overgangen til bestandsskogbruk etter andre verdenskrig har, med større hogstflater og skogplanting i produktiv skog, har i stor grad endret skogøkosystemenes struktur. Antall kilometer nye skogsbilveier økte raskt fra 1950-tallet og fram til årtusenskiftet og øker nå svakere, med ca. 150 km pr år (Landbruksdirektoratet 2021).
 
@@ -462,17 +527,17 @@ ggarrange(fig_a, fig_b, fig_c, fig_d, ncol = 2, nrow = 2)
 
 ## Kunnskap om effekter av arealbruk og arealendringer på naturmangfold og naturgoder
 
-Et sentralt kunnskapsgrunnlag i arbeidet med vurderinger av påvirkningsfaktorer på naturmangfoldet i Norge er rødlister for arter og naturtyper som vurderer risiko for at arter dør ut i Norge eller at naturtyper går tapt \[[@artsdatabanken2018; @artsdatabanken_norsk_2021]. Rødlistevurderingene følger internasjonale metoder og utføres av eksperter med høy kompetanse på artsgruppene som vurderes (ekspertvurderinger), men vurderingene av *påvirkningsfaktorer*, inkludert arealbruk og arealendringer, foregår likevel på et relativt overordnet nivå, der kausale sammenhenger mellom arealendringer og effekter på utbredelse og bestandssituasjon for arter og naturtyper sjelden kvantifiseres.
+Et sentralt kunnskapsgrunnlag i arbeidet med vurderinger av påvirkningsfaktorer på naturmangfoldet i Norge er rødlister for arter og naturtyper som vurderer risiko for at arter dør ut i Norge eller at naturtyper går tapt [@artsdatabanken2018; @artsdatabanken_norsk_2021]. Rødlistevurderingene følger internasjonale metoder og utføres av eksperter med høy kompetanse på artsgruppene som vurderes (ekspertvurderinger), men vurderingene av *påvirkningsfaktorer*, inkludert arealbruk og arealendringer, foregår likevel på et relativt overordnet nivå, der kausale sammenhenger mellom arealendringer og effekter på utbredelse og bestandssituasjon for arter og naturtyper sjelden kvantifiseres.
 
-Flere fagsystemer og sentrale overvåkningsprogram er etablert med sikte på å gi en samlet oversikt over tilstand og utvikling i økosystemer eller for ulike artsgrupper (f.eks. Landsskogstaksteringen, [@breidenbach2020]; fagsystemet for økologisk tilstand , [@nybo_fagsystem_2017]; Nasjonal insektovervåkning (#ref) og overvåkningsprogram for hjortevilt #ref), men slike fagsystemer og overvåkningsprogram gir ikke alltid grunnlag for å avdekke årsak-virkningforhold mellom de konkrete endringene i arealbruk og effekten på studieobjektene (arter, økosystemer og naturgoder).
+Flere fagsystemer og sentrale overvåkningsprogram er etablert med sikte på å gi en samlet oversikt over tilstand og utvikling i økosystemer eller for ulike artsgrupper (f.eks. Landsskogstaksteringen, [@breidenbach2020]; fagsystemet for økologisk tilstand , [@nybo_fagsystem_2017]; [Nasjonal insektovervåkning](https://www.nina.no/Naturmangfold/Insekter/Overv%C3%A5king-av-insekter) og [Rovdata](https://rovdata.no/)), men slike fagsystemer og overvåkningsprogram gir ikke alltid grunnlag for å avdekke årsak-virkningforhold mellom de konkrete endringene i arealbruk og effekten på arter, økosystemer og naturgoder.
 
-Mangelen på en samlet og omfattende oversikt over forskningsbasert kunnskap om effekter av arealbruk og arealendringer på norske arter, økosystemer og naturgoder fører også til at ulike interessegrupper og sektorer stoler på ulike “fakta,” noe som ofte fører til eskalerende konfliktnivå og dårlige beslutninger. Det er derfor et klart behov både for en oppsummering av kunnskap om temaet og en systematisk kartlegging av kunnskapshull. Politikk og beslutningstaking knyttet til arealbruk og dens effekter av arealbruk på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper [@guldbrandsen_hvem_2022; @skogen_wolf_2021]. Kontrovers om kunnskapsgrunnlaget er også ofte et sentralt apaspekt ved konfliktene, kjennetegnet ved uenighet om kunnskapens status og motstridende tolkning av kunnskapen om effektene for naturen av ulike alternativer for arealbruk (@aspoy_segmented_2022; @rusch2022).
+Mangelen på en samlet og omfattende oversikt over forskningsbasert kunnskap om effekter av arealbruk og arealendringer på norske arter, økosystemer og naturgoder fører også til at ulike interessegrupper og sektorer stoler på ulike “fakta,” noe som ofte fører til eskalerende konfliktnivå og dårlige beslutninger. Det er derfor et klart behov både for en oppsummering av kunnskap om temaet og en systematisk kartlegging av kunnskapshull. Politikk og beslutningstaking knyttet til arealbruk og dens effekter av arealbruk på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper [@guldbrandsen_hvem_2022; @skogen_wolf_2021]. Kontrovers om kunnskapsgrunnlaget er også ofte et sentralt apaspekt ved konfliktene, kjennetegnet ved uenighet om kunnskapens status og motstridende tolkning av kunnskapen om effektene for naturen av ulike alternativer for arealbruk [@aspoy_segmented_2022; @rusch2022].
 
-@ipbes_global_2019, 2022a, 2022b og @ipcc_global_2018 har foreslått forvaltningsstrategier og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av FNs bærekraftsmål (#UNFCC 2015), klimaavtalens mål om å begrense global oppvarming til grensen på 1,5°C og den globale naturavtalens 2050-visjon om å stanse og reversere fortap av biodiversitet (CBD 2022). Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres implementeringutnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy til en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese som også identifiseringer av kunnskapshull knyttet til angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima.
+@ipbes_global_2019, @ipcc_global_2018 og flere senere IPBES-utredninger har foreslått forvaltningsstrategier og tiltak, slik som de knyttet til transformasjonsendringer og transformasjonsstyring, for å muliggjøre oppnåelsen av FNs bærekraftsmål [@UN_sust_2015b], klimaavtalens mål om å begrense global oppvarming til grensen på 1,5°C og den globale naturavtalens 2050-visjon om å stanse og reversere fortap av biodiversitet [@CBD2022]. Slike tilnærminger involverer forbedret integrasjon og samhandling mellom samfunnsmessige mål, styringssektorer og flere kunnskapskilder, og er dermed svært relevante for norsk politikk og beslutningstaking knyttet til arealbruk. Imidlertid hindres implementeringutnyttelsen og tilpasningen av internasjonalt anbefalte tilnærminger og verktøy til en norsk kontekst for øyeblikket av mangelen på en omfattende forståelse av nasjonale og lokale dilemmaer og konflikter knyttet til arealbruk, samt de for tiden anvendte verktøyene og tilnærmingene. Det er derfor et presserende behov for en kunnskapssyntese som også identifiseringer av kunnskapshull knyttet til angående disse aspektene ved arealbruk og dens effekter på biodiversitet og klima.
 
 ## Systematiske kart over kunnskap og kunnskapshull
 
-Systematiske kart, også kjent som Evidenskart eller Evidenshullkart, ble utviklet for å gi en oversikt over tilgjengelig evidens om et bredt tema (Saran et al., 2020). Mens systematiske kunnskapsoversikter (systematic reviews) søker å svare på smale, veldefinerte spørsmål , er systematiske kart først og fremst egnet  til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål (@james_methodology_2016). Systematiske kart søker å sammenstille resultatene fra kunnskapsgjennomganger på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser (Miake-Lye et al., 2016). Interaktive figurer og applikasjoner og som visualiserer kartleggingen blir i økende grad brukt for å gi en dynamisk presentasjon av resultatene for brukerne (slik som EviAtlas; @haddaway_eviatlas_2019). Det er viktig at systematiske kart over kunnskap ikke fremstilles som et mål i seg selv. Systematiske kart forteller først og fremst *hva* vi har kunnskap om, mens systematiske oversikter indikerer hva vekten av evidens sier om utvalgte forskningsspørsmål. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. ved stemmeoptelling, jf. (@hedges_vote-counting_1980)). Systematiske kart kan ikke erstatte stringensen ved systematiske oversikter, men kan gi beslutningstakere en oversikt over kunnskapsgrunnlaget ved å belyse hull eller klynger av evidens. De kan vise hvor evidenssyntese kan eller bør finne sted, der vi kan gå fra å å hvite hva vi har av kunnskap til å trekke slutninger om hva kunnskapen forteller oss. Hvilke forskningsspørsmål har vi tilstrekkelig med tilgjengelig evidens til å svare på gjennom en systematisk oversikt? På hvilke områder er videre primærforskning er nødvendig? Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i beslutningskonteksten (@carrick_is_2019) og arealbruksendringer i Norge
+Systematiske kart, også kjent som Evidenskart eller Evidenshullkart, er utviklet for å gi en oversikt over tilgjengelig evidens om et bredt tema [@saran_evidence_2020]. Mens systematiske kunnskapsoversikter (systematic reviews) søker å svare på smale, veldefinerte spørsmål, er systematiske kart først og fremst egnet til å identifisere og katalogisere tilgjengelig evidens om politisk relevante spørsmål [@james_methodology_2016]. Systematiske kart søker å sammenstille resultatene fra kunnskapsgjennomganger på en brukervennlig måte, for eksempel ved hjelp av grafer, kart eller søkbare databaser [@miake-lye_what_2016]. Interaktive figurer og applikasjoner og som visualiserer kartleggingen blir i økende grad brukt for å gi en dynamisk presentasjon av resultatene for brukerne (slik som EviAtlas; @haddaway_eviatlas_2019). Det er viktig at systematiske kart over kunnskap ikke fremstilles som et mål i seg selv. Systematiske kart forteller først og fremst *hva* vi har kunnskap om, mens systematiske oversikter indikerer hva vekten av evidens sier om utvalgte forskningsspørsmål. Uten ytterligere evidenssyntese må beslutningstakere være forsiktige med å treffe beslutninger basert kun på evidensens vekt alene (dvs. ved stemmeoptelling, jf. @hedges_vote-counting_1980)). Systematiske kart kan ikke erstatte stringensen ved systematiske oversikter, men kan gi beslutningstakere en oversikt over kunnskapsgrunnlaget ved å belyse hull eller klynger av kunnskap. De kan vise hvor evidenssyntese kan eller bør finne sted, og dermed avdekke hvilke forskningsspørsmål har vi tilstrekkelig med tilgjengelig evidens til å svare på ved bruk av metaanalyser og på hvilke områder det er videre behov for primærforskning. På den måten kan systematiske kart være med på å begrense "bortkastet forskning" (Engelsk: Research waste) [@Grainger_2020]. Beslutningsmodeller kan supplere resultatene av en systematisk evidenssyntese for å plassere den tilgjengelige evidensen i en beslutningskonteksten [@carrick_is_2019].
 
 ## Formålet med kunnskapssammenstillingen
 
@@ -498,7 +563,7 @@ Før prosjektet ble gjennomført ble det utviklet en detaljert protokoll som bes
 
 -   Regler for datakoding
 
-Den første versjonen (versjon 1.0) av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes her https://osf.io/mwapc/. Den endelige versjonen av protokollen kan leses her [@nilsen2024].
+Den første versjonen (versjon 1.0) av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes [her](https://osf.io/mwapc/). Den endelige versjonen av protokollen kan leses her [@nilsen2024].
 
 ## Søk etter litteratur
 
@@ -518,7 +583,7 @@ Det ble gjennomført en rekke preliminære søk i Web of Science, og disse ble b
 
 ### Søketermer og søkestreng
 
-I vår søkestrategi benyttet vi oss av PICO-rammeverket (@james_methodology_2016) for å strukturere søket, og sørge for at det var dekkende for vårt primære forskningsspørsmål.
+I vår søkestrategi benyttet vi oss av PICO-rammeverket [@james_methodology_2016] for å strukturere søket, og sørge for at det var dekkende for vårt primære forskningsspørsmål.
 
 Følgende søkestreng ble benyttet i WoS (tilsvarende streng ble benyttet i Scopus, men her ble søket justert for å passe systemets interface):
 
@@ -546,7 +611,7 @@ For å sørge for at søket ga en god dekning av den aktuelle litteraturen valgt
 #| fig-cap: "Overlapp mellom de ulike kildene til litteratur og benchmark-artiklene."
 
 
-unique_citations <- readRDS("data/unique_citations.RDS")
+#unique_citations <- readRDS("data/unique_citations.RDS")
 source_comparison <- compare_sources(unique_citations, comp_type = "sources")
 # Generate a source comparison upset plot.
 plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE), main.bar.color="#E69F00", matrix.color="#b8e186", point.size=5,sets.bar.color=c("#4dac26"))
@@ -563,7 +628,7 @@ Søkeresultater, inkludert listen over *benchmarks* og *citation chasing*-result
 
 Vi brukte forhåndsdefinerte inklusjons-/eksklusjonskriterier for å screene kvalifiserte studier [@nilsen2024]. Etter de-duplisering ble tittel og abstrakt screening utført ved å bruke kvalifikasjonskriteriene, og alle studier klassifisert som usikre ble vurdert på fulltekststadiet. Screeningen ble gjort ved hjelp av Rayyan, med dobbel screening av en primær og flere sekundære *reviewere*. Etter 50 inkluderings-/ekskluderingsbeslutninger brukte vi Rayyan-AI 5-stjerners rangering for å rangere sammendragene for vurdering. Denne algoritmen vurderer sammendrag og titler ved hjelp av *natural langualge* for å identifisere artikler og andre publikasjoner som har et høyt potensial for inkludering (5 stjerner) eller de med et lavere potensial (1 stjerne).
 
-Uenigehter i gruppen når det gjedler hvilke publiskasjoner som tilfredstilte inklusjonskriteriene ble vurdert ukentlig, og kvalifikasjonskriteriene ble revurdert og justert når frekvensen oversteg 15 %. Motstridende beslutninger ble avstemt gjennom diskusjoner med hele prosjektgruppen.
+Uenigehter i gruppen når det gjedler hvilke publiskasjoner som tilfredstilte inklusjonskriteriene ble vurdert ukentlig, og kvalifikasjonskriteriene ble revurdert og justert når frekvensen oversteg 15 %. Motstridende beslutninger ble avstemt gjennom diskusjoner med hele prosjektgruppen. En nærmere beskrivelse er gitt i protokollen [@nilsen2024]. 
 
 ## Inkluderings- og ekskluderingskriterier
 
@@ -577,7 +642,7 @@ Studier av alle geografiske målestokker (nasjonale, regionale og lokale) ble vu
 
 ### **Kvalifiserte intervensjoner**
 
-Arealbruk og/eller arealdekning endres gjennom en eller flere drivere (se vedlegg) som er av menneskeskapt opprinnelse og resulterer i en eller flere av kjernemekanismene (endring i habitat – mengde; habitatsammensetning; habitatstruktur; habitat – funksjon; indirekte , for eksempel endret menneskelig bruk i rekreasjon osv.).
+Arealbruk og/eller arealdekning endres gjennom en eller flere drivere som er av menneskeskapt opprinnelse og resulterer i en eller flere av kjernemekanismene (endring i habitat – mengde; habitatsammensetning; habitatstruktur; habitat – funksjon; indirekte , for eksempel endret menneskelig bruk i rekreasjon osv.).
 
 ### **Kvalifiserte responsvariabler (utfall)**
 
@@ -607,15 +672,15 @@ Følgende forklaring for de ulike GRADE-domenene lå til grunn for vår vurderin
 
 ## Datakodestrategier
 
-For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterier for koding er gitt i vedlegg 3. ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy.
+For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterier for koding er gitt i vedlegg 3. ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy. En nærmere forklaring og detaljer er gitt i [@nilsen2024]. 
 
 ## Involvering av brukere og samfunnsaktører
 
-Utkastet til vurderingen ble presentert på en konferanse holdt av Miljødirektoratet og Norges forskningsråd 23. oktober 2022. Et generelt interessentmøte ble arrangert av NINA 25. april 2023. Fokus og omfang av vurderingen ble innsnevret og bedre definert under et spesifikt interessentarrangement den #date. Detaljer om dette møtet og endringene i omfang er tilgjengelige på forespørsel. Interessenter som deltok på dette arrangementet ble invitert til å kommentere utkastet til protokollen før innsending til publisering. Interessenter var ikke involvert under gjennomføringen av vurderingen.
+Utkastet til vurderingen ble presentert på en konferanse holdt av Miljødirektoratet og Norges forskningsråd 23. oktober 2022. Et generelt interessentmøte ble arrangert av NINA 25. april 2023. Fokus og omfang av vurderingen ble etter det innsnevret og bedre definert, og en ny versjon av protokollen ble utarbeidet. Detaljer om dette møtet og endringene i omfang er tilgjengelige på forespørsel. Interessenter som deltok på dette arrangementet ble invitert til å kommentere utkastet til protokollen før innsending til publisering. Disse innspillene er lagret og arkivert sammen med modellen [her](https://osf.io/mwapc/). Interessenter var ikke involvert under gjennomføringen av vurderingen.
 
 ## Avvik fra protokollen
 
-Før vi startet med litteraturgjennomgangen ble initiert utviklet vi en detaljert protokoll (@nilsen2024) som dannet grunnalg for vårt arbeid. Søket ble gjennomført som beskrevet, men på grunn av et vesentlig større treff på vitenskapelige artikler enn anntatt ble det ikke kapasitet i dette prosjektet til også å gå gjennom den grå litteraturen. I tillegg er et antall artikler (ca 10%) ikke gjennomgått screening på grunn av kapasitetsutfordringer. Vi benyttet imidlertid ulike filtre i verktøyet Rayan, inkludert Rayyan-AI 5-stjerners rangering av artikler og sørget for at alle artikler som har en høy sannsynlighet for å være relevante er screenet. Dette punktet er også berørt nærmere i diskusjonen. Både inkluderingskriterier og datakodestrategi var som beskrevet i protokollen. Kun primærstudier fra Norge samt alle systematiske litteratursammenstillinger ble prioritert for koding.
+Før vi startet med litteraturgjennomgangen ble initiert utviklet vi en detaljert protokoll [@nilsen2024] som dannet grunnalg for vårt arbeid. Søket ble gjennomført som beskrevet, men på grunn av et vesentlig større treff på vitenskapelige artikler enn anntatt ble det ikke kapasitet i dette prosjektet til også å gå gjennom den grå litteraturen. I tillegg er et antall artikler (ca 10%) ikke gjennomgått screening på grunn av kapasitetsutfordringer. Vi benyttet imidlertid ulike filtre i verktøyet Rayan, inkludert Rayyan-AI 5-stjerners rangering av artikler og sørget for at alle artikler som har en høy sannsynlighet for å være relevante er screenet. Dette punktet er også berørt nærmere i diskusjonen. Både inkluderingskriterier og datakodestrategi var som beskrevet i protokollen. Kun primærstudier fra Norge samt alle systematiske litteratursammenstillinger ble prioritert for koding.
 
 \newpage
 
@@ -750,8 +815,8 @@ prisma(
 #    oa2bibliometrix()
 #saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
 #saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
-nor_bib <- readRDS("data/cache_data/nor_bib.RDS")
-join_Nor_form<-readRDS("data/cache_data/join_Nor_form.RDS")
+#nor_bib <- readRDS("data/cache_data/nor_bib.RDS")
+#join_Nor_form<-readRDS("data/cache_data/join_Nor_form.RDS")
 
 #split social sci responses 
 
@@ -765,8 +830,8 @@ join_Nor_form<-readRDS("data/cache_data/join_Nor_form.RDS")
 # saveRDS(join_Nor_form_soc, "data/cache_data/join_Nor_form_soc.RDS")
 # saveRDS(join_Nor_form_nat, "data/cache_data/join_Nor_form_nat.RDS")
 
-join_Nor_form_soc<-readRDS("data/cache_data/join_Nor_form_soc.RDS")
-join_Nor_form_nat<-readRDS("data/cache_data/join_Nor_form_nat.RDS")
+#join_Nor_form_soc<-readRDS("data/cache_data/join_Nor_form_soc.RDS")
+#join_Nor_form_nat<-readRDS("data/cache_data/join_Nor_form_nat.RDS")
 
 
 ```
@@ -776,34 +841,34 @@ join_Nor_form_nat<-readRDS("data/cache_data/join_Nor_form_nat.RDS")
 #| message: false
 #| warning: false
 
-# some categories were not available as options in the google sheet. These were coded afterwards in a sperate excel file. 
-# I import it here and join it with the social science records
-
-ssNew <- read_excel("data/manuallCodingOfNorwegianSocialScienceRecords.xlsx")
-# Look for non-NAs
-ssNew_long <- ssNew |>
-  pivot_longer(cols = `Labour and social inclusion`:`Trade, industry and fisheries`,
-               values_drop_na = T)
-
-# find their titles
-defence <- ssNew_long |> filter(name == "Defence") |> pull(study_title)
-LSI <- ssNew_long |> filter(name == "Labour and social inclusion") |> pull(study_title)
-
-# and add them
-join_Nor_form_soc <- join_Nor_form_soc |>
-  rowwise() |>
-  mutate(sector_societal_concern = case_when(
-    study_title %in% defence ~ "Defence",
-    study_title %in% LSI ~ "Labour and social inclusion",
-    .default = sector_societal_concern
-  ))
-
-# Getting a list of factor levels that had no entries
-sector_societal_concern_empty_levels <- names(ssNew)[2:11][!names(ssNew)[2:11] %in% ssNew_long$name]
-
-# There is also a variable in ssNew called carbon_or_biodiversity.
-# I will not try to join (cbind) the in here now because of encoding errors making it 
-# too time consuming. I will just use the ssNew data directly in that figure
+# # some categories were not available as options in the google sheet. These were coded afterwards in a sperate excel file. 
+# # I import it here and join it with the social science records
+# 
+# ssNew <- read_excel("data/manuallCodingOfNorwegianSocialScienceRecords.xlsx")
+# # Look for non-NAs
+# ssNew_long <- ssNew |>
+#   pivot_longer(cols = `Labour and social inclusion`:`Trade, industry and fisheries`,
+#                values_drop_na = T)
+# 
+# # find their titles
+# defence <- ssNew_long |> filter(name == "Defence") |> pull(study_title)
+# LSI <- ssNew_long |> filter(name == "Labour and social inclusion") |> pull(study_title)
+# 
+# # and add them
+# join_Nor_form_soc <- join_Nor_form_soc |>
+#   rowwise() |>
+#   mutate(sector_societal_concern = case_when(
+#     study_title %in% defence ~ "Defence",
+#     study_title %in% LSI ~ "Labour and social inclusion",
+#     .default = sector_societal_concern
+#   ))
+# 
+# # Getting a list of factor levels that had no entries
+# sector_societal_concern_empty_levels <- names(ssNew)[2:11][!names(ssNew)[2:11] %in% ssNew_long$name]
+# 
+# # There is also a variable in ssNew called carbon_or_biodiversity.
+# # I will not try to join (cbind) the in here now because of encoding errors making it 
+# # too time consuming. I will just use the ssNew data directly in that figure
 
 
 
@@ -845,7 +910,8 @@ ggplot(aes(x = year)) +
 
 ```
 
-Som det framkommer av @fig-research-approach er det en stor overvekt over observasjonsstudier (*Observational studies*) i vårt datamateriale. Observasjonsstudier er her definert som studier som baserer seg på empiriske data fra systemet som undersøkes. Også konseptuelle artikler og senario-modellering er relativt hyppig forkommende. <!--# The figure needs to be updated - and we must agree if only nat sci should be included-->
+Som det framkommer av @fig-research-approach er det en stor overvekt over observasjonsstudier (*Observational studies*) i vårt datamateriale. Observasjonsstudier er her definert som studier som baserer seg på empiriske data fra systemet som undersøkes. Også konseptuelle artikler og senario-modellering er relativt hyppig forkommende.
+
 
 ```{r fig-research-approach}
 #| echo: false
@@ -854,11 +920,14 @@ Som det framkommer av @fig-research-approach er det en stor overvekt over observ
 #| fig-cap: "Oversikt over forskningen basert forskningskategori."
 #| fig-width: 12
 
+## As quick-fix, I filter out the "new types" that were entered during teh coding process by setting filter(n>1). I'm not sure these thypes fit well.We canmerge them with other types in version 2.0
+
 join_Nor_form |> 
   select(study_id ,study_title, research_type) |> 
   group_by(research_type) |>
   tally() |> 
   drop_na() |> 
+  filter(n>1) |> 
   #top_n(5) |>
   ggplot(aes(reorder(research_type, n),n,fill=research_type))+
   geom_histogram(stat="identity")+
@@ -936,7 +1005,7 @@ join_Nor_form_nat |>
 
 #### Hvor stor andel av forskningen praktiserer Open Science prinsipper? {.unnumbered}
 
-I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (@fig-OS1). En enda mindra andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden de kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden.
+I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (@fig-OS1). En enda mindra andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden det kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden. Vi har ikke vist dette med figur her, men våre data viser en slik økning men fortsatt lav andel også de siste årene. 
 
 ```{r fig-OS1}
 #| echo: false
@@ -1006,9 +1075,10 @@ join_Nor_form_nat |>
 
 ```
 
-#### Hvor lange tidsserier med empirisk data ligger til grunn for den publiserte forskningen?
+#### Hvor lange tidsserier med empirisk data ligger til grunn for den publiserte forskningen? {.unnumbered}
 
-Den største delen av forskningen er basert på korte tidsserier (@fig-timeserie). <!--# Erlend add some more text and descriptive data-->
+Den største delen av forskningen er basert på korte tidsserier (@fig-timeserie). En veldig stor andel av studiene var av kun 1-2 års varighet, og et fåtall av studiene var basert på det man kan kalle "lange tidsserier". Merk at for mange av de lengste tidsseriene kan det være snakk om sammenlikning mellom enkeltår i perioden, ikke data for hele perioden. 
+
 
 ```{r fig-timeserie}
 #| echo: false
@@ -1052,6 +1122,7 @@ De hyppigst studerte økosystemene i vårt materiale er skog (*Forest*) etterful
 #| warning: false
 #| fig-cap: "Antall forskningsartikler som dekker ulike hovedøkosystemer."
 
+## Need to fix figure - some types are not "hovedøkosystemer". They are removed now, but should be recoded
  
 join_Nor_form_nat |> 
   group_by(ecosystem_type_main) |>
@@ -1061,6 +1132,7 @@ join_Nor_form_nat |>
   mutate(ecosystems_main=trimws(ecosystems_main)) |> 
   tally() |> 
   drop_na() |>
+  filter(n>1) |>
   #top_n(10) |> 
   ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
   geom_histogram(stat="identity")+
@@ -1260,7 +1332,7 @@ join_Nor_form_nat |>
 
 ```
 
-Vi benyttet i denne gjennomgangen klassifiseringssystemet essensielle biodiversitetsvariabler (EBV) til å kategorisere hvilken biologisk responsvariabel som ble studerte. EBV er et hierarkisk system som består av seks klasser og 21 variabler. Av de seks klassene @fig-EBV-class er flest studier som har fokusert på arters populasjoner (*Species populations*) samfunnssammensetning (*Community composition*) og arters egenskaper (*Species traits*). I kontrast til dette var det svært få studier som studerte hele økosystemers funksjon (*Ecosystem functioning*) eller struktur (*Ecosystem structure*). Tilsvarende var det veldig får som studerte effekter av arealbruk på genetisk sammensetning (*Genetic composition*).
+Vi benyttet i denne gjennomgangen klassifiseringssystemet essensielle biodiversitetsvariabler (EBV) til å kategorisere hvilken biologisk responsvariabel som ble studerte. EBV er et hierarkisk system som består av seks klasser og 21 variabler. Av de seks klassene @fig-EBV-class er flest studier som har fokusert på arters populasjoner (*Species populations*) samfunnssammensetning (*Community composition*) og arters egenskaper (*Species traits*). I kontrast til dette var det svært få studier som studerte hele økosystemers funksjon (*Ecosystem functioning*) eller struktur (*Ecosystem structure*). Tilsvarende var det veldig få som studerte effekter av arealbruk på genetisk sammensetning (*Genetic composition*).
 
 ```{r fig-EBV-names}
 #| echo: false
@@ -1718,7 +1790,7 @@ ssNew |>
 
 #### Hvilke typer arealbruk fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
-Litteratursammenstillingen viste at to typer arealbruk skilte seg ut som de som har fått mest oppmerksomhet i den samfunnsrelaterte forskningen, nemlig skogbruk og vern (\@fig-socialscience-areause-coarse). Deretter følger flere ulike typer arealbruk som omfatter ressursbruk, forstyrrelser, arealinngrep samt restaurering.
+Litteratursammenstillingen viste at to typer arealbruk skilte seg ut som de som har fått mest oppmerksomhet i den samfunnsrelaterte forskningen, nemlig skogbruk og vern ( @fig-socialscience-areause-coarse. Deretter følger flere ulike typer arealbruk som omfatter ressursbruk, forstyrrelser, arealinngrep samt restaurering.
 
 ```{r fig-socialscience-areause-coarse}
 #| echo: false
@@ -1738,10 +1810,11 @@ join_Nor_form_soc |>
   unnest(land_use)|> 
   group_by(land_use,
            study_area_discipline) |> 
-  # mutate(land_use=trimws(land_use),
+   mutate(land_use=trimws(land_use),
   #        land_use = case_when(
   #          is.na(land_use) ~ "Unknown",
-  #          .default = land_use)) |> 
+  #          .default = land_use)
+  ) |> 
   tally() |>
   drop_na() |>
   filter(land_use != "fishing collection") |>
@@ -2187,8 +2260,8 @@ group_by(tool_characteristics) |>
 # saveRDS(sysRev_bib,"data/cache_data/sysRev_bib.RDS")
 # saveRDS(sysRev, "data/cache_data/sysRev.RDS")
 
-sysRev_bib<-readRDS("data/cache_data/sysRev_bib.RDS")
-sysRev<-readRDS("data/cache_data/sysRev.RDS")
+#sysRev_bib<-readRDS("data/cache_data/sysRev_bib.RDS")
+#sysRev<-readRDS("data/cache_data/sysRev.RDS")
 
 ```
 
@@ -2236,7 +2309,7 @@ sysRev |>
 
 #### Hvilke arealbrukskategorier er studert blant de systematiske litteratursammenstillingene? {.unnumbered}
 
-Hovedvekten av de systematiske litteratursammenstillingene har fokusert på jordbruk (*Agriculture*), inkludert beiting, og ressursbruk (skogbruk, jakt, fisk osv.; *Biological resource use*) (@fig-sysrev-areause-coarse; @fig-sysrev-areause-detailed). Det var også et betydelig innslag av studier som fokuserte på effektene av vern og restaurering.  
+Hovedvekten av de systematiske litteratursammenstillingene har fokusert på jordbruk (*Agriculture*), inkludert beiting, og ressursbruk (skogbruk, jakt, fisk osv.; *Biological resource use*) (@fig-sysrev-areause-coarse; @fig-sysrev-areause-detailed). Det var også et betydelig innslag av studier som fokuserte på effektene av vern og restaurering.
 
 ```{r fig-sysrev-areause-coarse}
 #| echo: false
@@ -2278,8 +2351,6 @@ sysRev |>
 
 ```
 
-
-
 ```{r fig-sysrev-areause-detailed}
 #| echo: false
 #| message: false
@@ -2316,8 +2387,6 @@ sysRev |>
   )
 
 ```
-
-
 
 #### Vurdering av studiekvalitet på systematiske litteraturesammenstillinger {.unnumbered}
 
@@ -2556,7 +2625,7 @@ sysRev |>
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
-I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra Norge, Sverige og Finland. Siden disse artiklene kun har gått gjennom første screening men ikke er kodet er det mer begrenset hva vi kan lese ut av disse artiklene. Vi har her benyttet oss av endel biobliometriske analysemetoder og informasjon fra åpne kilder (for eksempel OpenAlex, som er en database med data og metadata som omhandler den vitenskapelige litteraturen).
+I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra Norge, Sverige og Finland. Siden disse artiklene kun har gått gjennom første screening men ikke er kodet er det mer begrenset hva vi kan lese ut av disse artiklene. Vi har her benyttet oss av endel biobliometriske analysemetoder og informasjon fra åpne kilder (for eksempel [OpenAlex](https://openalex.org/), som er en database med data og metadata som omhandler den vitenskapelige litteraturen).
 
 ```{r openalex source}
 #| echo: false 
@@ -2565,7 +2634,7 @@ I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra N
 #| label: fig-source-all
 #| fig-cap: "Oversikt over hvilke tidsskrifter den inkluderte litteraturen er publisert i"    
 
-paper_details <- readRDS("data/Included_at_abs/paper_details.rds")
+#paper_details <- readRDS("data/Included_at_abs/paper_details.rds")
 
 paper_details |>    
   select(so) |>    
@@ -2638,7 +2707,7 @@ En annen måte å kategorisere litteraturen på er å se hvilke "konsepter" unde
 #| warning: false
 #| cache: true
 
-all_included <- synthesisr::read_ref("data/Included_at_abs/Effekter_av_arealbruk_og_arealendringer.ris")
+#all_included <- synthesisr::read_ref("data/Included_at_abs/Effekter_av_arealbruk_og_arealendringer.ris")
 # head(all_included)
 # dim(all_included)
 
@@ -2725,7 +2794,7 @@ tidy_topics_dtm<-tidy_topics |>
 #| cache: true
 
 set.seed(007)
-paper_details <- readRDS("data/Included_at_abs/paper_details.rds")
+#paper_details <- readRDS("data/Included_at_abs/paper_details.rds")
 papers_bib<-paper_details |> 
   oa2bibliometrix() 
 NetMatrix <- biblioNetwork(papers_bib, analysis = "co-occurrences", network = "keywords", sep = ";")
@@ -2759,7 +2828,7 @@ En nettverksanalyse av siteringsnettverkene viser videre at det er klare grupper
 #| fig-cap: "The change in frequency of certain words used in the Titles and Abstracts of included papers. Word frequency before 2015 (the median year in the dataset) is compared to word frequency after 2015"
 
 
-wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
+#wordfreq <- readRDS("data/cache_data/wordfreq.RDS")
 wordfreq |> 
   filter(!feature=="systematic",
          !feature=="review",
@@ -2772,13 +2841,13 @@ wordfreq |>
 
 ```
 
-Vi undersøkte også hvilke tema som ble vanligere og sjeldnere over tid i det samlede materialet. Siden vi ikke har kodet dette materialet benyttet vi oss av åpent tilgjengelig informasjon om de enkelte studiene i disse analysene. Før 2005 var ord som "klima", "biologisk mangfold", "økosystem" og "tjenester" mindre vanlige i tittelen eller sammendraget av inkluderte studier enn etter 2005. Etter 2005 var ord som "skog", "fragmentering", "gammel vekst" mindre vanlige enn før 2005. Dette antyder at språket som brukes i titler og sammendrag har blitt mer fokusert på politikkrelevante buzzwords i stedet for habitater eller artstrekk. Disse analysene gjør dog ikke at vi kan konkludere med sikkerhet at de tema for forskningen faktisk har endret seg.
+Vi undersøkte også hvilke tema som ble vanligere og sjeldnere over tid i det samlede materialet. Siden vi ikke har kodet dette materialet benyttet vi oss av åpent tilgjengelig informasjon om de enkelte studiene i disse analysene. Før 2005 var ord som "klima", "biologisk mangfold", "økosystem" og "tjenester" mindre vanlige i tittelen eller sammendraget av inkluderte studier enn etter 2005. Etter 2005 var ord som "skog", "fragmentering", mindre vanlige enn før 2005. Dette antyder at språket som brukes i titler og sammendrag har blitt mer fokusert på politikkrelevante *buzzwords* i stedet for habitater eller artstrekk. Disse analysene gjør dog ikke at vi kan konkludere med sikkerhet at de tema for forskningen faktisk har endret seg.
 
 ## En beslutningsstøtteverktøy basert på inkluderte artikler fra Norge
 
-Vi kan vurdere den konseptuelle utviklingen av et forskningsfelt ved hjelp av bibliometrisk nettverksanalyse (@cobo2011approach). Nærmere bestemt vurderer en slik nettverksanalyse forholdet mellom nøkkelord i et sett med dokumenter. Det hjelper med å identifisere nøkkeltemaer, deres sammenhenger og hvordan de endrer seg over tid, og gir verdifull innsikt for forskere og beslutningstakere når man skal prioritere ny forskning.
+Vi kan vurdere den konseptuelle utviklingen av et forskningsfelt ved hjelp av bibliometrisk nettverksanalyse [@cobo2011approach]. Nærmere bestemt vurderer en slik nettverksanalyse forholdet mellom nøkkelord i et sett med dokumenter. Det hjelper med å identifisere nøkkeltemaer, deres sammenhenger og hvordan de endrer seg over tid, og gir verdifull innsikt for forskere og beslutningstakere når man skal prioritere ny forskning.
 
-Basert på metoden beskrevet i @cobo2011approach hentet vi først nøkkelord (*keywords*) fra alle de inkluderte artiklene fra Norge. Vi opprettet deretter en såkalt "Co-Currence Matrix" som teller hvor ofte hvert par med nøkkelord forekommer samtidig i dokumentene. Matrisen for samtidig forekomst ble deretter konvertert til en nettverksgraf, der nøkkelord er noder forbundet med kanter som representerer deres samtidige forekomst.
+Basert på metoden beskrevet i @cobo2011approach hentet vi først nøkkelord (*keywords*) fra alle de inkluderte artiklene fra Norge. Vi opprettet deretter en såkalt "Co-Ourrence Matrix" som teller hvor ofte hvert par med nøkkelord forekommer samtidig i dokumentene. Matrisen for samtidig forekomst ble deretter konvertert til en nettverksgraf, der nøkkelord er noder forbundet med kanter som representerer deres samtidige forekomst.
 
 Ved å bruke «walktrap-algoritmen» blir nøkkelord gruppert i klynger. Walktrap-algoritmen er en fellesskapsdeteksjonsmetode som bruker tilfeldige ruter for å utforske nettverket og identifisere klynger av noder som er tettere koblet til hverandre enn til resten av nettverket. Ved å simulere tilfeldige ruter og slå sammen noder basert på deres samtidige forekomstfrekvenser, avslører det effektivt fellesskapsstrukturen i nettverket. Dette gjør det spesielt nyttig for å analysere komplekse nettverk.
 
@@ -2833,19 +2902,15 @@ Temaer som er stigende omfatter blant annet hyttebygging og bevaring av biologis
 
 # Diskusjon
 
-Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema vi har mye og lite forskningsbasert kunnskap om. Sammenstillingen skiller seg fra tidligere norske kunnskapssammenstillinger ved at vi identifiserer studier som dreier seg om *effektene* av arealbruk på natur og på naturgoder, i motsetning til kunnskapssammenstillinger som omfatter de to temaene hver for seg. Basert på over 20.000 artikler som ble fanget opp av vårt søk endte vi opp med \> 2000 artikler som svarte på inkluderingskriteriene etter første runde med screening. Alle artikler fra Norge, samt systematiske internasjonale kunnskapssammenstillinger, ble videreført til en andre runde med screening samt datakoding. Totalt omfattet denne litteraturen <!--# NB Legg inn oppdatering -->XX artikler. Som det framgår av resultatkapittelet er det imidlertid stor forskjell på hvor godt de ulike temaene, og de ulike formene for arealbruk og arealbruksendringer er dekket av kunnskapskartet. Det er også stor variasjon i hvor mye forskning som har blitt gjennomført i de ulike fylkene. Merk at vi da snakker om hvor *studiene* er gjennomført, ikke hvor forskningsgruppa holder til.
+Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema vi har mye og lite forskningsbasert kunnskap om. Sammenstillingen skiller seg fra tidligere norske kunnskapssammenstillinger ved at vi identifiserer studier som dreier seg om *effektene* av arealbruk på natur og på naturgoder, i motsetning til kunnskapssammenstillinger som omfatter de to temaene hver for seg. Basert på over 20.000 artikler som ble fanget opp av vårt søk endte vi opp med `r nrow(all_included)` artikler som svarte på inkluderingskriteriene etter første runde med screening. Alle artikler fra Norge, samt systematiske internasjonale kunnskapssammenstillinger, ble videreført til en andre runde med screening samt datakoding. Som det framgår av resultatkapittelet er det imidlertid stor forskjell på hvor godt de ulike temaene, og de ulike formene for arealbruk og arealbruksendringer er dekket av kunnskapskartet. Det er også stor variasjon i hvor mye forskning som har blitt gjennomført i de ulike fylkene. Merk at vi da snakker om hvor *studiene* er gjennomført, ikke hvor forskningsgruppa holder til.
 
-Et gjennomgående trekk fra vår sammenstilling av litteraturen fra Norge er at en dominerende andel av den naturvitenskapelige forskningen er basert på empiriske data samlet inn i felt eller ved hjelp av moderne, ikke-feltbasert teknologi som fjernmåling. I likhet med hovedtyngden av internasjonale studier innenfor økologiforskning [@estes_spatial_2018], fant vi at den største andelen av forskningen baserer seg også på lokale eller regionale studier, eksempel fra en del av en kommune eller et fylke, eller et større fjellområde. Det er relativt få studier som dekker hele landet. Dette kan være en begrensning siden mange vurderinger (f.eks. rødlisting av arter, rapportering om tilstand og utvikling i naturen til internasjonale indekser osv.) gjerne er basert på landsdekkende trender og status. Siden det i Norge er mange overvåkningsprogram som i prinsippet dekker hele landet (for eksempel norsk hekkefuglovervåkning (TOV-e), Rovdata sin rovdyrovervåkning, og overvåkning av liryper gjennom Hønsefuglportalen) er dette funnet noe overraskende. <!--# Dette kan indikere at tidsseriedata basert på slike overvåkningsprogrammer i liten grad brukes til å studere effektene av arealbruk på fenomenet som måles i overvåkningen (#rett tolket?) -->
+Et gjennomgående trekk fra vår sammenstilling av litteraturen fra Norge er at en dominerende andel av den naturvitenskapelige forskningen er basert på empiriske data samlet inn i felt eller ved hjelp av moderne, ikke-feltbasert teknologi som fjernmåling. I likhet med hovedtyngden av internasjonale studier innenfor økologiforskning [@estes_spatial_2018, @Nilsen_2020], fant vi at den største andelen av forskningen baserer seg også på lokale eller regionale studier, eksempel fra en del av en kommune eller et fylke, eller et større fjellområde. Det er relativt få studier som dekker hele landet. Dette kan være en begrensning siden mange vurderinger (f.eks. rødlisting av arter, rapportering om tilstand og utvikling i naturen til internasjonale indekser osv.) gjerne er basert på landsdekkende trender og status. Siden det i Norge er mange overvåkningsprogram som i prinsippet dekker hele landet (for eksempel norsk hekkefuglovervåkning [TOV-e](https://hekkefuglovervakingen.nina.no/Fugl/Default.aspx?ReturnUrl=%2fFugl%2f), [Rovdata](https://rovdata.no/), og overvåkning av liryper gjennom [Hønsefuglportalen](https://honsefugl.nina.no/Innsyn/nb)) er dette funnet noe overraskende og kan indikere at det er et uutnyttet potensial for flere analyser over stor romlig skala.
 
-Et annet veldig tydelig funn er at en stor andel av den naturvitenskapelige litteraturen baserer seg på relativt "svake" forsøkdsdesign. Når vi skriver svak mener vi her design som ikke nødvendigvis er godt egent til å avdekke årsak-virkningssamenhenger. Som det framgår av @fig-studydesign er forskningen vi har kategorisert fra Norge i veldig stor grad dominert av det vi har kategorisert som kontroll-påvirkning (*Control-impact*) og etter-design (*After*), med en visst innslag av før-etter design (*Before-after*). Særlig designtypen "etter" mangler styrke til å si noe om årsak-virkning, siden man ikke har et kontrollområde å sammenlikne effekten av intervensjonen (arealbruken) mot. Men også for studiedesign av typen kontroll-påvirkning og før-etter er det velkjent at slutningene kan være utsatte for bias og skjevhet. Nyere statistiske metoder basert på "causal inference", som er egnet til å isolere effekten av enkeltvariabler samtidig som de kontrollerer for effekten av andre variabler, har blitt utviklet for i større grad kunne trekke slutninger om årsak-virkning også fra slike studiedesign. Vi har ikke hatt kapasitet til å undersøke hvor ofte disse har blitt benyttet i den litteraturen vi har kategorisert, men basert på vår genrelle kjennskap til forskningsfeltet er det all grunn til å anta at disse sjeldent benyttes. I motsetning til studiedesignene beskrevet over har studiedesignene randomisert-kontrollert forsøk (*Randomised controlled trials* - RCT) og tildels før-etter-kontroll-impact (*Before-after-controll-impact* - BACI) mye større styrke til å avdekke årsak-virkningsforhold og unngå skjevhet i resultatene. Særlig er RCT regnet som gullstandarden innenfor naturvitenskapelig forskning, og det er en påfallende mangel på slike studier i vår gjennomgang (med noen svært gode unntak) <!--gjerne noen ref her hvis vi får tid -->. En utfordring med RCT og BACI-design knyttet til å forstå effekter av arealbruk på ulike mål for biologisk mangfold er at de ofte er ressurskrevende og ofte må gjennomføres over en betydelig romlig- og tidsmessig skala for å gi sikker inferens. Utfordringen er at det ofte er vanskelig, dyrt eller ikke etisk forsvarlig å gjennomføre kontrollerte forsøk av effektene av arealbruk på natur og naturgoder. Antall behandlinger og replikat blir nødvendigvis få, og det kan være vanskelig å kontrollere og isolere faktorer i forsøkene. Dette kan være utfordrende med dagens finansiering av forskning, hvor prosjektene er av en relativt kort varighet og ofte relativt små.
+Et annet veldig tydelig funn er at en stor andel av den naturvitenskapelige litteraturen baserer seg på relativt "svake" forsøkdsdesign. Liknende resultater har blitt rapportert tidligere fra interansjonale studier [@Nilsen_2020, @Christie_2019]. Når vi skriver svak mener vi her design som ikke nødvendigvis er godt egent til å avdekke årsak-virkningssamenhenger [@Christie_2019]. Som det framgår av @fig-studydesign er forskningen vi har kategorisert fra Norge i veldig stor grad dominert av det vi har kategorisert som kontroll-påvirkning (*Control-impact*) og etter-design (*After*), med en visst innslag av før-etter design (*Before-after*). Særlig designtypen "etter" mangler styrke til å si noe om årsak-virkning, siden man ikke har et kontrollområde å sammenlikne effekten av intervensjonen (arealbruken) mot. Men også for studiedesign av typen kontroll-påvirkning og før-etter er det velkjent at slutningene kan være utsatte for bias og skjevhet. Nyere statistiske metoder basert på "causal inference", som er egnet til å isolere effekten av enkeltvariabler samtidig som de kontrollerer for effekten av andre variabler, har blitt utviklet for i større grad kunne trekke slutninger om årsak-virkning også fra slike studiedesign [@Law_2017]. Vi har ikke hatt kapasitet til å undersøke hvor ofte disse har blitt benyttet i den litteraturen vi har kategorisert, men basert på vår genrelle kjennskap til forskningsfeltet er det all grunn til å anta at disse sjeldent benyttes. I motsetning til studiedesignene beskrevet over har studiedesignene randomisert-kontrollert forsøk (*Randomised controlled trials* - RCT) og tildels før-etter-kontroll-impact (*Before-after-controll-impact* - BACI) mye større styrke til å avdekke årsak-virkningsforhold og unngå skjevhet i resultatene [@Christie_2019]. Særlig er RCT regnet som gullstandarden innenfor naturvitenskapelig forskning, og det er en påfallende mangel på slike studier i vår gjennomgang (med noen svært gode unntak). En utfordring med RCT og BACI-design knyttet til å forstå effekter av arealbruk på ulike mål for biologisk mangfold er at de ofte er ressurskrevende og ofte må gjennomføres over en betydelig romlig- og tidsmessig skala for å gi sikker inferens. Utfordringen er at det ofte er vanskelig, dyrt eller ikke etisk forsvarlig å gjennomføre kontrollerte forsøk av effektene av arealbruk på natur og naturgoder. Antall behandlinger og replikat blir nødvendigvis få, og det kan være vanskelig å kontrollere og isolere faktorer i forsøkene. Dette kan være utfordrende med dagens finansiering av forskning, hvor prosjektene er av en relativt kort varighet og ofte relativt små. Naturlige eksperiemnter og kvasi-eksperimenter kan også benyttes i større grad til å dra slutninger over større landområder når det er logistikkmessig umuligå gjennomføre randomiserte eksperimenter [@Nilsen_2020].
 
-For de inkluderte systematiske litteratursammenstillingene gjorde vi en vurdering basert på modifiserte GRADE-vurderinger (se Metoder). Denne vurderingen avdekket at en relativt liten andel av denne litteraturen var basert på sammenstillinger som en kritisk måte vurderte litteraturen som ble inkludert.
+For de inkluderte systematiske litteratursammenstillingene gjorde vi en vurdering av kvalitet basert på modifiserte GRADE-vurderinger (se Metoder). Denne vurderingen avdekket at en relativt liten andel av denne litteraturen var basert på sammenstillinger som en kritisk måte vurderte litteraturen som ble inkludert. Et hovedtema som gikk igjen i de systematiske litteratursammenstillingene og metaanalysene vi vurderte til å være av høyeste kvalitet var at de rapporterte at de hadde vanskeligheter med å vurdere primærlitteratur på grunn av lav "validitet" og heterogen rapportering av resultater i primærlitteraturen. Innen økologi er det ofte utfordrende å sammenstille bevis fra flere studier på grunn av inkonsekvente målinger og rapportering av resultater. Denne mangelen på standardisering hindrer muligheten til å ta informerte beslutninger. I medisin har dette problemet blitt løst ved å etablere konsensus om konsekvente måter å rapporterte resultater. I økologi har dette konseptet bare blitt brukt på en begrenset måte (se for eksempel i @reed2022peatland)
 
-<!--# Evidence syntheses were largely focused on Applied subjects (forest management and agriculture FIGURE LINK) which is expected as these methods are well-suited to understanding the effect of management interventions. -->
-
-<!--# The majority of systematic review studies were so-called "systematic maps". Systematic maps catalogue the available evidence (which is very useful) but are generally broad in scope. Focused systematic reviews and meta-analyses were limited, but within this group there were several studies that investigated landuse/landuse-change "interventions" (can be negative or positive interventions) which provide strong evidence of effect. For example, @flowerstrip2023 discuss the effectiveness of flower-strips in agricultural landscapes. They highlight a large pooled effect of flower-strips on the abundance and richness of pollinator insects. They also highlight a potential source of confounding in that habitat quality of control sites needs to be equivalent to that of the interventions in order to avoid wrongly concluding an effect. @harper2022changes assessed the effect of hydropower flow magnitude changes on fish abundance. They show that effects on fish are highly context dependent meaning that site-specific adaptive management might be necessary. -->
-
-<!--# One major theme in the highest quality systematic reviews & meta-analyses was difficulty in assessing primary literature due to low "validity" and poor reporting. Long-term continuous monitoring and spatial/temporal replication are needed to adequately understand the impact of interventions. In ecology, synthesizing evidence from multiple studies to inform policy and practice is often challenging due to inconsistent measurement and reporting of outcomes. This lack of standardisation impedes the ability to make informed decisions. In medicine this problem has been addressed by establishing consensus on consistently measured and reported outcomes, thereby improving data synthesis and supporting evidence-based decision making. In ecology this concept has only been applied in a limited way (see @reed2022peatland). -->
+De eksisterende systematiske litteratursammenstillingene var i stor grad fokusert på anvendte emner (skogforvaltning og landbruk; - se @fig-sysrev-areause-detailed) som er forventet da disse metodene er godt egnet til å forstå effekten av forvaltningsintervensjoner. Flertallet av de eksisterende systematiske litteratursammenstillingene var systematiske kart. Fokuserte systematiske oversikter og metaanalyser var begrenset, men innenfor denne gruppen var det flere studier som undersøkte arealbruksendring innenfor landbruket.
 
 ```{r}
 #| echo: false
@@ -2863,7 +2928,7 @@ os_score1 <- join_Nor_form_nat |> select(open_data, open_code) |>
 
 ```
 
-Et annet gjennomgripende funn i vår gjennomgang av primærlitteraturen er at det er en relativt beskjeden andel av litteraturen som har gjort data og kildekode åpent tilgjengelig etter at studiene har blitt publisert. Totalt hadde ikke mer enn `r round(os_score1$os1, 2)*100` % åpne data, mens kun `r round(os_score1$os2, 2)*100` % hadde åpen kildekode for analyser som er gjennomført. Åpen vitenskap har vært et sentralt tema de siste ti årene, og har vokst fram som en "bevegelse" på grunn av en erkjennelse at dette er avgjørende for at samfunnet skal ha tillit til forskningen. Vår gjennomgang viser riktignok en bedring, og i årene etter 2016 har det vært en markant økning i andelen artikler som åpent publiserer forskningsdataene som ligger til grunn. Men også i denne perioden er andelen under 50% når gjelder data, og under 20% når det gjelder kildekode. Denne situasjonen vil ikke nødvendigvis forbedres av seg selv, men krever kontinuerlig jobb både innenfor forskningsmiljøene selv, men også fra institusjoner som finansierer forskningen.
+Et annet gjennomgripende funn i vår gjennomgang av primærlitteraturen er at det er en relativt beskjeden andel av litteraturen som har gjort data og kildekode åpent tilgjengelig etter at studiene har blitt publisert. Liknende funn har blitt rapportert tidliger fra internasjonale studier (se diskusjon i @Nilsen_2020). Totalt hadde ikke mer enn `r round(os_score1$os1, 2)*100` % åpne data, mens kun `r round(os_score1$os2, 2)*100` % hadde åpen kildekode for analyser som er gjennomført. Åpen vitenskap har vært et sentralt tema de siste ti årene, og har vokst fram som en "bevegelse" på grunn av en erkjennelse om at dette er avgjørende for at samfunnet skal ha tillit til forskningen. Vår gjennomgang viser riktignok en bedring [@Nilsen_2020], og i årene etter 2016 har det vært en markant økning i andelen artikler som åpent publiserer forskningsdataene som ligger til grunn. Men også i denne perioden er andelen under 50% når gjelder data, og under 20% når det gjelder kildekode. Denne situasjonen vil ikke nødvendigvis forbedres av seg selv, men krever kontinuerlig jobb både innenfor forskningsmiljøene selv, men også fra institusjoner som finansierer forskningen.
 
 Selv om vi innenfor naturvitenskapen søker å finne generelle og almengyldige svar på forskningsspørsmål ser vi ofte at økologien er kontekstavhengig, og at anvendt forskning derfor ofte må skje i geografisk nærhet av der den skal benyttes (jfr. [@Nekola1999]. Vår gjennomgang av litteraturen fra Norge har avdekket at det er stor variasjon knyttet til hvor hyppig feltstudier gjennomføres i de ulike fylkene i Norge. Særlig er det gjennomført mange studier i Innlandet, Trøndelag og Vestland. Vi antar at studier fra sammenlignbare våre nærmeste naboland vil være av høy relevans for norske forhold. I videre arbeid med f.eks. systematiske litteraturgjennomganger, bør det derfor vurderes om litteratur fra øvrige skandinaviske land bør prioriteres.
 
@@ -2873,7 +2938,7 @@ Vår sammenstilling av den naturvitenskapelige litteraturen fra Norge avdekket h
 
 Også når det gjelder hvilke former for arealbruk og arealbruksendringer vi har kunnskap om effekten av, ser vi at det er stor variasjon i forskningsinnsats. På et overordnet plan (@fig-landuse-coarse) er det størst volum av forskning knyttet til ulike former for landbruk (inkludert både beitebruk og andre former for landbruk) og høsting og bruk av biologiske ressurser (inkludert skogbruk og jakt og fiske). For andre hovedformer for arealbruk, inkludert ulike former for energiproduksjon og samferdsel, og ulike former for bruk av landskapet til reiseliv, fritidsaktiviteter og friluftsliv ("residential") er det vesentlig mindre forskning tilgjengelig. Dersom vi bryter opp arealbruken i finere oppdeling er det effektene av skogbruk som har klart størst volum av forskning (@fig-landuse-detailed), etterfulgt av effekter av beiting og landbruk mer generelt. Det er påfallende få naturvitenskapelige studier som omhandle effekter av sentrale virkemidler innen naturforvaltningen som naturvern og restaurering.
 
-Vi kartla hvilke responsvariabler de ulike studiene fokuserte på, og delte disse inn i henhold til klassifiseringssystemet "Essential Biodiversity Variables" (EBV). Vår gjennomgang av litteraturen viste at det var særlig tre variabler som er mye studert, henholdsvis arters utbredelse (*Species distribution*), arters antall (*Species abundance*) og taksonomisk diversitet (*Taxonomic diversity*). Den siste variabelen inkluderer ulike former for diversitetsmål, inkludert artsantall. De to første variablene blir typisk studert for en eller et fåtall arter i samme studie, mens studier som fokuserer på diversitet typisk fokuserer på diversiteten i hele plantesamfunn eller blant leddyr i et samfunn (virvelløse dyr, med insekter, edderkoppdyr og krepsdyr som de største gruppene). Det er også et ganske betydelig (dog langt mindre) volum av forskning på ulike egenskaper (Species *traits*) som beskriver individer eller arter. Særlig gjelder dette studier av arters bevegelsesmønter (*Movement*) og habitatseleksjon under ulike former for arealbruk og menneskelige forstyrrelser. Inkludert i denne kategorien finner vi også en rekke studier av hvordan menneskelig aktivitet og infrastruktur påvirker villreinens arealbruk og bevegelsesmønster, og hvordan gaupenes bevegelsesmønster henger sammen med ulike former for arealbruk. Ser vi arter som er inkludert hyppigst i vår litteraturgjennomgang finner vi også at disse to artene er hyppigst forekommende. Vi har også identifisert et betydelig antall studier som undersøker hvordan ulike former for arealbruk påvirker reproduksjon og overlevelse hos populasjoner. I kontrast til variablene over er det relativt få studier som fokuserer på effekter på hele økosystemer (struktur og/eller funksjon) og det er svært få studier som har undersøkt effekter av arealbruk på genetisk variasjon og differensiering.
+Vi kartla hvilke responsvariabler de ulike studiene fokuserte på, og delte disse inn i henhold til klassifiseringssystemet "Essential Biodiversity Variables" (EBV) [@Pereira_2013]. Vår gjennomgang av litteraturen viste at det var særlig tre variabler som er mye studert, henholdsvis arters utbredelse (*Species distribution*), arters antall (*Species abundance*) og taksonomisk diversitet (*Taxonomic diversity*). Den siste variabelen inkluderer ulike former for diversitetsmål, inkludert artsantall. De to første variablene blir typisk studert for en eller et fåtall arter i samme studie, mens studier som fokuserer på diversitet typisk fokuserer på diversiteten i hele plantesamfunn eller blant leddyr i et samfunn (virvelløse dyr, med insekter, edderkoppdyr og krepsdyr som de største gruppene). Det er også et ganske betydelig (dog langt mindre) volum av forskning på ulike egenskaper (Species *traits*) som beskriver individer eller arter (se [her](https://geobon.org/ebvs/what-are-ebvs/) for en beskrivelse av samtlige EBV-er). Særlig gjelder dette studier av arters bevegelsesmønter (*Movement*) og habitatseleksjon under ulike former for arealbruk og menneskelige forstyrrelser. Inkludert i denne kategorien finner vi også en rekke studier av hvordan menneskelig aktivitet og infrastruktur påvirker villreinens arealbruk og bevegelsesmønster, og hvordan gaupenes bevegelsesmønster henger sammen med ulike former for arealbruk. Ser vi arter som er inkludert hyppigst i vår litteraturgjennomgang finner vi også at disse to artene er hyppigst forekommende. Vi har også identifisert et betydelig antall studier som undersøker hvordan ulike former for arealbruk påvirker reproduksjon og overlevelse hos populasjoner. I kontrast til variablene over er det relativt få studier som fokuserer på effekter på hele økosystemer (struktur og/eller funksjon) og det er svært få studier som har undersøkt effekter av arealbruk på genetisk variasjon og differensiering.
 
 Når det gjelder effektene av arealbruk og arealbruksendringer på økosystemtjenester, var det flest studier av effektene av arealbruksendringer på tjenestene karbonfangst og -lagring, fulgt av ulike forsynende tjenester som høsting av naturressurser i form av landbruk, jakt og fiske. Også andre regulerende tjenester <!--# Eksempler? Sjekk materialet--> var dekket med flere studier i materialet. Færre studier fokuserte på effektene av arealendringer på kulturelle tjenester, (kunnskaps og opplevelsestjenester). Det kan være overlapp i måten økosystemtjenester er registrert på i materialet.
 
@@ -2881,13 +2946,13 @@ Når det gjelder effektene av arealbruk og arealbruksendringer på økosystemtje
 
 Litteratursammenstillingen vår viste at kun 28% av studiene totalt omhandler de samfunnsrelevante temaene konflikter, forvaltningsverktøy eller styring mer generelt (governance), og at kun 12% av den samlede litteraturen bruker samfunnsvitenskapelige metoder. Gjennomgangen av den samfunnsrelaterte litteraturen viste videre hvilke tema som det har vært forsket mest på i perioden 1986-2024. Her fant vi at styring og forvaltningsverktøy har fått betydelig mer oppmerksomhet enn konflikter. Et viktig funn her er også at under halvparten (44%) av studiene på disse samfunnsmessige temaene ble utført med samfunnsvitenskapelige metoder. I en tid hvor internasjonale kunnskapsinstitusjoner som IPBES og IPCC vektlegger betydningen av både rent samfunnsvitenskapelig og tverrfaglig kunnskap i innsatsen for å oppnå internasjonalt avtalte miljømål, er det verdt å merke seg i hvor liten grad slik kunnskap som ble identifisert gjennom søket vårt. Noe av bakgrunnen for den økte anerkjennelsen av samfunnsvitenskap i miljøspørsmål ligger i erkjennelsen av at årsaken til miljøproblemene vi står overfor, samt potensielle måter å håndtere de på, i stor grad er samfunnsmessige. Overordnet kan vi si at kunnskapen sammenstillingen vår avdekte om de samfunnsmessige forholdene knyttet til effekter av arealbruk og arealbruksendringer på naturmangfold og økosystemtjenester er mangelfulle, og at de i liten grad gir oss bred innsikt i hvordan man kan forstå og agere på konflikter, forvaltningsverktøy og styring på temaet.
 
-Av de samfunnsvitenskapelige studiene vi gjennomgikk ser vi en klar overvekt av bruken av intervjuer og dokumentstudier. Det er også identifisert en del studier som bruker spørreundersøkelser, mens det er få studier som bruker deltagende metoder, det vil si metoder som har fokus på involvering av flere ulike aktører. Samlet sett for de samfunnsrelaterte studiene fant vi at et klart flertall hadde en analytisk tilnærming med fokus på styring og forvaltning, det vil si en ganske direkte undersøkelse av eksisterende og potensielle nye verktøy og former for styring og forvaltning. Dette er i tråd med funnet over om at en stor andel av litteraturen hadde forvaltningsverktøy og styring som tema. Samtidig viste sammenstillingen at flere ulike analytiske tilnærminger som også er relevante for styring, forvaltningsverktøy og konflikter har blitt tatt i bruk, men da i mindre grad. Spesielt vil vi her trekke fram de analytiske tilnærmingene knyttet til gjennomgripende endringer (transformasjoner), tverrsektorielle prosesser, bærekraft, kunnskap, verdier, maktrelasjoner og deltagende/deliberative prosesser, som vi har funnet gjennomgående lite kunnskap om på sammenstillingens tema, men som framheves i den internasjonale forskningen (se for eksempel ).
+Av de samfunnsvitenskapelige studiene vi gjennomgikk ser vi en klar overvekt av bruken av intervjuer og dokumentstudier. Det er også identifisert en del studier som bruker spørreundersøkelser, mens det er få studier som bruker deltagende metoder, det vil si metoder som har fokus på involvering av flere ulike aktører. Samlet sett for de samfunnsrelaterte studiene fant vi at et klart flertall hadde en analytisk tilnærming med fokus på styring og forvaltning, det vil si en ganske direkte undersøkelse av eksisterende og potensielle nye verktøy og former for styring og forvaltning. Dette er i tråd med funnet over om at en stor andel av litteraturen hadde forvaltningsverktøy og styring som tema. Samtidig viste sammenstillingen at flere ulike analytiske tilnærminger som også er relevante for styring, forvaltningsverktøy og konflikter har blitt tatt i bruk, men da i mindre grad. Spesielt vil vi her trekke fram de analytiske tilnærmingene knyttet til gjennomgripende endringer (transformasjoner), tverrsektorielle prosesser, bærekraft, kunnskap, verdier, maktrelasjoner og deltagende/deliberative prosesser, som vi har funnet gjennomgående lite kunnskap om på sammenstillingens tema, men som framheves i den internasjonale forskningen (se for eksempel [@diaz2019]).
 
-Sammenstillingen viser at den samfunnsrelevante litteraturen dekker mange ulike økosystemer, og at spesielt mange omhandler skog, fjell og seminaturlige økosystemer. Dette synes i noen grad å være i tråd med den samfunnsmessige betydningen disse økosystemene blir tillagt i politikk og samfunnsdebatt, men henger nok også sammen med at enkelte arter og miljøutfordringer i perioder har fått spesielt mye oppmerksomhet i forskningen. Gjennomgangen viste videre at kun et fåtall av de samfunnsrelaterte studiene tok for seg effekter av arealbruk og arealendringer på karbonlagring i tillegg til på naturmangfold. Videre var arealbruk som karakteriseres av aktiv bruk og uthenting av ressurser, som for eksempel jordbruk, jakt, fiske og sanking, samt turisme er hyppig studert, i tillegg til bolig- og næringsutvikling inkludert fritidsboliger og hytter. Arealbruken som oftest forekommer i litteraturen, men som ikke karakteriseres av uthenting av ressurser eller arealinngrep, er naturvern. Fokuset på henholdsvis vern og aktiv arealbruk gjenspeiler sentrale samfunnsdebatter og tidvis motstridende politiske målsetninger, som også ofte er sektorspesifikke. Vi registrerer at søket vårt identifiserte overraskende få samfunnsrelaterte studier på noen tema som har fått mye politisk og samfunnsmessig oppmerksomhet de siste årene, slik som effekter av arealbruk og arealbruksendringer på karbonlagring i økosystemer samt arealbruk og arealbruksendringer knyttet til vindkraft og oppdrettsnæring.
+Sammenstillingen viser at den samfunnsrelevante litteraturen dekker mange ulike økosystemer, og at spesielt mange omhandler skog, fjell og seminaturlige økosystemer. Dette synes i noen grad å være i tråd med den samfunnsmessige betydningen disse økosystemene blir tillagt i politikk og samfunnsdebatt, men henger nok også sammen med at enkelte arter og miljøutfordringer i perioder har fått spesielt mye oppmerksomhet i forskningen. Gjennomgangen viste videre at kun et fåtall av de samfunnsrelaterte studiene tok for seg effekter av arealbruk og arealendringer på karbonlagring i tillegg til på naturmangfold. Videre var arealbruk som karakteriseres av aktiv bruk og uthenting av ressurser, som for eksempel jordbruk, jakt, fiske og sanking, samt turisme er hyppig studert, i tillegg til bolig- og næringsutvikling inkludert fritidsboliger og hytter. Arealbruken som oftest forekommer i litteraturen, men som ikke karakteriseres av uthenting av ressurser eller arealinngrep, er naturvern. Fokuset på henholdsvis vern og aktiv arealbruk gjenspeiler sentrale samfunnsdebatter og tidvis motstridende politiske målsetninger, som også ofte er sektorspesifikke. Vi registrerer at søket vårt identifiserte overraskende få samfunnsrelaterte studier på noen tema som har fått mye politisk og samfunnsmessig oppmerksomhet de siste årene, slik som effekter av arealbruk og arealbruksendringer på karbonlagring i økosystemer samt arealbruk og arealbruksendringer knyttet til vindkraft.
 
 ## Begrensninger i litteraturstudien
 
-Som alle studier har også vår studie en del begrensninger. Den første begrensningen ligger i selve konseptet systematisk kart [@james_methodology_2016]. Formålet her er å kartlegge og sammenstille den tilgjengelige litteraturen, ikke å gå i dybden eller å lese ut resultater fra de enkelte studiene. Vår kartlegging av litteraturen viser slik sett ikke hva vi konkret vet om effekter av arealbruk og arealbruksendringer på biologisk mangfold og økosystemtjenester, kun hva det er forsket på. Å skulle gå inn i detaljer på alle artiklene innenfor et så bredt fagfelt er i praksis ikke mulig, og ville krevd en langt smalere problemstilling. En tilsvarende begrensning med systematiske kart er at det heller ikke gjøres en vurderingen av kvaliteten på den inkluderte primærlitteraturen (*critical apraisal*) . Vår sammestilling av litteraturen gir imidlertid en god oversikt over tema det det har vært forsket på, å gir et godt utgangspunkt for for eksempel systematiske reviews og metaanlyser på utvalgte deler av materialet. Vår studie må derfor oppfattes som en oversikt over hva det er forsket på innenfor et tematisk område, og på hvilken måte det forskes, snarere enn hva forskningen konkluderer med.
+Som alle studier har også vår studie en del begrensninger. Den første begrensningen ligger i selve konseptet systematisk kart [@james_methodology_2016]. Formålet her er å kartlegge og sammenstille den tilgjengelige litteraturen, ikke å gå i dybden eller å lese ut resultater fra de enkelte studiene. Vår kartlegging av litteraturen viser slik sett ikke hva vi konkret vet om effekter av arealbruk og arealbruksendringer på biologisk mangfold og økosystemtjenester, kun hva det er forsket på. Å skulle gå inn i detaljer på alle artiklene innenfor et så bredt fagfelt er i praksis ikke mulig, og ville krevd en langt smalere problemstilling. En tilsvarende begrensning med systematiske kart er at det heller ikke gjøres en vurderingen av kvaliteten på den inkluderte primærlitteraturen (*critical apraisal*). Vår sammestilling av litteraturen gir imidlertid en god oversikt over tema det det har vært forsket på, å gir et godt utgangspunkt for for eksempel systematiske reviews og metaanlyser på utvalgte deler av materialet. Vår studie må derfor oppfattes som en oversikt over hva det er forsket på innenfor et tematisk område, og på hvilken måte det forskes, snarere enn hva forskningen konkluderer med.
 
 En annen utfordring med å kartlegge litteraturen innenfor et såpass bredt tema er at det kan oppstå uklarheter knyttet til avgrensningen av søk og inkluderingskriterier. Vi jobbet mye med begge disse faktorene i en tidlig fase av prosjektet, og baserte både søkestrategi og inkluderingskriterier på en detaljert protokoll. Denne protokollen ble oppdatert en rekke ganger i en tidlig fase, både basert på input fra en større ekspertgruppe og samfunnsaktører, men også basert på erfaringer reviewgruppa gjorde seg i en tidlig fase. Likevel vil det være noen uklarheter knyttet til hvorvidt enkeltstudier skal inkluderes eller ikke. Vi gjorde gjentatte beregninger av graden av enighet innad i reviewgruppa, og denne lå konsekvent høyere enn 0.72. Selv om dette er godt innenfor det som er regnet som akseptabelt betyr det også at det vil være en del studier som reviewgruppa har vurdert ulikt når det med tanke på inkludering vs ekskludering. For artikler som ble screenet i en tidligfase og hvor vi hadde flere som screenet samme artikkel løste vi opp i disse uengihetene. For mesteparten av datamaterialet har imidlertid kun en person vurdert hvorvidt studiet skal inkluderes eller ekskluderes.
 
@@ -2895,7 +2960,7 @@ Før vi gjennomførte søket gjorde vi mange testsøk, med ulik oppbygging og gr
 
 Vi hadde opprinnelig planlagt dekke både den vitenskapelige litteraturen og grålitteraturen (norske rapporter osv). Siden omfanget av vitenskapelig litteratur som ble fanget opp av vårt søk var så stort måtte vi imidlertid se bort fra den grå litteraturen i vår gjennomgang. hvor mye av denne litteraturen som ville blitt inkludert er vanskelig å vurdere. Det er sannsynlig at mye av denne litteraturen i større grad beskriver arealbruk og endringer i arealbruk, og i mindre grad eveer å vise hvordan dette påvirker det biologiske mangfoldet. En grunn til at vi kan gjøre en slik antakeler er at forsøk som bygger på studiedesign av høy kvalitet (se over) er kostbare og ressurskrevende, og fordi forskere så vel som forskningsinstitusjoner har egeninteresse av å publisere slik forskning vitenskapelig, snarere enn som grå litteratur. Før også denne delen av litteraturen er gått gjennom skal man imidltertid være varsom med å trekke slike slutninger.
 
-Til sist er det en mulig begrensning at vi måtte utelate <!--# --> xxx artikler uten at vi hadde kapasitet til å kjøre en full screening. Merk at vi gikk gjennom all litteratur som hadde en høy stjerne i Rayans rangeringsssytem basert på kunstig intelligens, slik at artikler som gjensto hadde lavere sannsynlighet for å være aktuelle. Denne modellen "lærer" løpende hvilke studier som sannsynligvis bør inkluderes, og hvilke studier som sannsynligvis er irrelvante. Algoritmene i aplikasjonen sorterer kandidatene til screening løpende basert på læringsprosessen. Slike algoritmer er, i likhet med all kunstig intelligens, sårbare for bias og usikkerhet. Vi screenet også alle artikler hvor "Norge" eller "Norway" dukket opp tittlel, nøkkelord, sammendrag eller adressen til forfatterne. For å få et estimat på hvor mye av denne litteraturen som ville passert første runde med screening tok vi et tilfeldig utvalg på 100 av de gjenværende artiklene og screenet disse. Av disse vurderte vi at X% var innenfor våre inkluderingskriterier, men ingen var fra Norge. Mange av de irrelevante artiklene i denne kategorien handlet om Norway Spruce (*Picea abies*), noe som illustrerer probleme fra å skille signalet fra støyen i slike søk. Vi antar derfor at det vil være få aktuelle artikler fra Norge som ikke ble screenet, men at det vil være en del aktuelle artikler fra Sverige og Finland. <!--# Anders - er dette korrekt gjengitt? -->
+Til sist er det en mulig begrensning at vi måtte utelate ca 10% av artiklene uten at vi hadde kapasitet til å kjøre en full manuell screening. Merk at vi gikk gjennom all litteratur som hadde en høy stjerne i Rayans rangeringsssytem basert på kunstig intelligens, slik at artikler som gjensto hadde lavere sannsynlighet for å være aktuelle. Denne modellen "lærer" løpende hvilke studier som sannsynligvis bør inkluderes, og hvilke studier som sannsynligvis er irrelvante. Algoritmene i aplikasjonen sorterer kandidatene til screening løpende basert på læringsprosessen. Slike algoritmer er, i likhet med all kunstig intelligens, sårbare for bias og usikkerhet. Vi screenet også alle artikler hvor "Norge" eller "Norway" dukket opp tittlel, nøkkelord, sammendrag eller adressen til forfatterne. For å få et estimat på hvor mye av denne litteraturen som ville passert første runde med screening tok vi et tilfeldig utvalg på 100 av de gjenværende artiklene og screenet disse. Av disse vurderte vi at ca 10% var innenfor våre inkluderingskriterier, men ingen var fra Norge. Mange av de irrelevante artiklene i denne kategorien handlet om Norway Spruce (*Picea abies*), noe som illustrerer probleme fra å skille signalet fra støyen i slike søk. Vi antar derfor at det vil være få aktuelle artikler fra Norge som ikke ble screenet, men at det vil være en del aktuelle artikler fra Sverige og Finland. 
 
 ## Datamangler og kunnskapshull
 
@@ -2931,7 +2996,6 @@ I dette kapittelet vil vi presentere det vi mener er de viktigste kunnskapshulle
 
 -   Generelt finner vi at det er et udekket behov for systematiske litteratursammenstillinger og metaanalyser på mer avgrensede tema, som baserer seg på de best tilgjengelige metoder for slike studier og inkluderer en kritisk vurdering av de inkluderte artiklene. Vår sammenstilling av litteraturen på et bredt felt kan danne utgangspunkt for slike analyser på et smalere tema.
 
-    <!--# Må se mer på funnene, men hva med indirekte virkninger (telecoupling?) Mineralnæring? Industri? Bolig og byutvikling? Kummalative effekter Skal sjekke lista over påvirkningstyper-->
 
 \clearpage
 
