@@ -3,17 +3,12 @@ library(googlesheets4)
 library(dplyr, warn.conflicts = FALSE)
 library(tidygeocoder)
 library(rayyanR)
-#gs4_auth()
-## read in GoogleSheets----
-#form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
-#saveRDS(form, "data/form.RDS")
-form<-readRDS("data/form.RDS")
+
+join<-rbind(join_Nor_form_nat[1:53], join_Nor_form_soc[1:53])
+
+names(join)[48]<-"notes"
+All_join<-rbind(join,sysRev)
 country_centroid<-read.csv("https://raw.githubusercontent.com/gavinr/world-countries-centroids/master/dist/countries.csv")
-
-
-# ## clean names----
-form <- form |>
-   janitor::clean_names()
 
 ### Get matched details from Rayyan----
 # 
@@ -24,22 +19,22 @@ rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
 
 form$accession_zr<-unlist(form$study_id)
  
-join_form <- form |>
+join_form <- All_join |>
    left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
+
+join_form$country
  
-#join_form |> view()
-
-#names(join_form)
-
-unnest_country<-join_form |> 
+unnest_country<-
+  join_form |> 
   mutate(country=strsplit(country, ",")) |> 
-  unnest(country) 
+  unnest(country) |> 
+    mutate(country=trimws(country)) 
 
 
 join<-unnest_country |> 
   full_join(country_centroid, by=c("country"="COUNTRY"))   
 
-
+join|> view()
 doi_list <- strsplit(join$doi, split = " ")
 doi_list <- sapply(doi_list, "[[", 1)
 
@@ -50,7 +45,7 @@ join$url<-doi_list
 
 #names(join)
 
-join |> 
+join_db<-join |> 
   select(study_id, study_title, source, abstract,keywords,doi, url, longitude, latitude, country, ecosystem_type_main, research_type) |> 
   mutate(longitude=case_when(
     country=="Norway"~10.421906,
@@ -58,10 +53,14 @@ join |>
     latitude=case_when(
       country=="Norway"~63.446827,
       TRUE~latitude)) |> 
-  drop_na(study_title) |>
+  drop_na(study_title) 
+
+join_db |> view()
+
+join_db |> 
   write.csv("data/EviAtlas.csv")
 
-join |> 
+join_db |> 
   select(study_title, source,keywords,doi, url, longitude, latitude, country, ecosystem_type_main, research_type) |> 
   mutate(longitude=case_when(
     country=="Norway"~10.421906,
@@ -70,5 +69,6 @@ join |>
       country=="Norway"~63.446827,
       TRUE~latitude)) |> 
   drop_na(study_title) |> 
+  distinct(study_title) |> 
   saveRDS("data/EVIATLAS.RDS")
 

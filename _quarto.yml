@@ -5,7 +5,7 @@ website:
   title: "Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge" 
   navbar:
     right:
-      - text: 'Om prosjekten'
+      - text: 'Oppsummering for beslutningstakere'
         href: index.html
       - text: "Datatabell"
         href: datatabell.html

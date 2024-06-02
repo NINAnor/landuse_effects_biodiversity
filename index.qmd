@@ -1,33 +1,449 @@
 ---
-title: "Om prosjekten"
+title: Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge - Et systematisk kart og beslutningsstøtteverktøy 
+subtitle: Oppsummering for beslutningstakere
 format: html
 editor: visual
 ---
 
 <p>Se hele rapporten her: <a href="https://ninanor.github.io/landuse_effects_biodiversity/quarto_ninareport.html" target="_blank" rel="noopener noreferrer">Rapport</a>.</p>
 
-## **Bakgrunn**
+## Bakgrunn
 
-Endringer i menneskelig arealbruk vurderes som den viktigste årsaken til tilbakegang og tap av arter og naturtyper både globalt og i Norge. Disse endringene påvirker økosystemenes sammensetning, struktur og funksjon, og dermed deres evne til å produsere økosystemtjenester, som klimaregulering gjennom opptak og lagring av karbon. I Norge er litt under 2% av landarealet utbygd, noe som er høyere enn det globale gjennomsnittet, men lavere enn EU-gjennomsnittet. Byer og tettsteder har vokst jevnt, med 1 500 km² utbygd fra 1990 til 2019. Grunnleggende kunnskap om arealbruksendringer er avgjørende for å vurdere deres virkninger på biologisk mangfold og økosystemtjenester.
+Nedbygging av arealer og endringer i menneskelig arealbruk vurderes som den viktigste årsaken til tilbakegang og tap av arter og naturtyper både globalt og i Norge. Arealendringer påvirker økosystemenes sammensetning, struktur og funksjon, og påvirker dermed økosystemenes evne til å produsere ulike goder og tjenester vi mennesker får fra naturen –omtalt som naturgoder eller økosystemtjenester. Det kanskje mest omtalte naturgodet i senere år er klimaregulering, der opptak og lagring av karbon i økosystemene er sentrale faktorer. Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km^2^, som tilsvarer litt under 50 km^2^ årlig. Grunnleggende kunnskap om utbygging, endringer i arealbruk og andre arealbruksendringer er grunnlaget for i neste omgang å vurdere hvilken virkning disse endringene har for naturmangfold og økosystemtjenester.
 
-![Oversikt over viktige funnene fra vår litteratursammenstilling. Øverste rad (brune sirkler og søyler) omfatter alle inkluderte artikler fra Norge. Rad to og tre (grønne søyler) omfatter alle naturvitenskapelige artikler fra Norge. Rad fire omfatter artikler med samfunnsrelevante problemstillinger (grå søyle: alle artikler, mørkegrønn søyle: artikler som har benyttet samfunnsvitenskapelige metoder). Rad fem omfatter (orange søyler) eksisterende systematiske litteratursammenstillinger som var inkludert i vårt materiale.](images/summary_policymakers.png)
+Systematiske kart identifiserer hvilke tema hvor det er gjort my forskning og hvilke tema det er forsker lite på. En slik oversikt kan blant annet benyttes til å vurdere hvor det er nødvendig med ytterligere innsats for å øke kunnskapen. Vi har i dette prosjektet utviklet et systematisk kart over tilgjengelig kunnskap knyttet til effekter av arealbruk og arealbruksendringer på biodiversitet og økosystemtjenester inkludert karbonlagring i Norge. Vår oversikt inkluderer også forskning som fokuserer på konflikter og styring knyttet til arealbruk, samt verktøy for planlegging og forvaltning.
 
-## **Prosjektoversikt**
+Oversikten vi har framskaffet, er basert på en detaljert protokoll og stringente regler for litteratursøk, inkludert kriterier for hvilke vitenskapelige artikler som skal inkluderes i det systematiske kartet, og hvilken informasjon som skal trekkes ut fra de inkluderte artiklene. Vi utformet søk og inkluderingskriterier med tanke på å fange opp alle relevante vitenskapelige artikler fra Norge, Sverige og Finland, samt alle publikasjoner som allerede har sammenstilt relevant litteratur (systematiske oversiktsartikler) så lenge de hadde et globalt, europeisk eller norsk fokus. Som et ledd i utviklingen av protokollen, gjennomførte vi et arbeidsverksted hvor ulike samfunnsinteresser deltok. Etter verkstedet mottok vi skriftlig tilbakemelding på protokollen fra både deltakere på verksted, samt en utvidet ekspertgruppe bestående av forskere. Dette ble gjort for å sikre at protokollen var tilstrekkelig definert til å fange opp litteratur av interesse. Protokollen er åpent tilgjengelig her.
 
-Dette prosjektet utviklet et systematisk kart over tilgjengelig kunnskap om effekter av arealbruksendringer på biologisk mangfold, økosystemtjenester og karbonlagring i Norge. Kartet inkluderer også forskning på konflikter knyttet til arealbruk og planleggingsverktøy. Systematiske kart identifiserer og katalogiserer evidens om brede temaer for å informere politisk relevante spørsmål. Vårt kart er basert på en detaljert protokoll og strenge litteratursøkekriterier, med innspill fra ulike interessenter og eksperter for å sikre grundighet.
+## Oppsummering av resultatene
 
-### **Funn fra Norge**
+```{r fig-summary}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: 10
+#| fig-width: 8
+#| fig-cap: "Oversikt over viktige funnene fra vår litteratursammentilling. Øverste rad (brune sirkler og søyler) omfatter alle inkluderte artikler fra Norge. Rad to og tre (grønne søyler) omfatter alle naturvitenskapelige artikler fra Norge. Rad fire omfatter artikler med samfunnsrelaterte problemstillinger (grå søyle: alle artikler, mørkegrønn søyle: artikler som har benyttet samfunnsvitenskapelige metoder). Rad fem (orange søyler) omfatter eksisterende systematiske litteratursammenstillinger."
 
-Vår systematiske gjennomgang identifiserte forskningshull og områder med mye kunnskap. Totalt 191 artikler inkludert, hovedsakelig fra naturvitenskapene, med noen samfunnsvitenskapelige studier. Naturvitenskapelige studier fokuserte mest på skog, semi-naturlige og fjelløkosystemer, spesielt effekter av landbruk og biologisk ressursutnyttelse. Få studier adresserte vern eller restaurering. Mange studier brukte svake eksperimentelle design, lokale eller regionale skalaer, korte tidsserier og begrenset datatilgjengelighet.
 
-### **Samfunnsvitenskapelig Forskning**
 
-Vi inkluderte 73 artikler om styring, verktøy og konflikter, hvorav de fleste fokuserte på forvaltning fremfor konflikter. Samfunnsvitenskapelige studier brukte ofte intervjuer og dokumentanalyse, med fokus på skogbruk, jordbruk og vern. Det var færre studier på tverrsektorielle prosesser, bærekraft og transformative endringer.
+library(ggpubr)
+library(tidyverse)
+library(viridis)
 
-### **Eksisterende Systematiske Oversikter**
+nor_bib <- readRDS(here::here("QR/data/cache_data/nor_bib.RDS"))
+join_Nor_form  <-readRDS(here::here("QR/data/cache_data/join_Nor_form.RDS"))
+join_Nor_form_soc <-readRDS("QR/data/cache_data/join_Nor_form_soc.RDS")
+join_Nor_form_nat <-readRDS("QR/data/cache_data/join_Nor_form_nat.RDS")
+sysRev<-readRDS("QR/data/cache_data/sysRev.RDS")
 
-Vår gjennomgang inkluderte 60 systematiske oversikter, med fokus på skog, elv og semi-naturlige økosystemer. Disse oversiktene vurderte ofte ikke publikasjonsskjevhet eller andre risikofaktorer, noe som begrenser deres pålitelighet for å trekke konklusjoner.
+########################################################################
+########################################################################
+### Fig - tidstrend
 
-### **Forskninghull**
+plot_years <- 
+  nor_bib |> 
+  mutate(year=year(publication_date)) |> 
+  group_by(year) |> 
+  tally() |> 
+  mutate(csum=cumsum(n)) |> 
+ggplot(aes(x = year)) +
+  geom_point(aes(y = csum), color = "darkgoldenrod4") +
+  xlab("År") +
+  scale_y_continuous(name = "Kumulativt\nantall artikler") +
+  annotate(geom = "text", x = 1987, y = 210, label = "Alle artikler fra Norge:\nKummulativt antall artikler", color = "darkgoldenrod4", size = 4, hjust = 0)
 
-Viktige forskningshull inkluderer behovet for systematiske oversikter og metaanalyser, studier med eksperimentelle design, nasjonale analyser og langsiktige data. Underutforskede områder inkluderer effektene av vern, restaurering, energiproduksjon og økosystemtjenester som karbonlagring. Samfunnsvitenskapelige mangler inkluderer studier om arealbrukseffekter på karbonlagring, vindkraft, transformative endringer og tverrsektorielle prosesser.
+###############################################################################
+### disiplin
+fig_disiplin <-
+join_Nor_form |> 
+  mutate(study_area_discipline = fct_recode(study_area_discipline, Economy = "economic")) |>
+  group_by(study_area_discipline) |> 
+  tally() |> 
+  drop_na() |>
+  filter(study_area_discipline !="Interdiciplinary") |>
+  mutate(study_area_discipline = as.character(study_area_discipline)) |>
+  mutate(study_area_discipline = case_when(
+            grepl("Mathematics", study_area_discipline)~ "Naturvitenskap",
+            grepl("Economy", study_area_discipline) ~ "Økonomi",
+            grepl("Humanities", study_area_discipline) ~ "Humaniora",
+            grepl("Social", study_area_discipline) ~ "Samfunnsvitenskap",
+            grepl("Agricultural", study_area_discipline) ~ "Landbruk og fiskeri", 
+                                  TRUE~study_area_discipline)) |>
+  ggplot(aes(reorder(study_area_discipline, n),n))+
+  geom_histogram(stat="identity", fill = "darkgoldenrod4")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 1.5, y = 80, label = "Alle artikler fra Norge:\nFagområde", color = "darkgoldenrod4", size = 4, hjust = 0)
+
+
+###############################################################################
+## Figur økosystem
+
+fig_ecosys <-
+join_Nor_form_nat |> 
+  group_by(ecosystem_type_main) |>
+  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
+  unnest(ecosystems_main)  |> 
+  group_by(ecosystems_main) |> 
+  mutate(ecosystems_main=trimws(ecosystems_main)) |> 
+  tally() |> 
+  drop_na() |>
+  filter(n > 1) |>
+  mutate(ecosystems_main = case_when(
+            grepl("Forest", ecosystems_main)~ "Skog",
+            grepl("Semi-natural", ecosystems_main) ~ "Seminaturlig",
+            grepl("Rivers", ecosystems_main) ~ "Elv & innsjø",
+            grepl("Polar", ecosystems_main) ~ "Polar & tundra",
+            grepl("Naturally", ecosystems_main) ~ "Naturlig åpent lavl. ",
+            grepl("Urban", ecosystems_main) ~ "Urbane økosys", 
+            grepl("Wetlands", ecosystems_main) ~ "Våtmark & myr",
+            grepl("Coastal", ecosystems_main) ~ "Kyst",
+            grepl("Mountains", ecosystems_main) ~ "Fjell",
+                                  TRUE~ecosystems_main)) |> 
+  ggplot(aes(reorder(ecosystems_main, n),n))+
+  geom_histogram(stat="identity", fill = "darkolivegreen3")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 2.4, y = 25, label = "Naturvitenskap:\nØkosystem", color = "darkolivegreen3", size = 4, hjust = 0)
+
+###############################################################################
+### fig arealbruk
+
+fig_arealbruk <-
+join_Nor_form_nat |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  tally() |> 
+  drop_na() |> 
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Landbruk",
+    grepl("Biological resource use", land_use)~"Biol. ressursbruk",
+    grepl("Energy", land_use)~"Energi",
+    grepl("Resident", land_use)~"Bebyggelse",
+    grepl("Transport", land_use)~"Transport",
+    grepl("fish", land_use)~"Biol. ressursbruk",
+    grepl("Human", land_use)~"Forstyrrelse",
+    grepl("Protection", land_use)~"Vern",
+    grepl("Restoration", land_use)~"Restaurering",
+    grepl("Natural system", land_use)~"Habitatmodifisering",
+    TRUE~land_use
+  )) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  group_by(land_use) |> 
+  summarise(n=sum(n))|> 
+  ggplot(aes(reorder(land_use, n),n))+
+  geom_histogram(stat="identity", fill = "darkolivegreen3")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 2.5, y = 45, label = "Naturvitenskap:\nArealbruk", color = "darkolivegreen3", size = 4, hjust = 0) 
+
+
+###############################################################################
+### Fig EBV
+  EBVs<-c("genetic_composition", "species_populations", "species_traits","community_composition", "ecosystem_functioning", "ecosystem_structure", "ecosystem_services")
+
+fig_ebv <-
+join_Nor_form_nat |> 
+    select(EBVs) |>
+    pivot_longer(cols = EBVs,
+                 names_to = "EBV_group",
+                 values_to = "EBV_level",
+                 values_drop_na = T) |>
+    filter(EBV_group != "ecosystem_services") |>
+    mutate(EBV_level =str_split(EBV_level,",\\s(?=[A-Z])")) |>
+    unnest(EBV_level) |>
+    mutate(EBV_level = str_split_i(EBV_level, " - ", 1)) |>
+    group_by(EBV_group, EBV_level) |> 
+    tally() |>
+    group_by(EBV_group) |> 
+    summarize(n = sum(n)) |> 
+    mutate(EBV_group = case_match(EBV_group,
+                                  "community_composition" ~ "Samfunn",
+                                  "ecosystem_functioning" ~ "Økosysystem funk",
+                                  "ecosystem_structure" ~ "Økosysystem strukt",
+                                  "genetic_composition" ~ "Genetisk",
+                                  "species_populations" ~ "Arter",
+                                  "species_traits" ~ "Artsegenskaper")) |>
+    ggplot(aes(x = reorder(EBV_group, n),
+               y = n))+
+    geom_histogram(stat="identity", fill = "darkolivegreen3")+
+    coord_flip()+
+    theme(legend.position = "Null")+
+    labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 2.0, y = 30, label = "Naturvitenskap:\nBiodiversitetsvariabler", color = "darkolivegreen3", size = 4, hjust = 0)
+
+
+###############################################################################
+## Økosystemtjenester
+
+fig_ES <-
+join_Nor_form_nat |> 
+  select(ecosystem_services) |>
+  mutate(ecosystem_services = str_split(ecosystem_services,",\\s(?=[A-Z])"))   |> 
+  unnest(ecosystem_services)  |> 
+  mutate(ecosystem_services = trimws(ecosystem_services))  |> 
+  group_by(ecosystem_services) |> 
+  tally() |> 
+  drop_na() |>
+  mutate(ecosystem_services = case_when(
+    grepl("R&M - carbon storage and sequestration", ecosystem_services)~"Karbonopptak- \nog lagring",
+    grepl("Provisioning", ecosystem_services)~"Forsynende",
+    grepl("Regulation", ecosystem_services)~"Regulerende",
+    grepl("Cultural", ecosystem_services)~"Opplevelse og-\nkunnskapstjenester",
+    grepl("Others", ecosystem_services)~"Andre",
+    TRUE~ecosystem_services
+  )) |> 
+  ggplot(aes(reorder(ecosystem_services, n),n))+
+  geom_histogram(stat="identity", fill = "darkolivegreen3")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 1.8, y = 5.3, label = "Naturvitenskap:\nØkosystemtjenester", color = "darkolivegreen3", size = 4, hjust = 0) 
+
+###############################################################################
+## samf vitenskap - arealbruk
+
+fig_samf_areal <-
+join_Nor_form_soc |> 
+  group_by(x23,
+           study_area_discipline) |>
+  mutate(land_use = strsplit(x23, ","),
+         study_area_discipline = case_match(study_area_discipline,
+                                            "Social Sciences" ~ "Social_Sciences",
+                                            .default = "Other"))  |> 
+  unnest(land_use)|> 
+  group_by(land_use,
+           study_area_discipline) |> 
+  mutate(land_use=trimws(land_use),
+         land_use = case_when(
+           is.na(land_use) ~ "Unknown",
+           .default = land_use)) |> 
+  tally() |> 
+  filter(land_use !="Unknown") |>
+  filter(land_use != "fishing collection") |>
+  mutate(land_use = fct_recode(land_use, "Biological resource use: hunting, fishing, collection" = "Biological resource use: hunting")) |>
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Landbruk",
+    grepl("Biological resource use", land_use)~"Biol. ressursbruk",
+    grepl("Energy", land_use)~"Energi",
+    grepl("Resident", land_use)~"Bebyggelse",
+    grepl("Transport", land_use)~"Transport",
+    grepl("fish", land_use)~"Biol. ressurs",
+    grepl("Human", land_use)~"Forstyrrelse",
+    grepl("Protection", land_use)~"Vern",
+    grepl("Restoration", land_use)~"Restaurering",
+    grepl("Natural system", land_use)~"Habitatmodifisering",
+    TRUE~land_use
+  )) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  group_by(land_use, study_area_discipline) |> 
+  summarise(n=sum(n))|> 
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = land_use) |>
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences
+      
+    ),
+    stat = "identity",
+    fill = "darkseagreen",
+  ) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = "Antall artikler") +
+  annotate(geom = "text", x = 2.2, y = 11, label = "Samfunnsrelatert:\nArealbruk", color = "darkseagreen", size = 4, hjust = 0)  
+
+
+###############################################################################
+### Sys rev ecosys
+
+fig_sysrev_ecotype <-
+sysRev |> 
+  group_by(ecosystem_type_main) |>
+  mutate(ecosystems_main = strsplit(ecosystem_type_main, ","))  |> 
+  unnest(ecosystems_main)  |> 
+  group_by(ecosystems_main) |> 
+  mutate(ecosystems_main=trimws(ecosystems_main)) |> 
+  tally() |> 
+  drop_na() |>
+  top_n(8) |> 
+  mutate(ecosystems_main = case_when(
+            grepl("Forest", ecosystems_main)~ "Skog",
+            grepl("Semi-natural", ecosystems_main) ~ "Seminaturlig",
+            grepl("Rivers", ecosystems_main) ~ "Elv & innsjø",
+            grepl("Polar", ecosystems_main) ~ "Polar & tundra",
+            grepl("Naturally", ecosystems_main) ~ "Naturlig åpent lavl. ",
+            grepl("Urban", ecosystems_main) ~ "Urbane økosys", 
+            grepl("Wetlands", ecosystems_main) ~ "Våtmark & myr",
+            grepl("Coastal", ecosystems_main) ~ "Kyst",
+            grepl("Mountains", ecosystems_main) ~ "Fjell",
+                                  TRUE~ecosystems_main)) |> 
+  ggplot(aes(reorder(ecosystems_main, n),n))+
+  geom_histogram(stat="identity", fill = "chocolate1")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 2.2, y = 7, label = "Litteratursammenst:\nØkosystem", color = "chocolate1", size = 4, hjust = 0)  
+
+###################################################################################
+fig_sysrev_areause <-
+sysRev |> 
+  group_by(x23) |>
+  mutate(land_use = strsplit(x23, ","))  |> 
+  unnest(land_use)  |> 
+  group_by(land_use) |> 
+  tally() |> 
+  drop_na() |> 
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Agriculture",
+    grepl("Biological resource use", land_use)~"Biological resource use",
+    grepl("Energy", land_use)~"Energy",
+    grepl("Resident", land_use)~"Residential",
+    grepl("Transport", land_use)~"Transportation",
+    grepl("fish", land_use)~"Biological resource use",
+    TRUE~land_use
+  )) |> 
+  mutate(land_use=trimws(land_use)) |> 
+  group_by(land_use) |> 
+  summarise(n=sum(n))|>
+  mutate(land_use=case_when(
+    grepl("Agricul", land_use)~"Landbruk",
+    grepl("Biological resource use", land_use)~"Biol. ressursbruk",
+    grepl("Energy", land_use)~"Energi",
+    grepl("Resident", land_use)~"Bebyggelse",
+    grepl("Transport", land_use)~"Transport",
+    grepl("fish", land_use)~"Biol. ressurs",
+    grepl("Human", land_use)~"Forstyrrelse",
+    grepl("Protection", land_use)~"Vern",
+    grepl("Restoration", land_use)~"Restaurering",
+    grepl("Natural system", land_use)~"Habitatmodifisering",
+    TRUE~land_use
+  )) |> 
+  ggplot(aes(reorder(land_use, n),n))+
+  geom_histogram(stat="identity", fill = "chocolate1")+
+  coord_flip()+
+  theme(legend.position = "Null")+
+  labs(x="", y="Antall artikler") +
+  annotate(geom = "text", x = 2.2, y = 11, label = "Litteratursammenst:\nArealbruk", color = "chocolate1", size = 4, hjust = 0)  
+
+###################################################################################
+###################################################################################
+## figur social science analytic
+
+fig_sosial_analytic <- 
+  join_Nor_form_soc |> 
+  select(analytical_approach_of_study,
+         study_area_discipline) |> 
+  mutate(
+    analytical_approach_of_study = case_when(
+      is.na(analytical_approach_of_study) ~ "Unknown",
+      .default = analytical_approach_of_study),
+    analytical_approach_of_study = str_split(analytical_approach_of_study,",\\s(?=[A-Z])"),
+    study_area_discipline = case_match(study_area_discipline,
+                                       "Social Sciences" ~ "Social_Sciences",
+                                       .default = "Other"
+    ))  |>
+  unnest(analytical_approach_of_study) |>
+  mutate(analytical_approach_of_study = trimws(analytical_approach_of_study)) |>
+  filter(analytical_approach_of_study !="Unknown") |>
+group_by(analytical_approach_of_study, study_area_discipline) |> 
+  tally() |> 
+  pivot_wider(
+    names_from = study_area_discipline,
+    values_from = n
+  ) |>
+  rowwise() |>
+  mutate(total = sum(c(Other, Social_Sciences), na.rm=T),
+         myVar = analytical_approach_of_study) |>
+  mutate(myVar=case_when(
+    grepl("Approach focused on perceptions", myVar)~"Forståelse",
+    grepl("Approach focused on power relations", myVar)~"Maktbalanse",
+    grepl("Cross-sectoral", myVar)~"Tverrsektor",
+    grepl("Economy", myVar)~"Økonomiorient.",
+    grepl("Governance/management", myVar)~"Forvalt. & styring",
+    grepl("Knowledge-oriented", myVar)~"Kunnskapsorientert",
+    grepl("Participatory/deliberative", myVar)~"Forstyrrelse",
+    grepl("Sustainability", myVar)~"Bærekraft",
+    grepl("Transformative", myVar)~"Transformativ",
+    grepl("Value-oriented", myVar)~"Verdiorientert",
+    TRUE~myVar
+  )) |> 
+  ggplot() +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = total
+    ),
+    stat = "identity",
+    fill = "grey70"
+  ) +
+  geom_histogram(
+    aes(
+      x = fct_reorder(myVar, total),
+      y = Social_Sciences
+    ),
+    stat = "identity",
+    fill = "darkseagreen"
+  ) +
+  coord_flip() +
+  theme(legend.position = "Null") +
+  labs(x = "", y = "Antall artikler") +
+  annotate(geom = "text", x = 2.2, y = 10, label = "Samfunnsrelatert:\nAnalytisk metode", color = "darkseagreen", size = 4, hjust = 0) 
+
+
+###################################################################################
+
+
+ggarrange(plot_years, fig_disiplin, 
+          fig_ecosys, fig_arealbruk, 
+          fig_ebv, fig_ES,
+          fig_sosial_analytic, fig_samf_areal,
+          fig_sysrev_ecotype, fig_sysrev_areause,
+          ncol = 2, nrow = 5)
+
+
+
+```
+
+#### Oversikt over det samlede materialet fra Norge
+
+Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screening var gjennomført. Det har vært et økende antall artikler publisert pr år, men økningen er liten gitt det økte fokuset på betydningen av arealbruk for biodiversitet og økosystemtjenester. I vårt materiale er det en stor overvekt av forskning som faller inn under fagdisiplinen matematikk og naturvitenskap, mens samfunnsvitenskapelige studier i mindre grad er representert.
+
+#### Sammenstilling av den naturvitenskapelige forskningen fra Norge
+
+Totalt ble `r dim(join_Nor_form_nat)[1]` artikler som omhandlet naturvitenskapelige tema inkludert. De hyppigst studerte økosystemene i vårt materiale er skog etterfulgt av semi-naturlige økosystemer og fjell, mens øvrige økosystemtypene er langt mindre representert. Når det gjelder ulike former for arealbruk og arealbruksendringer er det effekter av landbruk og biologisk ressursutnyttelse som er mest studert. Dersom vi bryter opp arealbruken i finere inndeling finner vi at det er særlig effekt av skogbruk (biologisk ressursutnyttelse) og beiting (landbruk) som er mye studert. Til sammenlikning er de øvrige formene for arealbruk, inkludert effekten av energiproduksjon, langt mindre representert i materialet. Det er også svært få naturvitenskapelige artikler som omhandler betydningen av vern eller restaurering. Videre avdekker vår gjennomgang at det er flest studier arters populasjoner, artssamfunn eller artsegenskaper, mens det er færre studier på økosystem-nivå (både struktur og funksjon). Det er også svært få studier som har undersøkt effekter på genetisk sammensetning. Et mindre antall studier fokuserer på effekter på økosystemtjenester, hvorav de fleste omhandler karbonopptak og få omhandlet opplevelses- og kunnskapstjenester. Vår gjennomgang viste videre at flertallet av studiene er basert på det som ofte karakteriseres som svake forsøksdesign. Det er en overvekt av studier på lokal- eller regional skala og få studier som har inkludert data fra hele landet, og de fleste studiene er basert på korte tidsserier. Kun et fåtall av studiene har gjort data- og kildekode tilgjengelig i etterkant av studiet, noe som er hemmende på videre utvikling av fagfeltet.
+
+#### Viktige trekk ved studier som fokuserer på styring, verktøy og konflikter
+
+Totalt ble `r dim(join_Nor_form_soc)[1]` artikler som fokuserte på samfunnsrelaterte problemstillinger inkludert, hvorav `r dim(filter(join_Nor_form_soc, study_area_discipline == "Social Sciences"))[1]` benyttet samfunnsvitenskapelige metoder. Vår gjennomgang avdekket en overvekt av studier med en analytisk tilnærming som fokuserer på styring og forvaltning. Færre studier vektlegger analytiske tilnærminger knyttet til verdier, kunnskap, bærekraft, tverrsektorielle prosesser og gjennomgripende endringer. Også i denne delen av litteraturen var det flest studier som fokuserte på bruk av biologiske ressurser (særlig skogbruk, men også jakt og fiske) samt jordbruk (særlig jordbruksproduksjon). Sammenliknet med den naturvitenskapelige litteraturen var det en høyere andel som fokuserte på vern. Fordelt på hovedøkosystemer er det flest studier fra skog-, fjell- og semi-naturlige økosystemer. Samlet for den samfunnsvitenskapelige litteraturen fant vi at flere studier fokuserte på styring og verktøy og få som omhandlet konflikter. De hyppigst benyttede metodene i vårt materiale var intervjuer og dokumentstudier.
+
+#### En gjennomgang av eksisterende systematiske litteratursammenstillinger
+
+Vår gjennomgang av eksisterende systematiske litteratursammenstillinger fanget opp totalt `r dim(sysRev)[1]` artikler, hvorav `r dim(filter(sysRev, type_of_summarised_evidence == "Meta-analyses based on a systematic review"))[1]` var metaanalyser basert på systematiske litteraturgjennomganger. Disse studiene fokuserer i stor grad på skog, elv og innsjø, eller semi-naturlige økosystemer. I likhet med den naturvitenskapelige primærlitteraturen omhandlet mange systematiske litteratursammenstillinger effekter av landbruk (produksjon og beiting) og biologisk ressursutnyttelse (inkludert skogbruk). Det var også en høyere andel av artiklene i denne kategorien som omhandlet betydningen av vern og restaurering. Vår gjennomgang avdekket at en lav andel av de eksisterende systematiske litteratursammenstillingene har benyttet seg av metoder for å vurdere risiko for publiseringsskjevhet og andre faktorer som kan gjøre materialet mindre egnet til å trekke sikre slutninger.
+
+#### Datahull og kunnskapsmangler
+
+Generelt finner vi at det er et udekket behov for systematiske litteratursammenstillinger og metaanalyser på mer avgrensede tema, som baserer seg på de best tilgjengelige metoder for slike studier og inkluderer en kritisk vurdering av de inkluderte artiklene. På et overordnet plan mangler det innenfor naturvitenskapen studier med en eksperimentell tilnærming som er egnet til å avdekke årsaks-virkningsforhold, det er få studier som undersøker effekter av arealbruk på nasjonal skala, det er generelt en mangel på studier som baserer sine analyser på lange tidsserier, og det er en stor forskjell i mengden forskning fra ulike fylker. Tematisk finner vi at det er få studier som har undersøkt effekter av vern og restaurering, og at det er relativt få studier som har studert effekter av ulike former for kraftproduksjon med tanke på den samfunnsmessige betydningen dette har. Det er også stor forskjell i forskningsvolum mellom ulike økosystemer, med et lavt volum i kystnære økosystemer og i myr og våtmark. Det er relativt få studier som har undersøkt effekten av arealbruk på økosystemtjenester, inkludert karbonopptak og lagring. Sammenstillingen vår avdekte en generelt mangelfull kunnskapsstatus om de samfunnsmessige forholdene knyttet til effekter av arealbruk og arealbruksendringer på naturmangfold og økosystemtjenester, og at det samlet sett er få samfunnsvitenskapelige studier som undersøker konflikter, forvaltningsverktøy og styring. Søket vårt identifiserte også få samfunnsrelaterte studier på enkelte tema som har fått mye politisk oppmerksomhet de siste årene, inkludert effekter av arealbruk og arealbruksendringer på karbonlagring og effekter av vindkraft. Videre er det få studier som benytter analytiske tilnærminger knyttet til gjennomgripende endringer, tverrsektorielle prosesser, bærekraft, kunnskap, verdier, maktrelasjoner og deltagende prosesser, til tross for at disse fremheves i den internasjonale samfunnsfaglige litteraturen.
+
+Vår systematiske sammenstilling av litteraturen har gitt en fyldig oversikt over hvilke tema vi har mye forskningsbasert kunnskap om og hvilke tema det er lite kunnskap om. Sammenstillingen skiller seg fra tidligere norske kunnskapssammenstillinger ved at vi identifiserer studier som dreier seg om *effektene* av arealbruk biodiversitet og økosystemtjenester. Sammenstillingen har avdekket en rekke områder og tema hvor det er lite forskningsbasert kunnskap tilgjengelig. Mange av disse tema har også stor betydning for kunnskapsbasert arealforvaltning, og bør vektlegges i framtidig prioritering av forskning og kunnskapsoppbygging.
