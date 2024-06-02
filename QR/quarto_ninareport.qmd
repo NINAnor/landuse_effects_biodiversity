@@ -628,7 +628,7 @@ Søkeresultater, inkludert listen over *benchmarks* og *citation chasing*-result
 
 Vi brukte forhåndsdefinerte inklusjons-/eksklusjonskriterier for å screene kvalifiserte studier [@nilsen2024]. Etter de-duplisering ble tittel og abstrakt screening utført ved å bruke kvalifikasjonskriteriene, og alle studier klassifisert som usikre ble vurdert på fulltekststadiet. Screeningen ble gjort ved hjelp av Rayyan, med dobbel screening av en primær og flere sekundære *reviewere*. Etter 50 inkluderings-/ekskluderingsbeslutninger brukte vi Rayyan-AI 5-stjerners rangering for å rangere sammendragene for vurdering. Denne algoritmen vurderer sammendrag og titler ved hjelp av *natural langualge* for å identifisere artikler og andre publikasjoner som har et høyt potensial for inkludering (5 stjerner) eller de med et lavere potensial (1 stjerne).
 
-Uenigehter i gruppen når det gjedler hvilke publiskasjoner som tilfredstilte inklusjonskriteriene ble vurdert ukentlig, og kvalifikasjonskriteriene ble revurdert og justert når frekvensen oversteg 15 %. Motstridende beslutninger ble avstemt gjennom diskusjoner med hele prosjektgruppen. En nærmere beskrivelse er gitt i protokollen [@nilsen2024]. 
+Uenigehter i gruppen når det gjedler hvilke publiskasjoner som tilfredstilte inklusjonskriteriene ble vurdert ukentlig, og kvalifikasjonskriteriene ble revurdert og justert når frekvensen oversteg 15 %. Motstridende beslutninger ble avstemt gjennom diskusjoner med hele prosjektgruppen. En nærmere beskrivelse er gitt i protokollen [@nilsen2024].
 
 ## Inkluderings- og ekskluderingskriterier
 
@@ -672,7 +672,7 @@ Følgende forklaring for de ulike GRADE-domenene lå til grunn for vår vurderin
 
 ## Datakodestrategier
 
-For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterier for koding er gitt i vedlegg 3. ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy. En nærmere forklaring og detaljer er gitt i [@nilsen2024]. 
+For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkludert i gjennomgangen hentet vi ut en del nøkkelegenskaper og informasjon for senere dataanalyse. Et utvalg på 15 artikler ble kodet av alle i reviewgruppa for å skape enighet omkring koding. Kriterier for koding er gitt i vedlegg 3. ‘Metadata’ inkluderte grunnleggende egenskaper for hver studie, som forfatternavn, navn på tidsskrift, serie, studielengde og år. De resterende kategoriene inkluderte informasjon om åpen vitenskap, geografisk, miljømessig og romlig kontekst, forskningstype og kontekst, taksonomisk kontekst, type arealbruk og arealbruksendring, utfall og påvirkede tiltak, styringseffekter og verktøy. En nærmere forklaring og detaljer er gitt i [@nilsen2024].
 
 ## Involvering av brukere og samfunnsaktører
 
@@ -688,30 +688,11 @@ Før vi startet med litteraturgjennomgangen ble initiert utviklet vi en detaljer
 
 ## Resultat av litteratursøket
 
-Litteratursøket resulterte i totalt `r params$'search-results'` artikler (@fig-prisma).
+Litteratursøket resulterte i totalt `r params$'search-results'` artikler (@fig-prisma). På sammendragsscreeningstadiet screenet vi 16 093 artikler, og ekskluderte 13 472 av dem. 
+På fulltekststadiet vurderte vi 2 586 for inkludering, og endte opp med 598 artikler i gjennomgangen.
 
-<!-- Matt - How many papers and things like that. FILL IN SOME MORE HERE -->
+![Flytskjema (PRISMA) som viser hvor mange artikler som går videre til de ulike stegene i den systematiske litterturgjennomgangsprosessen.](images/prisma (3).png){#fig-prisma}
 
-```{r fig-prisma}
-#| echo: false
-#| message: false
-#| warning: false
-#| fig-cap: 'Flytskjema (PRISMA) som viser hvor mange artikler som går videre til de ulike stegene i den systematiske litterturgjennomgangsprosessen.'
-
-
-prisma(
-  found = params$`search-results`,
-  found_other = 1965,
-  no_dupes = 20265,
-  screened = 14808, # Needs updating
-  screen_exclusions = 12144,
-  full_text = 2398,
-  full_text_exclusions = 0,
-  qualitative = 0,
-  quantitative = 0,
-  width = 800, height = 800
-)
-```
 
 ## Litteratur fra Norge
 
@@ -912,7 +893,6 @@ ggplot(aes(x = year)) +
 
 Som det framkommer av @fig-research-approach er det en stor overvekt over observasjonsstudier (*Observational studies*) i vårt datamateriale. Observasjonsstudier er her definert som studier som baserer seg på empiriske data fra systemet som undersøkes. Også konseptuelle artikler og senario-modellering er relativt hyppig forkommende.
 
-
 ```{r fig-research-approach}
 #| echo: false
 #| message: false
@@ -1005,7 +985,7 @@ join_Nor_form_nat |>
 
 #### Hvor stor andel av forskningen praktiserer Open Science prinsipper? {.unnumbered}
 
-I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (@fig-OS1). En enda mindra andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden det kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden. Vi har ikke vist dette med figur her, men våre data viser en slik økning men fortsatt lav andel også de siste årene. 
+I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (@fig-OS1). En enda mindra andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden det kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden. Vi har ikke vist dette med figur her, men våre data viser en slik økning men fortsatt lav andel også de siste årene.
 
 ```{r fig-OS1}
 #| echo: false
@@ -1077,8 +1057,7 @@ join_Nor_form_nat |>
 
 #### Hvor lange tidsserier med empirisk data ligger til grunn for den publiserte forskningen? {.unnumbered}
 
-Den største delen av forskningen er basert på korte tidsserier (@fig-timeserie). En veldig stor andel av studiene var av kun 1-2 års varighet, og et fåtall av studiene var basert på det man kan kalle "lange tidsserier". Merk at for mange av de lengste tidsseriene kan det være snakk om sammenlikning mellom enkeltår i perioden, ikke data for hele perioden. 
-
+Den største delen av forskningen er basert på korte tidsserier (@fig-timeserie). En veldig stor andel av studiene var av kun 1-2 års varighet, og et fåtall av studiene var basert på det man kan kalle "lange tidsserier". Merk at for mange av de lengste tidsseriene kan det være snakk om sammenlikning mellom enkeltår i perioden, ikke data for hele perioden.
 
 ```{r fig-timeserie}
 #| echo: false
@@ -2960,7 +2939,7 @@ Før vi gjennomførte søket gjorde vi mange testsøk, med ulik oppbygging og gr
 
 Vi hadde opprinnelig planlagt dekke både den vitenskapelige litteraturen og grålitteraturen (norske rapporter osv). Siden omfanget av vitenskapelig litteratur som ble fanget opp av vårt søk var så stort måtte vi imidlertid se bort fra den grå litteraturen i vår gjennomgang. hvor mye av denne litteraturen som ville blitt inkludert er vanskelig å vurdere. Det er sannsynlig at mye av denne litteraturen i større grad beskriver arealbruk og endringer i arealbruk, og i mindre grad eveer å vise hvordan dette påvirker det biologiske mangfoldet. En grunn til at vi kan gjøre en slik antakeler er at forsøk som bygger på studiedesign av høy kvalitet (se over) er kostbare og ressurskrevende, og fordi forskere så vel som forskningsinstitusjoner har egeninteresse av å publisere slik forskning vitenskapelig, snarere enn som grå litteratur. Før også denne delen av litteraturen er gått gjennom skal man imidltertid være varsom med å trekke slike slutninger.
 
-Til sist er det en mulig begrensning at vi måtte utelate ca 10% av artiklene uten at vi hadde kapasitet til å kjøre en full manuell screening. Merk at vi gikk gjennom all litteratur som hadde en høy stjerne i Rayans rangeringsssytem basert på kunstig intelligens, slik at artikler som gjensto hadde lavere sannsynlighet for å være aktuelle. Denne modellen "lærer" løpende hvilke studier som sannsynligvis bør inkluderes, og hvilke studier som sannsynligvis er irrelvante. Algoritmene i aplikasjonen sorterer kandidatene til screening løpende basert på læringsprosessen. Slike algoritmer er, i likhet med all kunstig intelligens, sårbare for bias og usikkerhet. Vi screenet også alle artikler hvor "Norge" eller "Norway" dukket opp tittlel, nøkkelord, sammendrag eller adressen til forfatterne. For å få et estimat på hvor mye av denne litteraturen som ville passert første runde med screening tok vi et tilfeldig utvalg på 100 av de gjenværende artiklene og screenet disse. Av disse vurderte vi at ca 10% var innenfor våre inkluderingskriterier, men ingen var fra Norge. Mange av de irrelevante artiklene i denne kategorien handlet om Norway Spruce (*Picea abies*), noe som illustrerer probleme fra å skille signalet fra støyen i slike søk. Vi antar derfor at det vil være få aktuelle artikler fra Norge som ikke ble screenet, men at det vil være en del aktuelle artikler fra Sverige og Finland. 
+Til sist er det en mulig begrensning at vi måtte utelate ca 10% av artiklene uten at vi hadde kapasitet til å kjøre en full manuell screening. Merk at vi gikk gjennom all litteratur som hadde en høy stjerne i Rayans rangeringsssytem basert på kunstig intelligens, slik at artikler som gjensto hadde lavere sannsynlighet for å være aktuelle. Denne modellen "lærer" løpende hvilke studier som sannsynligvis bør inkluderes, og hvilke studier som sannsynligvis er irrelvante. Algoritmene i aplikasjonen sorterer kandidatene til screening løpende basert på læringsprosessen. Slike algoritmer er, i likhet med all kunstig intelligens, sårbare for bias og usikkerhet. Vi screenet også alle artikler hvor "Norge" eller "Norway" dukket opp tittlel, nøkkelord, sammendrag eller adressen til forfatterne. For å få et estimat på hvor mye av denne litteraturen som ville passert første runde med screening tok vi et tilfeldig utvalg på 100 av de gjenværende artiklene og screenet disse. Av disse vurderte vi at ca 10% var innenfor våre inkluderingskriterier, men ingen var fra Norge. Mange av de irrelevante artiklene i denne kategorien handlet om Norway Spruce (*Picea abies*), noe som illustrerer probleme fra å skille signalet fra støyen i slike søk. Vi antar derfor at det vil være få aktuelle artikler fra Norge som ikke ble screenet, men at det vil være en del aktuelle artikler fra Sverige og Finland.
 
 ## Datamangler og kunnskapshull
 
@@ -2995,7 +2974,6 @@ I dette kapittelet vil vi presentere det vi mener er de viktigste kunnskapshulle
 -   Det er en stor variasjon mellom de ulike fylkene med tanke på hvor mye forskning som er gjennomført. Siden resultater fra økoligisk forskning ofte er kontekstavhengig kan det være fornuftig å vurdere om forsknigsinnsatsen bør styrkes i de deler av landet hvor det er få studier som fokuserer på effekter av arealbruk og arealbruksendringer på biologisk mangfold og økosystemtjenester.
 
 -   Generelt finner vi at det er et udekket behov for systematiske litteratursammenstillinger og metaanalyser på mer avgrensede tema, som baserer seg på de best tilgjengelige metoder for slike studier og inkluderer en kritisk vurdering av de inkluderte artiklene. Vår sammenstilling av litteraturen på et bredt felt kan danne utgangspunkt for slike analyser på et smalere tema.
-
 
 \clearpage
 
