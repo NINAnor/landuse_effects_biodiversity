@@ -1,0 +1,220 @@
+---
+title: "data Wrangling"
+format: html
+editor: visual
+---
+
+### Norway papers data wrangling
+
+```{r Norway papers}
+
+# Extract data and plot from the extraction sheet ----
+## load libraies----
+require(NinaR)
+require(xtable)
+require(knitr)
+# Libraries
+library(CiteSource) # remotes::install_github("ESHackathon/CiteSource")
+library(PRISMAstatement)
+library(googlesheets4, quietly = TRUE)
+library(rayyanR) #remotes::install_github("https://github.com/befriendabacterium/rayyanR")
+library(synthesisr)
+library(openalex) # devtools::install_github("kth-library/openalex", dependencies = TRUE)
+library(openalexR)
+library(ldatuning)
+library(topicmodels)
+library(tm)
+library(tidytext)
+library(stm)
+library(wordcloud2)
+library(bibliometrix)
+library(viridis)
+library(ggrepel)
+ggplot2::theme_set(theme_gray(base_size = 18))
+commonResponse <- "Number of records"
+nudgeDist <- 3
+library(waffle)
+library(ggpubr)
+library(readxl)
+library(conflicted)
+conflicts_prefer(dplyr::filter)
+# gs4_auth()
+## read in GoogleSheets----
+
+#form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
+# 
+# ## clean names----
+#form <- form |>
+#   janitor::clean_names()
+#saveRDS(form, "data/cache_data/form.RDS")
+
+# ## explore----
+# #names(form)
+# 
+# # ### select Norwegian studies----
+# Nor_form <- form |>
+#   dplyr::filter(grepl("Norway", country))
+# 
+# ### selet studies that are included in the review----
+# Nor_form_inc <- Nor_form |>
+#     dplyr::filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes")
+# 
+# ### Get matched details from Rayyan----
+# 
+# # read the Rayyan results
+# 
+# rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
+# rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
+# 
+#Nor_form_inc$accession_zr<-unlist(Nor_form_inc$study_id)
+# 
+#join_Nor_form <- Nor_form_inc |>
+#  left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
+
+# # join_Nor_form |> view()
+# 
+# join_Nor_form |>
+#   filter(is.na(join_Nor_form$doi)) |>
+#   select(study_id, study_title)
+# 
+# #### find missing doi's by title
+# which(is.na(join_Nor_form$doi))
+# #11, 47,52,60,61,63,74,75,125,158,217
+# 
+# works_search <- oa_fetch(
+#   entity = "works",
+#   title.search = c("Roads forestry wolves"),
+#   verbose = TRUE
+# )
+# works_search$doi
+# # "https://doi.org/10.1002/ecs2.3358"
+# 
+# join_Nor_form[11, ]$doi <- "10.3233/hsm-1986-6105"
+# #join_Nor_form[35, ]$doi <- "10.1002/ecs2.3358"
+# join_Nor_form[47, ]$doi <- "10.1017/s0024282996000424"
+# join_Nor_form[52, ]$doi <- "10.1127/nova.hedwigia/66/1998/283"
+# join_Nor_form[60, ]$doi <- NA
+# join_Nor_form[61, ]$doi <- "10.14430/arctic829"
+# join_Nor_form[63, ]$doi<-"10.1007/s002670010195"
+# join_Nor_form[c(74,75,125,158,217), ]$doi<-NA
+# 
+# # get openAlexR data
+# 
+# 
+# doi_list <- strsplit(join_Nor_form$doi, split = " ")
+# doi_list <- sapply(doi_list, "[[", 1)
+# 
+# # # oa_fetch(
+# # #   doi = c(doi_list),
+# # #   entity = "works",
+# # #   verbose = TRUE
+# # # ) %>%
+# # #   show_works() %>%
+# # #   knitr::kable()
+# 
+# bib_ls <- list(
+#   doi = c(doi_list),
+#   entity = "works"
+# )
+# 
+# # # oa_fetch(
+# # #   # identifier = c("W2741809807", "W2755950973"),
+# # #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
+# # #   entity = "works",
+# # #   verbose = TRUE
+# # # ) %>%
+# # #   show_works() %>%
+# # #   knitr::kable()
+# # #
+# # #
+# # #
+# nor_bib <- do.call(oa_fetch, bib_ls) %>%
+#    oa2bibliometrix()
+# saveRDS(nor_bib, "data/cache_data/nor_bib.RDS")
+# saveRDS(join_Nor_form, "data/cache_data/join_Nor_form.RDS")
+#nor_bib <- readRDS("data/cache_data/nor_bib.RDS")
+#join_Nor_form<-readRDS("data/cache_data/join_Nor_form.RDS")
+
+#split social sci responses 
+
+# join_Nor_form_soc<-join_Nor_form |>
+#   filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included=="Yes")
+#
+# join_Nor_form_nat<-join_Nor_form |>
+#   filter(does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included=="No")
+#
+#
+# saveRDS(join_Nor_form_soc, "data/cache_data/join_Nor_form_soc.RDS")
+# saveRDS(join_Nor_form_nat, "data/cache_data/join_Nor_form_nat.RDS")
+
+# join_Nor_form_soc<-readRDS("data/cache_data/join_Nor_form_soc.RDS")
+# join_Nor_form_nat<-readRDS("data/cache_data/join_Nor_form_nat.RDS")
+
+```
+
+### Systematic review data wrangling
+
+```{r sys_rev}
+# form<-readRDS("data/cache_data/form.RDS")
+# sysRev<-form |>
+# filter(does_the_study_assess_land_use_or_land_use_change_effects_on_the_biodiversity_ecosystem_services_functions_or_carbon_sequestration_and_storage_in_terrestrial_aquatic_or_coastal_areas_are_include_i_e_studies_focusing_on_marine_systems_are_excluded == "Yes" | does_the_study_assess_conflicts_tools_or_governance_relating_to_land_use_and_cover_change_its_effects_on_biodiversity_ecosystem_services_and_or_carbon_sequestration_and_storage_by_ecosystems_in_fenno_scandinavia_the_relation_should_be_explicit_in_study_for_the_record_to_be_included == "Yes") |> filter(research_type=="Summarised evidence")
+
+# 
+# # ### Get matched details from Rayyan----
+# 
+# # # # read the Rayyan results
+# rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
+# rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
+# 
+# sysRev$accession_zr<-unlist(sysRev$study_id)
+# 
+# join_sysRev <- sysRev |>
+# left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
+
+# # # # get openAlexR data
+# doi_list <- strsplit(join_sysRev$doi, split = " ")
+# doi_list <- sapply(doi_list, "[[", 1)
+# 
+# # # # oa_fetch(
+# # # #   doi = c(doi_list),
+# # # #   entity = "works",
+# # # #   verbose = TRUE
+# # # # ) %>%
+# # # #   show_works() %>%
+# # # #   knitr::kable()
+# #
+# bib_ls <- list(
+#   doi = c(doi_list),
+#   entity = "works"
+# )
+# 
+# # # # oa_fetch(
+# # # #   # identifier = c("W2741809807", "W2755950973"),
+# # # #   doi = c("10.1016/j.joi.2017.08.007", "https://doi.org/10.1093/bioinformatics/btab727"),
+# # # #   entity = "works",
+# # # #   verbose = TRUE
+# # # # ) %>%
+# # # #   show_works() %>%
+# # # #   knitr::kable()
+# # # #
+# # # #
+# # # #
+# sysRev_bib <- do.call(oa_fetch, bib_ls) %>%
+#   oa2bibliometrix()
+
+# sysRevZotero <- synthesisr::read_ref("data/SysRev_articles.ris")
+
+# ## remove the excluded at full text
+# 
+# sysRevZotero<-sysRevZotero[!grepl("excluded", tolower(sysRevZotero$note)),]
+# 
+# dim(sysRev)
+# dim(sysRevZotero)
+# 
+
+#saveRDS(sysRev_bib,"data/cache_data/sysRev_bib.RDS")
+#saveRDS(sysRev, "data/cache_data/sysRev.RDS")
+
+#sysRev_bib<-readRDS("data/cache_data/sysRev_bib.RDS")
+#sysRev<-readRDS("data/cache_data/sysRev.RDS")
+```
