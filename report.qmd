@@ -5,5 +5,5 @@ editor: visual
 ---
 
 ```{html}
-<iframe width="780" height="500" src="QR/quarto_ninareport.html" title="Rapport"></iframe>
+<iframe width="780" height="500" src="quarto_ninareport.html" title="Rapport"></iframe>
 ```

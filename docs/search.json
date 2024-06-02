@@ -207,6 +207,6 @@
     "href": "report.html",
     "title": "Rapporten",
     "section": "",
-    "text": "<iframe width=\"780\" height=\"500\" src=\"QR/quarto_ninareport.html\" title=\"Rapport\"></iframe>"
+    "text": "&lt;iframe width=\"780\" height=\"500\" src=\"quarto_ninareport.html\" title=\"Rapport\"&gt;&lt;/iframe&gt;"
   }
 ]
