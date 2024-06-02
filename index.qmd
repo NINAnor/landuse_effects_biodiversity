@@ -5,8 +5,6 @@ format: html
 editor: visual
 ---
 
-<p>Se hele rapporten her: <a href="https://ninanor.github.io/landuse_effects_biodiversity/quarto_ninareport.html" target="_blank" rel="noopener noreferrer">Rapport</a>.</p>
-
 ## Bakgrunn
 
 Nedbygging av arealer og endringer i menneskelig arealbruk vurderes som den viktigste årsaken til tilbakegang og tap av arter og naturtyper både globalt og i Norge. Arealendringer påvirker økosystemenes sammensetning, struktur og funksjon, og påvirker dermed økosystemenes evne til å produsere ulike goder og tjenester vi mennesker får fra naturen –omtalt som naturgoder eller økosystemtjenester. Det kanskje mest omtalte naturgodet i senere år er klimaregulering, der opptak og lagring av karbon i økosystemene er sentrale faktorer. Litt i underkant av 2% av Norges areal er i 2024 utbygd med veier, infrastruktur, bebyggelse og annet sterkt endret areal. Andelen er høyere enn i verden forøvrig (1%) men lavere enn gjennomsnittet i EU (4%). Byer og tettsteder var i vekst i hele forrige århundre, og bebygd areal i dag jevnt økende. I perioden 1990-2019 ble det totalt bygget ned 1 500 km^2^, som tilsvarer litt under 50 km^2^ årlig. Grunnleggende kunnskap om utbygging, endringer i arealbruk og andre arealbruksendringer er grunnlaget for i neste omgang å vurdere hvilken virkning disse endringene har for naturmangfold og økosystemtjenester.
