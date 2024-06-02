@@ -17,12 +17,12 @@ country_centroid<-read.csv("https://raw.githubusercontent.com/gavinr/world-count
 rayyan_biblio <- synthesisr::read_ref("data/Extraction/articles.ris")
 rayyan_biblio_cleaned <- rayyanR::parse_rayyan(rayyan_df = rayyan_biblio)
 
-form$accession_zr<-unlist(form$study_id)
+All_join$accession_zr<-unlist(All_join$study_id)
  
 join_form <- All_join |>
    left_join(rayyan_biblio_cleaned, join_by("accession_zr"))
 
-join_form$country
+#join_form$country
  
 unnest_country<-
   join_form |> 
@@ -34,7 +34,7 @@ unnest_country<-
 join<-unnest_country |> 
   full_join(country_centroid, by=c("country"="COUNTRY"))   
 
-join|> view()
+#join|> view()
 doi_list <- strsplit(join$doi, split = " ")
 doi_list <- sapply(doi_list, "[[", 1)
 
@@ -55,7 +55,7 @@ join_db<-join |>
       TRUE~latitude)) |> 
   drop_na(study_title) 
 
-join_db |> view()
+#join_db |> view()
 
 join_db |> 
   write.csv("data/EviAtlas.csv")
@@ -69,6 +69,6 @@ join_db |>
       country=="Norway"~63.446827,
       TRUE~latitude)) |> 
   drop_na(study_title) |> 
-  distinct(study_title) |> 
+  distinct(study_title, .keep_all = TRUE) |> 
   saveRDS("data/EVIATLAS.RDS")
 
