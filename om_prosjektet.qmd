@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-Dette prosjektet er finansiert av [Norges Forskningsråd](Norges forskningsråd (forskningsradet.no), via en korrdinerings- og støtteaktivitet. Mer informasjon om prosjektet finnes [her](https://prosjektbanken.forskningsradet.no/project/FORISS/338270?Kilde=FORISS&distribution=Ar&chart=bar&calcType=projects&Sprak=no&sortBy=score&sortOrder=desc&resultCount=30&offset=0&Fritekst=arealbruk).
+Dette prosjektet er finansiert av [Forskningsrådet](https://www.forskningsradet.no), via en korrdinerings- og støtteaktivitet. Mer informasjon om prosjektet finnes [her](https://prosjektbanken.forskningsradet.no/project/FORISS/338270?Kilde=FORISS&distribution=Ar&chart=bar&calcType=projects&Sprak=no&sortBy=score&sortOrder=desc&resultCount=30&offset=0&Fritekst=arealbruk).
 
 Hovedmålet med dette prosjektet er å gi en helhetlig oversikt over tilgjengelig kunnskap knyttet til effekter av arealbruk og arealbruksendringer på norsk natur, med fokus på biologisk mangfold, økosystemtjenester, klimatilpasning, karbonbinding og lagring. Kartet er begrenset i geografisk omfang til Norge, Sverige og Finland (se inklusjonskriterier nedenfor). Rapporten er dessuten ledsaget av et beslutningsstøtteverktøy som en utvidelse av det systematiske kartet for å kontekstualisere tilgjengelig kunnskap. Verktøyet er utformet som en konseptuell modell av kunnskapsfeltet og synliggjøre betydningen av kunnskapshull på ulike områder.
 

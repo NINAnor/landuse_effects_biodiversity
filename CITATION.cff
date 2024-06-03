@@ -1,0 +1,24 @@
+cff-version: 1.1.0
+message: "If you use this report or code, please cite it as below."
+authors:
+- family-names: Erlend B.
+  given-names:  Nilsen 
+- family-names: Trond 
+  given-names:  Simensen 
+- family-names: Frode
+  given-names:  Singsås 
+- family-names: Lasse F. 
+  given-names:  Eriksen
+- family-names: Håkon 
+  given-names:  Stokland
+- family-names: Thomas E. 
+  given-names:  Sutcliffe
+- family-names: Anders 
+  given-names:  Kolstad
+- family-names: Francesca 
+  given-names:  Pilotto
+- family-names: Matthew J. 
+  given-names:  Grainger
+title:NINAnor/landuse_effects_biodiversity: V0.1 Effekter av arealbruk og arealbruksendringer på biodiversitet, økosystemtjenester og karbonlagring i Norge Et systematisk kart og beslutningsstøtteverktøy
+version: v0.1
+date-released: 2024-06-03

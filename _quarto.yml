@@ -7,8 +7,11 @@ website:
     right:
       - text: 'Oppsummering for beslutningstakere'
         href: index.html
-      - text: "Datatabell"
-        href: datatabell.html
       - text: "Rapport"
         href: QR/quarto_ninareport.html
+      - text: "Datatabell"
+        href: datatabell.html
+      - text: "Om prosjektet"
+        href: om_prosjektet.html
+      
 
