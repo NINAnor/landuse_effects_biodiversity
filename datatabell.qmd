@@ -6,6 +6,8 @@ editor: visual
 
 Den systematiske kartdatabasen består av studier som er vurdert. Flertallet av studiene kommer fra Norge da disse ble prioritert for koding. Studier uten geografiske koordinater er plottet ved ekvator. Klikk på et punkt for å få tilgang til lenken til artikkelen.
 
+Merk at systematiske kart gir muligheten for å visualisere datagrunnlaget på en rekke ulike måter i ulike tabeller, figurer og avansert søkefunksjonalitet, for å slik å kunne dra slutninger om hvor data er tilgjengelig og hvor det mangler. Vår sammenstillinger her er forløpig en tidlig fase av en slik sammenstilling og har derfor veldig begrenset funksjonalitet.
+
 ```{=html}
 <iframe width="780" height="500" src="map.html" title="Kunnskapskart"></iframe>
 ```
