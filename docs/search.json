@@ -201,5 +201,12 @@
     "title": "Rapporten",
     "section": "",
     "text": "<iframe width=\"780\" height=\"500\" src=\"quarto_ninareport.html\" title=\"Rapport\"></iframe>"
+  },
+  {
+    "objectID": "om_prosjektet.html",
+    "href": "om_prosjektet.html",
+    "title": "Om prosjektet",
+    "section": "",
+    "text": "Dette prosjektet er finansiert av [Norges Forskningsråd](Norges forskningsråd (forskningsradet.no), via en korrdinerings- og støtteaktivitet. Mer informasjon om prosjektet finnes her.\nHovedmålet med dette prosjektet er å gi en helhetlig oversikt over tilgjengelig kunnskap knyttet til effekter av arealbruk og arealbruksendringer på norsk natur, med fokus på biologisk mangfold, økosystemtjenester, klimatilpasning, karbonbinding og lagring. Kartet er begrenset i geografisk omfang til Norge, Sverige og Finland (se inklusjonskriterier nedenfor). Rapporten er dessuten ledsaget av et beslutningsstøtteverktøy som en utvidelse av det systematiske kartet for å kontekstualisere tilgjengelig kunnskap. Verktøyet er utformet som en konseptuell modell av kunnskapsfeltet og synliggjøre betydningen av kunnskapshull på ulike områder.\nDe viktigste forskningssprøsmålene vi dekker i vårt systematiske kart er 1) Hvilken forskningsbasert kunnskap finnes om virkningene av arealbruk og endringer i arealbruk på biologisk mangfold, økosystemtjenester og karbonbinding i Norge, 2) hvilken type konflikter er identifisert mellom ulike former for arealbruk, og 3) hvilke verktøy foreslås for å forbedre styringen."
   }
 ]
