@@ -270,7 +270,7 @@ Vi vet fra andre land at naturlige forstyrrelser i økosystemene i form av for e
 Grunnleggende kunnskap om utbygging, endringer i arealbruksintentistet og andre konkrete arealendringer er grunnlaget for i neste omgang å vurdere hvilken virkning endringene har for naturmangfold og naturgoder.
 
 ```{r}
-#| fig-cap: "Eksempler på endringer i utbredelse og struktur innenfor utvalgte typer arealdekke og arealbruk: a) Utvikling i a) tettstedsareal, b) jordbruksareal, c) areal med produktiv skog og d) areal vernet etter naturmangfoldloven over tid."
+#| fig-cap: "Eksempler på endringer i utbredelse og struktur innenfor utvalgte typer arealdekke og arealbruk: a) Utvikling i a) tettstedsareal, b) jordbruksareal, c) areal med produktiv skog og d) areal vernet etter naturmangfoldloven over tid. Se teksten over for datakilder."
 #| echo: false
 #| message: false
 #| warning: false
