@@ -1,3 +1,7 @@
+library(tidyverse)
+library(googlesheets4)
+library(openalexR)
+
 #fix encoding error
 
 form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
