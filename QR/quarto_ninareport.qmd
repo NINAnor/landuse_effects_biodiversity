@@ -70,21 +70,21 @@ format:
   #  # default-image-extension: svg
   #   fig-format: pdf
   #   fig-dpi: 600
-  ninareport-html:
-    highlight-style: tango
+  # ninareport-html:
+  #    highlight-style: tango
+  #    toc: true
+  #    toc-depth: 3
+  #    number-sections: true
+  #    toc-location: left
+  #    default-image-extension: svg
+  #    fig-format: svg
+  #    toc-title: Innhold
+  ninareport-docx:
+    highlight: tango
+    #prefer-html: true
     toc: true
     toc-depth: 3
     number-sections: true
-    toc-location: left
-    #default-image-extension: svg
-    fig-format: svg
-    toc-title: Innhold
-  # ninareport-docx:
-  #   highlight: tango
-  #   #prefer-html: true
-  #   toc: true
-  #   toc-depth: 3
-  #   number-sections: true
 crossref:
   fig-title: Figur     # (default is "Figure")
   tbl-title: Tabell     # (default is "Table") 
@@ -139,7 +139,7 @@ library(wordcloud2)
 library(bibliometrix)
 library(viridis)
 library(ggrepel)
-ggplot2::theme_set(theme_gray(base_size = 18))
+#ggplot2::theme_set(theme_gray(base_size = 18))
 commonResponse <- "Number of records"
 nudgeDist <- 3
 library(waffle)
@@ -216,7 +216,7 @@ sector_societal_concern_empty_levels <- names(ssNew)[2:11][!names(ssNew)[2:11] %
 
 Endringer i menneskelig arealbruk vurderes som den viktigste årsaken til tilbakegang og tap av arter og naturtyper både globalt og i Norge [@diaz2019; @malhi_climate_2020; @artsdatabanken_norsk_2021]. Arealendringer påvirker økosystemenes sammensetning, struktur og funksjon, og påvirker dermed økosystemenes evne til å produsere ulike goder og tjenester vi mennesker får fra naturen – ofte omtalt som naturgoder eller økosystemtjenester [@potschin2011; @ipbes_global_2019]. Det kanskje mest omtalte naturgodet i senere år er klimaregulering, der opptak og lagring av karbon i økosystemene er sentrale faktorer [@griscom2017]. Menneskelig bruk av arealene er dermed en nøkkelfaktor både i arbeidet med å bremse klimaendringene, tilpasning til et endret klima og som den viktigste enkeltfaktoren i arbeidet med å stanse tap av natur og biologisk mangfold [@diaz2019].
 
-Å kvantifisere, forstå og formidle dynamikken i arealendringer og effektene av endringene for naturmangfoldet, er dermed en grunnleggende forutsetning for kunnskapbasert arealplanlegging og -forvaltning. Imidlertid mangler aktørene i arealforvaltningen i dag oppdaterte norske kunnskapssynteser om de direkte og indirekte sammenhengene mellom arealbruk, klimaendringer og naturmangfold, der den samlede vekten av evidens fra forskningen er vurdert, og der usikkerheten omkring kunnskapen er synliggjort. Dette gjelder både grunnleggende usikkerhet om årsak-virkningsmekanismer om effekter av arealbruk på naturmangfold og usikkerhet om det empiriske datagrunnlaget for slike vurderinger [@jaureguiberry_direct_2022]. I samfunnsdebatten om arealbruk og natur vises det derfor ofte til internasjonale globale kunnskapssynteser, til tross for betydelig usikkerhet rundt hvorvidt kunnskapen fra slike globale kunnskapssynteser lar seg overføre til nasjonalt, regionalt og lokalt nivå i Norge.
+Å kvantifisere, forstå og formidle dynamikken i arealendringer og effektene av endringene for naturmangfoldet er en grunnleggende forutsetning for kunnskapbasert arealplanlegging og -forvaltning. Imidlertid mangler aktørene i arealforvaltningen i dag oppdaterte norske kunnskapssynteser om de direkte og indirekte sammenhengene mellom arealbruk, klimaendringer og naturmangfold, der den samlede vekten av evidens fra forskningen er vurdert, og der usikkerheten omkring kunnskapen er synliggjort. Dette gjelder både grunnleggende usikkerhet om årsak-virkningsmekanismer om effekter av arealbruk på naturmangfold og usikkerhet om det empiriske datagrunnlaget for slike vurderinger [@jaureguiberry_direct_2022]. I samfunnsdebatten om arealbruk og natur vises det derfor ofte til internasjonale globale kunnskapssynteser, til tross for betydelig usikkerhet rundt hvorvidt kunnskapen fra slike globale kunnskapssynteser lar seg overføre til nasjonalt, regionalt og lokalt nivå i Norge.
 
 Aktørene i arealplanlegging og forvaltning tar løpende beslutninger om bruk av arealer til ulike formål, som utbygging, vern, bruk og høsting av naturressurser og restaurering og istandsetting av tidligere naturinngrep. Naturmangfoldlovens §8 slår fast at «offentlige beslutninger som berører naturmangfoldet skal så langt det er rimelig bygge på vitenskapelig kunnskap om arters bestandssituasjon, naturtypers utbredelse og økologiske tilstand, samt effekten av påvirkninger.» [@naturmangfoldloven2009]. Dette fordrer at vitenskapelig kunnskap om effektene av påvirkninger er tilgjengelig. Som et utgangspunkt for å vurdere kunnskapsgrunnlaget om hvordan arealendringer påvirker biodiversitet, økosystemtjenester og karbonlagring i Norge, gjør vi her kort rede for pågående areal- og arealbruksendringer i Norge. Disse endringene er delvis et resultat av historiske prosesser, og delvis et resultat av globale og regionale endringer, lokal politikk og lokal arealbruk.
 
@@ -529,7 +529,7 @@ ggarrange(fig_a, fig_b, fig_c, fig_d, ncol = 2, nrow = 2)
 
 Et sentralt kunnskapsgrunnlag i arbeidet med vurderinger av påvirkningsfaktorer på naturmangfoldet i Norge er rødlister for arter og naturtyper som vurderer risiko for at arter dør ut i Norge eller at naturtyper går tapt [@artsdatabanken2018; @artsdatabanken_norsk_2021]. Rødlistevurderingene følger internasjonale metoder og utføres av eksperter med høy kompetanse på artsgruppene som vurderes (ekspertvurderinger), men vurderingene av *påvirkningsfaktorer*, inkludert arealbruk og arealendringer, foregår likevel på et relativt overordnet nivå, der kausale sammenhenger mellom arealendringer og effekter på utbredelse og bestandssituasjon for arter og naturtyper sjelden kvantifiseres.
 
-Flere fagsystemer og sentrale overvåkningsprogram er etablert med sikte på å gi en samlet oversikt over tilstand og utvikling i økosystemer eller for ulike artsgrupper (f.eks. Landsskogstaksteringen, [@breidenbach2020]; fagsystemet for økologisk tilstand , [@nybo_fagsystem_2017]; [Nasjonal insektovervåkning](https://www.nina.no/Naturmangfold/Insekter/Overv%C3%A5king-av-insekter) og [Rovdata](https://rovdata.no/)), men slike fagsystemer og overvåkningsprogram gir ikke alltid grunnlag for å avdekke årsak-virkningforhold mellom de konkrete endringene i arealbruk og effekten på arter, økosystemer og naturgoder.
+Flere fagsystemer og sentrale overvåkningsprogram er etablert med sikte på å gi en samlet oversikt over tilstand og utvikling i økosystemer eller for ulike artsgrupper (f.eks. Landsskogstaksteringen, [@breidenbach2020]; fagsystemet for økologisk tilstand, [@nybo_fagsystem_2017]; [Nasjonal insektovervåkning](https://www.nina.no/Naturmangfold/Insekter/Overv%C3%A5king-av-insekter) og [Rovdata](https://rovdata.no/)), men slike fagsystemer og overvåkningsprogram gir ikke alltid grunnlag for å avdekke årsak-virkningforhold mellom de konkrete endringene i arealbruk og effekten på arter, økosystemer og naturgoder.
 
 Mangelen på en samlet og omfattende oversikt over forskningsbasert kunnskap om effekter av arealbruk og arealendringer på norske arter, økosystemer og naturgoder fører også til at ulike interessegrupper og sektorer stoler på ulike “fakta,” noe som ofte fører til eskalerende konfliktnivå og dårlige beslutninger. Det er derfor et klart behov både for en oppsummering av kunnskap om temaet og en systematisk kartlegging av kunnskapshull. Politikk og beslutningstaking knyttet til arealbruk og dens effekter av arealbruk på biodiversitet og klima er for øyeblikket blant de mest konfliktfylte og heftig debatterte politiske spørsmålene i Norge. Konfliktene involverer typisk dilemmaer mellom ulike samfunnsmessige bekymringer og interesser støttet av ulike sektorer og aktørgrupper [@guldbrandsen_hvem_2022; @skogen_wolf_2021]. Kontrovers om kunnskapsgrunnlaget er også ofte et sentralt apaspekt ved konfliktene, kjennetegnet ved uenighet om kunnskapens status og motstridende tolkning av kunnskapen om effektene for naturen av ulike alternativer for arealbruk [@aspoy_segmented_2022; @rusch2022].
 
@@ -543,7 +543,7 @@ Systematiske kart, også kjent som Evidenskart eller Evidenshullkart, er utvikle
 
 Hovedmålet med dette prosjektet er å gi en helhetlig oversikt over tilgjengelig kunnskap knyttet til effekter av arealbruk og arealbruksendringer på norsk natur, med fokus på biologisk mangfold, økosystemtjenester, klimatilpasning, karbonbinding og lagring. Kartet er begrenset i geografisk omfang til Norge, Sverige og Finland (se inklusjonskriterier nedenfor). Rapporten er dessuten ledsaget av et beslutningsstøtteverktøy som en utvidelse av det systematiske kartet for å kontekstualisere tilgjengelig kunnskap. Verktøyet er utformet som en konseptuell modell av kunnskapsfeltet og synliggjøre betydningen av kunnskapshull på ulike områder.
 
-De viktigste forskningssprøsmålene vi dekker i vårt systematiske kart er 1) *Hvilken forskningsbasert kunnskap finnes om virkningene av arealbruk og endringer i arealbruk på biologisk mangfold, økosystemtjenester og karbonbinding i Norge*, 2) *hvilken type konflikter er identifisert mellom ulike former for arealbruk*, og 3) *hvilke verktøy foreslås for å forbedre styringen*.
+De viktigste forskningsspørsmålene vi dekker i vårt systematiske kart er 1) *Hvilken forskningsbasert kunnskap finnes om virkningene av arealbruk og endringer i arealbruk på biologisk mangfold, økosystemtjenester og karbonbinding i Norge*, 2) *hvilken type konflikter er identifisert mellom ulike former for arealbruk*, og 3) *hvilke verktøy foreslås for å forbedre styringen*.
 
 # Metoder {#sec-met}
 
@@ -563,7 +563,7 @@ Før prosjektet ble gjennomført ble det utviklet en detaljert protokoll som bes
 
 -   Regler for datakoding
 
-Den første versjonen (versjon 1.0) av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes [her](https://osf.io/mwapc/). Den endelige versjonen av protokollen kan leses her [@nilsen2024].
+Den første versjonen (versjon 1.0) av protokollen ble uviklet på et tidlig prosjektstadie, og sirkulert til en utvidet prosjektgruppe og til utvalgte samfunnsaktører. Basert på tilbakemeldinger på denne versjonen ble en ny versjon av protokollen utarbeidet og publisert. Videre justeringer av protokollen har blitt gjennomført på screening- og koding-stadiet av prosjektet. Alle versjoner av protokollen er publisert åpent på Open Science Framework, og alle versjoner er versjonert og datert. En oversikt over protokollene kan finnes [her](https://osf.io/mwapc/). Den endelige versjonen av protokollen kan leses her [@nilsen2024].
 
 ## Søk etter litteratur
 
@@ -601,7 +601,7 @@ I tillegg til søket beskrevet over ble artikler som er sitert av eller siterer 
 
 ### Test av søkets omfang og dekning
 
-For å sørge for at søket ga en god dekning av den aktuelle litteraturen valgte vi ut 15 benchmark-artikler, og undersøkte hvor godt disse ble fanget opp av søket [@aune2018; @bouyer2015; @dorber2018; @foldvik2017; @gundersen2019; @hamre2007; @hamre2021; @jarnemo2014; @karlsson2009; @korsnes2023; @pedersen2017; @rolstad2017; @rusch2022; @skogen2008; @tombre2013]. Artiklene ble valgt ut gjennom en diskusjon i prosjektgruppa, med det formål å dekke både bredde og dybde i søket. I det enedelig søket ble totalt 13 av de 15 artiklene fanget opp.
+For å sørge for at søket ga en god dekning av den aktuelle litteraturen valgte vi ut 15 benchmark-artikler, og undersøkte hvor godt disse ble fanget opp av søket [@aune2018; @bouyer2015; @dorber2018; @foldvik2017; @gundersen2019; @hamre2007; @hamre2021; @jarnemo2014; @karlsson2009; @korsnes2023; @pedersen2017; @rolstad2017; @rusch2022; @skogen2008; @tombre2013]. Artiklene ble valgt ut gjennom en diskusjon i prosjektgruppa, med det formål å dekke både bredde og dybde i søket. I det endelige søket ble totalt 13 av de 15 artiklene fanget opp.
 
 ```{r search}
 #| echo: false
@@ -618,7 +618,7 @@ plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE), main.ba
 
 ```
 
-De ulike søkestrategiene (ulike databaser, forward- and backward søk osv) fanget opp et ulikt antall artikler, hvorav en viss andel overlappet @fig-search. Til sammen mener vi at de søk vi har gjennomført har gitt oss en god dekning av den aktuelle litteraturen. Protokollen [@nilsen2024] beskrivr nærmere hvordan søket ble utviklet.
+De ulike søkestrategiene (ulike databaser, forward- and backward søk osv) fanget opp et ulikt antall artikler, hvorav en viss andel overlappet @fig-search. Til sammen mener vi at de søk vi har gjennomført har gitt oss en god dekning av den aktuelle litteraturen. Protokollen [@nilsen2024] beskriver nærmere hvordan søket ble utviklet.
 
 ### Sammenstilling og håndtering av søkeresultater
 
@@ -628,7 +628,7 @@ Søkeresultater, inkludert listen over *benchmarks* og *citation chasing*-result
 
 Vi brukte forhåndsdefinerte inklusjons-/eksklusjonskriterier for å screene kvalifiserte studier [@nilsen2024]. Etter de-duplisering ble tittel og abstrakt screening utført ved å bruke kvalifikasjonskriteriene, og alle studier klassifisert som usikre ble vurdert på fulltekststadiet. Screeningen ble gjort ved hjelp av Rayyan, med dobbel screening av en primær og flere sekundære *reviewere*. Etter 50 inkluderings-/ekskluderingsbeslutninger brukte vi Rayyan-AI 5-stjerners rangering for å rangere sammendragene for vurdering. Denne algoritmen vurderer sammendrag og titler ved hjelp av *natural langualge* for å identifisere artikler og andre publikasjoner som har et høyt potensial for inkludering (5 stjerner) eller de med et lavere potensial (1 stjerne).
 
-Uenigehter i gruppen når det gjedler hvilke publiskasjoner som tilfredstilte inklusjonskriteriene ble vurdert ukentlig, og kvalifikasjonskriteriene ble revurdert og justert når frekvensen oversteg 15 %. Motstridende beslutninger ble avstemt gjennom diskusjoner med hele prosjektgruppen. En nærmere beskrivelse er gitt i protokollen [@nilsen2024].
+Uenigheter i gruppen når det gjelder hvilke publiskasjoner som tilfredstilte inklusjonskriteriene ble vurdert ukentlig i den tidlige fasen av kodingen, og kvalifikasjonskriteriene ble revurdert og justert når frekvensen oversteg 15 %. Motstridende beslutninger ble avstemt gjennom diskusjoner med hele prosjektgruppen. En nærmere beskrivelse er gitt i protokollen [@nilsen2024].
 
 ## Inkluderings- og ekskluderingskriterier
 
@@ -656,13 +656,13 @@ Alle studiedesign ble vurdert som kvalifiserende, inkludert både kvantitative o
 
 ## Vurdering av studienes validitet
 
-Vi vurderte ikke kvaliteten på de inkluderte primærstudiene da vi kun hadde som mål å kartlegge tilgjengelig litteratur. For de systematisk litteratursammenstillingene (Systematic reviews og Systematic maps) benyttet vi en modifisert [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/)-tilnærming for å vurdere kvaliteten på studiene. Hver oversiktsartikkel ble vurdert med tanke på risiko for skjevhet i dataene, mangel på presisjon, inkonsistens, indirekte skjevehet og publiseringsskjevhet. Vi vurderte hver publikasjon opp alle disse kriteriene for å finne ut hvor stor «tillit» vi har til bevisene som ble presentert.
+Vi vurderte ikke kvaliteten på de inkluderte primærstudiene da vi kun hadde som mål å kartlegge tilgjengelig litteratur. For de systematisk litteratursammenstillingene (*Systematic reviews og Systematic maps*) benyttet vi en modifisert [GRADE](https://bestpractice.bmj.com/info/toolkit/learn-ebm/what-is-grade/)-tilnærming for å vurdere kvaliteten på studiene. Hver oversiktsartikkel ble vurdert med tanke på risiko for skjevhet i dataene, mangel på presisjon, inkonsistens, indirekte skjevehet og publiseringsskjevhet. Vi vurderte hver publikasjon opp alle disse kriteriene for å finne ut hvor stor «tillit» vi har til bevisene som ble presentert.
 
 Følgende forklaring for de ulike GRADE-domenene lå til grunn for vår vurdering:
 
 1.  **Risiko for bias:** Bias oppstår når en studies resultater er ikke er forventningsrette på grunn av design- eller gjennomføringsfeil. Denne usikkerheten reduserer tilliten til den estimerte effekten, ettersom potensielle skjevheter kan påvirke resultatene. Evaluatorer må avgjøre om risikoen for skjevhet i individuelle studier påvirker deres tillit til behandlingseffekten.
 
-2.  **Upresishet:** GRADE-tilnærmingenevaluerer unøyaktighet ved å undersøke 95 % konfidensintervallet rundt det beste estimatet av den absolutte effekten. Sikkerheten reduseres dersom konklusjonen fra studiet varierer avhengig av om den sanne effekten ligger i øvre eller nedre ende av dette intervallet.
+2.  **Upresishet:** GRADE-tilnærmingen evaluerer unøyaktighet ved å undersøke 95 % konfidensintervallet rundt det beste estimatet av den absolutte effekten. Sikkerheten reduseres dersom konklusjonen fra studiet varierer avhengig av om den sanne effekten ligger i øvre eller nedre ende av dette intervallet.
 
 3.  **Inkonsistens:** Sikkerheten er høyest når flere studier viser konsistente effekter. Evaluatorer bør vurdere likheten mellom punktestimater, hvorvidt konfidensintervaller overlapper og statistisk heterogenitet for å avgjøre om inkonsekvens påvirker sikkerheten i konklusjonen.
 
@@ -676,11 +676,11 @@ For alle artikler som oppfylte inkluderingskriteriene og som derfor ble inkluder
 
 ## Involvering av brukere og samfunnsaktører
 
-Utkastet til vurderingen ble presentert på en konferanse holdt av Miljødirektoratet og Norges forskningsråd 23. oktober 2022. Et generelt interessentmøte ble arrangert av NINA 25. april 2023. Fokus og omfang av vurderingen ble etter det innsnevret og bedre definert, og en ny versjon av protokollen ble utarbeidet. Detaljer om dette møtet og endringene i omfang er tilgjengelige på forespørsel. Interessenter som deltok på dette arrangementet ble invitert til å kommentere utkastet til protokollen før innsending til publisering. Disse innspillene er lagret og arkivert sammen med modellen [her](https://osf.io/mwapc/). Interessenter var ikke involvert under gjennomføringen av vurderingen.
+Planer for vurderingen ble presentert på en konferanse arrangert av Miljødirektoratet og Norges forskningsråd 23. oktober 2022. Et generelt interessentmøte ble arrangert av NINA 25. april 2023. Fokus og omfang av vurderingen ble etter det innsnevret og bedre definert, og en ny versjon av protokollen ble utarbeidet. Detaljer om dette møtet og endringene i omfang er tilgjengelige på forespørsel. Interessenter som deltok på dette arrangementet ble invitert til å kommentere utkastet til protokollen før innsending til publisering. Disse innspillene er lagret og arkivert sammen med protokollen [her](https://osf.io/mwapc/). Interessenter var ikke involvert under gjennomføringen av vurderingen etter dette.
 
 ## Avvik fra protokollen
 
-Før vi startet med litteraturgjennomgangen ble initiert utviklet vi en detaljert protokoll [@nilsen2024] som dannet grunnalg for vårt arbeid. Søket ble gjennomført som beskrevet, men på grunn av et vesentlig større treff på vitenskapelige artikler enn anntatt ble det ikke kapasitet i dette prosjektet til også å gå gjennom den grå litteraturen. I tillegg er et antall artikler (ca 10%) ikke gjennomgått screening på grunn av kapasitetsutfordringer. Vi benyttet imidlertid ulike filtre i verktøyet Rayan, inkludert Rayyan-AI 5-stjerners rangering av artikler og sørget for at alle artikler som har en høy sannsynlighet for å være relevante er screenet. Dette punktet er også berørt nærmere i diskusjonen. Både inkluderingskriterier og datakodestrategi var som beskrevet i protokollen. Kun primærstudier fra Norge samt alle systematiske litteratursammenstillinger ble prioritert for koding.
+Før vi startet med litteraturgjennomgangen ble initiert utviklet vi en detaljert protokoll [@nilsen2024] som dannet grunnalg for vårt arbeid. Søket ble gjennomført som beskrevet, men på grunn av et vesentlig større treff på vitenskapelige artikler enn anntatt ble det ikke kapasitet i dette prosjektet til også å gå gjennom den grå litteraturen. I tillegg er et antall artikler (ca 10%) ikke gjennomgått screening på grunn av kapasitetsutfordringer. Vi benyttet imidlertid ulike filtre i verktøyet Rayyan, inkludert Rayyan-AI 5-stjerners rangering av artikler og sørget for at alle artikler som har en høy sannsynlighet for å være relevante er screenet. Dette punktet er også berørt nærmere i diskusjonen. Både inkluderingskriterier og datakodestrategi var som beskrevet i protokollen. Kun primærstudier fra Norge samt alle systematiske litteratursammenstillinger ble prioritert for koding.
 
 \newpage
 
@@ -853,7 +853,7 @@ Litteratursøket resulterte i totalt `r params$'search-results'` artikler (@fig-
 
 ```
 
-Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeingen var gjennomført. De tidligste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Som vist i @fig-publication-year varierte antallet mellom ulike år, og selv om det har vært en generell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 20 årene.
+Totalt ble `r nrow(nor_bib)` artikler fra Norge inkludert etter at screeningen var gjennomført. De eldste artiklene vi fanget opp var publisert i `r min(year(nor_bib$publication_date))` og de nyeste var publisert i `r max(year(nor_bib$publication_date))`. Som vist i @fig-publication-year varierte antallet mellom ulike år, og selv om det har vært en generell økende tendens i antall artikler publisert pr år er ikke denne økningen så markant de siste 10-15 årene.
 
 #### Kronologisk fordeling og innhold i inkluderte artikler fra Norge {.unnumbered}
 
@@ -883,13 +883,13 @@ ggplot(aes(x = year)) +
   theme(
     axis.title.y = element_text(color = "#E69F00"),
     #axis.text.y = element_text(color = "#E69F00"),
-    axis.title.y.right = element_text(color = "#4dac26"),
+    axis.title.y.right = element_text(color = "#4dac26")
     #axis.text.y.right = element_text(color = "#4dac26")
   )
 
 ```
 
-Som det framkommer av @fig-research-approach er det en stor overvekt over observasjonsstudier (*Observational studies*) i vårt datamateriale. Observasjonsstudier er her definert som studier som baserer seg på empiriske data fra systemet som undersøkes. Også konseptuelle artikler og senario-modellering er relativt hyppig forkommende.
+Som det framkommer av @fig-research-approach er det en stor overvekt over observasjonsstudier (*Observational studies*) i vårt datamateriale. Observasjonsstudier er her definert som studier som baserer seg på empiriske data fra systemet som undersøkes. Også konseptuelle studier og scenarie-modellering er relativt hyppig forkommende.
 
 ```{r fig-research-approach}
 #| echo: false
@@ -897,6 +897,7 @@ Som det framkommer av @fig-research-approach er det en stor overvekt over observ
 #| warning: false
 #| fig-cap: "Oversikt over forskningen basert forskningskategori."
 #| fig-width: 12
+
 
 ## As quick-fix, I filter out the "new types" that were entered during teh coding process by setting filter(n>1). I'm not sure these thypes fit well.We canmerge them with other types in version 2.0
 
@@ -910,22 +911,23 @@ join_Nor_form |>
   ggplot(aes(reorder(research_type, n),n,fill=research_type))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y=commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist+8
-    )
+  scale_fill_viridis(discrete = TRUE, option = "D") 
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist+8
+  #  )
 ```
 
-I vår koding av artiklene fra Norge vurderte vi også hvilken fagdisiplin studien hører inn under. I vårt materiale er det en stor overvekt av forskning som faller inn under fagdisiplinen matematikk og naturvitenskap (*Mathematics and Natural Sciences*) (@fig-dicipline), men det er også en betydelig andel samfunnsvitenskapelige studier (*Social Sciences*). De andre disiplinene er i liten grad inkludert i vårt datamateriale fra Norge.
+I vår koding av artiklene fra Norge vurderte vi også hvilken fagdisiplin studien hører inn under. I vårt materiale er det en stor overvekt av forskning som faller inn under fagdisiplinen matematikk og naturvitenskap (*Mathematics and Natural Sciences*) (@fig-dicipline), men det er også en betydelig andel samfunnsvitenskapelige studier (*Social Sciences*). De andre disiplinene er i liten grad inkludert i vårt datamateriale fra Norge. Merk at dette tildels skyldes måten vi gjennomførte søk og screening på.
 
 ```{r science area}
 #| echo: false
 #| message: false
 #| warning: false
 #| label: fig-dicipline
-#| fig-cap: "Oversikt over hvordan forskningen fordeler seg mellom ulike disipliner."
+#| fig-width: 12
+#| fig-cap: "Oversikt over hvordan forskningen fordeler seg mellom ulike fagdisipliner."
 
 
 join_Nor_form |> 
@@ -936,24 +938,27 @@ join_Nor_form |>
   ggplot(aes(reorder(study_area_discipline, n),n,fill=study_area_discipline))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y=commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist+5
-    )
+  scale_fill_viridis(discrete = TRUE, option = "D")
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist+5
+  #   )
 
 
 ```
 
 ## Naturvitenskapelig litteratur fra Norge
 
-Her ser vi nærmere på de artiklene som brukte en naturvitenskapelig metode. De klart mest benyttede forsøksdesignene blandt disse er kontroll-behandling (*Control-Impact*)-design og etter (*After*)-design (@fig-studydesign). Merk at vi har inkludert forskning som f.eks. undersøker hvordan gradienter i arealbruk påvirker den aktuelle responsvariabelen under kontroll-behandling. Det er en påfallende mangel på godt designede randomisert eksperimenter (*Randomised controlled trials*) og studier som følger både kontrollområder og behandligsområder både før og etter (*Before-after-control-impact*) at et tiltak er satt i verk.
+I dette kapittelet skal vi se nærmere på de artiklene som brukte en naturvitenskapelig metode, og kategorisere disse langs en lang rekke ulike akser for å besvare problemstillingen presentert i innledningen. Merk at det enekelte sammenstillinger er slik at en og samme artikkel være representert i flere kategorier (f.eks. med flere økosystemer) slik at totalsummen i figurene ikke summerer opp til totalt antall artikler.
+
+De klart mest benyttede forsøksdesignene blant disse er kontroll-behandling (*Control-Impact*)-design og etter (*After*)-design (@fig-studydesign). Merk at vi har kategorisert forskning som f.eks. undersøker hvordan gradienter i arealbruk påvirker den aktuelle responsvariabelen som kontroll-behandling (*Control-Impact*)-design. Det er en påfallende mangel på godt designede randomisert eksperimenter (*Randomised controlled trials*) og studier som følger både kontrollområder og behandligsområder både før og etter (*Before-after-control-impact*) at et tiltak er satt i verk.
 
 ```{r fig-studydesign}
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Fordeling av observasjonsstudier mellom ulike forsøksdesign."
 join_Nor_form_nat |>
   filter(grepl("observational", tolower(research_type))) |>
@@ -970,20 +975,21 @@ join_Nor_form_nat |>
     "Randomised controlled trials (RCTs)" ~ "Randomised controlled trials",
     .default = study_design_observational_studies
   )) |>
+  filter(study_design_observational_studies!="Modelling") |>
   ggplot(aes(reorder(study_design_observational_studies, n), n, fill = study_design_observational_studies)) +
   geom_histogram(stat = "identity") +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D") +
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist
-  )
+  scale_fill_viridis(discrete = TRUE, option = "D") 
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist
+  # )
 ```
 
 #### Hvor stor andel av forskningen praktiserer Open Science prinsipper? {.unnumbered}
 
-I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (@fig-OS1). En enda mindra andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden det kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden. Vi har ikke vist dette med figur her, men våre data viser en slik økning men fortsatt lav andel også de siste årene.
+I vårt datamateriale er det kun en liten andel av artiklene som har gjort data og kildekode tilgjengelig (@fig-OS1). En enda mindre andel av forskningen er basert på forhåndsregistrerte hypoteser. Siden det kun er de siste årene det har vært vanlig at tidsskrifter krever at data blir gjort åpent tilgjengelig kan man forvente at andelen er noe økende den siste delen av perioden. Vi har ikke vist dette med figur her, men våre data viser en slik økning men fortsatt lav andel også de siste årene.
 
 ```{r fig-OS1}
 #| echo: false
@@ -1012,7 +1018,8 @@ oc$question<-"open code"
 pr$question<-"Preregistration"
 
 
-all_open<-rbind(od,oc,pr)
+all_open<-rbind(od,oc,pr) |>
+  filter(Response!="NA")
 
 all_open |> 
   ggplot(aes(Response, n, fill = question))+
@@ -1023,7 +1030,7 @@ all_open |>
 
 ```
 
-#### Hvordan er forskningen fordelt med hensyn til størrelse på studieområde (romlig skala) {.unnumbered}
+#### Hvordan er forskningen fordelt med hensyn til størrelse på studieområde (romlig skala)? {.unnumbered}
 
 Det meste av forskningen er gjennomført på det vi har karakterisert som lokal (f.eks. en del av en kommune) eller regional (f.eks. et fjellområder eller et fylke) (@fig-spatialscale). En betydelig mindre andel av forskningen dekker hele landet eller er basert på multinasjonale datasett.
 
@@ -1031,6 +1038,7 @@ Det meste av forskningen er gjennomført på det vi har karakterisert som lokal 
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Oversikt over hvilken geografisk målestokk forskningen er gjennomført på. 'Regional' tilsvarer et fylke eller en fjell- eller kystregion, 'Local' tilsvarer en kommune eller end el av en kommune." 
 
 join_Nor_form_nat |> 
@@ -1044,12 +1052,12 @@ join_Nor_form_nat |>
   ggplot(aes(reorder(spatial_scale, n),n,fill=spatial_scale))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y=commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist
-    )
+  scale_fill_viridis(discrete = TRUE, option = "D")
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist
+  #   )
 
 ```
 
@@ -1076,7 +1084,7 @@ Den største delen av forskningen er basert på korte tidsserier (@fig-timeserie
                y = n))+
     geom_histogram(stat="identity", fill="darkolivegreen3")+
     #coord_flip()+
-    theme(legend.position = "Null")+
+    theme(legend.position = "Null", , text = element_text(size = 18))+
     scale_x_continuous(breaks = c(1,10,25, 50, 75, 100, 125, 150))+
     labs(y=commonResponse, x="Number of years") +
     scale_fill_viridis(discrete = TRUE, option = "D") 
@@ -1085,18 +1093,15 @@ Den største delen av forskningen er basert på korte tidsserier (@fig-timeserie
 
 ```
 
-### Overordnet karakterisering av forskningen fordelt på geografisk fordeling, arealbruk, arealbruksendringer og økosystemer {.unnumbered}
-
-I dette kapittelet gir vi en oversikt over hvordan forskningen vi har fanget opp i vårt systematiske litteratursøk når det gjelder hvor i landet (fylke) det er gjennomført, hvordan ulike former for arealbruk er representert i datamaterialet, og hvordan de ulike hovedøkosystemene er representert. For alle disse kategoriene kan en og samme artikkel være representert i flere kategorier (f.eks. med flere økosystemer) slik at totalsummen i figurene ikke summerer opp til antall artikler.
-
 #### Hvor stor andel av forskningen er gjennomført i ulike økosystemer? {.unnumbered}
 
-De hyppigst studerte økosystemene i vårt materiale er skog (*Forest*) etterfulgt av semi-naturlige økosystmer (*Semi-natural ecosystems*) og fjelløkosystemer (*Mountains*) (@fig-ecosys). Den siste kategorien er dominert av studier på semi-naturlig engvegetasjon. De øvrige økosystemtypene er langt dårligere representert.
+De hyppigst studerte økosystemene i vårt materiale er skog (*Forest*) etterfulgt av semi-naturlige økosystemer (*Semi-natural ecosystems*) og fjelløkosystemer (*Mountains*) (@fig-ecosys), samt elver og vann (*Rivers & lakes*). Studier i kategorien semi-naturlige økosystemer er dominert av studier på semi-naturlig engvegetasjon. De øvrige økosystemtypene er langt dårligere representert.
 
 ```{r fig-ecosys }
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Antall forskningsartikler som dekker ulike hovedøkosystemer."
 
 ## Need to fix figure - some types are not "hovedøkosystemer". They are removed now, but should be recoded
@@ -1114,22 +1119,24 @@ join_Nor_form_nat |>
   ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y=commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D") +
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist+2
-    )
+  scale_fill_viridis(discrete = TRUE, option = "D") 
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist+2
+  #   )
 ```
 
 #### Hvordan er forskningen fordelt på ulike fylker? {.unnumbered}
 
-Det er en betydelig variasjon i hvor mye av forskningen som er fanget opp i vår litteraturgjennomgang som har vært lokalisert i de ulike fylkene (@fig-fylke). Flest studier er gjennomført i fylkene Innlandet, Trøndelag, Vestland og AKershus, mens det er færrest artikler fra Vetfold, Møre og Romsdal og Troms. I tillegg er det få studier som fokuserer på arealbruk på Svalbard.
+Det er en betydelig variasjon i hvor mye av forskningen som er fanget opp i vår litteraturgjennomgang som har vært lokalisert i de ulike fylkene (@fig-fylke). Flest studier er gjennomført i fylkene Innlandet, Akershus, Trøndelag og Vestland, mens det er færrest artikler fra fylkene Møre og Romsdal samt Troms. I tillegg er det få studier som fokuserer på arealbruk på Svalbard.
 
 ```{r fig-fylke}
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
+#| fig-height: 10
 #| fig-cap: "Fordeling av forskningsartikler på ulike fylker i Norge."
 
 join_Nor_form_nat |> 
@@ -1148,11 +1155,11 @@ join_Nor_form_nat |>
   ggplot(aes(reorder(county_name_of_norwegian_county_main, n),n,fill=county_name_of_norwegian_county_main))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y=commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist)
+  scale_fill_viridis(discrete = TRUE, option = "D")
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist)
 
 ```
 
@@ -1166,6 +1173,7 @@ Dersom vi bryter ned areabruk og arelabruksenderinger i finere kategorier (ref. 
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Fordeling av forskningsartikler som har studert effekter av de ulike hovedformene for arealbruk."
 
 join_Nor_form_nat |> 
@@ -1190,11 +1198,11 @@ join_Nor_form_nat |>
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y=commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist+3)
+  scale_fill_viridis(discrete = TRUE, option = "D")
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist+3)
 ```
 
 ```{r fig-landuse-detailed}
@@ -1202,6 +1210,7 @@ join_Nor_form_nat |>
 #| message: false
 #| warning: false
 #| fig-width: 12
+#| fig-height: 10
 #| fig-cap: "Antall forskningsartikler som har studert effekten av ulike former for arealbruk eller arealbruksenderinger."
 
 join_Nor_form_nat |> 
@@ -1218,18 +1227,14 @@ join_Nor_form_nat |>
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 20))+
   labs(x="", y=commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(aes(label = n),
-                nudge_y = nudgeDist)
+  scale_fill_viridis(discrete = TRUE, option = "D")
+  # geom_text(aes(label = n),
+  #               nudge_y = nudgeDist)
   #scale_x_discrete(labels = scales::label_wrap(35)) 
 
 ```
-
-### Biologisk organisering {.unnumbered}
-
-I dette kapittelet vil vi beskrive hvordan forskningen fordeler seg med tanke på hvilket nivå av biologisk organisering (f.eks. arter, slekter eller høyere taksonomiske nivå). Videre vil vi beskrive hvordan ulike essensielle biodiversitetsvariabler (EBV) er representert i forskningsmaterialet, samt hvor ofte ulike former for økosystemtjenester er studert.
 
 #### Hvordan er forskningen fordelt på ulike taksonomiske nivå? {.unnumbered}
 
@@ -1239,6 +1244,7 @@ Det er en klar overvekt av artikler som fokuserer på (en eller flere) arter (*S
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Fordeling av ulike taksonomiske nivå i forskningslitteraturen."
 
 '%!in%' <- function(x,y)!('%in%'(x,y))
@@ -1256,19 +1262,25 @@ join_Nor_form_nat |>
   geom_histogram(stat="identity")+
   coord_flip()+
   labs(x="", y=commonResponse)+
-  theme(legend.position = "Null") +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-   geom_text(aes(label = n),
-                nudge_y = nudgeDist)
+  theme(legend.position = "Null", text = element_text(size = 25)) +
+  scale_fill_viridis(discrete = TRUE, option = "D")
+   # geom_text(aes(label = n),
+   #              nudge_y = nudgeDist)
 
 ```
 
 #### Hvordan er forskningen fordelt på ulike essensielle biodiversitetsvariabler (EBV) {.unnumbered}
 
+Vi benyttet i denne gjennomgangen klassifiseringssystemet essensielle biodiversitetsvariabler (EBV) til å kategorisere hvilken biologisk responsvariabel som ble studerte. EBV er et hierarkisk system som består av seks klasser og 21 variabler. Av de seks klassene @fig-EBV-class er flest studier som har fokusert på arters populasjoner (*Species populations*) samfunnssammensetning (*Community composition*) og arters egenskaper (*Species traits*). I kontrast til dette var det svært få studier som studerte hele økosystemers funksjon (*Ecosystem functioning*) eller struktur (*Ecosystem structure*). Tilsvarende var det veldig få som studerte effekter av arealbruk på genetisk sammensetning (*Genetic composition*).
+
+Ser vi nærmere på de enkelte biodiversitetsvariablene innenfor klassene (@fig-EBV-names), er det tre variabler som er klart hyppigst studert: taksonomisk diversitet (*Taxonomic/phylogenetic diversity*), arters utbredelse (*Species distribution*) og arters antall (*Species abundance*).
+
 ```{r fig-EBV-class}
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
+#| fig-height: 8
 #| fig-cap: "Antall artikler som har fokusert på ulike essensielle biodiversitetvariabler (EBV) fordelt på de seks klassene."
 
 
@@ -1299,17 +1311,15 @@ join_Nor_form_nat |>
                fill=EBV_group))+
     geom_histogram(stat="identity")+
     coord_flip()+
-    theme(legend.position = "Null")+
+    theme(legend.position = "Null", text = element_text(size = 25))+
     labs(x="", y=commonResponse) +
-    scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist)
+    scale_fill_viridis(discrete = TRUE, option = "D")
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist)
   
 
 
 ```
-
-Vi benyttet i denne gjennomgangen klassifiseringssystemet essensielle biodiversitetsvariabler (EBV) til å kategorisere hvilken biologisk responsvariabel som ble studerte. EBV er et hierarkisk system som består av seks klasser og 21 variabler. Av de seks klassene @fig-EBV-class er flest studier som har fokusert på arters populasjoner (*Species populations*) samfunnssammensetning (*Community composition*) og arters egenskaper (*Species traits*). I kontrast til dette var det svært få studier som studerte hele økosystemers funksjon (*Ecosystem functioning*) eller struktur (*Ecosystem structure*). Tilsvarende var det veldig få som studerte effekter av arealbruk på genetisk sammensetning (*Genetic composition*).
 
 ```{r fig-EBV-names}
 #| echo: false
@@ -1328,6 +1338,11 @@ join_Nor_form_nat |>
                values_to = "EBV_level",
                values_drop_na = T) |>
   filter(EBV_group != "ecosystem_services") |>
+  mutate(EBV_level=gsub("Movement - Behaviors related to the spatial mobility of organisms such as dispersal and migration routes.","Movement (or habitat use/selection) - Behaviors related to the spatial mobility of organisms such as dispersal and migration routes.", EBV_level)) |> 
+ mutate(EBV_level=gsub("Reproduction - Sexual or asexual production of new individual organisms (‘offspring’) from parents. Examples: Age at maturity, number of offspring, lifetime reproductive output.","Reproduction (or survival) - Sexual or asexual production of new individual organisms (‘offspring’) from parents. Examples: Age at maturity, number of offspring, lifetime reproductive output.
+29
+species_traits
+Diet - The diet of the species", EBV_level)) |> 
   mutate(EBV_level =str_split(EBV_level,",\\s(?=[A-Z])")) |>
   unnest(EBV_level) |>
   mutate(EBV_level = str_split_i(EBV_level, " - ", 1)) |>
@@ -1345,7 +1360,7 @@ join_Nor_form_nat |>
              fill=EBV_level))+
     geom_histogram(stat="identity")+
     coord_flip()+
-    theme(legend.position = "Null")+
+    theme(legend.position = "Null", text = element_text(size = 20))+
     labs(x="", y=commonResponse) +
     scale_fill_viridis(discrete = TRUE, option = "D")+
   #cannot make this fit nicely:
@@ -1357,17 +1372,17 @@ join_Nor_form_nat |>
   
 ```
 
-Ser vi nærmere på de enkelte biodiversitetsvariablene innenfor klassene (@fig-EBV-names), er det tre variabler som er klart hyppigst studert: taksonomisk diverstity (*Taxonomic/phylogenetic diversity*), arter utbredelse (*Species distribution*) og arter antall (*Species abundance*). <!--# Anders - jeg tror at de to Movement kategoriene og de to Reproduction kategoriene egentlig er det samme, de bare endret navn undervegs. Fikser du + legger til litt ekstra tekst?-->
-
 #### Hvordan er forskningen fordelt på ulike økosystemtjenester? {.unnumbered}
+
+Den hyppigst forekommende økosystemtjenesten i vårt datamateriale for studier som har benyttet naturvitenskapelige metoder var karbonlagring og sekvestrering (*R & M Carbon storage and sequestraton*). Det var et mindre antall studier som studerte kulturelle økosystemtjenester (@fig-ES)
 
 ```{r Ecosystem_services}
 #| echo: false
 #| message: false
 #| warning: false
 #| label: fig-ES
-#| fig-cap: "Omfang av artikler som studerte ulike former for økosystemtjenester i datamaterialet fra Norge."
 #| fig-width: 12
+#| fig-cap: "Omfang av artikler som studerte ulike former for økosystemtjenester i datamaterialet fra Norge."
 
 join_Nor_form_nat |> 
   select(ecosystem_services) |>
@@ -1380,25 +1395,24 @@ join_Nor_form_nat |>
   ggplot(aes(reorder(ecosystem_services, n),n,fill=ecosystem_services))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y=commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist-2)
+  scale_fill_viridis(discrete = TRUE, option = "D")
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist-2)
 
 ```
 
-Den hyppigst forekommende økosystemtjenesten i vårt datamateriale for studier som har benyttet naturvitenskapelige metoder var karbonlagring og sekvestrering (*R & M Carbon storage and sequestraton*). Det var et mindre antall studier som studerte de andre formene for økosystemtjenester som vi inkluderte (@fig-ES)
-
 #### Hvordan er studier som fokuserer på arter fordelt? {.unnumbered}
 
-Blant studier som fokuserte på en eller et fåtall arter var det studiert av reinsdyr (*Rangifer tarandus*) som var hyppigst forekommende i vårt datamateriale (@fig-species), mens studier av arealbrukseffekter på gaupe (*Lynx lynx*), elg (*Alces alces*) og laks (*Salmo salar*) kom de neste plassene i frekvenslisten.
+Blant studier som fokuserte på en eller et fåtall arter var det studier av rein (*Rangifer tarandus*) som var hyppigst forekommende i vårt datamateriale (@fig-species), mens studier av arealbrukseffekter på gaupe (*Lynx lynx*), elg (*Alces alces*), ørrett (*Salmo trutta*) og laks (*Salmo salar*) kom de neste plassene i frekvenslisten.
 
 ```{r fig-species}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Omfang av artikler som fokuserer på effekten av arealbruk på arter i norsk natur fordelt på de enkelte artene. Kun de 15 vanligste taxa er vist i figuren."
+#| fig-width: 12
+#| fig-cap: "Omfang av artikler som fokuserer på effekten av arealbruk på arter i norsk natur fordelt på de enkelte artene. Kun de 5 hyppigst forekommende artene er vist i figuren."
 
 
 join_Nor_form_nat |> 
@@ -1411,29 +1425,32 @@ join_Nor_form_nat |>
   tally() |> 
   filter(taxonomic_name2 != "vascular plants") |>
   drop_na() |> 
-  top_n(15) |>
+  top_n(5) |>
   ggplot(aes(reorder(taxonomic_name2, n),n,fill=taxonomic_name2))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y=commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist-2)
+  scale_fill_viridis(discrete = TRUE, option = "D")
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist-2)
 
 
 ```
 
 ## Samfunnsrelatert litteratur fra Norge
 
-Her følger resultatene fra vår gjennomgang av de studiene som har analysert en eller annen form for konflikt, et forvaltningsverktøy eller styring mer generelt (*governance*). Dette tilsvarer `r nrow(join_Nor_form_soc)` artikler av total `r nrow(join_Nor_form)`, dvs. `r round(nrow(join_Nor_form_soc)/nrow(join_Nor_form)*100)`%. Av disse igjen er det kun `r nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences"))` artikler som bruker samfunsvitenskeplige metoder, det vil si `r round(((nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences")) / nrow(join_Nor_form)) * 100),0)`% av studiene totalt.
+Her følger resultatene fra vår gjennomgang av de studiene som har analysert en eller annen form for konflikt, et forvaltningsverktøy eller styring mer generelt (*governance*). Dette tilsvarer `r nrow(join_Nor_form_soc)` artikler av total `r nrow(join_Nor_form)`, dvs. `r round(nrow(join_Nor_form_soc)/nrow(join_Nor_form)*100)`%. Av disse igjen er det kun `r nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences"))` artikler som bruker samfunsvitenskapelige metoder, det vil si `r round(((nrow(join_Nor_form_soc |> filter(study_area_discipline == "Social Sciences")) / nrow(join_Nor_form)) * 100),0)`% av studiene totalt.
 
 #### Hvilke samfunnsfaglige tema har blitt forsket på? (Konflikter, styring og forvaltningsverktøy) {.unnumbered}
+
+Av de samfunnsrelaterte studiene fokuserer betydelig flere på styring (governance) og forvaltningsverktøy enn på konflikter (@fig-ssEmpiricalFocus).
 
 ```{r fig-ssEmpiricalFocus}
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Omfang av samfunnsrelatert litteratur som fokuserer på ulike samfunsfaglige tema. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
 join_Nor_form_soc |>
@@ -1473,13 +1490,13 @@ join_Nor_form_soc |>
     stat = "identity",
     fill = "grey70"
   ) +
-  geom_text(
-    aes(
-      x = fct_reorder(myVar, total),
-      y = total,
-      label = total),
-    nudge_y = nudgeDist - 2
-  ) +
+  #geom_text(
+  #  aes(
+  #    x = fct_reorder(myVar, total),
+  #    y = total)
+      # label = total)
+    # nudge_y = nudgeDist - 2
+ # ) +
   geom_histogram(
     aes(
       x = fct_reorder(myVar, total),
@@ -1488,22 +1505,20 @@ join_Nor_form_soc |>
     ),
     stat = "identity"
   ) +
-  geom_text(
-    aes(
-      x = fct_reorder(myVar, total),
-      y = Social_Sciences,
-      label = Social_Sciences),
-    nudge_y = nudgeDist - 2
-  ) +
+ # geom_text(
+ #    aes(
+ #     x = fct_reorder(myVar, total),
+  #    y = Social_Sciences)
+      # label = Social_Sciences)
+    # nudge_y = nudgeDist - 2
+#  ) +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 
 
 ```
-
-Av de samfunnsrelaterte studiene fokuserer betydelig flere på styring (governance) og forvaltningsverktøy enn på konflikter (@fig-ssEmpiricalFocus).
 
 #### Hvilke samfunnsvitenskapelige metoder er brukt i de samfunnrelaterte studiene? {.unnumbered}
 
@@ -1513,6 +1528,7 @@ Av de samfunnsvitenskapelige studiene vi har gjennomgått er det flest som har b
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Antall samfunnsrelaterte studeier som har brukt ulike metoder. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
 join_Nor_form_soc |> 
@@ -1553,13 +1569,13 @@ group_by(data_gathering_methods, study_area_discipline) |>
     stat = "identity",
     fill = "grey70"
   ) +
-  geom_text(
-    aes(
-      x = fct_reorder(myVar, total),
-      y = total,
-      label = total),
-    nudge_y = nudgeDist
-  ) +
+  # geom_text(
+  #   aes(
+  #     x = fct_reorder(myVar, total),
+  #     y = total,
+  #     label = total),
+  #   nudge_y = nudgeDist
+  # ) +
   geom_histogram(
     aes(
       x = fct_reorder(myVar, total),
@@ -1569,7 +1585,7 @@ group_by(data_gathering_methods, study_area_discipline) |>
     stat = "identity"
   ) +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
@@ -1582,6 +1598,8 @@ Hovedparten av de samfunnsrelaterte studiene hadde en analytisk tilnærming foku
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
+#| fig-height: 8
 #| fig-cap: "Hvilke analytiske tilnærminger er brukt i de samfunnsrelaterte studiene? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
 join_Nor_form_soc |> 
@@ -1617,13 +1635,13 @@ join_Nor_form_soc |>
     stat = "identity",
     fill = "grey70"
   ) +
-  geom_text(
-    aes(
-      x = fct_reorder(myVar, total),
-      y = total,
-      label = total),
-    nudge_y = nudgeDist
-  ) +
+  # geom_text(
+  #   aes(
+  #     x = fct_reorder(myVar, total),
+  #     y = total,
+  #     label = total),
+  #   nudge_y = nudgeDist
+  # ) +
   geom_histogram(
     aes(
       x = fct_reorder(myVar, total),
@@ -1633,19 +1651,21 @@ join_Nor_form_soc |>
     stat = "identity"
   ) +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 ```
 
 #### Hvilke økosystemer har vært tema for samfunnsrelaterte studier? {.unnumbered}
 
-Av den samfunnsrelaterte og den samfunnsvitenskapelige forskningen vi har undersøkt er flest studier relatert til skogøkosystemer, etterfulgt av fjelløkosystemer og semi-naturlige økosystemer (\@fig-socialscience-ecosys). Disse er igjen etterfulgt av studier relatert til elve- og innsjøøkosystemer, kystøkosystemer, naturlige åpne områder under tregrensen, polare økosystemer og arktisk tundra, økosystemer knyttet til jordbruk, våtmarks- og myrøkosystemer, samt urbane økosystemer.
+Av den samfunnsrelaterte og den samfunnsvitenskapelige forskningen vi har undersøkt er flest studier relatert til skogøkosystemer, etterfulgt av fjelløkosystemer og semi-naturlige økosystemer (\@fig-socialsceince-ecosys). Disse er igjen etterfulgt av studier relatert til elve- og innsjøøkosystemer, kystøkosystemer, naturlige åpne områder under tregrensen, polare økosystemer og arktisk tundra, økosystemer knyttet til jordbruk, våtmarks- og myrøkosystemer, samt urbane økosystemer.
 
 ```{r fig-socialscience-ecosys}
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
+#| fig-height: 8
 #| fig-cap: "Omfang av samfunnsrelaterte artikler som omhandler ulike økosystemer. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 join_Nor_form_soc |>
   group_by(
@@ -1701,14 +1721,14 @@ join_Nor_form_soc |>
     stat = "identity",
     fill = "grey70"
   ) +
-  geom_text(
-    aes(
-      x = fct_reorder(myVar, total),
-      y = total,
-      label = total
-    ),
-    nudge_y = nudgeDist
-  ) +
+  # geom_text(
+  #   aes(
+  #     x = fct_reorder(myVar, total),
+  #     y = total,
+  #     label = total
+  #   ),
+  #   nudge_y = nudgeDist
+  # ) +
   geom_histogram(
     aes(
       x = fct_reorder(myVar, total),
@@ -1718,7 +1738,7 @@ join_Nor_form_soc |>
     stat = "identity"
   ) +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 
@@ -1733,7 +1753,8 @@ De aller fleste av de samfunnsrelaterte artiklene fokuserte på biologisk mangfo
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på biologisk mangfold, karbonlagring, eller begge deler. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
+#| fig-width: 12
+#| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på biologisk mangfold, karbonlagring, eller begge deler."
 
 ssNew |>
   mutate(carbon_or_biodiversity = case_match(
@@ -1752,14 +1773,14 @@ ssNew |>
   geom_histogram(
     stat = "identity"
   ) +
-  geom_text(
-    aes(
-      label = n
-    ),
-    nudge_y = nudgeDist
-  ) +
+  # geom_text(
+  #   aes(
+  #     label = n
+  #   ),
+  #   nudge_y = nudgeDist
+  # ) +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 
@@ -1767,7 +1788,7 @@ ssNew |>
 
 #### Hvilke typer arealbruk fokuserer de samfunnsvitenskapelige studiene på? {.unnumbered}
 
-Litteratursammenstillingen viste at to typer arealbruk skilte seg ut som de som har fått mest oppmerksomhet i den samfunnsrelaterte forskningen, nemlig skogbruk og vern ( @fig-socialscience-areause-coarse. Deretter følger flere ulike typer arealbruk som omfatter ressursbruk, forstyrrelser, arealinngrep samt restaurering.
+Litteratursammenstillingen viste at to typer arealbruk skilte seg ut som de som har fått mest oppmerksomhet i den samfunnsrelaterte forskningen, nemlig skogbruk og vern ( @fig-socialscience-areause-coarse). Deretter følger flere ulike typer arealbruk som omfatter ressursbruk, forstyrrelser, arealinngrep samt restaurering.
 
 ```{r fig-socialscience-areause-coarse}
 #| echo: false
@@ -1812,13 +1833,13 @@ join_Nor_form_soc |>
     stat = "identity",
     fill = "grey70"
   ) +
-  geom_text(
-    aes(
-      x = fct_reorder(myVar, total),
-      y = total,
-      label = total),
-    nudge_y = nudgeDist
-  ) +
+  # geom_text(
+  #   aes(
+  #     x = fct_reorder(myVar, total),
+  #     y = total,
+  #     label = total),
+  #   nudge_y = nudgeDist
+  # ) +
   geom_histogram(
     aes(
       x = fct_reorder(myVar, total),
@@ -1828,7 +1849,7 @@ join_Nor_form_soc |>
     stat = "identity"
   ) +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 20)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 
@@ -1837,12 +1858,13 @@ join_Nor_form_soc |>
 
 #### Aktører {.unnumbered}
 
-I den samfunnsrelaterte forskningen vi har gjennomgått er det flest studier som involverer styringsorganer, etterfulgt av studier som involverer landeiere og landeierorganisasjoner, og deretter de som involverer borgere (@fig-actors). Andre aktører som er involvert i forskningen inkluderer, i avtagende rekkefølge, næringer og næringsorganisasjoner, andre organisasjoner, kunnskapsinstitusjoner og vitenskapelig ekspertise, miljøorganisasjoner, urbefolkning og politiske organisasjoner.
+I den samfunnsrelaterte forskningen vi har gjennomgått er det flest studier som involverer styringsorganer, etterfulgt av studier som involverer landeiere og landeierorganisasjoner, og deretter de som involverer borgere (@fig-actors). Andre aktører som er involvert i forskningen inkluderer, i avtagende rekkefølge, næringer og næringsorganisasjoner, andre organisasjoner, kunnskapsinstitusjoner og vitenskapelig ekspertise, urbefolkning, miljøorganisasjoner, turismebedrifter og politiske organisasjoner.
 
 ```{r fig-actors}
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Hvilke sektorer og politikkområder områder er hyppigst studert blant de samfunnsrelaterte artiklene? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene. ENGOs = miljørettede ideelle organisasjoner."
 join_Nor_form_soc |>
   select(
@@ -1896,14 +1918,14 @@ join_Nor_form_soc |>
     stat = "identity",
     fill = "grey70"
   ) +
-  geom_text(
-    aes(
-      x = fct_reorder(myVar, total),
-      y = total,
-      label = total
-    ),
-    nudge_y = nudgeDist
-  ) +
+  # geom_text(
+  #   aes(
+  #     x = fct_reorder(myVar, total),
+  #     y = total,
+  #     label = total
+  #   ),
+  #   nudge_y = nudgeDist
+  # ) +
   geom_histogram(
     aes(
       x = fct_reorder(myVar, total),
@@ -1913,7 +1935,7 @@ join_Nor_form_soc |>
     stat = "identity"
   ) +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 
@@ -1927,6 +1949,7 @@ Flertallet av de samfunnsrelaterte artiklene satte søkelys på det lokale styri
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Omfang av samfunnsrelaterte artikler som fokuserer på ulike styringsnivå. Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 
 join_Nor_form_soc |>
@@ -1975,14 +1998,14 @@ join_Nor_form_soc |>
     stat = "identity",
     fill = "grey70"
   ) +
-  geom_text(
-    aes(
-      x = fct_reorder(myVar, total),
-      y = total,
-      label = total
-    ),
-    nudge_y = nudgeDist
-  ) +
+  # geom_text(
+  #   aes(
+  #     x = fct_reorder(myVar, total),
+  #     y = total,
+  #     label = total
+  #   ),
+  #   nudge_y = nudgeDist
+  # ) +
   geom_histogram(
     aes(
       x = fct_reorder(myVar, total),
@@ -1992,7 +2015,7 @@ join_Nor_form_soc |>
     stat = "identity"
   ) +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 
@@ -2006,6 +2029,7 @@ Flest studier i den samfunnsrelaterte forskningen vi gjennomgikk var relatert ti
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Hvilke sektorer og politikkområder er hyppigst studert blan de samfunnsrelaterte artiklene? Delene av søylene med farger refererer til artikler som har brukt samfunnsvitenskapelige metoder. Resten av søylen (den grå delen) refererer til naturvitenskapelige studier som har studert de samme temaene."
 # see 'sector_societal_concern_empty_levels' for empty factor levels
 join_Nor_form_soc |>
@@ -2053,14 +2077,14 @@ join_Nor_form_soc |>
     stat = "identity",
     fill = "grey70"
   ) +
-  geom_text(
-    aes(
-      x = fct_reorder(myVar, total),
-      y = total,
-      label = total
-    ),
-    nudge_y = nudgeDist
-  ) +
+  # geom_text(
+  #   aes(
+  #     x = fct_reorder(myVar, total),
+  #     y = total,
+  #     label = total
+  #   ),
+  #   nudge_y = nudgeDist
+  # ) +
   geom_histogram(
     aes(
       x = fct_reorder(myVar, total),
@@ -2070,7 +2094,7 @@ join_Nor_form_soc |>
     stat = "identity"
   ) +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D")
 
@@ -2080,6 +2104,7 @@ join_Nor_form_soc |>
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "Omfang av samfunnsvitenskapelige artikler som fokuserer på ulike typer arealbruk"
 #| eval: false
 #| include: false
@@ -2106,7 +2131,7 @@ join_Nor_form_soc |>
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y="antall publikasjoner") +
   scale_fill_viridis(discrete = TRUE, option = "D")
 
@@ -2242,7 +2267,7 @@ group_by(tool_characteristics) |>
 
 ```
 
-I dette kapittelet presenteres resultatene fra gjennomgangen av de systematiske litteraturgjennomgangene som ble fanget opp av vårt søk og som ble vurdet som relevante basert på våre inkluderingskriterier. I motsetning til primærstudier, hvor vi kun inkluderte artikler fra norge, Sverige og Finland var kriteriet for systematiske litteratursammenstillinger at de hadde global, Europeisk eller Fennoskandisk dekning. Narrative oversiktsartikler ble ikke inkludert i vår gjennomgang. Totalt ble `r dim(sysRev)[1]` artikler inkludert, hvorav `r nrow(sysRev |> filter(type_of_summarised_evidence == "Meta-analyses based on a systematic review"))` var metaanalyser basert på systematiske littertursammenstillinger av mer begrensede områder.
+I dette kapittelet presenteres resultatene fra gjennomgangen av de systematiske litteraturgjennomgangene som ble fanget opp av vårt søk og som ble vurdet som relevante basert på våre inkluderingskriterier. I motsetning til primærstudier, hvor vi kun inkluderte artikler fra Norge, Sverige og Finland var kriteriet for systematiske litteratursammenstillinger at de hadde global, Europeisk eller Fennoskandisk dekning. Narrative oversiktsartikler ble ikke inkludert i vår gjennomgang. Totalt ble `r dim(sysRev)[1]` artikler inkludert, hvorav `r nrow(sysRev |> filter(type_of_summarised_evidence == "Meta-analyses based on a systematic review"))` var metaanalyser basert på systematiske littertursammenstillinger av mer begrensede områder.
 
 #### Hvor hyppig er ulike økosystemer, arealbruk og arealbruksendringer inkludert i de systematiske litteratursammenstillingene? {.unnumbered}
 
@@ -2252,7 +2277,9 @@ Skog, elver og innsjøer og semi-naturlige økosystemer var klart overrepresente
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Antall artikler blant de systematiske litteratursammenstillingene som har foksuert på ulike økosystemer."
+#| fig-width: 12
+#| fig-height: 10
+#| fig-cap: "Antall artikler blant de systematiske litteratursammenstillingene som har fokusert på ulike økosystemer."
 
 
 sysRev |> 
@@ -2270,14 +2297,14 @@ sysRev |>
   ggplot(aes(reorder(ecosystems_main, n),n,fill=ecosystems_main))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y=commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(
-    aes(
-      label = n),
-    nudge_y = nudgeDist
-  )
+  scale_fill_viridis(discrete = TRUE, option = "D")
+  # geom_text(
+  #   aes(
+  #     label = n),
+  #   nudge_y = nudgeDist
+  # )
 
 
 
@@ -2286,13 +2313,14 @@ sysRev |>
 
 #### Hvilke arealbrukskategorier er studert blant de systematiske litteratursammenstillingene? {.unnumbered}
 
-Hovedvekten av de systematiske litteratursammenstillingene har fokusert på jordbruk (*Agriculture*), inkludert beiting, og ressursbruk (skogbruk, jakt, fisk osv.; *Biological resource use*) (@fig-sysrev-areause-coarse; @fig-sysrev-areause-detailed). Det var også et betydelig innslag av studier som fokuserte på effektene av vern og restaurering.
+Hovedvekten av de systematiske litteratursammenstillingene har fokusert på jordbruk (*Agriculture*), inkludert beiting, og ressursbruk (skogbruk, jakt, fisk osv.; *Biological resource use*) (@fig-sysrev-areause-coarse; @fig-sysrev-areause-detailed).
 
 ```{r fig-sysrev-areause-coarse}
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Oversikt over hvilke arealbrukskategorier (grover klasser) som er studert blandt de systematiske litteratursammenstillingene."
+#| fig-width: 12
+#| fig-cap: "Oversikt over hvilke arealbrukskategorier (grover klasser) som er studert blant de systematiske litteratursammenstillingene."
 
 sysRev |> 
   group_by(x23) |>
@@ -2317,14 +2345,14 @@ sysRev |>
   ggplot(aes(reorder(land_use, n),n,fill=land_use))+
   geom_histogram(stat="identity")+
   coord_flip()+
-  theme(legend.position = "Null")+
+  theme(legend.position = "Null", text = element_text(size = 25))+
   labs(x="", y="antall publikasjoner") +
-  scale_fill_viridis(discrete = TRUE, option = "D")+
-  geom_text(
-    aes(
-      label = n),
-    nudge_y = nudgeDist
-  )
+  scale_fill_viridis(discrete = TRUE, option = "D")
+  # geom_text(
+  #   aes(
+  #     label = n),
+  #   nudge_y = nudgeDist
+  # )
 
 ```
 
@@ -2333,7 +2361,8 @@ sysRev |>
 #| message: false
 #| warning: false
 #| fig-width: 12
-#| fig-cap: "Oversikt over hvilke arealbrukskategorier (detaljerte klasser) som er studert blandt de systematiske litteratursammenstillingene."
+#| fig-height: 10
+#| fig-cap: "Oversikt over hvilke arealbrukskategorier (detaljerte klasser) som er studert blant de systematiske litteratursammenstillingene."
 sysRev |>
   group_by(x23) |>
   mutate(land_use = strsplit(x23, ",")) |>
@@ -2353,15 +2382,15 @@ sysRev |>
   ggplot(aes(reorder(land_use, n), n, fill = land_use)) +
   geom_histogram(stat = "identity") +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 20)) +
   labs(x = "", y = commonResponse) +
-  scale_fill_viridis(discrete = TRUE, option = "D") +
-  geom_text(
-    aes(
-      label = n
-    ),
-    nudge_y = nudgeDist - 2
-  )
+  scale_fill_viridis(discrete = TRUE, option = "D") 
+  # geom_text(
+  #   aes(
+  #     label = n
+  #   ),
+  #   nudge_y = nudgeDist - 2
+  # )
 
 ```
 
@@ -2373,6 +2402,7 @@ De systematiske litteraturesammenstillingene har i stor grad fokusert på *Criti
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "En oversikt over hvor hyppig de ulike typene systematisk litteratursammenstilling forekommer i datamaterialet."
 sysRev |>
   group_by(type_of_summarised_evidence) |>
@@ -2384,16 +2414,16 @@ sysRev |>
   drop_na() |>
   ggplot(aes(reorder(type_of_summarised_evidence, n), n, fill = type_of_summarised_evidence)) +
   geom_histogram(stat = "identity") +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   coord_flip() +
-  scale_fill_viridis(discrete = TRUE, option = "D") +
-  geom_text(
-    aes(
-      label = n
-    ),
-    nudge_y = nudgeDist
-  )
+  scale_fill_viridis(discrete = TRUE, option = "D") 
+  # geom_text(
+  #   aes(
+  #     label = n
+  #   ),
+  #   nudge_y = nudgeDist
+  # )
 
 ```
 
@@ -2435,12 +2465,12 @@ sysRev |>
   )) +
   geom_histogram(stat = "identity") +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 20)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D") +
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist
-  ) +
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist
+  # ) +
   facet_wrap(. ~ bias_variable,
     scales = "free",
     ncol = 2
@@ -2454,7 +2484,8 @@ Det er i de fleste tilfeller uklart om de systematiske litteratursammenstillinge
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "En oversikt over i hvilken grad de systematiske litteratursammenstillingene som forekommer i datamaterialet har vurdert variasjonen blat individuelle studier (t.h.) og om de har tilstrekkelig dataomfang til å kunne gi robuste konklusjoner (t.h.)."
+#| fig-width: 12
+#| fig-cap: "En oversikt over i hvilken grad de systematiske litteratursammenstillingene som forekommer i datamaterialet har vurdert variasjonen blant individuelle studier (t.h.) og om de har tilstrekkelig dataomfang til å kunne gi robuste konklusjoner (t.h.)."
 imprecission <- c(
   "imprecision_is_the_sample_size_sufficient_to_make_an_unbiased_estimate_of_effect",
   "imprecision_how_varied_is_the_summarised_effect_and_has_this_variation_be_adequately_assessed"
@@ -2482,12 +2513,12 @@ sysRev |>
   )) +
   geom_histogram(stat = "identity") +
   coord_flip() +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   scale_fill_viridis(discrete = TRUE, option = "D") +
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist
-  ) +
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist
+  # ) +
   facet_wrap(. ~ variable,
     scales = "free",
     ncol = 2
@@ -2495,12 +2526,13 @@ sysRev |>
 
 ```
 
-Det har i de fleste tilfeller vært vanskelig å vurdere om de systematiske litteratursammenstillingene har vist en konsisten (ensartet) retning på den effekten de har studert, og i hvor stor grad konfidensintervallene på de individuelle studiene overlapper (@fig-inconsistency).
+Det har i de fleste tilfeller vært vanskelig å vurdere om de systematiske litteratursammenstillingene har vist en konsistent (ensartet) retning på den effekten de har studert, og i hvor stor grad konfidensintervallene på de individuelle studiene overlapper (@fig-inconsistency).
 
 ```{r fig-inconsistency}
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-width: 12
 #| fig-cap: "En oversikt over i hvilken grad effekten som studeres i de systematiske litteratursammenstillingene som forekommer i datamaterialet har en konsistent retning."
 sysRev |>
   rename(cons = inconsistency_do_studies_included_in_summarised_evidence_have_a_consistent_direction_and_size_of_effect_do_studies_95_percent_ci_overlap) |>
@@ -2513,13 +2545,13 @@ sysRev |>
   drop_na() |>
   ggplot(aes(reorder(cons, n), n, fill = cons)) +
   geom_histogram(stat = "identity") +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   coord_flip() +
-  scale_fill_viridis(discrete = TRUE, option = "D") +
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist
-  )
+  scale_fill_viridis(discrete = TRUE, option = "D") 
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist
+  # )
 ```
 
 ```{r Indirectness}
@@ -2545,7 +2577,8 @@ Vi har sett på i hvilken grad de systematiske litteratursammenstillingenen har 
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Publication bias"
+#| fig-width: 12
+#| fig-cap: "Antall artikler som har vurdert ulike former for publiseringsskjevhet (publication bias)."
 
 sysRev |>
   rename(bias = publication_bias_does_the_summarised_evidence_assess_publication_bias_through_some_formal_method) |>
@@ -2558,16 +2591,16 @@ sysRev |>
   drop_na() |>
   ggplot(aes(reorder(bias, n), n, fill = bias)) +
   geom_histogram(stat = "identity") +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 25)) +
   labs(x = "", y = commonResponse) +
   coord_flip() +
-  scale_fill_viridis(discrete = TRUE, option = "D") +
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist
-  )
+  scale_fill_viridis(discrete = TRUE, option = "D") 
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist
+  # )
 ```
 
-#### Tiltroen til resultatene i de systematiske litteratursammenstillingene {.unnumbered}
+#### Tiltro til resultatene i de systematiske litteratursammenstillingene {.unnumbered}
 
 Baert på en systematisk gjennomgang av kriterier for å vurdere kvaliteten til de ulike systematiske litteratursammenstillingene i vårt datamaterialet ser vi at tiltroen eller sikkerheten til resultatene fra disse studiene oftest kan sies å være lav eller moderal, med relativt få litteratursammenstillinger der vi har høy tillitt til resultatene (@fig-evidence).
 
@@ -2575,26 +2608,34 @@ Baert på en systematisk gjennomgang av kriterier for å vurdere kvaliteten til 
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: "Evidence certainty"
+#| fig-cap: "Vurdering av kvaliteten på de inkluderte artiklene."
 #| fig-width: 12
 
-sysRev |>
+evidence <- sysRev |>
   group_by(evidence_certainty) |>
+  mutate(evidence_certainty =str_split(evidence_certainty,",\\s(?=[A-Z])")) |>
+  unnest(evidence_certainty) |>
+  mutate(evidence_certainty = str_split_i(evidence_certainty, " - ", 1)) |>
   tally() |>
   # mutate(evidence_certainty = case_when(
   #   is.na(evidence_certainty) ~ "Unknown",
   #   .default = evidence_certainty
   # )) |>
-  drop_na() |>
-  ggplot(aes(reorder(evidence_certainty, n), n, fill = evidence_certainty)) +
+  drop_na()
+
+  evidence$evidence_certainty<-factor(evidence$evidence_certainty, 
+                  levels=c("Very low", "Low","Moderate", "High"))
+  
+  evidence |> 
+  ggplot(aes(evidence_certainty, n, fill = evidence_certainty)) +
   geom_histogram(stat = "identity") +
-  theme(legend.position = "Null") +
+  theme(legend.position = "Null", text = element_text(size = 20)) +
   labs(x = "", y = commonResponse) +
   coord_flip() +
-  scale_fill_viridis(discrete = TRUE, option = "D") +
-  geom_text(aes(label = n),
-    nudge_y = nudgeDist
-  )
+  scale_fill_viridis(discrete = TRUE, option = "D") 
+  # geom_text(aes(label = n),
+  #   nudge_y = nudgeDist
+  # )
 
 
 
@@ -2602,7 +2643,7 @@ sysRev |>
 
 ## Sammenstilning av data fra alle inkluderte artikler fra Norge, Sverige og Finland
 
-I denne seksjonen vil vi presentere rsultater fra alle inkluderte artikler fra Norge, Sverige og Finland. Siden disse artiklene kun har gått gjennom første screening men ikke er kodet er det mer begrenset hva vi kan lese ut av disse artiklene. Vi har her benyttet oss av endel biobliometriske analysemetoder og informasjon fra åpne kilder (for eksempel [OpenAlex](https://openalex.org/), som er en database med data og metadata som omhandler den vitenskapelige litteraturen).
+I denne seksjonen vil vi presentere resultater fra alle inkluderte artikler fra Norge, Sverige og Finland. Siden disse artiklene kun har gått gjennom første screening men ikke er kodet er det mer begrenset hva vi kan lese ut av disse artiklene. Vi har her benyttet oss av endel bibliometriske analysemetoder og informasjon fra åpne kilder (for eksempel [OpenAlex](https://openalex.org/), som er en database med data og metadata som omhandler den vitenskapelige litteraturen).
 
 ```{r openalex source}
 #| echo: false 
@@ -2820,7 +2861,7 @@ wordfreq |>
 
 Vi undersøkte også hvilke tema som ble vanligere og sjeldnere over tid i det samlede materialet (@fig-wordfreq). Siden vi ikke har kodet dette materialet benyttet vi oss av åpent tilgjengelig informasjon om de enkelte studiene i disse analysene. Før 2005 var ord som "klima", "biologisk mangfold", "økosystem" og "tjenester" mindre vanlige i tittelen eller sammendraget av inkluderte studier enn etter 2005. Etter 2005 var ord som "skog", "fragmentering", mindre vanlige enn før 2005. Dette antyder at språket som brukes i titler og sammendrag har blitt mer fokusert på politikkrelevante *buzzwords* i stedet for habitater eller artstrekk. Disse analysene gjør dog ikke at vi kan konkludere med sikkerhet at de tema for forskningen faktisk har endret seg.
 
-## En beslutningsstøtteverktøy basert på inkluderte artikler fra Norge
+## Et beslutningsstøtteverktøy basert på inkluderte artikler fra Norge
 
 Vi kan vurdere den konseptuelle utviklingen av et forskningsfelt ved hjelp av bibliometrisk nettverksanalyse [@cobo2011approach]. Nærmere bestemt vurderer en slik nettverksanalyse forholdet mellom nøkkelord i et sett med dokumenter. Det hjelper med å identifisere nøkkeltemaer, deres sammenhenger og hvordan de endrer seg over tid, og gir verdifull innsikt for forskere og beslutningstakere når man skal prioritere ny forskning.
 
