@@ -692,9 +692,9 @@ Før vi startet med litteraturgjennomgangen utviklet vi en detaljert protokoll [
 
 ## Resultat av litteratursøket
 
-Litteratursøket resulterte i totalt `r params$'search-results'` artikler (@fig-prisma). På sammendragsscreeningstadiet screenet vi 16 093 artikler, og ekskluderte 13 472 av dem. På fulltekststadiet vurderte vi 2 586 for inkludering, og endte opp med 598 artikler i gjennomgangen.p
+Litteratursøket resulterte i totalt `r params$'search-results'` artikler (@fig-prisma). På sammendragsscreeningstadiet screenet vi 16 093 artikler, og ekskluderte 13 472 av dem. På fulltekststadiet vurderte vi 2 583 for inkludering, og endte opp med 584 artikler i gjennomgangen.
 
-![Flytskjema (PRISMA) som viser hvor mange artikler som går videre til de ulike stegene i den systematiske prosessen for litterturgjennomgang.](images/prisma%20(3).png){#fig-prisma}
+![Flytskjema (PRISMA) som viser hvor mange artikler som går videre til de ulike stegene i den systematiske prosessen for litterturgjennomgang.](images/prisma.png){#fig-prisma}
 
 ## Litteratur fra Norge
 
