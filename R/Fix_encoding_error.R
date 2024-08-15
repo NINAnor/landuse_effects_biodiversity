@@ -1,3 +1,7 @@
+library(tidyverse)
+library(googlesheets4)
+library(openalexR)
+
 #fix encoding error
 
 form <- read_sheet("https://docs.google.com/spreadsheets/d/1wwOfwz_QqwXpNxKx4Jupn336x2GttOfoXKibd-_rMuc")
@@ -75,6 +79,15 @@ join_Nor_form[140,]$author<- "Junker kohler, B. and Sundt, H."
 
 which(join_Nor_form$study_id=="rayyan-674234078")
 join_Nor_form[17,]$address<-"Norwegian Institute for Nature Research, Trondheim,Norway"
+
+
+which(join_Nor_form$study_id=="rayyan-674231585")
+join_Nor_form[282,]$address<-
+  "Industrial Ecology Program, Department of Energy and Process Engineering, Norwegian University of Science and Technology, Trondheim, N-7491, Norway,State Key Laboratory of Earth Surface Processes and Resource Ecology, Faculty of Geographical Science, Beijing Normal University, Beijing, 100875, China, State Key Laboratory of Water Resources and Hydropower Engineering Science, Wuhan University, No. 299 Bayi Street, Hubei, Wuhan, 430072, China,CNR b"
+
+
+
+
 
 #join_Nor_form[grep("Riparian forest buffers have multiple benefits", join_Nor_form$abstract),]$study_id
 
