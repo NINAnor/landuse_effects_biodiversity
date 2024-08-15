@@ -70,21 +70,21 @@ format:
   #  # default-image-extension: svg
   #   fig-format: pdf
   #   fig-dpi: 600
-  # ninareport-html:
-  #    highlight-style: tango
-  #    toc: true
-  #    toc-depth: 3
-  #    number-sections: true
-  #    toc-location: left
-  #    default-image-extension: svg
-  #    fig-format: svg
-  #    toc-title: Innhold
-  ninareport-docx:
-    highlight: tango
-    #prefer-html: true
-    toc: true
-    toc-depth: 3
-    number-sections: true
+  ninareport-html:
+     highlight-style: tango
+     toc: true
+     toc-depth: 3
+     number-sections: true
+     toc-location: left
+     default-image-extension: svg
+     fig-format: svg
+     toc-title: Innhold
+  # ninareport-docx:
+  #   highlight: tango
+  #   #prefer-html: true
+  #   toc: true
+  #   toc-depth: 3
+  #   number-sections: true
 crossref:
   fig-title: Figur     # (default is "Figure")
   tbl-title: Tabell     # (default is "Table") 
