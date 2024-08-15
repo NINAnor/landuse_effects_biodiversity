@@ -44,8 +44,8 @@ cover_picture: image/Evju_hyttelandskap.jpg
 cover_picture_text: Hyttelandskap
 cover_picture_photographer: Marianne Evju
 line_numbering:
-qualitycontrol: [Rapporten er ikke kvalitetssikret og regnes som en pre-print]
-boss_sign: Forskningssjef [fylles ut av forskningssjefen] (sign.)
+qualitycontrol: 
+boss_sign: 
 customer: [xx]
 customer_ref: [xx]
 customer_contact: [xx]
